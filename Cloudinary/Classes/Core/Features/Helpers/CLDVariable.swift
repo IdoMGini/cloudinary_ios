@@ -24,16 +24,25 @@
 
 import Foundation
 
+internal func CLDThrowFatalError(with message: String) {
+    fatalError(message)
+}
+
 open class CLDVariable: NSObject {
     
-    internal var variablesName: String = ""
+    internal var variableName : String = ""
     internal var variableValue: String = ""
     
-    private let variableNamePrefix: String = "$"
-    private let variablePrefix: String = "!"
-    private let variableSuffix: String = "!"
+    private let variableNamePrefix  : String = "$"
+    
+    private let collectionPrefix    : String = "!"
+    private let collectionSuffix    : String = "!"
+    private let collectionSeparator : String = ":"
+    
+    private let exportSeparator: String = "_"
+    
     private let separator: String = ","
-    private let stringSeparator: String = ":"
+    
     private let nameRegex = "^\\$[a-zA-Z][a-zA-Z0-9]*$"
 
 
@@ -42,52 +51,65 @@ open class CLDVariable: NSObject {
         super.init()
     }
     
-    public init(variablesName: String, variableValue: String) {
-        self.variablesName = variablesName
+    public init(variableName: String, variableValue: String) {
+        self.variableName = variableName
         self.variableValue = variableValue
         super.init()
+        self.addNamePrefixIfNeeded()
     }
     
-    public init(variablesName: String, variableValue: Double) {
-        self.variablesName = variablesName
+    public init(variableName: String, variableValue: Double) {
+        self.variableName = variableName
         self.variableValue = String(variableValue)
         super.init()
+        self.addNamePrefixIfNeeded()
     }
     
-    public init(variablesName: String, variableValue: Int) {
-        self.variablesName = variablesName
+    public init(variableName: String, variableValue: Int) {
+        self.variableName = variableName
         self.variableValue = String(variableValue)
         super.init()
+        self.addNamePrefixIfNeeded()
     }
     
-    public init(variablesName: String, variableValue: [String]) {
-        self.variablesName = variablesName
-        self.variableValue = String(variableValue.reduce("", {$0 + $1}))
-        super.init()
-    }
-    
-    private func addNamePrefix(to variablesName: String) -> String {
-        return variableNamePrefix + variablesName
-    }
-    
-    private func checkVariableName(variablesName: String) -> Bool {
-        let regexExpression = try! NSRegularExpression(pattern: nameRegex, options: .caseInsensitive)
+    public init(variableName: String, variableValues: [String]) {
+        self.variableName = variableName
         
-        let isValid = regexExpression.firstMatch(in: variablesName, options: [], range: NSRange(location: 0, length: variablesName.count)) != nil
-        
-        if isValid == false {
-            fatalError("checkVariableName failed!")
+        if variableValues.isEmpty {
+            self.variableValue = String()
         } else {
-            return true
+            self.variableValue = collectionPrefix + variableValues.joined(separator: collectionSeparator) + collectionSuffix
         }
+        
+        super.init()
+    }
+    
+    private func addNamePrefixIfNeeded() {
+        guard !variableName.hasPrefix(variableNamePrefix) else { return }
+        variableName = addNamePrefix(to: variableName)
+    }
+    
+    private func addNamePrefix(to name: String) -> String {
+        return variableNamePrefix + name
+    }
+    
+    private func checkVariableName(_ name: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: nameRegex, options: .caseInsensitive)
+        let range = NSRange(location: 0, length: name.count)
+        
+        let isValid = regex.firstMatch(in: name, options: [], range: range) != nil
+        
+        if !isValid {
+            CLDThrowFatalError(with: "\(#function) failed!")
+        }
+        return isValid
     }
     
     public func asString() -> String {
-        return variablesName + "_" + variableValue
+        return variableName + exportSeparator + variableValue
     }
     
     public func asParams() -> [String : String] {
-        return [variablesName:asString()]
+        return [variableName:asString()]
     }
 }
-

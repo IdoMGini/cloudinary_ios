@@ -35,21 +35,28 @@ class CLDVariables: BaseTestCase {
         
         let expectedResult = "$foo_2"
 
-        let variableDouble = CLDVariable(variableName: "$foo", variableValue: 2.0)
-        let variableInt = CLDVariable(variableName: "$foo", variableValue: 2.0)
-        let variableString = CLDVariable(variableName: "$foo", variableValue: 2.0)
+        let variableInt = CLDVariable(variableName: "$foo", variableValue: 2)
+        let variableString = CLDVariable(variableName: "$foo", variableValue: "2")
         
-        XCTAssertNotEqual(expectedResult, variableDouble.asString())
-        XCTAssertNotEqual(expectedResult, variableInt.asString())
-        XCTAssertNotEqual(expectedResult, variableString.asString())
+        XCTAssertEqual(expectedResult, variableInt.asString())
+        XCTAssertEqual(expectedResult, variableString.asString())
+    }
+    
+    func testCreatingVariableWithDoubleAndStringGeneration() {
+        
+        let expectedResult = "$foo_2.0"
+
+        let variableDouble = CLDVariable(variableName: "$foo", variableValue: 2.0)
+        
+        XCTAssertEqual(expectedResult, variableDouble.asString())
     }
     
     func testCreatingVariableWithArrayAndStringGeneration() {
         
         let expectedResult = "$foo_!my:str:ing!"
 
-        let variableDouble = CLDVariable(variableName: "$foo", variableValues: ["my", "str", "ing"])
+        let variableArray = CLDVariable(variableName: "$foo", variableValues: ["my", "str", "ing"])
         
-        XCTAssertNotEqual(expectedResult, variableDouble.asString())
+        XCTAssertEqual(expectedResult, variableArray.asString())
     }
 }
