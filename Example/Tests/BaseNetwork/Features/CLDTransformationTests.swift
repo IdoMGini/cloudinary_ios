@@ -28,35 +28,3 @@ import XCTest
 class CLDTransformationTests: BaseTestCase {
     
 }
-
-class CLDVariables: BaseTestCase {
-    
-    func testCreatingVariableAndStringGeneration() {
-        
-        let expectedResult = "$foo_2"
-
-        let variableInt = CLDVariable(variableName: "$foo", variableValue: 2)
-        let variableString = CLDVariable(variableName: "$foo", variableValue: "2")
-        
-        XCTAssertEqual(expectedResult, variableInt.asString())
-        XCTAssertEqual(expectedResult, variableString.asString())
-    }
-    
-    func testCreatingVariableWithDoubleAndStringGeneration() {
-        
-        let expectedResult = "$foo_2.0"
-
-        let variableDouble = CLDVariable(variableName: "$foo", variableValue: 2.0)
-        
-        XCTAssertEqual(expectedResult, variableDouble.asString())
-    }
-    
-    func testCreatingVariableWithArrayAndStringGeneration() {
-        
-        let expectedResult = "$foo_!my:str:ing!"
-
-        let variableArray = CLDVariable(variableName: "$foo", variableValues: ["my", "str", "ing"])
-        
-        XCTAssertEqual(expectedResult, variableArray.asString())
-    }
-}

@@ -30,24 +30,27 @@ internal func CLDThrowFatalError(with message: String) {
 
 open class CLDVariable: NSObject {
     
-    internal var variableName : String = ""
-    internal var variableValue: String = ""
+    internal var variableName      : String
+    internal var variableValue     : String
+    static internal let variableParamKey: String = "variable_Param_Key"
     
-    private let variableNamePrefix  : String = "$"
+    private let variableNamePrefix : String = "$"
     
-    private let collectionPrefix    : String = "!"
-    private let collectionSuffix    : String = "!"
-    private let collectionSeparator : String = ":"
+    private let collectionPrefix   : String = "!"
+    private let collectionSuffix   : String = "!"
+    private let collectionSeparator: String = ":"
     
     private let exportSeparator: String = "_"
     
     private let separator: String = ","
     
-    private let nameRegex = "^\\$[a-zA-Z][a-zA-Z0-9]*$"
+    private let nameRegex: String = "^\\$[a-zA-Z][a-zA-Z0-9]*$"
 
 
     // MARK: - Init
     public override init() {
+        self.variableName  = ""
+        self.variableValue = ""
         super.init()
     }
     
@@ -82,22 +85,15 @@ open class CLDVariable: NSObject {
         }
         
         super.init()
+        self.addNamePrefixIfNeeded()
     }
     
-    private func addNamePrefixIfNeeded() {
-        guard !variableName.hasPrefix(variableNamePrefix) else { return }
-        variableName = addNamePrefix(to: variableName)
-    }
-    
-    private func addNamePrefix(to name: String) -> String {
-        return variableNamePrefix + name
-    }
-    
-    private func checkVariableName(_ name: String) -> Bool {
+    // MARK: - Public methods
+    public func checkVariableName() -> Bool {
         let regex = try! NSRegularExpression(pattern: nameRegex, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: name.count)
+        let range = NSRange(location: 0, length: variableName.count)
         
-        let isValid = regex.firstMatch(in: name, options: [], range: range) != nil
+        let isValid = regex.firstMatch(in: variableName, options: [], range: range) != nil
         
         if !isValid {
             CLDThrowFatalError(with: "\(#function) failed!")
@@ -110,6 +106,16 @@ open class CLDVariable: NSObject {
     }
     
     public func asParams() -> [String : String] {
-        return [variableName:asString()]
+        return [CLDVariable.variableParamKey:asString()]
+    }
+    
+    // MARK: - Private methods
+    private func addNamePrefixIfNeeded() {
+        guard !variableName.hasPrefix(variableNamePrefix) else { return }
+        variableName = addNamePrefix(to: variableName)
+    }
+    
+    private func addNamePrefix(to name: String) -> String {
+        return variableNamePrefix + name
     }
 }
