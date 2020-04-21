@@ -30,11 +30,12 @@ internal func CLDThrowFatalError(with message: String) {
 
 open class CLDVariable: NSObject {
     
-    internal var variableName      : String
-    internal var variableValue     : String
-    static internal let variableParamKey: String = "variable_Param_Key"
+    internal var variableName : String
+    internal var variableValue: String
     
-    private let variableNamePrefix : String = "$"
+    internal static let variableParamKey: String = "variable_param_key"
+    
+    private let variableNamePrefix: String = "$"
     
     private let collectionPrefix   : String = "!"
     private let collectionSuffix   : String = "!"

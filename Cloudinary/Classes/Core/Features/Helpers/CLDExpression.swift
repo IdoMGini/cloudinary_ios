@@ -26,137 +26,159 @@ import Foundation
 
 open class CLDExpression: NSObject {
     
-    internal var values: [String]
+    internal var values: [String] = [] //TODO: I'm not sure we need this var, should we allow the user to make multiple experations in one instance?
     internal var currentValue: String
-    internal var currentExpressionKeys: String
     
-    private let separator: String = ","
+    internal var currentExpressionKeys: String = ""
+    
+    private let separator          : String = ","
+    private let elementsSeparator  : String = "_"
     private let stringValueInterval: String = "_"
-    private let stringValueRegex: String = "[ _]+"
+    private let stringValueRegex   : String = "[ _]+"
     
+    // MARK: - Init
     public override init() {
-        self.values = []
         self.currentValue = ""
-        currentExpressionKeys = ""
         super.init()
     }
     
     public init(value: String) {
-        self.values = []
-        self.currentValue = ""
-        currentExpressionKeys = ""
+        self.currentValue = value
         super.init()
     }
     
     public init(key: String, operator: CLDOperators, value: String) {
-        self.values = []
-        self.currentValue = ""
-        currentExpressionKeys = ""
+        self.currentValue = value
+        currentExpressionKeys = key
         super.init()
     }
     
-    public func width() -> Self {
-        return self
+    fileprivate init(expressionKey: ExpressionKeys) {
+        self.currentValue = expressionKey.asString
+        super.init()
     }
     
-    public func height() -> Self {
-        return self
+    // MARK: - Public methods
+    public class func width() -> CLDExpression {
+        return CLDExpression(expressionKey: .width)
     }
     
-    public func initialWidth() -> Self {
-        return self
+    public func height() -> CLDExpression {
+        return CLDExpression(expressionKey: .height)
     }
     
-    public func initialHeight() -> Self {
-        return self
+    public func initialWidth() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialWidth)
     }
     
-    public func aspectRatio() -> Self {
-        return self
+    public func initialHeight() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialHeight)
     }
     
-    public func initialAspectRatio() -> Self {
-        return self
+    public func aspectRatio() -> CLDExpression {
+        return CLDExpression(expressionKey: .aspectRatio)
     }
     
-    public func pageCount() -> Self {
-        return self
+    public func initialAspectRatio() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialAspectRatio)
     }
     
-    public func faceCount() -> Self {
-        return self
+    public func pageCount() -> CLDExpression {
+        return CLDExpression(expressionKey: .pageCount)
     }
     
-    public func tags() -> Self {
-        return self
+    public func faceCount() -> CLDExpression {
+        return CLDExpression(expressionKey: .faceCount)
     }
     
-    public func pageXOffset() -> Self {
-        return self
+    public func tags() -> CLDExpression {
+        return CLDExpression(expressionKey: .tags)
     }
     
-    public func pageYOffset() -> Self {
-        return self
+    public func pageXOffset() -> CLDExpression {
+        return CLDExpression(expressionKey: .pageX)
     }
     
-    public func illustrationScore() -> Self {
-        return self
+    public func pageYOffset() -> CLDExpression {
+        return CLDExpression(expressionKey: .pageY)
     }
     
-    public func currentPageIndex() -> Self {
-        return self
+    public func illustrationScore() -> CLDExpression {
+        return CLDExpression(expressionKey: .illustrationScore)
+    }
+    
+    public func currentPageIndex() -> CLDExpression {
+        return CLDExpression(expressionKey: .currentPage)
     }
     
     public func multiple(by number: Int) -> Self {
+        appendExpression(cldoperator: .multiple, number: number)
         return self
     }
     
-    public func multiple(by number: CGFloat) -> Self {
+    public func multiple(by number: Float) -> Self {
+        appendExpression(cldoperator: .multiple, number: number)
         return self
     }
     
     public func divide(by number: Int) -> Self {
+        appendExpression(cldoperator: .divide, number: number)
         return self
     }
     
-    public func divide(by number: CGFloat) -> Self {
+    public func divide(by number: Float) -> Self {
+        appendExpression(cldoperator: .divide, number: number)
         return self
     }
     
     public func add(by number: Int) -> Self {
+        appendExpression(cldoperator: .add, number: number)
         return self
     }
     
-    public func add(by number: CGFloat) -> Self {
+    public func add(by number: Float) -> Self {
+        appendExpression(cldoperator: .add, number: number)
         return self
     }
     
     public func subtract(by number: Int) -> Self {
+        appendExpression(cldoperator: .subtract, number: number)
         return self
     }
     
-    public func subtract(by number: CGFloat) -> Self {
+    public func subtract(by number: Float) -> Self {
+        appendExpression(cldoperator: .subtract, number: number)
         return self
     }
     
     public func asString() -> String {
-        return ""
+        return currentValue
     }
     
     public func asParams() -> [String : String] {
         return [:]
     }
     
+    // MARK: - Private methods
     private func replaceAllOperators(in string: String) -> String {
         return ""
     }
     
-    private func replace(operator: CLDOperators, in string: String) -> String {
+    private func replace(cldoperator: CLDOperators, in string: String) -> String {
         return ""
+    }
+    
+    private func appendExpression(cldoperator: CLDOperators, number: Int) {
+        currentValue.append(elementsSeparator + cldoperator.asString() + elementsSeparator + String(number))
+    }
+    
+    private func appendExpression(cldoperator: CLDOperators, number: Float) {
+        currentValue.append(elementsSeparator + cldoperator.asString() + elementsSeparator + String(number))
     }
 }
 
 private enum ExpressionKeys : String {
+    
     case width
     case height
     
@@ -187,7 +209,7 @@ private enum ExpressionKeys : String {
     case pageX
     case pageY
     
-    var operatorAsString: String {
+    var asString: String {
         switch self {
         case .width : return "w"
         case .height: return "h"

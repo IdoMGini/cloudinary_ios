@@ -41,7 +41,7 @@ public enum CLDOperators: String {
     case add      = "+"
     case subtract = "-"
 
-    var operatorAsString: String {
+    func asString() -> String {
         switch self {
         case .equal         : return "eq"
         case .notEqual      : return "ne"
