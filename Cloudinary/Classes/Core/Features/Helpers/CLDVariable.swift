@@ -25,13 +25,13 @@
 import Foundation
 
 internal func CLDThrowFatalError(with message: String) {
-    fatalError(message)
+    // fatalError(message)
 }
 
 open class CLDVariable: NSObject {
     
-    internal var variableName : String
-    internal var variableValue: String
+    internal var name : String
+    internal var value: String
     
     internal static let variableParamKey: String = "variable_param_key"
     
@@ -49,40 +49,40 @@ open class CLDVariable: NSObject {
 
 
     // MARK: - Init
-    public override init() {
-        self.variableName  = ""
-        self.variableValue = ""
+    internal override init() {
+        self.name  = String()
+        self.value = String()
         super.init()
     }
     
     public init(variableName: String, variableValue: String) {
-        self.variableName = variableName
-        self.variableValue = variableValue
+        self.name  = variableName
+        self.value = variableValue
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
     public init(variableName: String, variableValue: Double) {
-        self.variableName = variableName
-        self.variableValue = String(variableValue)
+        self.name = variableName
+        self.value = String(variableValue)
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
     public init(variableName: String, variableValue: Int) {
-        self.variableName = variableName
-        self.variableValue = String(variableValue)
+        self.name = variableName
+        self.value = String(variableValue)
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
     public init(variableName: String, variableValues: [String]) {
-        self.variableName = variableName
+        self.name = variableName
         
         if variableValues.isEmpty {
-            self.variableValue = String()
+            self.value = String()
         } else {
-            self.variableValue = collectionPrefix + variableValues.joined(separator: collectionSeparator) + collectionSuffix
+            self.value = collectionPrefix + variableValues.joined(separator: collectionSeparator) + collectionSuffix
         }
         
         super.init()
@@ -92,9 +92,9 @@ open class CLDVariable: NSObject {
     // MARK: - Public methods
     public func checkVariableName() -> Bool {
         let regex = try! NSRegularExpression(pattern: nameRegex, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: variableName.count)
+        let range = NSRange(location: 0, length: name.count)
         
-        let isValid = regex.firstMatch(in: variableName, options: [], range: range) != nil
+        let isValid = regex.firstMatch(in: name, options: [], range: range) != nil
         
         if !isValid {
             CLDThrowFatalError(with: "\(#function) failed!")
@@ -103,7 +103,7 @@ open class CLDVariable: NSObject {
     }
     
     public func asString() -> String {
-        return variableName + exportSeparator + variableValue
+        return name + exportSeparator + value
     }
     
     public func asParams() -> [String : String] {
@@ -112,8 +112,8 @@ open class CLDVariable: NSObject {
     
     // MARK: - Private methods
     private func addNamePrefixIfNeeded() {
-        guard !variableName.hasPrefix(variableNamePrefix) else { return }
-        variableName = addNamePrefix(to: variableName)
+        guard !name.hasPrefix(variableNamePrefix) else { return }
+        name = addNamePrefix(to: name)
     }
     
     private func addNamePrefix(to name: String) -> String {

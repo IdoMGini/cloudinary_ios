@@ -36,6 +36,18 @@ class CLDVariableTests: BaseTestCase {
         super.tearDown()
     }
     
+    // MARK: - test initilization methods
+    func test_create_empty_object_correctlly() {
+        
+        // Given
+        // When
+        let sut = CLDVariable.init()
+        
+        // Then
+        XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
+        XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
+    }
+    
     // MARK: - test asString()
     func testGetStringFromStringValueVariable() {
         // Given
@@ -47,7 +59,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(expectedResult, variableString.asString())
     }
-    
     func testGetStringFromIntValueVariable() {
         // Given
         let expectedResult = "$foo_2"
@@ -58,7 +69,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(expectedResult, variableInt.asString())
     }
-    
     func testGetStringFromDoubleValueVariable() {
         // Given
         let expectedResult = "$foo_2.1234"
@@ -69,7 +79,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(expectedResult, variableDouble.asString())
     }
-    
     func testGetStringFromArrayValueVariable() {
         // Given
         let expectedResult = "$foo_!my:str:ing!"
@@ -92,7 +101,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(expectedResult, variableString.asParams())
     }
-    
     func testGetParamsFromIntValueVariable() {
         // Given
         let expectedResult = [CLDVariable.variableParamKey:"$foo_2"]
@@ -103,7 +111,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(expectedResult, variableInt.asParams())
     }
-    
     func testGetParamsFromDoubleValueVariable() {
         // Given
         let expectedResult = [CLDVariable.variableParamKey:"$foo_2.1234"]
@@ -114,7 +121,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(expectedResult, variableDouble.asParams())
     }
-    
     func testGetParamsFromArrayValueVariable() {
         // Given
         let expectedResult = [CLDVariable.variableParamKey:"$foo_!my:str:ing!"]
@@ -137,7 +143,6 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertTrue(variableStringWithValidName.checkVariableName())
     }
-    
     func testCheckInvalidVariableName() {
         // Given
         let invalidName = "@foo"
