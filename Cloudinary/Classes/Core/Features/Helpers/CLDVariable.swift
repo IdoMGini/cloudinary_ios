@@ -30,22 +30,24 @@ internal func CLDThrowFatalError(with message: String) {
 
 open class CLDVariable: NSObject {
     
-    internal var name : String
     internal var value: String
+    internal var name : String {
+        didSet { self.addNamePrefixIfNeeded() }
+    }
     
-    internal static let variableParamKey: String = "variable_param_key"
+    static internal let variableParamKey  : String = "variable_param_key"
     
-    private let variableNamePrefix: String = "$"
+    static internal let variableNamePrefix: String = "$"
     
-    private let collectionPrefix   : String = "!"
-    private let collectionSuffix   : String = "!"
-    private let collectionSeparator: String = ":"
+    static private let collectionPrefix   : String = "!"
+    static private let collectionSuffix   : String = "!"
+    static private let collectionSeparator: String = ":"
     
-    private let exportSeparator: String = "_"
+    static private let exportSeparator: String = "_"
     
-    private let separator: String = ","
+    static private let separator: String = ","
     
-    private let nameRegex: String = "^\\$[a-zA-Z][a-zA-Z0-9]*$"
+    static private let nameRegex: String = "^\\$[a-zA-Z][a-zA-Z0-9]*$"
 
 
     // MARK: - Init
@@ -53,36 +55,37 @@ open class CLDVariable: NSObject {
         self.name  = String()
         self.value = String()
         super.init()
+        self.addNamePrefixIfNeeded()
     }
     
-    public init(variableName: String, variableValue: String) {
+    public init(name variableName: String, value variableValue: String) {
         self.name  = variableName
         self.value = variableValue
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
-    public init(variableName: String, variableValue: Double) {
+    public init(name variableName: String, value variableValue: Double) {
         self.name = variableName
         self.value = String(variableValue)
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
-    public init(variableName: String, variableValue: Int) {
+    public init(name variableName: String, value variableValue: Int) {
         self.name = variableName
         self.value = String(variableValue)
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
-    public init(variableName: String, variableValues: [String]) {
+    public init(name variableName: String, values variableValues: [String]) {
         self.name = variableName
         
         if variableValues.isEmpty {
             self.value = String()
         } else {
-            self.value = collectionPrefix + variableValues.joined(separator: collectionSeparator) + collectionSuffix
+            self.value = CLDVariable.collectionPrefix + variableValues.joined(separator: CLDVariable.collectionSeparator) + CLDVariable.collectionSuffix
         }
         
         super.init()
@@ -91,7 +94,7 @@ open class CLDVariable: NSObject {
     
     // MARK: - Public methods
     public func checkVariableName() -> Bool {
-        let regex = try! NSRegularExpression(pattern: nameRegex, options: .caseInsensitive)
+        let regex = try! NSRegularExpression(pattern: CLDVariable.nameRegex, options: .caseInsensitive)
         let range = NSRange(location: 0, length: name.count)
         
         let isValid = regex.firstMatch(in: name, options: [], range: range) != nil
@@ -103,20 +106,24 @@ open class CLDVariable: NSObject {
     }
     
     public func asString() -> String {
-        return name + exportSeparator + value
+        guard checkVariableName() else { return String() }
+        return name + CLDVariable.exportSeparator + value
     }
     
     public func asParams() -> [String : String] {
+        guard checkVariableName() else { return [String:String]() }
         return [CLDVariable.variableParamKey:asString()]
     }
     
     // MARK: - Private methods
     private func addNamePrefixIfNeeded() {
-        guard !name.hasPrefix(variableNamePrefix) else { return }
+        
+        guard !name.hasPrefix(CLDVariable.variableNamePrefix) else { return }
         name = addNamePrefix(to: name)
     }
     
     private func addNamePrefix(to name: String) -> String {
-        return variableNamePrefix + name
+        
+        return CLDVariable.variableNamePrefix + name
     }
 }
