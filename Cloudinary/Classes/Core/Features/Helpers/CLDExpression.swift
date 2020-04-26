@@ -25,11 +25,78 @@
 import Foundation
 
 open class CLDExpression: NSObject {
+
+    fileprivate enum ExpressionKeys : String {
+        
+        case width
+        case height
+        
+        case initial_width
+        case initialWidth
+        case initial_height
+        case initialHeight
+        
+        case aspect_ratio
+        case aspectRatio
+        case initial_aspect_ratio
+        case initialAspectRatio
+        
+        case page_count
+        case pageCount
+        
+        case face_count
+        case faceCount
+        
+        case illustration_score
+        case illustrationScore
+        
+        case current_page
+        case currentPage
+        
+        case tags
+        
+        case pageX
+        case pageY
+        
+        var asString: String {
+            
+            switch self {
+            case .width : return "w"
+            case .height: return "h"
+                
+            case .initial_width : return "iw"
+            case .initialWidth  : return "iw"
+            case .initial_height: return "ih"
+            case .initialHeight : return "ih"
+                
+            case .aspect_ratio        : return "ar"
+            case .aspectRatio         : return "ar"
+            case .initial_aspect_ratio: return "iar"
+            case .initialAspectRatio  : return "iar"
+                
+            case .page_count: return "pc"
+            case .pageCount : return "pc"
+                
+            case .face_count: return "fc"
+            case .faceCount : return "fc"
+                
+            case .illustration_score: return "ils"
+            case .illustrationScore : return "ils"
+                
+            case .current_page: return "cp"
+            case .currentPage : return "cp"
+                
+            case .tags: return "tags"
+            
+            case .pageX: return "px"
+            case .pageY: return "py"
+            }
+        }
+    }
     
     internal var values: [String] = [] //TODO: I'm not sure we need this var, should we allow the user to make multiple experations in one instance?
-    internal var currentValue: String
-    
-    internal var currentExpressionKeys: String = ""
+    internal var currentValue         : String
+    internal var currentExpressionKeys: String
     
     private let separator          : String = ","
     private let elementsSeparator  : String = "_"
@@ -38,23 +105,26 @@ open class CLDExpression: NSObject {
     
     // MARK: - Init
     public override init() {
-        self.currentValue = ""
+        self.currentExpressionKeys = String()
+        self.currentValue          = String()
         super.init()
     }
     
     public init(value: String) {
+        self.currentExpressionKeys = String()
         self.currentValue = value
         super.init()
     }
     
     public init(key: String, operator: CLDOperators, value: String) {
-        self.currentValue = value
-        currentExpressionKeys = key
+        self.currentValue          = value
+        self.currentExpressionKeys = key
         super.init()
     }
     
     fileprivate init(expressionKey: ExpressionKeys) {
-        self.currentValue = expressionKey.asString
+        self.currentExpressionKeys = String()
+        self.currentValue          = expressionKey.asString
         super.init()
     }
     
@@ -174,72 +244,5 @@ open class CLDExpression: NSObject {
     
     private func appendExpression(cldoperator: CLDOperators, number: Float) {
         currentValue.append(elementsSeparator + cldoperator.asString() + elementsSeparator + String(number))
-    }
-}
-
-private enum ExpressionKeys : String {
-    
-    case width
-    case height
-    
-    case initial_width
-    case initialWidth
-    case initial_height
-    case initialHeight
-    
-    case aspect_ratio
-    case aspectRatio
-    case initial_aspect_ratio
-    case initialAspectRatio
-    
-    case page_count
-    case pageCount
-    
-    case face_count
-    case faceCount
-    
-    case illustration_score
-    case illustrationScore
-    
-    case current_page
-    case currentPage
-    
-    case tags
-    
-    case pageX
-    case pageY
-    
-    var asString: String {
-        switch self {
-        case .width : return "w"
-        case .height: return "h"
-            
-        case .initial_width : return "iw"
-        case .initialWidth  : return "iw"
-        case .initial_height: return "ih"
-        case .initialHeight : return "ih"
-            
-        case .aspect_ratio        : return "ar"
-        case .aspectRatio         : return "ar"
-        case .initial_aspect_ratio: return "iar"
-        case .initialAspectRatio  : return "iar"
-            
-        case .page_count: return "pc"
-        case .pageCount : return "pc"
-            
-        case .face_count: return "fc"
-        case .faceCount : return "fc"
-            
-        case .illustration_score: return "ils"
-        case .illustrationScore : return "ils"
-            
-        case .current_page: return "cp"
-        case .currentPage : return "cp"
-            
-        case .tags: return "tags"
-        
-        case .pageX: return "px"
-        case .pageY: return "py"
-        }
     }
 }
