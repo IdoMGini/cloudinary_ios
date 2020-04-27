@@ -104,12 +104,11 @@ open class CLDVariable: NSObject {
     }
     
     // MARK: - Private methods
-    private func checkValidName(_ variable: String) -> Bool {
-        
+    private func checkValidName(_ name: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: CLDVariable.nameRegex, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: variable.count)
+        let range = NSRange(location: 0, length: name.count)
         
-        let isValid = regex.firstMatch(in: variable, options: [], range: range) != nil
+        let isValid = regex.firstMatch(in: name, options: [], range: range) != nil
         
         if !isValid {
             CLDThrowFatalError(with: "\(#function) failed!")
@@ -124,7 +123,6 @@ open class CLDVariable: NSObject {
     }
     
     private func addPrefix(to name: String) -> String {
-        
         return CLDVariable.variableNamePrefix + name
     }
 }

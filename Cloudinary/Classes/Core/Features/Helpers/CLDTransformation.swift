@@ -212,6 +212,47 @@ import CoreGraphics
     // MARK: - Set Values
     
     /**
+    Set a variable.
+    
+    - parameter name:       The variable's name.
+    - parameter value:      The variable's value.
+    
+    - returns:              The same instance of CLDTransformation.
+    */
+    @discardableResult
+    public func setVariable(name: String, value: String) -> Self {
+        let variable = CLDVariable(name: name, value: value)
+        return setVariable(variable)
+    }
+    
+    /**
+    Set a variable.
+    
+    - parameter variable:   The variable to set.
+    
+    - returns:              The same instance of CLDTransformation.
+    */
+    @discardableResult
+    public func setVariable(_ variable: CLDVariable) -> Self {
+        guard variable.name != "", variable.value != "" else {return self}
+        return setParam(variable.name, value: variable.value)
+    }
+    
+    /**
+    Set an array of variables.
+    
+    - parameter variables:  The variables to set.
+    
+    - returns:              The same instance of CLDTransformation.
+    */
+    @objc(setVariableWithArray:)
+    @discardableResult
+    public func setVariable(_ variables: [CLDVariable]) -> Self {
+        variables.forEach({setVariable($0)})
+        return self
+    }
+    
+    /**
      Set the image width.
      
      - parameter width:      The width to set.
@@ -1507,8 +1548,8 @@ import CoreGraphics
         }
         
         var components: [String] = params.sorted{$0.0 < $1.0}
-                                        .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue && !$0.1.isEmpty}
-                                        .map{"\($0)_\($1)"}
+                                         .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue && !$0.1.isEmpty}
+                                         .map{"\($0)_\($1)"}
 
         if let rawTrans = params[TransformationParam.RAW_TRANSFORMATION.rawValue] , !rawTrans.isEmpty {
             components.append(rawTrans)
@@ -1559,7 +1600,7 @@ import CoreGraphics
         case RAW_TRANSFORMATION =           "raw_transformation"
         case KEYFRAME_INTERVAL =            "ki"
         case FPS =                          "fps"
-        case STREAMING_PROFILE =             "sp"
+        case STREAMING_PROFILE =            "sp"
     }
 
 
