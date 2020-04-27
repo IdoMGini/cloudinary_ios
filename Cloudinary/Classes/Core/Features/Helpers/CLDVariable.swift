@@ -79,13 +79,13 @@ open class CLDVariable: NSObject {
         self.addNamePrefixIfNeeded()
     }
     
-    public init(name variableName: String, values variableValues: [String]) {
+    public init(name variableName: String, values: [String]) {
         self.name = variableName
         
-        if variableValues.isEmpty {
+        if values.isEmpty {
             self.value = String()
         } else {
-            self.value = CLDVariable.collectionPrefix + variableValues.joined(separator: CLDVariable.collectionSeparator) + CLDVariable.collectionSuffix
+            self.value = CLDVariable.collectionPrefix + values.joined(separator: CLDVariable.collectionSeparator) + CLDVariable.collectionSuffix
         }
         
         super.init()
@@ -93,11 +93,23 @@ open class CLDVariable: NSObject {
     }
     
     // MARK: - Public methods
-    public func checkVariableName() -> Bool {
-        let regex = try! NSRegularExpression(pattern: CLDVariable.nameRegex, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: name.count)
+    public func asString() -> String {
+        guard checkValidName(name) else { return String() }
+        return name + CLDVariable.exportSeparator + value
+    }
+    
+    public func asParams() -> [String : String] {
+        guard checkValidName(name) else { return [String:String]() }
+        return [name:value]
+    }
+    
+    // MARK: - Private methods
+    private func checkValidName(_ variable: String) -> Bool {
         
-        let isValid = regex.firstMatch(in: name, options: [], range: range) != nil
+        let regex = try! NSRegularExpression(pattern: CLDVariable.nameRegex, options: .caseInsensitive)
+        let range = NSRange(location: 0, length: variable.count)
+        
+        let isValid = regex.firstMatch(in: variable, options: [], range: range) != nil
         
         if !isValid {
             CLDThrowFatalError(with: "\(#function) failed!")
@@ -105,24 +117,13 @@ open class CLDVariable: NSObject {
         return isValid
     }
     
-    public func asString() -> String {
-        guard checkVariableName() else { return String() }
-        return name + CLDVariable.exportSeparator + value
-    }
-    
-    public func asParams() -> [String : String] {
-        guard checkVariableName() else { return [String:String]() }
-        return [CLDVariable.variableParamKey:asString()]
-    }
-    
-    // MARK: - Private methods
     private func addNamePrefixIfNeeded() {
-        
+        guard !checkValidName(name) else { return }
         guard !name.hasPrefix(CLDVariable.variableNamePrefix) else { return }
-        name = addNamePrefix(to: name)
+        name = addPrefix(to: name)
     }
     
-    private func addNamePrefix(to name: String) -> String {
+    private func addPrefix(to name: String) -> String {
         
         return CLDVariable.variableNamePrefix + name
     }
