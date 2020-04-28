@@ -321,5 +321,4 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asParams, should build a paramater representation")
     }
-    
 }

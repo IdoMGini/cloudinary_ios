@@ -31,6 +31,7 @@ class CLDTransformationTests: BaseTestCase {
     
     // MARK: - Setup and Teardown
     override func setUp() {
+        sut = CLDTransformation.init()
         super.setUp()
     }
     
@@ -47,7 +48,6 @@ class CLDTransformationTests: BaseTestCase {
         let variableValue  = String()
         
         // When
-        sut = CLDTransformation.init()
         sut.setVariable(name: variableName, value: variableValue)
         
         let actualResult = sut.getParam(variableName)
@@ -62,7 +62,6 @@ class CLDTransformationTests: BaseTestCase {
         let variableValue  = String()
         
         // When
-        sut = CLDTransformation.init()
         sut.setVariable(name: variableName, value: variableValue)
         
         let actualResult = sut.getParam(variableName)
@@ -80,7 +79,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "bar"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable(name: variableName, value: variableValue)
         
         let actualResult = sut.getParam(variableName)
@@ -97,7 +95,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "bar"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable(variable)
         
         let actualResult = sut.getParam(variableName)
@@ -114,7 +111,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "bar"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable([variable])
         
         let actualResult = sut.getParam(variableName)
@@ -135,7 +131,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult2 = "bar2"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable([variable, variable2])
         
         let actualResult  = sut.getParam(variableName)
@@ -155,7 +150,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = String()
         
         // When
-        sut = CLDTransformation.init()
         sut.setVariable(name: variableName, value: variableValue)
         
         let actualResult = sut.asString()
@@ -170,7 +164,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = String()
         
         // When
-        sut = CLDTransformation.init()
         sut.setVariable([variable])
         
         let actualResult = sut.asString()
@@ -188,7 +181,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "$foo_bar"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable(name: variableName, value: variableValue)
         
         let actualResult = sut.asString()
@@ -205,7 +197,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "$foo_bar"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable([variable])
         
         let actualResult = sut.asString()
@@ -225,7 +216,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "$foo_bar,$foo2_bar2"
 
         // When
-        sut = CLDTransformation.init()
         sut.setVariable([variable, variable2])
         
         let actualResult = sut.asString()
@@ -245,7 +235,6 @@ class CLDTransformationTests: BaseTestCase {
         let expectedResult = "$foo_bar,$foo2_bar2,h_12.0,w_11.0"
 
         // When
-        sut = CLDTransformation.init()
         sut.setWidth(11.0)
         sut.setVariable([variable, variable2])
         sut.setHeight(12.0)
