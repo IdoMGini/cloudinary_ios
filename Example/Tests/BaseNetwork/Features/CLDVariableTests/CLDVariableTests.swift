@@ -70,7 +70,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
+        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, value, "Initilized object should contain an empty string as value property")
     }
     func test_init_with_string_paramaters_works_correctlly() {
@@ -86,8 +86,8 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
-        XCTAssertEqual(sut.value, value, "Initilized object should contain an empty string as value property")
+        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
+        XCTAssertEqual(sut.value, value, "Initilized object should contain a string as value property")
     }
     func test_init_with_string_paramaters_with_valid_name_works_correctlly() {
         
@@ -102,8 +102,8 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , name, "name property should have a valid prefix")
-        XCTAssertEqual(sut.value, value, "Initilized object should contain an empty string as value property")
+        XCTAssertEqual(sut.name , name, "Name property should have a valid prefix")
+        XCTAssertEqual(sut.value, value, "Initilized object should contain a string as value property")
     }
     func test_init_with_int_paramaters_works_correctlly_empty_name_paramater() {
         
@@ -118,9 +118,8 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
-        XCTAssertEqual(sut.value, String(value), "Initilized object should contain an empty string as value property")
-        
+        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
+        XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
     func test_init_with_int_paramaters_works_correctlly() {
         
@@ -135,9 +134,8 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
-        XCTAssertEqual(sut.value, String(value), "Initilized object should contain an empty string as value property")
-        
+        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
+        XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
     func test_init_with_double_paramaters_works_correctlly_empty_name_paramater() {
         
@@ -152,8 +150,8 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
-        XCTAssertEqual(sut.value, String(value), "Initilized object should contain an empty string as value property")
+        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
+        XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
     func test_init_with_double_paramaters_works_correctlly() {
         
@@ -168,8 +166,8 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
-        XCTAssertEqual(sut.value, String(value), "Initilized object should contain an empty string as value property")
+        XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
+        XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
     
     // MARK: - test initilization methods - values
@@ -178,7 +176,6 @@ class CLDVariableTests: BaseTestCase {
         // Given
         let name   =  String()
         let values = [String]()
-        var sut : CLDVariable
         
         // When
         sut = CLDVariable.init(name: name, values: values)
@@ -187,7 +184,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
         XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property")
         
-        XCTAssertEqual(sut.name, CLDVariable.variableNamePrefix + name, "name property should have a valid prefix")
+        XCTAssertEqual(sut.name, CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, String(), "Initilized object should contain an empty string as value property")
     }
     func test_init_with_valuesArray_works_correctlly_paramater() {
@@ -287,7 +284,7 @@ class CLDVariableTests: BaseTestCase {
         let actualResult = sut.asString()
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString on an empty CLDVariable, should return an empty string")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString on a CLDVariable, should return a string")
     }
     
     // MARK: - test asParams()

@@ -28,16 +28,16 @@ internal func CLDThrowFatalError(with message: String) {
     // fatalError(message)
 }
 
-open class CLDVariable: NSObject {
+@objcMembers open class CLDVariable: NSObject {
     
-    internal var value: String
-    internal var name : String {
+    public var value: String
+    public var name : String {
         didSet { self.addNamePrefixIfNeeded() }
     }
     
     static internal let variableParamKey  : String = "variable_param_key"
     
-    static internal let variableNamePrefix: String = "$"
+    static public let variableNamePrefix: String = "$"
     
     static private let collectionPrefix   : String = "!"
     static private let collectionSuffix   : String = "!"
@@ -51,13 +51,14 @@ open class CLDVariable: NSObject {
 
 
     // MARK: - Init
-    internal override init() {
+    public override init() {
         self.name  = String()
         self.value = String()
         super.init()
         self.addNamePrefixIfNeeded()
     }
     
+    @objc(initWithName:stringValue:)
     public init(name variableName: String, value variableValue: String) {
         self.name  = variableName
         self.value = variableValue
@@ -65,6 +66,7 @@ open class CLDVariable: NSObject {
         self.addNamePrefixIfNeeded()
     }
     
+    @objc(initWithName:doubleValue:)
     public init(name variableName: String, value variableValue: Double) {
         self.name = variableName
         self.value = String(variableValue)
@@ -72,6 +74,7 @@ open class CLDVariable: NSObject {
         self.addNamePrefixIfNeeded()
     }
     
+    @objc(initWithName:intValue:)
     public init(name variableName: String, value variableValue: Int) {
         self.name = variableName
         self.value = String(variableValue)
