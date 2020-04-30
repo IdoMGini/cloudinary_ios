@@ -35,9 +35,13 @@ internal func CLDThrowFatalError(with message: String) {
         didSet { self.addNamePrefixIfNeeded() }
     }
     
+    internal var isValid : Bool {
+        return checkValidName(name) && !value.isEmpty
+    }
+    
     static internal let variableParamKey  : String = "variable_param_key"
     
-    static public let variableNamePrefix: String = "$"
+    static public  let variableNamePrefix : String = "$"
     
     static private let collectionPrefix   : String = "!"
     static private let collectionSuffix   : String = "!"

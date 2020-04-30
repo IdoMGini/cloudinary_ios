@@ -221,6 +221,7 @@ import CoreGraphics
     */
     @discardableResult
     public func setVariable(name: String, value: String) -> Self {
+        
         let variable = CLDVariable(name: name, value: value)
         return setVariable(variable)
     }
@@ -234,7 +235,9 @@ import CoreGraphics
     */
     @discardableResult
     public func setVariable(_ variable: CLDVariable) -> Self {
-        guard variable.name != "", variable.value != "" else {return self}
+        
+        guard variable.isValid else { return self }
+        
         return setParam(variable.name, value: variable.value)
     }
     
@@ -245,10 +248,11 @@ import CoreGraphics
     
     - returns:              The same instance of CLDTransformation.
     */
-    @objc(setVariableWithArray:)
+    @objc(setVariablesWithVariablesArray:)
     @discardableResult
-    public func setVariable(_ variables: [CLDVariable]) -> Self {
-        variables.forEach({setVariable($0)})
+    public func setVariables(_ variables: [CLDVariable]) -> Self {
+        
+        variables.forEach { setVariable($0) }
         return self
     }
     
