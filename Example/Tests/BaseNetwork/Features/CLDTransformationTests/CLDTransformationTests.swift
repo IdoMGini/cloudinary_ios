@@ -102,6 +102,29 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
     }
+    func test_setVariable_twoValidVariableObjectsOneLine_shouldStoreNewVariable() {
+
+        // Given
+        let variableName1   = "$foo"
+        let variableValue1  = "bar"
+        let variableName2   = "$nurf"
+        let variableValue2  = "baz"
+        let variable1       = CLDVariable(name: variableName1, value: variableValue1)
+        let variable2       = CLDVariable(name: variableName2, value: variableValue2)
+        let expectedResult1 = "bar"
+        let expectedResult2 = "baz"
+        
+
+        // When
+        sut.setVariable(variable1).setVariable(variable2)
+        
+        let actualResult1 = sut.getParam(variableName1)
+        let actualResult2 = sut.getParam(variableName2)
+        
+        // Then
+        XCTAssertEqual(actualResult1, expectedResult1, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
+        XCTAssertEqual(actualResult2, expectedResult2, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
+    }
     func test_setVariables_validVariablesArray_shouldStoreNewVariable() {
 
         // Given
