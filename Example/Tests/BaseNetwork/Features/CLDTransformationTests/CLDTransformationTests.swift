@@ -41,7 +41,7 @@ class CLDTransformationTests: BaseTestCase {
     }
     
     // MARK: - test invalid variable using get param
-    func test_empty_variable_in_both_input_paramaters_works_correctlly() {
+    func test_setVariable_emptyInputParamaters_shouldNotStoreNewVariable() {
         
         // Given
         let variableName  = String()
@@ -55,7 +55,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertNil(actualResult, "Empty CLDVariable should not be stored in params")
     }
-    func test_empty_variable_value_in_param_works_correctlly() {
+    func test_setVariable_emptyValueParamater_shouldNotStoreNewVariable() {
         
         // Given
         let variableName  = "$foo"
@@ -71,7 +71,7 @@ class CLDTransformationTests: BaseTestCase {
     }
     
     // MARK: - test set variable using get param
-    func test_variable_in_params_works_correctlly() {
+    func test_setVariable_validParamaters_shouldStoreNewVariable() {
 
         // Given
         let variableName   = "$foo"
@@ -86,7 +86,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
     }
-    func test_variable_object_in_param_works_correctlly() {
+    func test_setVariable_validVariableObject_shouldStoreNewVariable() {
 
         // Given
         let variableName   = "$foo"
@@ -102,7 +102,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
     }
-    func test_variable_array_in_param_works_correctlly() {
+    func test_setVariables_validVariablesArray_shouldStoreNewVariable() {
 
         // Given
         let variableName   = "$foo"
@@ -118,7 +118,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
     }
-    func test_two_variables_array_in_param_works_correctlly() {
+    func test_setVariables_twoValidVariablesArray_shouldStoreNewVariable() {
 
         // Given
         let variableName    = "$foo"
@@ -142,7 +142,7 @@ class CLDTransformationTests: BaseTestCase {
     }
     
     // MARK: - test asString() on empty variable
-    func test_empty_variable_string_conversion_works_correctlly() {
+    func test_asString_variableWithEmptyInputParamaters_shouldReturnEmptyString() {
         
         // Given
         let variableName   = String()
@@ -157,7 +157,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Empty CLDVariable should not be stored in params")
     }
-    func test_empty_variable_array_string_conversion_works_correctlly() {
+    func test_asString_variablesArrayWithEmptyInputParamaters_shouldReturnEmptyString() {
         
         // Given
         let variable = CLDVariable.init()
@@ -173,7 +173,7 @@ class CLDTransformationTests: BaseTestCase {
     }
     
     // MARK: - test asString() on variable
-    func test_variable_string_conversion_works_correctlly() {
+    func test_asString_validVariable_shouldReturnValidString() {
 
         // Given
         let variableName   = "foo"
@@ -188,7 +188,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
-    func test_variable_array_string_conversion_works_correctlly() {
+    func test_asString_validOneVariableArray_shouldReturnValidString() {
 
         // Given
         let variableName   = "foo"
@@ -204,7 +204,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
-    func test_two_variables_array_string_conversion_works_correctlly() {
+    func test_asString_validTwoVariablesArray_shouldReturnValidString() {
 
         // Given
         let variableName   = "foo"
@@ -223,7 +223,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
-    func test_variable_array_and_params_string_conversion_works_correctlly() {
+    func test_asString_validTwoVariablesArrayAndParams_shouldReturnValidSortedString() {
 
         // Given
         let variableName   = "foo"

@@ -44,10 +44,10 @@ CLDVariable *sut;
 }
 
 // MARK: - test initilization methods - empty
-- (void)test_empty_init_works_correctlly {
+- (void)test_init_emptyInputParamaters_shouldStoreEmptyProperties {
         
     // Given
-    NSString *name = [NSString new];
+    NSString *name = [NSString string];
     
     // When
     sut = [[CLDVariable alloc] init];
@@ -56,15 +56,15 @@ CLDVariable *sut;
     XCTAssertNotNil(sut.name, "Initilized object should contain a none nil name  property");
     XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property");
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should contain a valid prefix");
-    XCTAssertTrue([sut.value isEqualToString: [NSString new]], "Initilized object should contain an empty string as value property");
+    XCTAssertTrue([sut.value isEqualToString: [NSString string]], "Initilized object should contain an empty string as value property");
     XCTAssertFalse([sut.name isEqualToString: name], "Name property should contain \"\(CLDVariable.variableNamePrefix)\" prefix");
 }
 
 // MARK: - test initilization methods - value
--(void)test_init_with_string_paramaters_works_correctlly_empty_name_paramater {
+-(void)test_init_emptyNameParamater_shouldStoreEmptyNameProperty {
     
     // Given
-    NSString *name  = [NSString new];
+    NSString *name  = [NSString string];
     NSString *value = @"alue";
     
     // When
@@ -77,7 +77,7 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should contain a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: value], "Initilized object should contain an empty string as value property");
 }
--(void)test_init_with_string_paramaters_works_correctlly {
+-(void)test_init_validStringParamatersAndNoNamePrefix_shouldStoreValidProperties {
     
     // Given
     NSString *name  = @"name";
@@ -93,7 +93,7 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: value], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_string_paramaters_with_valid_name_works_correctlly {
+-(void)test_init_validStringParamaters_shouldStoreValidProperties {
     
     // Given
     NSString *name  = @"$foo";
@@ -109,10 +109,10 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: name], "Initilized object should contain a string as name property");
     XCTAssertTrue([sut.value isEqualToString: value], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_int_paramaters_works_correctlly_empty_name_paramater {
+-(void)test_init_emptyNameParamaterIntValue_shouldStoreEmptyNameProperty {
     
     // Given
-    NSString *name  = [NSString new];
+    NSString *name  = [NSString string];
     int value = 4;
     NSString* valueAsString = [@(value) stringValue];
     
@@ -126,7 +126,7 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: valueAsString], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_int_paramaters_works_correctlly {
+-(void)test_init_validIntValue_shouldStoreValidProperties {
     
     // Given
     NSString *name  = @"name";
@@ -143,10 +143,10 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: valueAsString], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_double_paramaters_works_correctlly_empty_name_paramater {
+-(void)test_init_emptyNameParamaterDoubleValue_shouldStoreEmptyNameProperty {
     
     // Given
-    NSString *name  = [NSString new];
+    NSString *name  = [NSString string];
     double value = 3.14;
     NSString* valueAsString = [@(value) stringValue];
     
@@ -160,7 +160,7 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: valueAsString], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_double_paramaters_works_correctlly {
+-(void)test_init_validDoubleValue_shouldStoreValidProperties {
     
     // Given
     NSString *name = @"name";
@@ -179,10 +179,10 @@ CLDVariable *sut;
 }
 
 // MARK: - test initilization methods - values
--(void)test_init_with_valuesArray_works_correctlly_empty_name_paramater {
+-(void)test_initWithValuesArray_emptyInputParamaters_shouldStoreEmptyProperties {
     
     // Given
-    NSString *name = [NSString new];
+    NSString *name = [NSString string];
     NSArray *values = @[];
     
     // When
@@ -193,9 +193,9 @@ CLDVariable *sut;
     XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property");
     
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
-    XCTAssertTrue([sut.value isEqualToString: [NSString new]], "Initilized object should contain a string as value property");
+    XCTAssertTrue([sut.value isEqualToString: [NSString string]], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_valuesArray_works_correctlly {
+-(void)test_initWithValuesArray_emptyValueParamater_shouldStoreEmptyValueProperty {
     
     // Given
     NSString *name = @"name";
@@ -209,9 +209,9 @@ CLDVariable *sut;
     XCTAssertNotNil(sut.value, "Initilized object should contain a none nil value property");
     
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
-    XCTAssertTrue([sut.value isEqualToString: [NSString new]], "Initilized object should contain a string as value property");
+    XCTAssertTrue([sut.value isEqualToString: [NSString string]], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_valuesArray_with_content_works_correctlly_single_param {
+-(void)test_initWithValuesArray_validOneValueArray_shouldStoreValidProperties {
     
     // Given
     NSString *name = @"name";
@@ -228,7 +228,7 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: expectedResult], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_valuesArray_with_content_works_correctlly_two_param {
+-(void)test_initWithValuesArray_validTwoValueArray_shouldStoreValidProperties {
     
     // Given
     NSString *name = @"name";
@@ -245,7 +245,7 @@ CLDVariable *sut;
     XCTAssertTrue([sut.name isEqualToString: [CLDVariable.variableNamePrefix stringByAppendingString:name]], "Name property should have a valid prefix");
     XCTAssertTrue([sut.value isEqualToString: expectedResult], "Initilized object should contain a string as value property");
 }
--(void)test_init_with_valuesArray_with_content_works_correctlly_three_param {
+-(void)test_initWithValuesArray_validThreeValuesArray_shouldStoreValidProperties {
     
     // Given
     NSString *name = @"name";

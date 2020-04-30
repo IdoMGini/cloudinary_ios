@@ -40,7 +40,7 @@ class CLDVariableTests: BaseTestCase {
     }
     
     // MARK: - test initilization methods - empty
-    func test_empty_init_works_correctlly() {
+    func test_init_emptyInputParamaters_shouldStoreEmptyProperties() {
         
         // Given
         let name = String()
@@ -57,7 +57,7 @@ class CLDVariableTests: BaseTestCase {
     }
     
     // MARK: - test initilization methods - value
-    func test_init_with_string_paramaters_works_correctlly_empty_name_paramater() {
+    func test_init_emptyNameParamater_shouldStoreEmptyNameProperty() {
         
         // Given
         let name  = String()
@@ -73,7 +73,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, value, "Initilized object should contain an empty string as value property")
     }
-    func test_init_with_string_paramaters_works_correctlly() {
+    func test_init_validStringParamatersAndNoNamePrefix_shouldStoreValidProperties() {
         
         // Given
         let name  = "name"
@@ -89,7 +89,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, value, "Initilized object should contain a string as value property")
     }
-    func test_init_with_string_paramaters_with_valid_name_works_correctlly() {
+    func test_init_validStringParamaters_shouldStoreValidProperties() {
         
         // Given
         let name  = "$foo"
@@ -105,7 +105,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, value, "Initilized object should contain a string as value property")
     }
-    func test_init_with_int_paramaters_works_correctlly_empty_name_paramater() {
+    func test_init_emptyNameParamaterIntValue_shouldStoreEmptyNameProperty() {
         
         // Given
         let name  = String()
@@ -121,7 +121,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
-    func test_init_with_int_paramaters_works_correctlly() {
+    func test_init_validIntValue_shouldStoreValidProperties() {
         
         // Given
         let name  = "name"
@@ -137,7 +137,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
-    func test_init_with_double_paramaters_works_correctlly_empty_name_paramater() {
+    func test_init_emptyNameParamaterDoubleValue_shouldStoreEmptyNameProperty() {
         
         // Given
         let name  = String()
@@ -153,7 +153,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, String(value), "Initilized object should contain a string as value property")
     }
-    func test_init_with_double_paramaters_works_correctlly() {
+    func test_init_validDoubleValue_shouldStoreValidProperties() {
         
         // Given
         let name  = "name"
@@ -171,7 +171,7 @@ class CLDVariableTests: BaseTestCase {
     }
     
     // MARK: - test initilization methods - values
-    func test_init_with_valuesArray_works_correctlly_empty_name_paramater() {
+    func test_initWithValuesArray_emptyInputParamaters_shouldStoreEmptyProperties() {
         
         // Given
         let name   =  String()
@@ -187,7 +187,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name, CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, String(), "Initilized object should contain an empty string as value property")
     }
-    func test_init_with_valuesArray_works_correctlly_paramater() {
+    func test_initWithValuesArray_emptyValueParamater_shouldStoreEmptyValueProperty() {
         
         // Given
         let name   = "name"
@@ -203,7 +203,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, String(), "Initilized object should contain an empty string as value property")
     }
-    func test_init_with_valuesArray_with_content_works_correctlly_single_param() {
+    func test_initWithValuesArray_validOneValueArray_shouldStoreValidProperties() {
         
         // Given
         let name   = "foo"
@@ -220,7 +220,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, expectedResult, "Initilized object should contain an encoded string as value property")
     }
-    func test_init_with_valuesArray_with_content_works_correctlly_two_param() {
+    func test_initWithValuesArray_validTwoValuesArray_shouldStoreValidProperties() {
         
         // Given
         let name   = "foo"
@@ -237,7 +237,7 @@ class CLDVariableTests: BaseTestCase {
         XCTAssertEqual(sut.name , CLDVariable.variableNamePrefix + name, "Name property should have a valid prefix")
         XCTAssertEqual(sut.value, expectedResult, "Initilized object should contain an encoded string as value property")
     }
-    func test_init_with_valuesArray_with_content_works_correctlly_three_param() {
+    func test_initWithValuesArray_validThreeValuesArray_shouldStoreValidProperties() {
         
         // Given
         let name   = "foo"
@@ -256,7 +256,7 @@ class CLDVariableTests: BaseTestCase {
     }
     
     // MARK: - test asString()
-    func test_empty_string_conversion_works_correctlly() {
+    func test_asString_emptyInputParamaters_shouldReturnEmptyString() {
         
         // Given
         let name  = String()
@@ -271,7 +271,7 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString on an empty CLDVariable, should return an empty string")
     }
-    func test_string_conversion_works_correctlly() {
+    func test_asString_validParamaters_shouldReturnValidString() {
         
         // Given
         let name  = "$foo"
@@ -288,7 +288,7 @@ class CLDVariableTests: BaseTestCase {
     }
     
     // MARK: - test asParams()
-    func test_empty_as_params_conversion_works_correctlly() {
+    func test_asParams_emptyInputParamaters_shouldReturnEmptyString() {
         
         // Given
         let name  = String()
@@ -303,7 +303,7 @@ class CLDVariableTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asParams, should build a paramater representation")
     }
-    func test_as_params_conversion_works_correctlly() {
+    func test_asParams_validParamaters_shouldReturnValidString() {
         
         // Given
         let name   = "foo"
