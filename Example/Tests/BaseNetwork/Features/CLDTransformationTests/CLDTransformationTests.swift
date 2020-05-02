@@ -131,15 +131,15 @@ class CLDTransformationTests: BaseTestCase {
         let variableName   = "$foo"
         let variableValue  = "bar"
         let variable       = CLDVariable(name: variableName, value: variableValue)
-        let expectedResult = "bar"
+        let expectedResult = "$foo_bar"
 
         // When
         sut.setVariables([variable])
         
-        let actualResult = sut.getParam(variableName)
+        let actualResult = sut.getParam(CLDTransformation.TransformationParam.VARIABLES.rawValue)
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a TransformationParam.VARIABLES.rawValue as param, should return its value")
     }
     func test_setVariables_twoValidVariablesArray_shouldStoreNewVariable() {
 
@@ -150,18 +150,15 @@ class CLDTransformationTests: BaseTestCase {
         let variableValue2  = "baz"
         let variable        = CLDVariable(name: variableName , value: variableValue)
         let variable2       = CLDVariable(name: variableName2, value: variableValue2)
-        let expectedResult  = "bar"
-        let expectedResult2 = "baz"
+        let expectedResult  = "$foo_bar,$nurf_baz"
 
         // When
         sut.setVariables([variable, variable2])
         
-        let actualResult  = sut.getParam(variableName)
-        let actualResult2 = sut.getParam(variableName2)
+        let actualResult  = sut.getParam(CLDTransformation.TransformationParam.VARIABLES.rawValue)
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
-        XCTAssertEqual(actualResult2, expectedResult2, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a TransformationParam.VARIABLES.rawValue as param, should return its value")
     }
     
     // MARK: - test asString() on empty variable
@@ -184,7 +181,7 @@ class CLDTransformationTests: BaseTestCase {
         
         // Given
         let variable = CLDVariable.init()
-        let expectedResult = String()
+        let expectedResult: String? = nil
         
         // When
         sut.setVariables([variable])
@@ -246,6 +243,25 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
+    func test_asString_validTwoVariablesArray_shouldReturnValidStringOrderedByEntry() {
+
+        // Given
+        let variableName   = "foo"
+        let variableValue  = "bar"
+        let variableName2  = "nurf"
+        let variableValue2 = "baz"
+        let variable       = CLDVariable(name: variableName, value: variableValue)
+        let variable2      = CLDVariable(name: variableName2, value: variableValue2)
+        let expectedResult = "$nurf_baz,$foo_bar"
+
+        // When
+        sut.setVariables([variable2, variable])
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
+    }
     func test_asString_validTwoVariablesArrayAndParams_shouldReturnValidSortedString() {
 
         // Given
@@ -260,6 +276,31 @@ class CLDTransformationTests: BaseTestCase {
         // When
         sut.setWidth(11.0)
         sut.setVariables([variable, variable2])
+        sut.setHeight(12.0)
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string - variables first!")
+    }
+    func test_asString_validTwoVariablesArrayAndParams_shouldReturnValidSortedStringVariablesOrderedByEntry() {
+
+        // Given
+        let variableName1  = "foo1"
+        let variableValue1 = "bar1"
+        let variableName2  = "foo2"
+        let variableValue2 = "bar2"
+        let variableName3  = "foo3"
+        let variableValue3 = "bar3"
+        let variable1      = CLDVariable(name: variableName1, value: variableValue1)
+        let variable2      = CLDVariable(name: variableName2, value: variableValue2)
+        let variable3      = CLDVariable(name: variableName3, value: variableValue3)
+        let expectedResult = "$foo3_bar3,$foo1_bar1,$foo2_bar2,h_12.0,w_11.0"
+
+        // When
+        sut.setVariable(variable2)
+        sut.setWidth(11.0)
+        sut.setVariables([variable3, variable1])
         sut.setHeight(12.0)
         
         let actualResult = sut.asString()

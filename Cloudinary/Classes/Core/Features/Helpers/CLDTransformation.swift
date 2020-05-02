@@ -32,6 +32,8 @@ import CoreGraphics
     fileprivate var currentTransformationParams: [String : String] = [:]
     fileprivate var transformations: [[String : String]] = []
     
+    static private let separator: String = ","
+    
     // MARK: - Init
     
     public override init() {
@@ -252,7 +254,12 @@ import CoreGraphics
     @discardableResult
     public func setVariables(_ variables: [CLDVariable]) -> Self {
         
-        variables.forEach { setVariable($0) }
+        var validVariables = [String]()
+        variables.forEach{if $0.isValid{validVariables.append($0.asString())}}
+        
+        let joinedVariables = validVariables.joined(separator: CLDTransformation.separator)
+        setParam(TransformationParam.VARIABLES.rawValue, value: joinedVariables)
+        
         return self
     }
     
@@ -1552,12 +1559,19 @@ import CoreGraphics
         }
         
         var components: [String] = params.sorted{$0.0 < $1.0}
-                                         .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue && !$0.1.isEmpty}
+                                         .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
+                                                 $0.0 != TransformationParam.VARIABLES.rawValue &&
+                                                 !$0.1.isEmpty}
                                          .map{"\($0)_\($1)"}
 
-        if let rawTrans = params[TransformationParam.RAW_TRANSFORMATION.rawValue] , !rawTrans.isEmpty {
+        if let rawTrans = params[TransformationParam.RAW_TRANSFORMATION.rawValue], !rawTrans.isEmpty {
             components.append(rawTrans)
         }
+        
+        if let variables = params[TransformationParam.VARIABLES.rawValue], !variables.isEmpty {
+            components.insert(variables, at: 0)
+        }
+        
         return components.joined(separator: ",")
     }
     
@@ -1602,6 +1616,7 @@ import CoreGraphics
         case END_OFFSET =                   "eo"
         case VIDEO_CODEC =                  "vc"
         case RAW_TRANSFORMATION =           "raw_transformation"
+        case VARIABLES =                    "variables"
         case KEYFRAME_INTERVAL =            "ki"
         case FPS =                          "fps"
         case STREAMING_PROFILE =            "sp"
