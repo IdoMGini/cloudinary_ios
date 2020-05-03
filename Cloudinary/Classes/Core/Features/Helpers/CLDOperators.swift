@@ -24,13 +24,13 @@
 
 import Foundation
 
-public enum CLDOperators: String {
+public enum CLDOperators: String , CaseIterable {
     
-    case equal          = "="
+    case    equal       = "="
     case notEqual       = "!="
-    case little         = "<"
-    case greater        = ">"
-    case littleOrEqual  = "<="
+    case    lessThen    = "<"
+    case greaterThen    = ">"
+    case    lessOrEqual = "<="
     case greaterOrEqual = ">="
     
     case and = "&&"
@@ -42,12 +42,13 @@ public enum CLDOperators: String {
     case subtract = "-"
 
     func asString() -> String {
+        
         switch self {
         case .equal         : return "eq"
         case .notEqual      : return "ne"
-        case .little        : return "lt"
-        case .greater       : return "gt"
-        case .littleOrEqual : return "lte"
+        case .lessThen      : return "lt"
+        case .greaterThen   : return "gt"
+        case .lessOrEqual   : return "lte"
         case .greaterOrEqual: return "gte"
 
         case .and: return "and"
