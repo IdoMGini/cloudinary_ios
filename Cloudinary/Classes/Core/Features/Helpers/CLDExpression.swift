@@ -26,7 +26,7 @@ import Foundation
 
 open class CLDExpression: NSObject {
 
-    fileprivate enum ExpressionKeys : String {
+    fileprivate enum ExpressionKeys : String, CaseIterable {
         
         case width
         case height
@@ -167,25 +167,73 @@ open class CLDExpression: NSObject {
     // MARK: -
     public func asString() -> String {
         
-        return replaceAllOperators(in: currentValue)
+        guard !currentValue.isEmpty && !currentValue.isEmpty else {
+            
+            return String()
+        }
+        
+        let key     = replaceAllExpressionKeys(in: currentKey)
+        let value   = replaceAllUnEncodeChars(in: currentValue)
+        
+        return "\(key)_\(value)"
     }
     
     public func asParams() -> [String : String] {
         
-        return [currentKey:asString()]
+        guard !currentValue.isEmpty && !currentValue.isEmpty else {
+            
+            return [String : String]()
+        }
+        
+        let key     = replaceAllExpressionKeys(in: currentKey)
+        let value   = replaceAllUnEncodeChars(in: currentValue)
+        
+        return [key:value]
     }
     
     // MARK: - Private methods
+    private func replaceAllUnEncodeChars(in string: String) -> String {
+        
+        var wipString = string
+        wipString = replaceAllOperators(in: string)
+        wipString = replaceAllExpressionKeys(in: wipString)
+        return wipString
+
+    }
+    
     private func replaceAllOperators(in string: String) -> String {
         
         var wipString = string
-        CLDOperators.allCases.forEach { wipString = replace(cldOperator: $0, in: wipString) }
+        CLDOperators.allCases.forEach
+            {
+                print("\($0.rawValue)")
+                wipString = replace(cldOperator: $0, in: wipString)
+                
+        }
         return wipString
     }
     
     private func replace(cldOperator: CLDOperators, in string: String) -> String {
         
         return string.replacingOccurrences(of: cldOperator.rawValue, with: cldOperator.asString())
+    }
+    
+    private func replaceAllExpressionKeys(in string: String) -> String {
+        
+        var wipString = string
+        ExpressionKeys.allCases.forEach
+            {
+                wipString = replace(expressionKeys: $0, in: wipString)
+                
+        }
+        
+        print(wipString)
+        return wipString
+    }
+    
+    private func replace(expressionKeys: ExpressionKeys, in string: String) -> String {
+        
+        return string.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
     }
     
     private func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String) {

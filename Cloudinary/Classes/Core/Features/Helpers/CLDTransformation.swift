@@ -301,7 +301,12 @@ import CoreGraphics
      */
     @discardableResult
     open func setWidth(_ width: String) -> Self {
-        return setParam(TransformationParam.WIDTH, value: width)
+        let ex = CLDExpression.init(value: width)
+        if !ex.currentKey.isEmpty{
+            return setWidth(ex)
+        }else {
+            return setParam(TransformationParam.WIDTH, value: width)
+        }
     }
     
     /**
@@ -1933,4 +1938,14 @@ import CoreGraphics
         }
     }
     
+}
+
+// MARK: - Expressions
+extension CLDTransformation
+{
+    @objc(setWidthWithExpression:)
+    public func setWidth(_ input: CLDExpression) -> Self
+    {
+        return setParam(TransformationParam.WIDTH, value: input.asString())
+    }
 }

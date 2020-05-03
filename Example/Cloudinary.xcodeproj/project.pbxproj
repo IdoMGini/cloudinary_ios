@@ -349,7 +349,7 @@
 				272C514A242B6C350093AB1B /* ValidationTests.swift */,
 				D79AE39A245854A6004F2439 /* CLDTransformationTests */,
 				D79AE39924585499004F2439 /* CLDVariableTests */,
-				5D7C2DCE245E93F7007E95F7 /* CLDExpressionTests.swift */,
+				2752795D245ED68F00908341 /* CLDExpressionTests */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -419,6 +419,14 @@
 				274C6D2C23FBAF5E0090BC40 /* dog.mp4 */,
 			);
 			path = Videos;
+			sourceTree = "<group>";
+		};
+		2752795D245ED68F00908341 /* CLDExpressionTests */ = {
+			isa = PBXGroup;
+			children = (
+				5D7C2DCE245E93F7007E95F7 /* CLDExpressionTests.swift */,
+			);
+			path = CLDExpressionTests;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
