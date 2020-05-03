@@ -32,7 +32,7 @@ import CoreGraphics
     fileprivate var currentTransformationParams: [String : String] = [:]
     fileprivate var transformations: [[String : String]] = []
     
-    static private let separator: String = ","
+    static private let transformationContentSeparator: String = ","
     
     // MARK: - Init
     
@@ -254,11 +254,14 @@ import CoreGraphics
     @discardableResult
     public func setVariables(_ variables: [CLDVariable]) -> Self {
         
-        var validVariables = [String]()
-        variables.forEach{if $0.isValid{validVariables.append($0.asString())}}
+        let joined = variables.filter {
+            $0.isValid
+            
+        }.map {
+            $0.asString()
+        }.joined(separator: CLDTransformation.transformationContentSeparator)
         
-        let joinedVariables = validVariables.joined(separator: CLDTransformation.separator)
-        setParam(TransformationParam.VARIABLES.rawValue, value: joinedVariables)
+        setParam(TransformationParam.VARIABLES.rawValue, value: joined)
         
         return self
     }
@@ -1558,21 +1561,25 @@ import CoreGraphics
             return nil
         }
         
-        var components: [String] = params.sorted{$0.0 < $1.0}
+        let components: [String] = params.sorted{$0.0 < $1.0}
                                          .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
                                                  $0.0 != TransformationParam.VARIABLES.rawValue &&
                                                  !$0.1.isEmpty}
                                          .map{"\($0)_\($1)"}
 
+        var finalComponents: [String] = [String]()
+        
+        if let complexVariables = params[TransformationParam.VARIABLES.rawValue], !complexVariables.isEmpty {
+            finalComponents.append(complexVariables)
+        }
+        
+        finalComponents.append(contentsOf: components)
+        
         if let rawTrans = params[TransformationParam.RAW_TRANSFORMATION.rawValue], !rawTrans.isEmpty {
-            components.append(rawTrans)
+            finalComponents.append(rawTrans)
         }
         
-        if let variables = params[TransformationParam.VARIABLES.rawValue], !variables.isEmpty {
-            components.insert(variables, at: 0)
-        }
-        
-        return components.joined(separator: ",")
+        return finalComponents.joined(separator: CLDTransformation.transformationContentSeparator)
     }
     
     // MARK: - Params
