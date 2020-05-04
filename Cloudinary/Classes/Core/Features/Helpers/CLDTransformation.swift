@@ -302,12 +302,14 @@ import CoreGraphics
     @discardableResult
     open func setWidth(_ width: String) -> Self {
         
-        let ex = CLDExpression.init(value: width)
-        if !ex.currentValue.isEmpty{
-            return setWidth(ex)
-        }else {
+        let expression = CLDExpression.init(value: width)
+        
+        guard !expression.currentValue.isEmpty else {
+            
             return setParam(TransformationParam.WIDTH, value: width)
         }
+        
+        return setWidth(expression)
     }
     
     /**
@@ -345,7 +347,15 @@ import CoreGraphics
      */
     @discardableResult
     open func setHeight(_ height: String) -> Self {
-        return setParam(TransformationParam.HEIGHT, value: height)
+        
+        let expression = CLDExpression.init(value: height)
+        
+        guard !expression.currentValue.isEmpty else {
+            
+            return setParam(TransformationParam.HEIGHT, value: height)
+        }
+        
+        return setHeight(expression)
     }
     
     /**
@@ -618,7 +628,15 @@ import CoreGraphics
      */
     @discardableResult
     open func setX(_ x: String) -> Self {
-        return setParam(TransformationParam.X, value: x)
+        
+        let expression = CLDExpression.init(value: x)
+        
+        guard !expression.currentValue.isEmpty else {
+            
+            return setParam(TransformationParam.X, value: x)
+        }
+        
+        return setX(expression)
     }
     
     /**
@@ -656,7 +674,15 @@ import CoreGraphics
      */
     @discardableResult
     open func setY(_ y: String) -> Self {
-        return setParam(TransformationParam.Y, value: y)
+        
+        let expression = CLDExpression.init(value: y)
+        
+        guard !expression.currentValue.isEmpty else {
+            
+            return setParam(TransformationParam.Y, value: y)
+        }
+        
+        return setY(expression)
     }
     
     /**
@@ -681,7 +707,15 @@ import CoreGraphics
      */
     @discardableResult
     open func setRadius(_ radius: String) -> Self {
-        return setParam(TransformationParam.RADIUS, value: radius)
+        
+        let expression = CLDExpression.init(value: radius)
+        
+        guard !expression.currentValue.isEmpty else {
+            
+                        return setParam(TransformationParam.RADIUS, value: radius)
+        }
+        
+        return setRadius(expression)
     }
 
     /**
@@ -1945,8 +1979,37 @@ import CoreGraphics
 extension CLDTransformation
 {
     @objc(setWidthWithExpression:)
-    public func setWidth(_ input: CLDExpression) -> Self
-    {
+    @discardableResult
+    public func setWidth(_ input: CLDExpression) -> Self {
+        
         return setParam(TransformationParam.WIDTH, value: input.asString())
+    }
+    
+    @objc(setHeightWithExpression:)
+    @discardableResult
+    public func setHeight(_ input: CLDExpression) -> Self {
+        
+        return setParam(TransformationParam.HEIGHT, value: input.asString())
+    }
+    
+    @objc(setXFromExpression:)
+    @discardableResult
+    public func setX(_ input: CLDExpression) -> Self {
+        
+        return setParam(TransformationParam.X, value: input.asString())
+    }
+    
+    @objc(setYFromExpression:)
+    @discardableResult
+    public func setY(_ input: CLDExpression) -> Self {
+        
+        return setParam(TransformationParam.Y, value: input.asString())
+    }
+    
+    @objc(setRadiusFromExpression:)
+    @discardableResult
+    open func setRadius(_ input: CLDExpression) -> Self {
+        
+        return setParam(TransformationParam.RADIUS, value: input.asString())
     }
 }

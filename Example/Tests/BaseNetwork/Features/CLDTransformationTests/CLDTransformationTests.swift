@@ -208,6 +208,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
+    
     func test_asString_validOneVariableArray_shouldReturnValidString() {
 
         // Given
@@ -224,6 +225,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
+    
     func test_asString_validTwoVariablesArray_shouldReturnValidString() {
 
         // Given
@@ -243,6 +245,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
+    
     func test_asString_validTwoVariablesArray_shouldReturnValidStringOrderedByEntry() {
 
         // Given
@@ -284,6 +287,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string - variables first!")
     }
+    
     func test_asString_validTwoVariablesArrayAndParams_shouldReturnValidSortedStringVariablesOrderedByEntry() {
 
         // Given
@@ -308,5 +312,172 @@ class CLDTransformationTests: BaseTestCase {
         
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string - variables first!")
+    }
+    
+    // MARK: - test set expression using get property
+    func test_setWidthExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+        
+        // Given
+        let input       = String()
+        let expression  = CLDExpression.init(value: input)
+        
+        // When
+        sut.setWidth(expression)
+        
+        let actualResult = sut.width!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+    
+    func test_setWidthExpression_inputExpression_shouldStoreNewValue() {
+        
+        // Given
+        let input       = "initialHeight * 2"
+        let expression  = CLDExpression.init(value: input)
+        
+        let expectedResult = "ih_mul_2"
+        
+        // When
+        sut.setWidth(expression)
+        
+        let actualResult = sut.width!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "width should stored new value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling get width should return its value")
+    }
+    
+    func test_setHeightExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+        
+        // Given
+        let input       = String()
+        let expression  = CLDExpression.init(value: input)
+        
+        // When
+        sut.setHeight(expression)
+        
+        let actualResult = sut.height!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+
+    func test_setHeightExpression_inputExpression_shouldStoreNewValue() {
+        
+        // Given
+        let input       = "initialHeight * 2"
+        let expression  = CLDExpression.init(value: input)
+        
+        let expectedResult = "ih_mul_2"
+        
+        // When
+        sut.setHeight(expression)
+        
+        let actualResult = sut.height!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "x should stored new value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling get height should return its value")
+    }
+    
+    
+    func test_setXExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+        
+        // Given
+        let input       = String()
+        let expression  = CLDExpression.init(value: input)
+        
+        // When
+        sut.setX(expression)
+        
+        let actualResult = sut.x!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+
+    func test_setXExpression_inputExpression_shouldStoreNewValue() {
+        
+        // Given
+        let input       = "initialHeight * 2"
+        let expression  = CLDExpression.init(value: input)
+        
+        let expectedResult = "ih_mul_2"
+        
+        // When
+        sut.setX(expression)
+        
+        let actualResult = sut.x!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "x should stored new value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling get x should return its value")
+    }
+    
+    func test_setYExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+        
+        // Given
+        let input       = String()
+        let expression  = CLDExpression.init(value: input)
+        
+        // When
+        sut.setY(expression)
+        
+        let actualResult = sut.y!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+
+    func test_setYExpression_inputExpression_shouldStoreNewValue() {
+        
+        // Given
+        let input       = "initialHeight * 2"
+        let expression  = CLDExpression.init(value: input)
+        
+        let expectedResult = "ih_mul_2"
+        
+        // When
+        sut.setY(expression)
+        
+        let actualResult = sut.y!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "y should stored new value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling get y should return its value")
+    }
+    
+    func test_setRadiusExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+        
+        // Given
+        let input       = String()
+        let expression  = CLDExpression.init(value: input)
+        
+        // When
+        sut.setRadius(expression)
+        
+        let actualResult = sut.radius!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+
+    func test_setRadiusExpression_inputExpression_shouldStoreNewValue() {
+        
+        // Given
+        let input       = "initialHeight * 2"
+        let expression  = CLDExpression.init(value: input)
+        
+        let expectedResult = "ih_mul_2"
+        
+        // When
+        sut.setRadius(expression)
+        
+        let actualResult = sut.radius!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "y should stored new value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling get y should return its value")
     }
 }
