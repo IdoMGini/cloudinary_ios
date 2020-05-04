@@ -32,7 +32,6 @@
 		272C5186242B6C360093AB1B /* MultipartFormDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C5145242B6C350093AB1B /* MultipartFormDataTests.swift */; };
 		272C5187242B6C360093AB1B /* URLProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C5146242B6C350093AB1B /* URLProtocolTests.swift */; };
 		272C5189242B6C360093AB1B /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C5148242B6C350093AB1B /* ResponseTests.swift */; };
-		272C518B242B6C360093AB1B /* ValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C514A242B6C350093AB1B /* ValidationTests.swift */; };
 		272C518C242B6C360093AB1B /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C514B242B6C350093AB1B /* BaseTestCase.swift */; };
 		272C518D242B6C360093AB1B /* unicorn.png in Resources */ = {isa = PBXBuildFile; fileRef = 272C514E242B6C350093AB1B /* unicorn.png */; };
 		272C518E242B6C360093AB1B /* rainbow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 272C514F242B6C350093AB1B /* rainbow.jpg */; };
@@ -74,6 +73,7 @@
 		3A30F0D7FBBB27E4F44C739B /* Pods_Cloudinary_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C9301BA8A278A2D4441EA3 /* Pods_Cloudinary_Example.framework */; };
 		52DEBF3CFA0B3484E9F28E6A /* Pods_Cloudinary_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5013B87CB1E3335DB0AC3828 /* Pods_Cloudinary_Tests.framework */; };
 		5D4D8C2D246098F900AE9C96 /* CLDConditionExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4D8C2B246098BA00AE9C96 /* CLDConditionExpressionTests.swift */; };
+		5D4D8C2E24609C1400AE9C96 /* ValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272C514A242B6C350093AB1B /* ValidationTests.swift */; };
 		5D7C2DCF245E93F7007E95F7 /* CLDExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7C2DCE245E93F7007E95F7 /* CLDExpressionTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -792,7 +792,7 @@
 				272C51B1242B6C360093AB1B /* CacheTests.swift in Sources */,
 				274C6D3023FBAF5E0090BC40 /* UrlTests.m in Sources */,
 				272C518C242B6C360093AB1B /* BaseTestCase.swift in Sources */,
-				272C518B242B6C360093AB1B /* ValidationTests.swift in Sources */,
+				5D4D8C2E24609C1400AE9C96 /* ValidationTests.swift in Sources */,
 				272C51B4242B6C360093AB1B /* ResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

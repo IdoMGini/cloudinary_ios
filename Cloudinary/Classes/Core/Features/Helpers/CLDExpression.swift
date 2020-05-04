@@ -246,55 +246,55 @@ open class CLDExpression: NSObject {
     }
     
     // MARK: - class func
-    public class func width() -> CLDExpression {
-        return CLDExpression(expressionKey: .width)
+    public class func width() -> Self {
+        return CLDExpression(expressionKey: .width) as! Self
     }
     
-    public class func height() -> CLDExpression {
-        return CLDExpression(expressionKey: .height)
+    public class func height() -> Self {
+        return CLDExpression(expressionKey: .height) as! Self
     }
     
-    public class func initialWidth() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialWidth)
+    public class func initialWidth() -> Self {
+        return CLDExpression(expressionKey: .initialWidth) as! Self
     }
     
-    public class func initialHeight() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialHeight)
+    public class func initialHeight() -> Self {
+        return CLDExpression(expressionKey: .initialHeight) as! Self
     }
     
-    public class func aspectRatio() -> CLDExpression {
-        return CLDExpression(expressionKey: .aspectRatio)
+    public class func aspectRatio() -> Self {
+        return CLDExpression(expressionKey: .aspectRatio) as! Self
     }
     
-    public class func initialAspectRatio() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialAspectRatio)
+    public class func initialAspectRatio() -> Self {
+        return CLDExpression(expressionKey: .initialAspectRatio) as! Self
     }
     
-    public class func pageCount() -> CLDExpression {
-        return CLDExpression(expressionKey: .pageCount)
+    public class func pageCount() -> Self {
+        return CLDExpression(expressionKey: .pageCount) as! Self
     }
     
-    public class func faceCount() -> CLDExpression {
-        return CLDExpression(expressionKey: .faceCount)
+    public class func faceCount() -> Self {
+        return CLDExpression(expressionKey: .faceCount) as! Self
     }
     
-    public class func tags() -> CLDExpression {
-        return CLDExpression(expressionKey: .tags)
+    public class func tags() -> Self {
+        return CLDExpression(expressionKey: .tags) as! Self
     }
     
-    public class func pageXOffset() -> CLDExpression {
-        return CLDExpression(expressionKey: .pageX)
+    public class func pageXOffset() -> Self {
+        return CLDExpression(expressionKey: .pageX) as! Self
     }
     
-    public class func pageYOffset() -> CLDExpression {
-        return CLDExpression(expressionKey: .pageY)
+    public class func pageYOffset() -> Self {
+        return CLDExpression(expressionKey: .pageY) as! Self
     }
     
-    public class func illustrationScore() -> CLDExpression {
-        return CLDExpression(expressionKey: .illustrationScore)
+    public class func illustrationScore() -> Self {
+        return CLDExpression(expressionKey: .illustrationScore) as! Self
     }
     
-    public class func currentPageIndex() -> CLDExpression {
-        return CLDExpression(expressionKey: .currentPage)
+    public class func currentPageIndex() -> Self {
+        return CLDExpression(expressionKey: .currentPage) as! Self
     }
 }

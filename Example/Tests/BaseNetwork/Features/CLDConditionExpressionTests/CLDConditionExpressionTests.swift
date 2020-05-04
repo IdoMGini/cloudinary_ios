@@ -27,11 +27,10 @@ import XCTest
 
 class CLDConditionExpressionTests: BaseTestCase {
     
-    var sut : CLDExpression!
+    var sut : CLDConditionExpression!
     
     // MARK: - Setup and Teardown
     override func setUp() {
-        var sut1 : CLDConditionExpression!
         super.setUp()
     }
     
@@ -40,21 +39,21 @@ class CLDConditionExpressionTests: BaseTestCase {
         super.tearDown()
     }
     
-//    // MARK: - test initilization methods - empty
-//    func test_init_emptyInputParamaters_shouldStoreEmptyProperties() {
-//
+    // MARK: - test initilization methods - empty
+    func test_init_emptyInputParamaters_shouldStoreEmptyProperties() {
+        
 //        // Given
 //        let name = String()
-//
+//        
 //        // When
-//        sut = CLDExpression.init()
-//
+//        sut = CLDConditionExpression.init()
+//        
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil currentKey  property")
 //        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil currentValue property")
 //        XCTAssertEqual(sut.currentKey, name, "Name property should be equal to name")
 //        XCTAssertEqual(sut.currentValue, String(), "Initilized object should contain an empty string as currentValue property")
-//    }
+    }
 //
 //    // MARK: - test initilization methods - value
 //    func test_init_emptyNameParamater_shouldStoreEmptyNameProperty() {
@@ -64,7 +63,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let value = "alue"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(value)")
+//        sut = CLDConditionExpression.init(value: "\(name) \(value)")
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil currentKey  property")
@@ -79,7 +78,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let value = "alue"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(value)")
+//        sut = CLDConditionExpression.init(value: "\(name) \(value)")
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil name  property")
@@ -97,7 +96,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let valueResult = "*_2"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(value)")
+//        sut = CLDConditionExpression.init(value: "\(name) \(value)")
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil name  property")
@@ -115,7 +114,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "w"
 //
 //        // When
-//        sut = CLDExpression.width()
+//        sut = CLDConditionExpression.width()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -130,7 +129,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "h"
 //
 //        // When
-//        sut = CLDExpression.height()
+//        sut = CLDConditionExpression.height()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -145,7 +144,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "iw"
 //
 //        // When
-//        sut = CLDExpression.initialWidth()
+//        sut = CLDConditionExpression.initialWidth()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -160,7 +159,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "ih"
 //
 //        // When
-//        sut = CLDExpression.initialHeight()
+//        sut = CLDConditionExpression.initialHeight()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -175,12 +174,12 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "ar"
 //
 //        // When
-//        sut = CLDExpression.aspectRatio()
+//        sut = CLDConditionExpression.aspectRatio()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
 //        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
-//
+//        
 //        XCTAssertEqual(sut.currentKey, expectedResult, "currentKey should be equal to expectedResult")
 //    }
 //
@@ -190,7 +189,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "iar"
 //
 //        // When
-//        sut = CLDExpression.initialAspectRatio()
+//        sut = CLDConditionExpression.initialAspectRatio()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -205,7 +204,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "pc"
 //
 //        // When
-//        sut = CLDExpression.pageCount()
+//        sut = CLDConditionExpression.pageCount()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -220,7 +219,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "fc"
 //
 //        // When
-//        sut = CLDExpression.faceCount()
+//        sut = CLDConditionExpression.faceCount()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -235,7 +234,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "tags"
 //
 //        // When
-//        sut = CLDExpression.tags()
+//        sut = CLDConditionExpression.tags()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -250,7 +249,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "px"
 //
 //        // When
-//        sut = CLDExpression.pageXOffset()
+//        sut = CLDConditionExpression.pageXOffset()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -265,7 +264,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "py"
 //
 //        // When
-//        sut = CLDExpression.pageYOffset()
+//        sut = CLDConditionExpression.pageYOffset()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -280,7 +279,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "ils"
 //
 //        // When
-//        sut = CLDExpression.illustrationScore()
+//        sut = CLDConditionExpression.illustrationScore()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -295,7 +294,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = "cp"
 //
 //        // When
-//        sut = CLDExpression.currentPageIndex()
+//        sut = CLDConditionExpression.currentPageIndex()
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -313,7 +312,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "+_20"
 //        // When
 //
-//        sut = CLDExpression.width().add(by: value)
+//        sut = CLDConditionExpression.width().add(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -332,7 +331,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_+_20"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").add(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").add(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -348,7 +347,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "+_30.3"
 //        // When
 //
-//        sut = CLDExpression.width().add(by: value)
+//        sut = CLDConditionExpression.width().add(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -367,7 +366,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_+_30.3"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").add(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").add(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -383,7 +382,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "-_20"
 //        // When
 //
-//        sut = CLDExpression.width().subtract(by: value)
+//        sut = CLDConditionExpression.width().subtract(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -402,7 +401,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_-_20"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -418,7 +417,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "-_30.3"
 //        // When
 //
-//        sut = CLDExpression.width().subtract(by: value)
+//        sut = CLDConditionExpression.width().subtract(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -437,7 +436,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_-_30.3"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -453,7 +452,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "*_20"
 //        // When
 //
-//        sut = CLDExpression.width().multiple(by: value)
+//        sut = CLDConditionExpression.width().multiple(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -472,7 +471,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_*_20"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -488,7 +487,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "*_30.3"
 //        // When
 //
-//        sut = CLDExpression.width().multiple(by: value)
+//        sut = CLDConditionExpression.width().multiple(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -507,7 +506,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_*_30.3"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -523,7 +522,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "/_20"
 //        // When
 //
-//        sut = CLDExpression.width().divide(by: value)
+//        sut = CLDConditionExpression.width().divide(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -542,7 +541,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_/_20"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").divide(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -558,7 +557,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "/_30.3"
 //        // When
 //
-//        sut = CLDExpression.width().divide(by: value)
+//        sut = CLDConditionExpression.width().divide(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -577,7 +576,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedValueResult = "width_/_30.3"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(initialValue)").divide(by: value)
+//        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value)
 //
 //        // Then
 //        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -594,7 +593,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = String()
 //
 //        // When
-//        sut = CLDExpression.init(value: value)
+//        sut = CLDConditionExpression.init(value: value)
 //
 //        let actualResult = sut.asString()
 //
@@ -610,7 +609,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult  = "iw_mul_200_div_fc"
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(value)")
+//        sut = CLDConditionExpression.init(value: "\(name) \(value)")
 //
 //        let actualResult = sut.asString()
 //
@@ -626,7 +625,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult = [String:String]()
 //
 //        // When
-//        sut = CLDExpression.init(value: value)
+//        sut = CLDConditionExpression.init(value: value)
 //
 //        let actualResult = sut.asParams()
 //
@@ -642,7 +641,7 @@ class CLDConditionExpressionTests: BaseTestCase {
 //        let expectedResult  = ["iw":"mul_200_div_fc"]
 //
 //        // When
-//        sut = CLDExpression.init(value: "\(name) \(value)")
+//        sut = CLDConditionExpression.init(value: "\(name) \(value)")
 //
 //        let actualResult = sut.asParams()
 //
