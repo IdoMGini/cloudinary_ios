@@ -262,6 +262,7 @@ class CLDTransformationTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asString() on an CLDTransformation with a valid CLDVariable as param, should return the expected string")
     }
+    
     func test_asString_validTwoVariablesArrayAndParams_shouldReturnValidSortedString() {
 
         // Given

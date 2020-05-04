@@ -194,22 +194,20 @@ open class CLDExpression: NSObject {
     // MARK: - Private methods
     private func replaceAllUnEncodeChars(in string: String) -> String {
         
-        var wipString = string
-        wipString = replaceAllOperators(in: string)
-        wipString = replaceAllExpressionKeys(in: wipString)
+        var wipString   = string
+        wipString       = replaceAllOperators(in: string)
+        wipString       = replaceAllExpressionKeys(in: wipString)
+        
         return wipString
-
     }
     
     private func replaceAllOperators(in string: String) -> String {
         
         var wipString = string
-        CLDOperators.allCases.forEach
-            {
-                print("\($0.rawValue)")
+        CLDOperators.allCases.forEach {
                 wipString = replace(cldOperator: $0, in: wipString)
-                
         }
+        
         return wipString
     }
     
@@ -221,13 +219,11 @@ open class CLDExpression: NSObject {
     private func replaceAllExpressionKeys(in string: String) -> String {
         
         var wipString = string
-        ExpressionKeys.allCases.forEach
-            {
-                wipString = replace(expressionKeys: $0, in: wipString)
+        ExpressionKeys.allCases.forEach {
                 
+            wipString = replace(expressionKeys: $0, in: wipString)
         }
         
-        print(wipString)
         return wipString
     }
     
@@ -237,7 +233,15 @@ open class CLDExpression: NSObject {
     }
     
     private func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String) {
-        currentValue.append(CLDExpression.elementsSeparator + cldoperator.asString() + CLDExpression.elementsSeparator + inputValue)
+        
+        if currentValue.isEmpty {
+            
+            currentValue.append(cldoperator.rawValue + CLDExpression.elementsSeparator + inputValue)
+        }
+        else {
+         
+            currentValue.append(CLDExpression.elementsSeparator + cldoperator.rawValue + CLDExpression.elementsSeparator + inputValue)
+        }
     }
     
     // MARK: - class func

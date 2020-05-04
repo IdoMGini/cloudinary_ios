@@ -301,8 +301,9 @@ import CoreGraphics
      */
     @discardableResult
     open func setWidth(_ width: String) -> Self {
+        
         let ex = CLDExpression.init(value: width)
-        if !ex.currentKey.isEmpty{
+        if !ex.currentValue.isEmpty{
             return setWidth(ex)
         }else {
             return setParam(TransformationParam.WIDTH, value: width)
