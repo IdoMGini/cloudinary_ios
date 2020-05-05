@@ -29,10 +29,11 @@ import CoreGraphics
  */
 @objcMembers open class CLDTransformation: NSObject {
     
+    static fileprivate let transformationContentSeparator: String = ","
+    
     fileprivate var currentTransformationParams: [String : String] = [:]
     fileprivate var transformations: [[String : String]] = []
-    
-    static private let transformationContentSeparator: String = ","
+    fileprivate var currenCondition: CLDConditionExpression?
     
     // MARK: - Init
     
@@ -360,6 +361,8 @@ import CoreGraphics
         return setHeight(expression)
     }
     
+    // MARK: - Set Values - Named
+    
     /**
      A named transformation is a set of image transformations that has been given a custom name for easy reference.
      It is useful to define a named transformation when you have a set of relatively complex transformations that you use often and that you want to easily reference.
@@ -387,6 +390,8 @@ import CoreGraphics
         return setParam(TransformationParam.NAMED, value: names)
     }
     
+    // MARK: - Set Values - Crop
+    
     /**
      Set the image crop.
      
@@ -412,6 +417,8 @@ import CoreGraphics
         return setParam(TransformationParam.CROP, value: crop)
     }
     
+    // MARK: - Set Values - Background
+    
     /**
      Defines the background color to use instead of transparent background areas when converting to JPG format or using the pad crop mode.
      The background color can be set as an RGB hex triplet (e.g. '#3e2222'), a 3 character RGB hex (e.g. '#777') or a named color (e.g. 'green').
@@ -425,6 +432,8 @@ import CoreGraphics
         return setParam(TransformationParam.BACKGROUND, value: background.replacingOccurrences(of: "#", with: "rgb:"))
     }
     
+    // MARK: - Set Values - Color
+    
     /**
      Customize the color to use together with: text captions, the shadow effect and the colorize effect.
      The color can be set as an RGB hex triplet (e.g. '#3e2222'), a 3 character RGB hex (e.g. '#777') or a named color (e.g. 'green').
@@ -437,6 +446,8 @@ import CoreGraphics
     open func setColor(_ color: String) -> Self {
         return setParam(TransformationParam.COLOR, value: color.replacingOccurrences(of: "#", with: "rgb:"))
     }
+    
+    // MARK: - Set Values - Effect
     
     /**
      Apply a filter or an effect on an image.
@@ -506,6 +517,8 @@ import CoreGraphics
         return setParam(TransformationParam.EFFECT, value: effect)
     }
     
+    // MARK: - Set Values - Angle
+
     /**
      Rotate or flip an image by the given degrees or automatically according to its orientation or available meta-data.
      
@@ -544,6 +557,8 @@ import CoreGraphics
         return setParam(TransformationParam.ANGLE, value: angle)
     }
     
+    // MARK: - Set Values - Opacity
+
     /**
      Adjust the opacity of the image and make it semi-transparent. 100 means opaque, while 0 is completely transparent.
      
@@ -568,7 +583,9 @@ import CoreGraphics
     open func setOpacity(_ opacity: String) -> Self {
         return setParam(TransformationParam.OPACITY, value: opacity)
     }
-    
+
+    // MARK: - Set Values - Border
+
     /**
      Add a solid border around the image.
      
@@ -595,6 +612,8 @@ import CoreGraphics
         return setParam(TransformationParam.BORDER, value: border.replacingOccurrences(of: "#", with: "rgb:"))
     }
     
+    // MARK: - Set Values - X
+
     /**
      Horizontal position for custom-coordinates based cropping, overlay placement and certain region related effects.
      
@@ -640,6 +659,8 @@ import CoreGraphics
         
         return setX(expression)
     }
+    
+    // MARK: - Set Values - Y
     
     /**
      Vertical position for custom-coordinates based cropping and overlay placement.
@@ -687,6 +708,8 @@ import CoreGraphics
         return setY(expression)
     }
     
+    // MARK: - Set Values - Radius
+    
     /**
      Round the corners of an image or make it completely circular or oval (ellipse).
      
@@ -720,6 +743,8 @@ import CoreGraphics
         return setRadius(expression)
     }
 
+    // MARK: - Set Values - Quality
+    
     /**
     Set the image quality for the transformation, see CLDQuality for options.
 
@@ -767,6 +792,8 @@ import CoreGraphics
         return setParam(TransformationParam.QUALITY, value: quality)
     }
     
+    // MARK: - Set Values - DefaultImage
+
     /**
      Specify the public ID of a placeholder image to use if the requested image or social network picture does not exist.
      
@@ -778,6 +805,8 @@ import CoreGraphics
     open func setDefaultImage(_ defaultImage: String) -> Self {
         return setParam(TransformationParam.DEFAULT_IMAGE, value: defaultImage)
     }
+    
+    // MARK: - Set Values - Gravity
     
     /**
      Decides which part of the image to keep while 'crop', 'pad' and 'fill' crop modes are used.
@@ -803,7 +832,7 @@ import CoreGraphics
     open func setGravity(_ gravity: String) -> Self {
         return setParam(TransformationParam.GRAVITY, value: gravity)
     }
-    
+    // MARK: - Set Values - ColorSpace
     /**
      Set the transformation color space.
      
@@ -815,7 +844,7 @@ import CoreGraphics
     open func setColorSpace(_ colorSpace: String) -> Self {
         return setParam(TransformationParam.COLOR_SPACE, value: colorSpace)
     }
-    
+    // MARK: - Set Values - Prefix
     /**
      Set the transformation prefix.
      
@@ -827,7 +856,7 @@ import CoreGraphics
     open func setPrefix(_ prefix: String) -> Self {
         return setParam(TransformationParam.PREFIX, value: prefix)
     }
-    
+    // MARK: - Set Values - Overlay
     /**
      Add an overlay over the base image. You can control the dimension and position of the overlay using the width, height, x, y and gravity parameters.
      The overlay can take one of the following forms:
@@ -843,7 +872,7 @@ import CoreGraphics
     open func setOverlay(_ overlay: String) -> Self {
         return setParam(TransformationParam.OVERLAY, value: overlay)
     }
-    
+    // MARK: - Set Values - Underlay
     /**
      Add an underlay image below a base partially-transparent image.
      You can control the dimensions and position of the underlay using the width, height, x, y and gravity parameters.
@@ -860,7 +889,8 @@ import CoreGraphics
     open func setUnderlay(_ underlay: String) -> Self {
         return setParam(TransformationParam.UNDERLAY, value: underlay)
     }
-    
+    // MARK: - Set Values - FetchFormat
+
     /**
      Force format conversion to the given image format for remote 'fetch' URLs and auto uploaded images that already have a different format as part of their URLs.
      
@@ -872,7 +902,9 @@ import CoreGraphics
     open func setFetchFormat(_ fetchFormat: String) -> Self {
         return setParam(TransformationParam.FETCH_FORMAT, value: fetchFormat)
     }
-    
+
+    // MARK: - Set Values - Density
+
     /**
      Control the density to use while converting a PDF document to images. (range: 50-300, default is 150)
      
@@ -897,7 +929,7 @@ import CoreGraphics
     open func setDensity(_ density: String) -> Self {
         return setParam(TransformationParam.DENSITY, value: density)
     }
-    
+    // MARK: - Set Values - Page
     /**
      Given a multi-page file (PDF, animated GIF, TIFF), generate an image of a single page using the given index.
      
@@ -922,6 +954,8 @@ import CoreGraphics
     open func setPage(_ page: String) -> Self {
         return setParam(TransformationParam.PAGE, value: page)
     }
+    
+    // MARK: - Set Values - Delay
     
     /**
      Controls the time delay between the frames of an animated image, in milliseconds.
@@ -948,6 +982,8 @@ import CoreGraphics
         return setParam(TransformationParam.DELAY, value: delay)
     }
     
+    // MARK: - Set Values - RawTransformation
+    
     /**
      Add a raw transformation, it will be appended to the other transformation parameter.
      the transformation must conform to [Cloudinary's transformation documentation](http://cloudinary.com/documentation/image_transformation_reference)
@@ -960,6 +996,8 @@ import CoreGraphics
     open func setRawTransformation(_ rawTransformation: String) -> Self {
         return setParam(TransformationParam.RAW_TRANSFORMATION, value: rawTransformation)
     }
+    
+    // MARK: - Set Values - Flags
     
     /**
      Set one or more flags that alter the default transformation behavior.
@@ -985,7 +1023,7 @@ import CoreGraphics
     open func setFlags(_ flags: String) -> Self {
         return setParam(TransformationParam.FLAGS, value: flags)
     }
-    
+    // MARK: - Set Values - DPR
     /**
      Deliver the image in the specified device pixel ratio.
      
@@ -1010,7 +1048,7 @@ import CoreGraphics
     open func setDpr(_ dpr: String) -> Self {
         return setParam(TransformationParam.DPR, value: dpr)
     }
-    
+    // MARK: - Set Values - Zoom
     /**
      Control how much of the original image surrounding the face to keep when using either the 'crop' or 'thumb' cropping modes with face detection. default is 1.0.
      
@@ -1035,6 +1073,8 @@ import CoreGraphics
     open func setZoom(_ zoom: String) -> Self {
         return setParam(TransformationParam.ZOOM, value: zoom)
     }
+    
+    // MARK: - Set Values - AspectRatio
     
     /**
      Resize or crop the image to a new aspect ratio using a nominator and dominator (e.g. 16 and 9 for 16:9).
@@ -1076,7 +1116,9 @@ import CoreGraphics
     open func setAspectRatio(_ aspectRatio: String) -> Self {
         return setParam(TransformationParam.ASPECT_RATIO, value: aspectRatio)
     }
-
+    
+    // MARK: - Set Values - CustomFunction
+    
     /**
      Set a custom function, such as a call to a lambda function or a web-assembly function.
 
@@ -1089,6 +1131,8 @@ import CoreGraphics
         return setParam(TransformationParam.CUSTOM_FUNCTION, value: customFunction.description)
     }
 
+    // MARK: - Set Values - AudioCodec
+    
     /**
      Use the audio_codec parameter to set the audio codec or remove the audio channel completely as follows:
      
@@ -1105,7 +1149,7 @@ import CoreGraphics
     open func setAudioCodec(_ audioCodec: String) -> Self {
         return setParam(TransformationParam.AUDIO_CODEC, value: audioCodec)
     }
-    
+    // MARK: - Set Values - AudioFrequency
     /**
      Use the audio_frequency parameter to control the audio sampling frequency.
      This parameter represents an integer value in Hz.
@@ -1135,6 +1179,7 @@ import CoreGraphics
         return setParam(TransformationParam.AUDIO_FREQUENCY, value: audioFrequency)
     }
     
+    // MARK: - Set Values - BitRate
     /**
      Use the bit_rate parameter for advanced control of the video bit rate.
      This parameter controls the number of bits used to represent the video data.
@@ -1182,6 +1227,8 @@ import CoreGraphics
         return setParam(TransformationParam.BIT_RATE, value: bitRate)
     }
     
+    // MARK: - Set Values - VideoSampling
+    
     /**
      The total number of frames to sample from the original video. The frames are spread out over the length of the video, e.g. 20 takes one frame every 5%.
      
@@ -1220,7 +1267,7 @@ import CoreGraphics
     open func setVideoSampling(_ videoSampling: String) -> Self {
         return setParam(TransformationParam.VIDEO_SAMPLING, value: videoSampling)
     }
-    
+    // MARK: - Set Values - Duration
     /**
      Offset in seconds or percent of a video, normally used together with the start_offset and end_offset parameters. Used to specify:
      * The duration the video displays.
@@ -1262,7 +1309,7 @@ import CoreGraphics
     open func setDuration(_ duration: String) -> Self {
         return setParam(TransformationParam.DURATION, value: duration)
     }
-    
+    // MARK: - Set Values - StartOffset
     /**
      Set an offset in seconds to cut a video at the start.
      
@@ -1299,7 +1346,7 @@ import CoreGraphics
     open func setStartOffset(_ duration: String) -> Self {
         return setParam(TransformationParam.START_OFFSET, value: duration)
     }
-    
+    // MARK: - Set Values - EndOffset
     /**
      Set an offset in seconds to cut a video at the end.
      
@@ -1335,7 +1382,7 @@ import CoreGraphics
     open func setEndOffset(_ duration: String) -> Self {
         return setParam(TransformationParam.END_OFFSET, value: duration)
     }
-    
+    // MARK: - Set Values - VideoCodecAndProfileAndLevel
     /**
      Used to determine the video codec, video profile and level to use.
      You can set this parameter to auto instead.
@@ -1350,7 +1397,7 @@ import CoreGraphics
     open func setVideoCodecAndProfileAndLevel(_ videoCodec: String, videoProfile: String, level: String? = nil) -> Self {
         return level == nil ? setVideoCodec("\(videoCodec):\(videoProfile)") : setVideoCodec("\(videoCodec):\(videoProfile):\(level!)")
     }
-    
+    // MARK: - Set Values - VideoCodec
     /**
      Used to determine the video codec to use.
      You can set this parameter to auto instead.
@@ -2010,8 +2057,84 @@ extension CLDTransformation
     
     @objc(setRadiusFromExpression:)
     @discardableResult
-    open func setRadius(_ input: CLDExpression) -> Self {
+    public func setRadius(_ input: CLDExpression) -> Self {
         
         return setParam(TransformationParam.RADIUS, value: input.asString())
     }
+}
+// MARK: - Condition Expression
+extension CLDTransformation
+{
+    @objc(ifConditionFromString:)
+    @discardableResult
+    public func ifCondition(_ condition: String) -> Self {
+        return self
+    }
+    
+    @objc(ifCondition)
+    @discardableResult
+    public func ifCondition() -> Self {
+        return self
+    }
+    
+    @objc(ifElse)
+    @discardableResult
+    public func ifElse() -> Self {
+        
+        chain()
+        return setParam("if", value: "else")
+    }
+    
+    @objc(endIf)
+    @discardableResult
+    public func endIf() -> Self {
+        
+        chain()
+        
+        let transformSize = transformations.count
+        let loopSize = transformSize - 1
+        
+        for index in loopSize...0 {
+        
+            var segment = transformations[index]; // [..., {if: "w_gt_1000",c: "fill", w: 500}, ...]
+            
+            if  let value = segment["if"] { // if: "w_gt_1000"
+                
+                if value == "end" {
+                    break
+                }
+                
+                if segment.keys.count > 1 {
+                    segment.removeValue(forKey: "if") // {c: fill, w: 500}
+                    transformations[index] = segment  // [..., {c: fill, w: 500}, ...]
+                    transformations.insert(["if":value], at: index) // [..., "if_w_gt_1000", {c: fill, w: 500}, ...]
+                }
+
+                // otherwise keep looking for if_condition
+                if value != "else" {
+                    break
+                }
+            }
+        }
+        setParam("if", value: "end")
+        return chain()
+    }
+    
+    @objc(then)
+    @discardableResult
+    public func then() -> Self {
+        return self
+    }
+    
+    // MARK: -
+    @discardableResult
+    public func ifCondition(_ condition: CLDConditionExpression, transformation: CLDExpression) -> Self {
+        return self
+    }
+    
+    @discardableResult
+    public func ifCondition(_ condition: CLDConditionExpression) -> Self {
+        return self
+    }
+    
 }
