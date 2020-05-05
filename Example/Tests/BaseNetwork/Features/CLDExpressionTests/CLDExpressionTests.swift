@@ -343,7 +343,7 @@ class CLDExpressionTests: BaseTestCase {
     func test_addFloat_shouldStoreValidFirstValue() {
         
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "+_30.3"
         // When
         
@@ -361,7 +361,7 @@ class CLDExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         
         let expectedValueResult = "width_+_30.3"
         
@@ -413,7 +413,7 @@ class CLDExpressionTests: BaseTestCase {
     func test_subtractFloat_shouldStoreValidFirstValue() {
         
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "-_30.3"
         // When
         
@@ -431,7 +431,7 @@ class CLDExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         
         let expectedValueResult = "width_-_30.3"
         
@@ -483,7 +483,7 @@ class CLDExpressionTests: BaseTestCase {
     func test_multipleFloat_shouldStoreValidFirstValue() {
         
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "*_30.3"
         // When
         
@@ -501,7 +501,7 @@ class CLDExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         
         let expectedValueResult = "width_*_30.3"
         
@@ -553,7 +553,7 @@ class CLDExpressionTests: BaseTestCase {
     func test_divideFloat_shouldStoreValidFirstValue() {
         
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "/_30.3"
         // When
         
@@ -571,7 +571,7 @@ class CLDExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         
         let expectedValueResult = "width_/_30.3"
         

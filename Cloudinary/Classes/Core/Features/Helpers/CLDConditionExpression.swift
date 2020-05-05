@@ -23,7 +23,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 open class CLDConditionExpression : CLDExpression {
     
@@ -44,92 +43,220 @@ open class CLDConditionExpression : CLDExpression {
     }
     
     // MARK: - Public Methods
+    @discardableResult
     public func and() -> Self {
-        return self
-    }
-    public func or() -> Self {
-        return self
-    }
-    public func equal(to value: String) -> Self {
-        return self
-    }
-    public func equal(to value: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func notEqual(to value: String) -> Self {
-        return self
-    }
-    public func notEqual(to value: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func less(then value: String) -> Self {
-        return self
-    }
-    public func less(then value: Int) -> Self {
-        return self
-    }
-    public func less(then value: CGFloat) -> Self {
-        return self
-    }
-    public func less(then value: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func greater(then value: String) -> Self {
-        return self
-    }
-    public func greater(then value: Int) -> Self {
-        return self
-    }
-    public func greater(then value: CGFloat) -> Self {
-        return self
-    }
-    public func greater(then value: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func lessOrEqual(to value: String) -> Self {
-        return self
-    }
-    public func lessOrEqual(to value: Int) -> Self {
-        return self
-    }
-    public func lessOrEqual(to value: CGFloat) -> Self {
-        return self
-    }
-    public func lessOrEqual(to value: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func greaterOrEqual(to value: String) -> Self {
-        return self
-    }
-    public func greaterOrEqual(to value: Int) -> Self {
-        return self
-    }
-    public func greaterOrEqual(to value: CGFloat) -> Self {
-        return self
-    }
-    public func greaterOrEqual(to value: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func inside(_ expression: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func inside(_ expression: String) -> Self {
-        return self
-    }
-    public func notInside(_ expression: CLDConditionExpression) -> Self {
-        return self
-    }
-    public func notInside(_ expression: String) -> Self {
-        return self
-    }
-    public func value(_ expression: String) -> Self {
-        return self
-    }
-    public func value(_ expression: CLDExpression) -> Self {
+        
+        appendOperatorToCurrentValue(.and)
         return self
     }
     
-    // MARK: - class func
+    @discardableResult
+    public func or() -> Self {
+        
+        appendOperatorToCurrentValue(.or)
+        return self
+    }
+    
+    @discardableResult
+    public func equal(to value: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .equal, inputValue: value)
+        return self
+    }
+    
+    @discardableResult
+    public func equal(to value: CLDExpression) -> Self {
+        
+        return equal(to: value.asInternalString())
+    }
+    
+    @discardableResult
+    public func notEqual(to value: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .notEqual, inputValue: value)
+        return self
+    }
+    
+    @discardableResult
+    public func notEqual(to value: CLDExpression) -> Self {
+        return notEqual(to: value.asInternalString())
+    }
+    
+    @discardableResult
+    public func less(then value: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .lessThen, inputValue: value)
+        return self
+    }
+    
+    @discardableResult
+    public func less(then value: Int) -> Self {
+        
+        return less(then: String(value))
+    }
+    
+    @discardableResult
+    public func less(then value: Float) -> Self {
+        
+        return less(then: value.cldFloatFormat())
+    }
+    
+    @discardableResult
+    public func less(then value: CLDExpression) -> Self {
+       
+        return less(then: value.asInternalString())
+    }
+    
+    @discardableResult
+    public func greater(then value: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .greaterThen, inputValue: value)
+        return self
+    }
+    
+    @discardableResult
+    public func greater(then value: Int) -> Self {
+        
+        return greater(then: String(value))
+    }
+    
+    @discardableResult
+    public func greater(then value: Float) -> Self {
+        
+        return greater(then: value.cldFloatFormat())
+    }
+    
+    @discardableResult
+    public func greater(then value: CLDExpression) -> Self {
+        
+        return greater(then: value.asInternalString())
+    }
+    
+    @discardableResult
+    public func lessOrEqual(to value: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .lessOrEqual, inputValue: value)
+        return self
+    }
+    
+    @discardableResult
+    public func lessOrEqual(to value: Int) -> Self {
+        
+        return lessOrEqual(to: String(value))
+    }
+    
+    @discardableResult
+    public func lessOrEqual(to value: Float) -> Self {
+        
+        return lessOrEqual(to: value.cldFloatFormat())
+    }
+    
+    @discardableResult
+    public func lessOrEqual(to value: CLDExpression) -> Self {
+        
+        return lessOrEqual(to: value.asInternalString())
+    }
+    
+    @discardableResult
+    public func greaterOrEqual(to value: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .lessOrEqual, inputValue: value)
+        return self
+    }
+    
+    @discardableResult
+    public func greaterOrEqual(to value: Int) -> Self {
+        
+        return greaterOrEqual(to: String(value))
+    }
+    
+    @discardableResult
+    public func greaterOrEqual(to value: Float) -> Self {
+        
+        return greaterOrEqual(to: value.cldFloatFormat())
+    }
+    
+    @discardableResult
+    public func greaterOrEqual(to value: CLDExpression) -> Self {
+        
+        return greaterOrEqual(to: value.asInternalString())
+    }
+    
+    @discardableResult
+    public func inside(_ expression: CLDExpression) -> Self {
+        
+        return inside(expression.asInternalString())
+    }
+    
+    @discardableResult
+    public func inside(_ expression: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .inside, inputValue: expression)
+        return self
+    }
+    
+    @discardableResult
+    public func notInside(_ expression: CLDExpression) -> Self {
+        
+        return notInside(expression.asInternalString())
+    }
+    
+    @discardableResult
+    public func notInside(_ expression: String) -> Self {
+        
+        appendingStringToCurrentValue(cldoperator: .notInside, inputValue: expression)
+        return self
+    }
+    
+    @discardableResult
+    public func value(_ expression: String) -> Self {
+
+        let expressionObject = CLDExpression.init(value: expression)
+        
+        let value: String
+        if  expressionObject.currentValue.isEmpty {
+            
+            value = expression
+        }else {
+         
+            value = expressionObject.asString()
+        }
+        
+        if currentValue.isEmpty {
+           
+            currentValue.append(value)
+        }else {
+            
+            currentValue.append(CLDExpression.elementsSeparator + value)
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    public func value(_ expression: CLDExpression) -> Self {
+        
+        return value(expression.asInternalString())
+    }
+    
+    // MARK: - Private Methods
+    private func appendingStringToCurrentValue(cldoperator: CLDOperators, inputValue: String) {
+        
+        let expression = CLDExpression.init(value: inputValue)
+        
+        let value: String
+        if  expression.currentValue.isEmpty {
+            
+            value = inputValue
+        }else {
+         
+            value = expression.asString()
+        }
+        
+        appendOperatorToCurrentValue(cldoperator, inputValue: value)
+    }
+    
+    // MARK: - Class Func
     public override class func width() -> Self {
         
         return CLDConditionExpression(super.width()) as! Self

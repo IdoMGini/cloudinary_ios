@@ -343,7 +343,7 @@ class CLDConditionExpressionTests: BaseTestCase {
     func test_addFloat_shouldStoreValidFirstValue() {
 
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "+_30.3"
         // When
 
@@ -361,7 +361,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
 
         let expectedValueResult = "width_+_30.3"
 
@@ -413,7 +413,7 @@ class CLDConditionExpressionTests: BaseTestCase {
     func test_subtractFloat_shouldStoreValidFirstValue() {
 
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "-_30.3"
         // When
 
@@ -431,7 +431,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
 
         let expectedValueResult = "width_-_30.3"
 
@@ -483,7 +483,7 @@ class CLDConditionExpressionTests: BaseTestCase {
     func test_multipleFloat_shouldStoreValidFirstValue() {
 
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "*_30.3"
         // When
 
@@ -501,7 +501,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
 
         let expectedValueResult = "width_*_30.3"
 
@@ -553,7 +553,7 @@ class CLDConditionExpressionTests: BaseTestCase {
     func test_divideFloat_shouldStoreValidFirstValue() {
 
         // Given
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
         let expectedValueResult = "/_30.3"
         // When
 
@@ -571,13 +571,73 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let name = "height"
         let initialValue = "width"
-        let value = CGFloat(30.3)
+        let value = Float(30.3)
 
         let expectedValueResult = "width_/_30.3"
 
         // When
         sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value)
 
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_equalString_shouldAppendValidValue() {
+
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = Float(30.3)
+
+        let equalValue = "initialHeight"
+        let expectedValueResult = "width_/_30.3_=_initialHeight"
+
+        // When
+        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
+
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_equalBaseExpression_shouldAppendValidValue() {
+
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = Float(30.3)
+
+        let equalValue = CLDExpression.initialHeight()
+        let expectedValueResult = "width_/_30.3_=_ih"
+
+        // When
+        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
+
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_equalExpression_shouldAppendValidValue() {
+
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = Float(30.3)
+
+        let equalValue = CLDExpression.initialHeight().add(by: 20)
+        let expectedValueResult = "width_/_30.3_=_ih_add_20"
+
+        // When
+        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
+        
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
         XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")

@@ -32,6 +32,8 @@ public enum CLDOperators: String , CaseIterable {
     case greaterThen    = ">"
     case    lessOrEqual = "<="
     case greaterOrEqual = ">="
+    case inside         = "inside"
+    case notInside      = "notInside"
     
     case and = "&&"
     case or  = "||"
@@ -50,6 +52,8 @@ public enum CLDOperators: String , CaseIterable {
         case .greaterThen   : return "gt"
         case .lessOrEqual   : return "lte"
         case .greaterOrEqual: return "gte"
+        case .inside        : return "in"
+        case .notInside     : return "nin"
 
         case .and: return "and"
         case .or : return "or"

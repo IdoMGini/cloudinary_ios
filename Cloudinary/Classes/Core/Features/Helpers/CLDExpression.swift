@@ -23,7 +23,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 open class CLDExpression: NSObject {
 
@@ -98,10 +97,10 @@ open class CLDExpression: NSObject {
     internal var currentValue      : String
     internal var currentKey        : String
     
-    static private let separator          : String = ","
-    static private let elementsSeparator  : String = "_"
-    static private let stringValueInterval: String = "_"
-    static private let stringValueRegex   : String = "[ _]+"
+    static private  let separator          : String = ","
+    static internal let elementsSeparator  : String = "_"
+    static internal let stringValueInterval: String = "_"
+    static private  let stringValueRegex   : String = "[ _]+"
     
     // MARK: - Init
     public override init() {
@@ -125,43 +124,51 @@ open class CLDExpression: NSObject {
     }
     
     // MARK: - Public methods
+    @discardableResult
     public func add(by number: Int) -> Self {
         appendOperatorToCurrentValue(.add, inputValue: "\(number)")
         return self
     }
     
-    public func add(by number: CGFloat) -> Self {
-        appendOperatorToCurrentValue(.add, inputValue: "\(number)")
+    @discardableResult
+    public func add(by number: Float) -> Self {
+        appendOperatorToCurrentValue(.add, inputValue: number.cldFloatFormat())
         return self
     }
     
+    @discardableResult
     public func subtract(by number: Int) -> Self {
         appendOperatorToCurrentValue(.subtract, inputValue: "\(number)")
         return self
     }
     
-    public func subtract(by number: CGFloat) -> Self {
-        appendOperatorToCurrentValue(.subtract, inputValue: "\(number)")
+    @discardableResult
+    public func subtract(by number: Float) -> Self {
+        appendOperatorToCurrentValue(.subtract, inputValue: number.cldFloatFormat())
         return self
     }
 
+    @discardableResult
     public func multiple(by number: Int) -> Self {
         appendOperatorToCurrentValue(.multiple, inputValue: "\(number)")
         return self
     }
     
-    public func multiple(by number: CGFloat) -> Self {
-        appendOperatorToCurrentValue(.multiple, inputValue: "\(number)")
+    @discardableResult
+    public func multiple(by number: Float) -> Self {
+        appendOperatorToCurrentValue(.multiple, inputValue: number.cldFloatFormat())
         return self
     }
     
+    @discardableResult
     public func divide(by number: Int) -> Self {
         appendOperatorToCurrentValue(.divide, inputValue: "\(number)")
         return self
     }
     
-    public func divide(by number: CGFloat) -> Self {
-        appendOperatorToCurrentValue(.divide, inputValue: "\(number)")
+    @discardableResult
+    public func divide(by number: Float) -> Self {
+        appendOperatorToCurrentValue(.divide, inputValue: number.cldFloatFormat())
         return self
     }
     
@@ -181,6 +188,10 @@ open class CLDExpression: NSObject {
     
     internal func asInternalString() -> String {
 
+        guard !currentValue.isEmpty else {
+        
+            return "\(currentKey)"
+        }
         return "\(currentKey) \(currentValue)"
     }
     
@@ -238,16 +249,22 @@ open class CLDExpression: NSObject {
         return string.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
     }
     
-    private func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String) {
+    internal func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String = String()) {
         
-        if currentValue.isEmpty {
-            
-            currentValue.append(cldoperator.rawValue + CLDExpression.elementsSeparator + inputValue)
+        var stringValue = String()
+        if !currentValue.isEmpty {
+           
+            stringValue.append(CLDExpression.elementsSeparator)
         }
-        else {
+        
+        stringValue.append(cldoperator.rawValue)
+        
+        if !inputValue.isEmpty {
          
-            currentValue.append(CLDExpression.elementsSeparator + cldoperator.rawValue + CLDExpression.elementsSeparator + inputValue)
+            stringValue.append(CLDExpression.elementsSeparator + inputValue)
         }
+        
+        currentValue.append(stringValue)
     }
     
     // MARK: - class func

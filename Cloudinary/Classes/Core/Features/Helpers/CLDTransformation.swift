@@ -211,7 +211,7 @@ import CoreGraphics
         return currentTransformationParams[param]
     }
     
-    // MARK: - Set Values
+    // MARK: - Set Values - Variable
     
     /**
     Set a variable.
@@ -266,6 +266,7 @@ import CoreGraphics
         return self
     }
     
+    // MARK: - Set Values - Width
     /**
      Set the image width.
      
@@ -312,6 +313,7 @@ import CoreGraphics
         return setWidth(expression)
     }
     
+    // MARK: - Set Values - Height
     /**
      Set the image height.
      
