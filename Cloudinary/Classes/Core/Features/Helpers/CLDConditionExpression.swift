@@ -27,6 +27,23 @@ import CoreGraphics
 
 open class CLDConditionExpression : CLDExpression {
     
+    // MARK: - Init
+    private init(_ expression: CLDExpression) {
+        
+        super.init(value: expression.asInternalString())
+    }
+    
+    public override init() {
+        
+        super.init()
+    }
+    
+    public override init(value: String) {
+        
+        super.init(value: value)
+    }
+    
+    // MARK: - Public Methods
     public func and() -> Self {
         return self
     }
@@ -114,54 +131,58 @@ open class CLDConditionExpression : CLDExpression {
     
     // MARK: - class func
     public override class func width() -> Self {
-        return super.width() as! Self
+        
+        return CLDConditionExpression(super.width()) as! Self
     }
     
     public override class func height() -> Self {
-        return super.height() as! Self
+        
+        return CLDConditionExpression(super.height()) as! Self
     }
     
     public override class func initialWidth() -> Self {
-        return super.initialWidth() as! Self
+        
+        return CLDConditionExpression(super.initialWidth()) as! Self
     }
     
     public override class func initialHeight() -> Self {
-        return super.initialHeight() as! Self
+        
+        return CLDConditionExpression(super.initialHeight()) as! Self
     }
     
     public override class func aspectRatio() -> Self {
-        return super.aspectRatio() as! Self
+        return CLDConditionExpression(super.aspectRatio()) as! Self
     }
     
     public override class func initialAspectRatio() -> Self {
-        return super.initialAspectRatio() as! Self
+        return CLDConditionExpression(super.initialAspectRatio()) as! Self
     }
     
     public override class func pageCount() -> Self {
-        return super.pageCount() as! Self
+        return CLDConditionExpression(super.pageCount()) as! Self
     }
     
     public override class func faceCount() -> Self {
-        return super.faceCount() as! Self
+        return CLDConditionExpression(super.faceCount()) as! Self
     }
     
     public override class func tags() -> Self {
-        return super.tags() as! Self
+        return CLDConditionExpression(super.tags()) as! Self
     }
     
     public override class func pageXOffset() -> Self {
-        return super.pageXOffset() as! Self
+        return CLDConditionExpression(super.pageXOffset()) as! Self
     }
     
     public override class func pageYOffset() -> Self {
-        return super.pageYOffset() as! Self
+        return CLDConditionExpression(super.pageYOffset()) as! Self
     }
     
     public override class func illustrationScore() -> Self {
-        return super.illustrationScore() as! Self
+        return CLDConditionExpression(super.illustrationScore()) as! Self
     }
     
     public override class func currentPageIndex() -> Self {
-        return super.currentPageIndex() as! Self
+        return CLDConditionExpression(super.currentPageIndex()) as! Self
     }
 }
