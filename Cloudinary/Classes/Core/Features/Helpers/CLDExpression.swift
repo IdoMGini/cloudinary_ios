@@ -175,7 +175,7 @@ open class CLDExpression: NSObject {
     // MARK: -
     public func asString() -> String {
         
-        guard !currentValue.isEmpty && !currentValue.isEmpty else {
+        guard !currentKey.isEmpty && !currentValue.isEmpty else {
             
             return String()
         }
@@ -197,7 +197,7 @@ open class CLDExpression: NSObject {
     
     public func asParams() -> [String : String] {
         
-        guard !currentValue.isEmpty && !currentValue.isEmpty else {
+        guard !currentKey.isEmpty && !currentValue.isEmpty else {
             
             return [String : String]()
         }

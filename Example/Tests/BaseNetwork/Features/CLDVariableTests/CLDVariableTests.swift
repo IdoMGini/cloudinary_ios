@@ -29,7 +29,7 @@ class CLDVariableTests: BaseTestCase {
     
     var sut : CLDVariable!
     
-    // MARK: - Setup and Teardown
+    // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
     }

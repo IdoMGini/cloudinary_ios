@@ -33,7 +33,7 @@
 
 CLDVariable *sut;
 
-// MARK: - Setup and Teardown
+// MARK: - setup and teardown
 - (void)setUp {
     [super setUp];
 }

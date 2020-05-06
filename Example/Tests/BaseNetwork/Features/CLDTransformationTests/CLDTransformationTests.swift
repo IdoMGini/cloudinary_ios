@@ -29,7 +29,7 @@ class CLDTransformationTests: BaseTestCase {
      
     var sut : CLDTransformation!
     
-    // MARK: - Setup and Teardown
+    // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
         sut = CLDTransformation.init()

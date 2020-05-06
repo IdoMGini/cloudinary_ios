@@ -29,7 +29,7 @@ class CLDExpressionTests: BaseTestCase {
     
     var sut : CLDExpression!
     
-    // MARK: - Setup and Teardown
+    // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
     }

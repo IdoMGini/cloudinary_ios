@@ -160,7 +160,7 @@ open class CLDConditionExpression : CLDExpression {
     @discardableResult
     public func greaterOrEqual(to value: String) -> Self {
         
-        appendingStringToCurrentValue(cldoperator: .lessOrEqual, inputValue: value)
+        appendingStringToCurrentValue(cldoperator: .greaterOrEqual, inputValue: value)
         return self
     }
     
