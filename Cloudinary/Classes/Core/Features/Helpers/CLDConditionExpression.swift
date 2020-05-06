@@ -45,7 +45,7 @@ open class CLDConditionExpression : CLDExpression {
     // MARK: - Public Methods
     @discardableResult
     public func and() -> Self {
-        // TODO: IDO
+        
         appendOperatorToCurrentValue(.and)
         return self
     }
@@ -190,7 +190,12 @@ open class CLDConditionExpression : CLDExpression {
     
     @discardableResult
     public func inside(_ expression: String) -> Self {
-        // TODO: IDO
+        
+        guard !expression.isEmpty else {
+            
+            return self
+        }
+        
         appendingStringToCurrentValue(cldoperator: .inside, inputValue: expression)
         return self
     }
@@ -204,13 +209,18 @@ open class CLDConditionExpression : CLDExpression {
     @discardableResult
     public func notInside(_ expression: String) -> Self {
         
+        guard !expression.isEmpty else {
+            
+            return self
+        }
+        
         appendingStringToCurrentValue(cldoperator: .notInside, inputValue: expression)
         return self
     }
     
     @discardableResult
     public func value(_ expression: String) -> Self {
-        // TODO: IDO
+        
         let expressionObject = CLDExpression.init(value: expression)
         
         let value: String
@@ -222,7 +232,14 @@ open class CLDConditionExpression : CLDExpression {
             value = expressionObject.asString()
         }
         
-        if currentValue.isEmpty {
+        if !expressionObject.currentValue.isEmpty && currentKey.isEmpty {
+            currentKey      = expressionObject.currentKey
+            currentValue    = expressionObject.currentValue
+        }
+        else if expressionObject.currentValue.isEmpty && currentKey.isEmpty {
+            currentKey      = value
+        }
+        else if currentValue.isEmpty {
            
             currentValue.append(value)
         } else {
