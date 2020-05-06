@@ -1418,4 +1418,24 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Calling asParams, should build a paramater representation")
     }
+    
+    func test_asParam_emptyKey_shouldReturnEmptyString() {
+        
+        // Given
+        let name            = "initialWidth"
+        let value           = "* 200 / faceCount"
+        let expectedValue   = "*_200_/_faceCount"
+        let expectedResult  = [String:String]()
+        
+        // When
+        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut.currentKey = ""
+        
+        let actualResult = sut.asParams()
+        let actualValue  = sut.currentValue
+        
+        // Then
+        XCTAssertEqual(actualValue,  expectedValue, "Calling asString on a CLDConditionExpression, should return a string")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString on a CLDConditionExpression, should return an empty string")
+    }
 }
