@@ -69,8 +69,8 @@ class CLDTransformationConditionsTests: BaseTestCase {
         let actualResult = sut.ifParam!
         
         // Then
-        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertFalse(actualResult.isEmpty, "valid value should be stored")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for valid value should return the expected result")
     }
     
     // MARK: - ifCondition with CLDConditionExpression
@@ -102,8 +102,8 @@ class CLDTransformationConditionsTests: BaseTestCase {
         let actualResult = sut.ifParam!
         
         // Then
-        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertFalse(actualResult.isEmpty, "valid value should be stored")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for valid value should return the expected result")
     }
     
     // MARK: - asString()
@@ -201,7 +201,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         
         // Then
         XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
-        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
         XCTAssertEqual(actualResult, expectedResult, "components should be in proper order")
     }
     
@@ -224,7 +224,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         
         // Then
         XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
-        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
         XCTAssertEqual(actualResult, expectedResult, "should allow multiple conditions when chaining transformations")
     }
     
@@ -246,7 +246,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         
         // Then
         XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
-        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
         XCTAssertEqual(actualResult, expectedResult, "should order multiple conditions when chaining transformations")
     }
     
@@ -267,7 +267,57 @@ class CLDTransformationConditionsTests: BaseTestCase {
         
         // Then
         XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
-        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
         XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - ifElse
+    func test_ifElse_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult  = "else"
+        
+        // When
+        sut.ifElse()
+        
+        let actualResult = sut.ifParam!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "valid value should be stored")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for valid value should return the expected result")
+    }
+    
+    func test_ifElse_multiProperties_shouldReturnValidString() {
+        
+        // Given
+        let conditionStringInput = "w_lt_200"
+        
+        let expectedResult = "if_w_lt_200,c_fill,h_120,w_80/if_else,c_fit,h_150,w_150/e_sepia"
+        
+        // When
+        sut.ifCondition(conditionStringInput).setCrop(.fill).setHeight(120).setWidth(80)
+            .ifElse().setCrop(.fit).setHeight(150).setWidth(150)
+            .chain().setEffect(.sepia)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
+        XCTAssertEqual(actualResult, expectedResult, "should order multiple conditions when chaining transformations")
+    }
+    
+    func test_ifElse_unorderedMultiProperties_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult = "c_fill/if_else"
+        
+        // When
+        sut.setCrop(.fill).chain().ifElse()
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "should order multiple conditions when chaining transformations")
     }
 }
