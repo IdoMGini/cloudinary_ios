@@ -272,7 +272,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
     }
     
     // MARK: - ifElse
-    func test_ifElse_shouldReturnValidString() {
+    func test_ifElse_shouldStoreNewParam() {
         
         // Given
         let expectedResult  = "else"
@@ -281,6 +281,21 @@ class CLDTransformationConditionsTests: BaseTestCase {
         sut.ifElse()
         
         let actualResult = sut.ifParam!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "valid value should be stored")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for valid value should return the expected result")
+    }
+    
+    func test_ifElse_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult  = "if_else"
+        
+        // When
+        sut.ifElse()
+        
+        let actualResult = sut.asString()!
         
         // Then
         XCTAssertFalse(actualResult.isEmpty, "valid value should be stored")
@@ -306,18 +321,36 @@ class CLDTransformationConditionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
         XCTAssertEqual(actualResult, expectedResult, "should order multiple conditions when chaining transformations")
     }
-    
-    func test_ifElse_unorderedMultiProperties_shouldReturnValidString() {
         
-        // Given
-        let expectedResult = "c_fill/if_else"
+    // MARK: - endIf
+    func test_endIf_emptyTransformation_shouldReturnNil() {
         
         // When
-        sut.setCrop(.fill).chain().ifElse()
+        sut.endIf()
+        
+        let actualResult = sut.ifParam
+        
+        // Then
+        XCTAssertNil(actualResult, "endIf should not stand alone")
+    }
+    
+    func test_endIf_multiProperties_shouldReturnValidString() {
+        
+        // Given
+        let conditionStringInput = "w_lt_200"
+        
+        let expectedResult = "if_w_lt_200/c_fill,h_120,w_80/if_else,c_fit,h_150,w_150/e_sepia/if_end"
+        
+        // When
+        sut.ifCondition(conditionStringInput).setCrop(.fill).setHeight(120).setWidth(80)
+            .ifElse().setCrop(.fit).setHeight(150).setWidth(150)
+            .chain().setEffect(.sepia).endIf()
         
         let actualResult = sut.asString()!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "should order multiple conditions when chaining transformations")
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasSuffix("if_end"), "asString() return value should have an 'if_end' suffix")
+        XCTAssertEqual(actualResult, expectedResult, "endIf() should separate the first ifCondition to a new transformation")
     }
 }

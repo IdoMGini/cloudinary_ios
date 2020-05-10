@@ -2128,12 +2128,14 @@ extension CLDTransformation
     @discardableResult
     public func endIf() -> Self {
         
+        guard transformations.count > 0 else { return self }
+        
         chain()
         
         let transformSize = transformations.count
         let loopSize = transformSize - 1
         
-        for index in loopSize...0 {
+        for index in 0...loopSize {
         
             var segment = transformations[index]; // [..., {if: "w_gt_1000",c: "fill", w: 500}, ...]
             
@@ -2155,7 +2157,7 @@ extension CLDTransformation
                 }
             }
         }
-        setParam("if", value: "end")
+        setParam(TransformationParam.IF_PARAM.rawValue, value: "end")
         return chain()
     }
     
