@@ -26,11 +26,11 @@ import Foundation
 
 public enum CLDOperators: String , CaseIterable {
     
-    case    equal       = "="
+    case equal          = "="
     case notEqual       = "!="
-    case    lessThen    = "<"
+    case lessThen       = "<"
     case greaterThen    = ">"
-    case    lessOrEqual = "<="
+    case lessOrEqual    = "<="
     case greaterOrEqual = ">="
     case inside         = "inside"
     case notInside      = "notInside"

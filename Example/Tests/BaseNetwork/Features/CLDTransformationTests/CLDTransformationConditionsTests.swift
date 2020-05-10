@@ -1,5 +1,5 @@
 //
-//  CLDTransformationTests.swift
+//  CLDTransformationConditionsTests.swift
 //
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,8 +25,9 @@
 import Foundation
 import XCTest
 
-class CLDTransformationTests: BaseTestCase {
-     
+// MARK: - ConditionalCLDTransformationTests
+class CLDTransformationConditionsTests: BaseTestCase {
+    
     var sut : CLDTransformation!
     
     // MARK: - setup and teardown
