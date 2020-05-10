@@ -30,6 +30,7 @@ import CoreGraphics
 @objcMembers open class CLDTransformation: NSObject {
     
     static fileprivate let transformationContentSeparator: String = ","
+    static fileprivate let elementsSeparator             : String = "_"
     
     fileprivate var currentTransformationParams: [String : String] = [:]
     fileprivate var transformations: [[String : String]] = []
@@ -141,6 +142,14 @@ import CoreGraphics
     
     open var rawTransformation: String? {
         return getParam(.RAW_TRANSFORMATION)
+    }
+    
+    open var variables: String? {
+        return getParam(.VARIABLES)
+    }
+    
+    open var ifParam: String? {
+        return getParam(.IF_PARAM)
     }
     
     open var flags: String? {
@@ -1653,10 +1662,15 @@ import CoreGraphics
         let components: [String] = params.sorted{$0.0 < $1.0}
                                          .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
                                                  $0.0 != TransformationParam.VARIABLES.rawValue &&
+                                                 $0.0 != TransformationParam.IF_PARAM.rawValue &&
                                                  !$0.1.isEmpty}
                                          .map{"\($0)_\($1)"}
 
         var finalComponents: [String] = [String]()
+        
+        if let ifConditions = params[TransformationParam.IF_PARAM.rawValue], !ifConditions.isEmpty {
+            finalComponents.append(TransformationParam.IF_PARAM.rawValue + CLDTransformation.elementsSeparator + ifConditions)
+        }
         
         if let complexVariables = params[TransformationParam.VARIABLES.rawValue], !complexVariables.isEmpty {
             finalComponents.append(complexVariables)
@@ -1713,6 +1727,7 @@ import CoreGraphics
         case VIDEO_CODEC =                  "vc"
         case RAW_TRANSFORMATION =           "raw_transformation"
         case VARIABLES =                    "variables"
+        case IF_PARAM =                     "if"
         case KEYFRAME_INTERVAL =            "ki"
         case FPS =                          "fps"
         case STREAMING_PROFILE =            "sp"
@@ -2065,26 +2080,48 @@ extension CLDTransformation
 // MARK: - Condition Expression
 extension CLDTransformation
 {
+    // MARK: - ifCondition with content
     @objc(ifConditionFromString:)
     @discardableResult
     public func ifCondition(_ condition: String) -> Self {
-        return self
+        
+        let conditionObject = CLDConditionExpression.init(value: condition)
+        
+        guard !conditionObject.currentValue.isEmpty else {
+            
+            return setParam(TransformationParam.IF_PARAM, value: condition)
+        }
+        
+        return ifCondition(conditionObject)
     }
     
+    @discardableResult
+    public func ifCondition(_ condition: CLDConditionExpression) -> Self {
+        return setParam(TransformationParam.IF_PARAM, value: condition.asString())
+    }
+    
+    @discardableResult
+    public func ifCondition(_ condition: CLDConditionExpression, then transformation: CLDExpression) -> Self {
+        return ifCondition(condition).then().setParam(transformation.currentKey, value: transformation.currentValue)
+    }
+    
+    // MARK: - ifCondition state
     @objc(ifCondition)
     @discardableResult
     public func ifCondition() -> Self {
         return self
     }
-    
+
+    // MARK: - ifElse
     @objc(ifElse)
     @discardableResult
     public func ifElse() -> Self {
         
         chain()
-        return setParam("if", value: "else")
+        return setParam(TransformationParam.IF_PARAM, value: "else")
     }
     
+    // MARK: - endIf
     @objc(endIf)
     @discardableResult
     public func endIf() -> Self {
@@ -2120,21 +2157,10 @@ extension CLDTransformation
         return chain()
     }
     
+    // MARK: - then
     @objc(then)
     @discardableResult
     public func then() -> Self {
         return self
     }
-    
-    // MARK: -
-    @discardableResult
-    public func ifCondition(_ condition: CLDConditionExpression, transformation: CLDExpression) -> Self {
-        return self
-    }
-    
-    @discardableResult
-    public func ifCondition(_ condition: CLDConditionExpression) -> Self {
-        return self
-    }
-    
 }
