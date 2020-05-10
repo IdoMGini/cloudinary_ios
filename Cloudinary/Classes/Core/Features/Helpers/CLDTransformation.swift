@@ -1630,6 +1630,8 @@ import CoreGraphics
      */
     @discardableResult
     open func chain() -> Self {
+        guard currentTransformationParams != [:] else { return self }
+        
         transformations.append(currentTransformationParams)
         currentTransformationParams = [:]
         return self
