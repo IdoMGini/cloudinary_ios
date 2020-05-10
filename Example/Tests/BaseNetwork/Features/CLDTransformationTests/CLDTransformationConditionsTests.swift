@@ -40,4 +40,234 @@ class CLDTransformationConditionsTests: BaseTestCase {
         sut = nil
         super.tearDown()
     }
+    
+    // MARK: - ifCondition with String
+    func test_ifCondition_emptyStringProperty_shouldNotStoreNewParam() {
+        
+        // Given
+        let stringInput = String()
+        
+        // When
+        sut.ifCondition(stringInput)
+        
+        let actualResult = sut.ifParam!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+    
+    func test_ifCondition_spacedStringProperty_shouldStoreValidString() {
+        
+        // Given
+        let stringInput = "w < 200"
+        
+        let expectedResult = "w_lt_200"
+        
+        // When
+        sut.ifCondition(stringInput)
+        
+        let actualResult = sut.ifParam!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - ifCondition with CLDConditionExpression
+    func test_ifCondition_emptyConditionProperty_shouldNotStoreNewParam() {
+        
+        // Given
+        let conditionObject = CLDConditionExpression.init()
+        
+        // When
+        sut.ifCondition(conditionObject)
+        
+        let actualResult = sut.ifParam!
+        
+        // Then
+        XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
+    }
+    
+    func test_ifCondition_conditionProperty_shouldStoreValidString() {
+        
+        // Given
+        let initialValue = "width < 200"
+        let conditionObject = CLDConditionExpression.init(value: initialValue)
+        
+        let expectedResult = "w_lt_200"
+        
+        // When
+        sut.ifCondition(conditionObject)
+        
+        let actualResult = sut.ifParam!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - asString()
+    func test_ifConditionAsString_emptyConditionProperty_shouldStoreNil() {
+        
+        // Given
+        let conditionObject = CLDConditionExpression.init()
+        
+        // When
+        sut.ifCondition(conditionObject)
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertNil(actualResult, "Empty expression should not return from asString()")
+    }
+    
+    func test_ifConditionAsString_emptyStringProperty_shouldStoreNil() {
+        
+        // Given
+        let emptyString = String()
+        
+        // When
+        sut.ifCondition(emptyString)
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertNil(actualResult, "Empty expression should not return from asString()")
+    }
+    
+    func test_ןfConditionAsString_spacedStringProperty_shouldReturnValidString() {
+        
+        // Given
+        let stringInput = "w < 200"
+        
+        let expectedResult = "if_w_lt_200"
+        
+        // When
+        sut.ifCondition(stringInput)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    func test_ifConditionAsString_stringProperty_shouldReturnValidString() {
+        
+        // Given
+        let stringInput = "w_lt_200"
+        
+        let expectedResult = "if_w_lt_200"
+        
+        // When
+        sut.ifCondition(stringInput)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    func test_ifCondition_orderedStringConditionAndMultiProperties_shouldReturnValidString() {
+        
+        // Given
+        let conditionStringInput = "w_lt_200"
+        
+        let expectedResult = "if_w_lt_200,c_fill,h_120,w_80"
+        
+        // When
+        sut.ifCondition(conditionStringInput).setCrop(.fill).setHeight(120).setWidth(80)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition should appear at the beginning of the trasformation string")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    func test_ifCondition_unorderedStringConditionAndMultiProperties_shouldReturnValidOrderedString() {
+        
+        // Given
+        let conditionStringInput = "w_lt_200"
+        
+        let expectedResult = "if_w_lt_200,c_fill,h_120,w_80"
+        
+        // When
+        sut.setCrop(.fill).setHeight(120).ifCondition(conditionStringInput).setWidth(80)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertEqual(actualResult, expectedResult, "components should be in proper order")
+    }
+    
+    // MARK: - multi transformations condition
+    func test_multiTransformationIfCondition_StringConditionAndMultiProperties_shouldReturnValidOrderedString() {
+        
+        // Given
+        let conditionStringInput1 = "w_lt_200"
+        let conditionStringInput2 = "w_gt_400"
+        
+        let expectedResult = "if_w_lt_200,c_fill,h_120,w_80/if_w_gt_400,c_fit,h_150,w_150/e_sepia"
+        
+        // When
+        sut.ifCondition(conditionStringInput1).setCrop(.fill).setHeight(120).setWidth(80)
+            .chain().ifCondition(conditionStringInput2).setCrop(.fit).setHeight(150).setWidth(150)
+            .chain().setEffect(.sepia)
+        
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertEqual(actualResult, expectedResult, "should allow multiple conditions when chaining transformations")
+    }
+    
+    func test_multiTransformationUnorderedIfCondition_StringConditionAndMultiProperties_shouldReturnValidOrderedString() {
+        
+        // Given
+        let conditionStringInput1 = "w_lt_200"
+        let conditionStringInput2 = "w_gt_400"
+        
+        let expectedResult = "if_w_lt_200,c_fill,h_120,w_80/if_w_gt_400,c_fit,h_150,w_150/e_sepia"
+        
+        // When
+        sut.setCrop(.fill).ifCondition(conditionStringInput1).setHeight(120).setWidth(80)
+            .chain().setCrop(.fit).setHeight(150).ifCondition(conditionStringInput2).setWidth(150)
+            .chain().setEffect(.sepia)
+        
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertEqual(actualResult, expectedResult, "should order multiple conditions when chaining transformations")
+    }
+    
+    // MARK: - operators
+    func test_ifCondition_specialOperators_shouldReturnValidString() {
+        
+        // Given
+        let initialValue    = "width > 200"
+        let valueHeight     = "height > 200"
+        let valueWidth      = "width < 300"
+        let expectedResult  = "if_w_gt_200_and_h_gt_200_or_w_lt_300"
+        let conditionObject = CLDConditionExpression.init(value: initialValue).and().value(valueHeight).or().value(valueWidth)
+        
+        // When
+        sut.ifCondition(conditionObject)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasPrefix("if"), "ifCondition shoulf appear at the beginning of the trasformation string")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
 }
