@@ -449,4 +449,28 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertFalse(actualResult!.isEmpty, "asString should stored valid value")
         XCTAssertEqual(actualResult!, expectedResult, "Calling get asString should return its value")
     }
+    
+    // MARK: - chained conditions
+    func test_chainedConditions_then_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult = "if_w_gt_200,c_scale,w_100"
+        
+        // When
+        sut.ifCondition().width().greater(then: 200).then().setCrop(.scale).setWidth(100)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "chained conditions should create the expected result")
+    }
+
 }
+
+/*
+ .NET code
+ 
+ var transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").Then().Width(100).Crop("scale");
+ Assert.AreEqual("if_ar_gt_3:4,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
+
+ */

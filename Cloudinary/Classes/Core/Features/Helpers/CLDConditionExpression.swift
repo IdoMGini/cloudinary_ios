@@ -26,6 +26,8 @@ import Foundation
 
 open class CLDConditionExpression : CLDExpression {
     
+    let parentTransformation: CLDTransformation = CLDTransformation.init()
+    
     // MARK: - Init
     private init(_ expression: CLDExpression) {
         
@@ -271,6 +273,20 @@ open class CLDConditionExpression : CLDExpression {
         }
         
         appendOperatorToCurrentValue(cldoperator, inputValue: value)
+    }
+    
+    // MARK: - then
+    @objc(then)
+    public func then() -> CLDTransformation {
+        
+        return parentTransformation.ifCondition(self)
+    }
+    
+    
+    // MARK: - instance func
+    public func width() -> Self {
+        self.currentKey = "w"
+        return self
     }
     
     // MARK: - Class Func

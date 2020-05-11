@@ -34,7 +34,7 @@ import CoreGraphics
     
     fileprivate var currentTransformationParams: [String : String] = [:]
     fileprivate var transformations: [[String : String]] = []
-    fileprivate var currenCondition: CLDConditionExpression?
+    fileprivate var currentCondition: CLDConditionExpression?
     
     // MARK: - Init
     
@@ -2105,14 +2105,16 @@ extension CLDTransformation
     
     @discardableResult
     public func ifCondition(_ condition: CLDConditionExpression, then transformation: CLDExpression) -> Self {
-        return ifCondition(condition).then().setParam(transformation.currentKey, value: transformation.currentValue)
+        return self
     }
     
     // MARK: - ifCondition state
     @objc(ifCondition)
     @discardableResult
-    public func ifCondition() -> Self {
-        return self
+    public func ifCondition() -> CLDConditionExpression {
+        
+        currentCondition = CLDConditionExpression.init()
+        return currentCondition!
     }
     
     // MARK: - ifElse
@@ -2160,12 +2162,5 @@ extension CLDTransformation
         }
         setParam(TransformationParam.IF_PARAM.rawValue, value: "end")
         return chain()
-    }
-    
-    // MARK: - then
-    @objc(then)
-    @discardableResult
-    public func then() -> Self {
-        return self
     }
 }
