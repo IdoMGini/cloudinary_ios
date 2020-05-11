@@ -658,8 +658,23 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
     }
+    func test_powerFloat_shouldAppendValidValueToVariable() {
+        //    $big_$small_pow_1.5/c_fill,w_$big,h_$small_add_20
+        // Given
+        let initialValue = "$big $small ^  1.5"
+        let expectedValueResult = "$big_$small_pow_1.5"
+        
+        // When
+        sut = CLDConditionExpression.init(value: initialValue)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.asString(), expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
     
-    
+
     // MARK: - equal
     func test_equalString_shouldAppendValidValue() {
         
