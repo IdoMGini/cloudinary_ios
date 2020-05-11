@@ -172,6 +172,18 @@ open class CLDExpression: NSObject {
         return self
     }
     
+    @discardableResult
+    public func power(by number: Int) -> Self {
+        appendOperatorToCurrentValue(.power, inputValue: "\(number)")
+        return self
+    }
+    
+    @discardableResult
+    public func power(by number: Float) -> Self {
+        appendOperatorToCurrentValue(.power, inputValue: number.cldFloatFormat())
+        return self
+    }
+    
     // MARK: -
     public func asString() -> String {
         

@@ -43,6 +43,8 @@ public enum CLDOperators: String , CaseIterable {
     case add      = "+"
     case subtract = "-"
 
+    case power    = "^"
+    
     func asString() -> String {
         
         switch self {
@@ -62,6 +64,7 @@ public enum CLDOperators: String , CaseIterable {
         case .divide  : return "div"
         case .add     : return "add"
         case .subtract: return "sub"
+        case .power   : return "pow"
         }
     }
 }
