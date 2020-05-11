@@ -152,6 +152,23 @@ class CLDTransformationConditionsTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
     }
     
+    func test_ifConditionAsString_extraSpacedStringProperty_shouldReturnValidString() {
+        
+        // Given
+        let stringInput = "w <       200"
+        
+        let expectedResult = "if_w_lt_200"
+        
+        // When
+        sut.ifCondition(stringInput)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString, should remove extra dashes/spaces")
+    }
+    
     func test_ifConditionAsString_stringProperty_shouldReturnValidString() {
         
         // Given

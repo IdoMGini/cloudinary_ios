@@ -117,6 +117,11 @@ internal extension String.Index{
     }
 }
 
+internal extension String {
+    func removeExtraDashes() -> String {
+        return self.replacingOccurrences(of: "[ _]+", with: "_", options: .regularExpression, range: nil) //[ _]+
+    }
+}
 
 internal func cldParamValueAsString(value: Any) -> String? {
     if let valueStr = value as? String {

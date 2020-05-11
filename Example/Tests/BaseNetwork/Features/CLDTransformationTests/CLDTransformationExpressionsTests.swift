@@ -376,6 +376,24 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling get asString should return its value")
     }
     
+    func test_asString_extraSpacedExpression_shouldReturnValidString() {
+        
+        // Given
+        let input       = "initialHeight *      2"
+        let expression  = CLDExpression.init(value: input)
+        
+        let expectedResult = "r_ih_mul_2"
+        
+        // When
+        sut.setRadius(expression)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should remove extra spaces")
+    }
+    
     func test_asString_expressionOnTwoProperties_shouldReturnValidString() {
         
         // Given

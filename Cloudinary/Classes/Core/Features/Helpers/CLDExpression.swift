@@ -189,10 +189,11 @@ open class CLDExpression: NSObject {
             return String()
         }
         
-        let key     = replaceAllExpressionKeys(in: currentKey)
-        let value   = replaceAllUnEncodeChars(in: currentValue)
+        let key             = replaceAllExpressionKeys(in: currentKey)
+        let value           = replaceAllUnEncodeChars(in: currentValue)
+        let singleDashValue = value.removeExtraDashes()
         
-        return "\(key)_\(value)"
+        return "\(key)_\(singleDashValue)"
     }
     
     internal func asInternalString() -> String {
@@ -211,10 +212,11 @@ open class CLDExpression: NSObject {
             return [String : String]()
         }
         
-        let key     = replaceAllExpressionKeys(in: currentKey)
-        let value   = replaceAllUnEncodeChars(in: currentValue)
+        let key             = replaceAllExpressionKeys(in: currentKey)
+        let value           = replaceAllUnEncodeChars(in: currentValue)
+        let singleDashValue = value.removeExtraDashes()
         
-        return [key:value]
+        return [key:singleDashValue]
     }
     
     // MARK: - Private methods

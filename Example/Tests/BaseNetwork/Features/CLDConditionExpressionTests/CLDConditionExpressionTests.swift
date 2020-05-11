@@ -1474,6 +1474,22 @@ class CLDConditionExpressionTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling asString on a CLDConditionExpression, should return an empty string")
     }
     
+    func test_asString_extraSpacesStringParamaters_shouldReturnValidString() {
+        
+        // Given
+        let name            = "initialWidth"
+        let value           = "*      200"
+        let expectedResult  = "iw_mul_200"
+        
+        // When
+        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString, should remove extra dashes/spaces")
+    }
+    
     // MARK: - test asParams()
     func test_asParams_emptyInputParamaters_shouldReturnEmptyString() {
         
@@ -1524,5 +1540,21 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualValue,  expectedValue, "Calling asString on a CLDConditionExpression, should return a string")
         XCTAssertEqual(actualResult, expectedResult, "Calling asString on a CLDConditionExpression, should return an empty string")
+    }
+    
+    func test_asParams_extraSpacesStringParamaters_shouldReturnValidString() {
+        
+        // Given
+        let name            = "initialWidth"
+        let value           = "*      200"
+        let expectedResult  = ["iw":"mul_200"]
+        
+        // When
+        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        
+        let actualResult = sut.asParams()
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString, should remove extra dashes/spaces")
     }
 }
