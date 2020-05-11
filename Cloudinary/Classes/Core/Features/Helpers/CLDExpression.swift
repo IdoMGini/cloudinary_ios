@@ -189,11 +189,23 @@ open class CLDExpression: NSObject {
             return String()
         }
         
-        let key             = replaceAllExpressionKeys(in: currentKey)
-        let value           = replaceAllUnEncodeChars(in: currentValue)
-        let singleDashValue = value.removeExtraDashes()
+        let key   = replaceAllExpressionKeys(in: currentKey)
+        let value = replaceAllUnencodeChars(in: currentValue).removeExtraDashes()
         
-        return "\(key)_\(singleDashValue)"
+        return "\(key)_\(value)"
+    }
+    
+    public func asParams() -> [String : String] {
+        
+        guard !currentKey.isEmpty && !currentValue.isEmpty else {
+            
+            return [String : String]()
+        }
+        
+        let key   = replaceAllExpressionKeys(in: currentKey)
+        let value = replaceAllUnencodeChars(in: currentValue).removeExtraDashes()
+        
+        return [key:value]
     }
     
     internal func asInternalString() -> String {
@@ -205,27 +217,12 @@ open class CLDExpression: NSObject {
         return "\(currentKey) \(currentValue)"
     }
     
-    public func asParams() -> [String : String] {
-        
-        guard !currentKey.isEmpty && !currentValue.isEmpty else {
-            
-            return [String : String]()
-        }
-        
-        let key             = replaceAllExpressionKeys(in: currentKey)
-        let value           = replaceAllUnEncodeChars(in: currentValue)
-        let singleDashValue = value.removeExtraDashes()
-        
-        return [key:singleDashValue]
-    }
-    
     // MARK: - Private methods
-    private func replaceAllUnEncodeChars(in string: String) -> String {
+    private func replaceAllUnencodeChars(in string: String) -> String {
         
         var wipString   = string
         wipString       = replaceAllOperators(in: string)
         wipString       = replaceAllExpressionKeys(in: wipString)
-        
         return wipString
     }
     
@@ -257,7 +254,22 @@ open class CLDExpression: NSObject {
     
     private func replace(expressionKeys: ExpressionKeys, in string: String) -> String {
         
-        return string.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
+        if string.contains(CLDVariable.variableNamePrefix) {
+        
+            return string.components(separatedBy: CLDVariable.exportSeparator).map {
+                
+                if $0.hasPrefix(CLDVariable.variableNamePrefix) {
+                    return $0
+                } else {
+                    return $0.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
+                }
+                
+            }.joined(separator: CLDVariable.exportSeparator)
+            
+        } else {
+            
+            return string.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
+        }
     }
     
     internal func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String = String()) {

@@ -414,4 +414,39 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
         XCTAssertEqual(actualResult, expectedResult, "Calling get asString should return its value")
     }
+    
+    func test_complexVariablesAtExpressionStart_shouldRetainNames() {
+        
+        // Given
+        let variable       = CLDVariable(name: "$width", value: 10)
+        let expectedResult = "$width_10/w_$width_add_10_add_w"
+        
+        // When
+        sut.setVariable(variable)
+        sut.chain()
+        sut.setWidth("$width + 10 + width")
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertFalse(actualResult!.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult!, expectedResult, "Calling get asString should return its value")
+    }
+    func test_complexVariablesAtExpressionEnd_shouldRetainNames() {
+        
+        // Given
+        let variable       = CLDVariable(name: "$width", value: 10)
+        let expectedResult = "$width_10/w_w_add_10_add_$width"
+        
+        // When
+        sut.setVariable(variable)
+        sut.chain()
+        sut.setWidth("width + 10 + $width")
+        
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertFalse(actualResult!.isEmpty, "asString should stored valid value")
+        XCTAssertEqual(actualResult!, expectedResult, "Calling get asString should return its value")
+    }
 }

@@ -45,7 +45,7 @@ internal func CLDThrowFatalError(with message: String) {
     static private let collectionSuffix   : String = "!"
     static private let collectionSeparator: String = ":"
     
-    static private let exportSeparator: String = "_"
+    static internal let exportSeparator: String = "_"
     
     static private let separator: String = ","
     

@@ -1656,18 +1656,18 @@ import CoreGraphics
     
     func getStringRepresentationFromParams(_ params: [String : String]) -> String? {
         
-        let emptyParams = params.filter{$0.0.isEmpty || $0.1.isEmpty}
-        if emptyParams.count > 0 {
+        let emptyParams = params.filter { $0.0.isEmpty || $0.1.isEmpty }
+        if !emptyParams.isEmpty {
             printLog(.error, text: "An empty string key or value are not allowed.")
             return nil
         }
         
-        let components: [String] = params.sorted{$0.0 < $1.0}
-            .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
+        let components: [String] = params.sorted { $0.0 < $1.0 }
+            .filter { $0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
                 $0.0 != TransformationParam.VARIABLES.rawValue &&
                 $0.0 != TransformationParam.IF_PARAM.rawValue &&
-                !$0.1.isEmpty}
-            .map{"\($0)_\($1)"}
+                !$0.1.isEmpty }
+            .map { "\($0)_\($1)" }
         
         var finalComponents: [String] = [String]()
         
