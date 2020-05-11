@@ -356,7 +356,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         // Given
         let conditionStringInput = "w_lt_200"
         
-        let expectedResult = "if_w_lt_200/c_fill,h_120,w_80/if_else,c_fit,h_150,w_150/e_sepia/if_end"
+        let expectedResult = "if_w_lt_200/c_fill,h_120,w_80/if_else/c_fit,h_150,w_150/e_sepia/if_end"
         
         // When
         sut.ifCondition(conditionStringInput).setCrop(.fill).setHeight(120).setWidth(80)
