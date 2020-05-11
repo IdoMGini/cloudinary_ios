@@ -99,8 +99,6 @@ open class CLDExpression: NSObject {
     
     static private  let separator          : String = ","
     static internal let elementsSeparator  : String = "_"
-    static internal let stringValueInterval: String = "_"
-    static private  let stringValueRegex   : String = "[ _]+"
     
     // MARK: - Init
     public override init() {
@@ -110,7 +108,6 @@ open class CLDExpression: NSObject {
     }
     
     public init(value: String) {
-        
         var components = value.components(separatedBy: .whitespacesAndNewlines)
         self.currentKey   = components.removeFirst()
         self.currentValue = components.joined(separator: CLDExpression.elementsSeparator)

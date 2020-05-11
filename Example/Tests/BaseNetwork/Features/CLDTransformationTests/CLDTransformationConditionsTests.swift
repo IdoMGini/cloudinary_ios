@@ -135,7 +135,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         XCTAssertNil(actualResult, "Empty expression should not return from asString()")
     }
     
-    func test_ןfConditionAsString_spacedStringProperty_shouldReturnValidString() {
+    func test_ifConditionAsString_spacedStringProperty_shouldReturnValidString() {
         
         // Given
         let stringInput = "w < 200"

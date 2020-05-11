@@ -594,8 +594,8 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let value = 20
         let expectedValueResult = "^_20"
-        // When
         
+        // When
         sut = CLDConditionExpression.width().power(by: value)
         
         // Then
@@ -629,8 +629,8 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let value = Float(30.3)
         let expectedValueResult = "^_30.3"
-        // When
         
+        // When
         sut = CLDConditionExpression.width().power(by: value)
         
         // Then
@@ -658,10 +658,11 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
     }
+    
     func test_powerFloat_shouldAppendValidValueToVariable() {
         //    $big_$small_pow_1.5/c_fill,w_$big,h_$small_add_20
         // Given
-        let initialValue = "$big $small ^  1.5"
+        let initialValue = "$big $small ^ 1.5"
         let expectedValueResult = "$big_$small_pow_1.5"
         
         // When
@@ -674,7 +675,6 @@ class CLDConditionExpressionTests: BaseTestCase {
         XCTAssertEqual(sut.asString(), expectedValueResult, "currentValue should be equal to expectedValueResult")
     }
     
-
     // MARK: - equal
     func test_equalString_shouldAppendValidValue() {
         

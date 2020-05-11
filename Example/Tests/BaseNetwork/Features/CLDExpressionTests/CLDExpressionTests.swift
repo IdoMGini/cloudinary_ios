@@ -106,7 +106,6 @@ class CLDExpressionTests: BaseTestCase {
         XCTAssertEqual(sut.currentValue, valueResult, "Initilized object should contain a string as valueResult property")
     }
     
-    
     // MARK: - test class methods
     func test_width_shouldStoreValidKey() {
         
@@ -598,7 +597,7 @@ class CLDExpressionTests: BaseTestCase {
         let actualResult = sut.asString()
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString on an empty CLDVariable, should return an empty string")
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString on an empty CLDExpression, should return an empty string")
     }
     
     func test_asString_validParamaters_shouldReturnValidString() {
