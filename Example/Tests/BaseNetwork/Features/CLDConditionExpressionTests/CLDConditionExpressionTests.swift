@@ -662,7 +662,7 @@ class CLDConditionExpressionTests: BaseTestCase {
     func test_powerFloat_shouldAppendValidValueToVariable() {
         //    $big_$small_pow_1.5/c_fill,w_$big,h_$small_add_20
         // Given
-        let initialValue = "$big $small ^ 1.5"
+        let initialValue = "$big $small ^  1.5"
         let expectedValueResult = "$big_$small_pow_1.5"
         
         // When
