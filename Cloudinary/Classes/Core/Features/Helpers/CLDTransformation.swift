@@ -167,7 +167,7 @@ import CoreGraphics
     open var aspectRatio: String? {
         return getParam(.ASPECT_RATIO)
     }
-
+    
     open var customFunction: String? {
         return getParam(.CUSTOM_FUNCTION)
     }
@@ -224,13 +224,13 @@ import CoreGraphics
     // MARK: - Set Values - Variable
     
     /**
-    Set a variable.
-    
-    - parameter name:       The variable's name.
-    - parameter value:      The variable's value.
-    
-    - returns:              The same instance of CLDTransformation.
-    */
+     Set a variable.
+     
+     - parameter name:       The variable's name.
+     - parameter value:      The variable's value.
+     
+     - returns:              The same instance of CLDTransformation.
+     */
     @discardableResult
     public func setVariable(name: String, value: String) -> Self {
         
@@ -239,12 +239,12 @@ import CoreGraphics
     }
     
     /**
-    Set a variable.
-    
-    - parameter variable:   The variable to set.
-    
-    - returns:              The same instance of CLDTransformation.
-    */
+     Set a variable.
+     
+     - parameter variable:   The variable to set.
+     
+     - returns:              The same instance of CLDTransformation.
+     */
     @discardableResult
     public func setVariable(_ variable: CLDVariable) -> Self {
         
@@ -254,12 +254,12 @@ import CoreGraphics
     }
     
     /**
-    Set an array of variables.
-    
-    - parameter variables:  The variables to set.
-    
-    - returns:              The same instance of CLDTransformation.
-    */
+     Set an array of variables.
+     
+     - parameter variables:  The variables to set.
+     
+     - returns:              The same instance of CLDTransformation.
+     */
     @objc(setVariablesWithVariablesArray:)
     @discardableResult
     public func setVariables(_ variables: [CLDVariable]) -> Self {
@@ -527,7 +527,7 @@ import CoreGraphics
     }
     
     // MARK: - Set Values - Angle
-
+    
     /**
      Rotate or flip an image by the given degrees or automatically according to its orientation or available meta-data.
      
@@ -567,7 +567,7 @@ import CoreGraphics
     }
     
     // MARK: - Set Values - Opacity
-
+    
     /**
      Adjust the opacity of the image and make it semi-transparent. 100 means opaque, while 0 is completely transparent.
      
@@ -592,9 +592,9 @@ import CoreGraphics
     open func setOpacity(_ opacity: String) -> Self {
         return setParam(TransformationParam.OPACITY, value: opacity)
     }
-
+    
     // MARK: - Set Values - Border
-
+    
     /**
      Add a solid border around the image.
      
@@ -622,7 +622,7 @@ import CoreGraphics
     }
     
     // MARK: - Set Values - X
-
+    
     /**
      Horizontal position for custom-coordinates based cropping, overlay placement and certain region related effects.
      
@@ -746,19 +746,19 @@ import CoreGraphics
         
         guard !expression.currentValue.isEmpty else {
             
-                        return setParam(TransformationParam.RADIUS, value: radius)
+            return setParam(TransformationParam.RADIUS, value: radius)
         }
         
         return setRadius(expression)
     }
-
+    
     // MARK: - Set Values - Quality
     
     /**
-    Set the image quality for the transformation, see CLDQuality for options.
-
+     Set the image quality for the transformation, see CLDQuality for options.
+     
      - parameter quality:   A CLDQuality instance containing the quality settings.
-
+     
      - returns:             The same instance of CLDTransformation.
      */
     @objc(setQualityFromQuality:)
@@ -802,7 +802,7 @@ import CoreGraphics
     }
     
     // MARK: - Set Values - DefaultImage
-
+    
     /**
      Specify the public ID of a placeholder image to use if the requested image or social network picture does not exist.
      
@@ -899,7 +899,7 @@ import CoreGraphics
         return setParam(TransformationParam.UNDERLAY, value: underlay)
     }
     // MARK: - Set Values - FetchFormat
-
+    
     /**
      Force format conversion to the given image format for remote 'fetch' URLs and auto uploaded images that already have a different format as part of their URLs.
      
@@ -911,9 +911,9 @@ import CoreGraphics
     open func setFetchFormat(_ fetchFormat: String) -> Self {
         return setParam(TransformationParam.FETCH_FORMAT, value: fetchFormat)
     }
-
+    
     // MARK: - Set Values - Density
-
+    
     /**
      Control the density to use while converting a PDF document to images. (range: 50-300, default is 150)
      
@@ -1130,16 +1130,16 @@ import CoreGraphics
     
     /**
      Set a custom function, such as a call to a lambda function or a web-assembly function.
-
+     
      - parameter customFunction:    The custom function to perform, see CLDCustomFunction.
-
+     
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
     open func setCustomFunction(_ customFunction: CLDCustomFunction) -> Self {
         return setParam(TransformationParam.CUSTOM_FUNCTION, value: customFunction.description)
     }
-
+    
     // MARK: - Set Values - AudioCodec
     
     /**
@@ -1609,7 +1609,7 @@ import CoreGraphics
     open func setKeyframeInterval(_ interval: String) -> Self {
         return setParam(TransformationParam.KEYFRAME_INTERVAL, value: interval)
     }
-
+    
     @discardableResult
     open func setStreamingProfile(_ streamingProfile: String) -> Self {
         return setParam(TransformationParam.STREAMING_PROFILE, value: streamingProfile)
@@ -1662,12 +1662,12 @@ import CoreGraphics
         }
         
         let components: [String] = params.sorted{$0.0 < $1.0}
-                                         .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
-                                                 $0.0 != TransformationParam.VARIABLES.rawValue &&
-                                                 $0.0 != TransformationParam.IF_PARAM.rawValue &&
-                                                 !$0.1.isEmpty}
-                                         .map{"\($0)_\($1)"}
-
+            .filter{$0.0 != TransformationParam.RAW_TRANSFORMATION.rawValue &&
+                $0.0 != TransformationParam.VARIABLES.rawValue &&
+                $0.0 != TransformationParam.IF_PARAM.rawValue &&
+                !$0.1.isEmpty}
+            .map{"\($0)_\($1)"}
+        
         var finalComponents: [String] = [String]()
         
         if let ifConditions = params[TransformationParam.IF_PARAM.rawValue], !ifConditions.isEmpty {
@@ -1734,8 +1734,8 @@ import CoreGraphics
         case FPS =                          "fps"
         case STREAMING_PROFILE =            "sp"
     }
-
-
+    
+    
     // MARK: CLDBaseParam
     @objc public class CLDBaseParam: NSObject {
         fileprivate let param: String
@@ -1756,24 +1756,24 @@ import CoreGraphics
     }
     
     // MARK: CLDQuality
-
+    
     /**
      Image quality configuration object
      */
     @objc public class CLDQuality: CLDBaseParam {
-
+        
         /**
          Build an instance of CLDQuality configured for fixed quality.
-
+         
          - parameter level: Quality level to set. Valid range is 1 through 100.
          */
         public static func fixed(_ level: Int) -> CLDQuality {
             return CLDQuality(level.description)
         }
-
+        
         /**
          Build an instance of CLDQuality configured for automatic quality. See CLDAutoQuality enum for details.
-
+         
          - parameter level: Auto quality level.
          */
         public static func auto(_ level: CLDQualityAuto? = nil) -> CLDQuality {
@@ -1783,7 +1783,7 @@ import CoreGraphics
                 return CLDQuality("auto")
             }
         }
-
+        
         /**
          Build an instance of CLDQuality configured to use jpegmini addon for automatic quality.
          */
@@ -1791,17 +1791,17 @@ import CoreGraphics
             return CLDQuality("jpegmini")
         }
     }
-
+    
     /**
-       Automatic optimal quality settings: the smallest file size without affecting their perceptual quality.
-         * best: Automatically calculate the optimal quality for images using a less aggressive algorithm
-         * good: Automatically calculate the optimal quality for an image
-         * eco: Automatically calculate the optimal quality for images using a more aggressive algorithm
-         * low: Automatically calculate the optimal quality for images using the most aggressive algorithm
+     Automatic optimal quality settings: the smallest file size without affecting their perceptual quality.
+     * best: Automatically calculate the optimal quality for images using a less aggressive algorithm
+     * good: Automatically calculate the optimal quality for an image
+     * eco: Automatically calculate the optimal quality for images using a more aggressive algorithm
+     * low: Automatically calculate the optimal quality for images using the most aggressive algorithm
      */
     @objc public enum CLDQualityAuto: Int, CustomStringConvertible {
         case best, good, eco, low
-
+        
         public var description: String {
             get {
                 switch self {
@@ -1813,40 +1813,40 @@ import CoreGraphics
             }
         }
     }
-
+    
     // MARK: CLDCustomFunction
-
+    
     /**
      Custom function configuration object
      */
     @objc public class CLDCustomFunction: CLDBaseParam {
-
+        
         /**
          Build an instance of CLDCustomFunction configured for web-assembly custom function.
-
+         
          - parameter publicId: Public id of the web assembly file.
          */
         public static func wasm(_ publicId: String) -> CLDCustomFunction {
             return CLDCustomFunction("wasm", publicId)
         }
-
+        
         /**
          Build an instance of CLDCustomFunction configured for remote lambda custom function.
-
+         
          - parameter url: public url of the aws lambda function
          */
         public static func remote(_ url: String) -> CLDCustomFunction {
             return CLDCustomFunction("remote", url.cldBase64UrlEncode())
         }
-
+        
     }
     
     // MARK: FPS
     /**
      FPS parameters configuration object. For simple cases you can pass a float/string
      directly to CLDTransformation.setFps(). This class is used for more complex values (e.g. ranges).
-    */
-    @objc public class CLDFps: CLDBaseParam{
+     */
+    @objc public class CLDFps: CLDBaseParam {
         /**
          Build an instance of CLDFps based on a string.
          
@@ -2113,7 +2113,7 @@ extension CLDTransformation
     public func ifCondition() -> Self {
         return self
     }
-
+    
     // MARK: - ifElse
     @objc(ifElse)
     @discardableResult
@@ -2150,7 +2150,7 @@ extension CLDTransformation
                     transformations[index] = segment  // [..., {c: fill, w: 500}, ...]
                     transformations.insert(["if":value], at: index) // [..., "if_w_gt_1000", {c: fill, w: 500}, ...]
                 }
-
+                
                 // otherwise keep looking for if_condition
                 if value != "else" {
                     break
