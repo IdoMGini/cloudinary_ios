@@ -1630,7 +1630,8 @@ import CoreGraphics
      */
     @discardableResult
     open func chain() -> Self {
-        guard currentTransformationParams != [:] else { return self }
+        
+        guard !currentTransformationParams.isEmpty else { return self }
         
         transformations.append(currentTransformationParams)
         currentTransformationParams = [:]
@@ -2128,15 +2129,15 @@ extension CLDTransformation
     @discardableResult
     public func endIf() -> Self {
         
-        guard transformations.count > 0 else { return self }
+        guard !transformations.isEmpty else { return self }
         
         chain()
         
         let transformSize = transformations.count
         let loopSize = transformSize - 1
         
-        for index in 0...loopSize {
-        
+        for index in (0...loopSize).reversed() {
+            
             var segment = transformations[index]; // [..., {if: "w_gt_1000",c: "fill", w: 500}, ...]
             
             if  let value = segment["if"] { // if: "w_gt_1000"
