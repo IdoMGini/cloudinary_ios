@@ -29,17 +29,33 @@ import CoreGraphics
  */
 @objcMembers open class CLDTransformation: NSObject {
     
+    fileprivate typealias Transformation = [String : String]
+    
     static fileprivate let transformationContentSeparator: String = ","
     static fileprivate let elementsSeparator             : String = "_"
     
-    fileprivate var currentTransformationParams: [String : String] = [:]
-    fileprivate var transformations: [[String : String]] = []
+    fileprivate var currentTransformationParams: Transformation
+    fileprivate var transformations: [Transformation]
     fileprivate var currenCondition: CLDConditionExpression?
     
     // MARK: - Init
     
     public override init() {
+        self.currentTransformationParams =  Transformation()
+        self.transformations             = [Transformation]()
         super.init()
+    }
+    
+    public init(input: [CLDTransformation]) {
+        
+        self.currentTransformationParams =  Transformation()
+        self.transformations             = [Transformation]()
+        
+        super.init()
+        
+        input.forEach {
+            transformations.append(contentsOf: $0.transformations)
+        }
     }
     
     // MARK: - Get Values
@@ -313,7 +329,7 @@ import CoreGraphics
     @discardableResult
     open func setWidth(_ width: String) -> Self {
         
-        let expression = CLDExpression.init(value: width)
+        let expression = CLDExpression(value: width)
         
         guard !expression.currentValue.isEmpty else {
             
@@ -360,7 +376,7 @@ import CoreGraphics
     @discardableResult
     open func setHeight(_ height: String) -> Self {
         
-        let expression = CLDExpression.init(value: height)
+        let expression = CLDExpression(value: height)
         
         guard !expression.currentValue.isEmpty else {
             
@@ -659,7 +675,7 @@ import CoreGraphics
     @discardableResult
     open func setX(_ x: String) -> Self {
         
-        let expression = CLDExpression.init(value: x)
+        let expression = CLDExpression(value: x)
         
         guard !expression.currentValue.isEmpty else {
             
@@ -707,7 +723,7 @@ import CoreGraphics
     @discardableResult
     open func setY(_ y: String) -> Self {
         
-        let expression = CLDExpression.init(value: y)
+        let expression = CLDExpression(value: y)
         
         guard !expression.currentValue.isEmpty else {
             
@@ -742,7 +758,7 @@ import CoreGraphics
     @discardableResult
     open func setRadius(_ radius: String) -> Self {
         
-        let expression = CLDExpression.init(value: radius)
+        let expression = CLDExpression(value: radius)
         
         guard !expression.currentValue.isEmpty else {
             
@@ -2088,7 +2104,7 @@ extension CLDTransformation
     @discardableResult
     public func ifCondition(_ condition: String) -> Self {
         
-        let conditionObject = CLDConditionExpression.init(value: condition)
+        let conditionObject = CLDConditionExpression(value: condition)
         
         guard !conditionObject.currentValue.isEmpty else {
             
