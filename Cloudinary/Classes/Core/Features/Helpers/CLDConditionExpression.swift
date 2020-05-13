@@ -26,19 +26,23 @@ import Foundation
 
 open class CLDConditionExpression : CLDExpression {
     
+    var relatedTransformation: CLDTransformation
+    
     // MARK: - Init
     private init(_ expression: CLDExpression) {
+        
+        self.relatedTransformation = CLDTransformation()
         
         super.init(value: expression.asInternalString())
     }
     
     public override init() {
-        
+        self.relatedTransformation = CLDTransformation()
         super.init()
     }
     
     public override init(value: String) {
-        
+        self.relatedTransformation = CLDTransformation()
         super.init(value: value)
     }
     
@@ -293,6 +297,13 @@ open class CLDConditionExpression : CLDExpression {
         appendOperatorToCurrentValue(cldoperator, inputValue: value)
     }
     
+    // MARK: - then
+    @objc(then)
+    public func then() -> CLDTransformation {
+        
+        return relatedTransformation.ifCondition(self)
+    }
+    
     // MARK: - Class Func
     public override class func width() -> Self {
         return CLDConditionExpression(super.width()) as! Self
@@ -344,5 +355,22 @@ open class CLDConditionExpression : CLDExpression {
     }
     public override class func initialDuration() -> Self {
         return CLDConditionExpression(super.initialDuration()) as! Self
+    }
+    
+    
+    // MARK: - instance func
+    public func width(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .width, operatorString: operatorString, inputValue: String(object))
+    }
+    
+    fileprivate func predicate(expressionKey: ExpressionKeys, operatorString: String, inputValue: String) -> Self {
+        
+        
+        if CLDOperators.allCases.compactMap({ $0.asString() }).contains(operatorString) {
+            // TODO: OZ
+            currentKey = expressionKey.asString
+            appendOperatorToCurrentValue(operatorString, inputValue: inputValue)
+        }
+        return self
     }
 }

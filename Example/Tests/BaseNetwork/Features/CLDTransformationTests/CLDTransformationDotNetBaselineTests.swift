@@ -177,15 +177,15 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     {
         var transformation : CLDTransformation
         
-        transformation = CLDTransformation().ifCondition()/*.Width("gt", 100).And().Width("lt", 200)*/.then()/*.Width(50).Crop("scale")*/.endIf()
+        transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").endIf()
         // var transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").EndIf();
         XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString()!, "should serialize to 'if_end'");
-        
-        transformation = CLDTransformation().ifCondition()/*.Width("gt", 100).And().Width("lt", 200)*/.then()/*.Width(50).Crop("scale")*/.endIf()
+        transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").endIf()
+
         // transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").EndIf();
         XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString(), "force the if clause to be chained");
         
-        transformation = CLDTransformation().ifCondition()/*.Width("gt", 100).And().Width("lt", 200)*/.then()/*.Width(50).Crop("scale")*/.ifElse()/*.Width(100).Crop("crop")*/.endIf()
+        transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").ifElse().setWidth(100).setCrop("crop").endIf()
         // transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").IfElse().Width(100).Crop("crop").EndIf();
         XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_else/c_crop,w_100/if_end", transformation.asString()!, "force the if_else clause to be chained");
     }

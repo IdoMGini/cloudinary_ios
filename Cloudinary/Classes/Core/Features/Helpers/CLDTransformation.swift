@@ -35,14 +35,15 @@ import CoreGraphics
     static fileprivate let elementsSeparator             : String = "_"
     
     fileprivate var currentTransformationParams: Transformation
-    fileprivate var transformations: [Transformation]
-    fileprivate var currenCondition: CLDConditionExpression?
+    fileprivate var transformations : [Transformation]
+    fileprivate var currentCondition: CLDConditionExpression?
     
     // MARK: - Init
     
     public override init() {
         self.currentTransformationParams =  Transformation()
         self.transformations             = [Transformation]()
+        self.currentCondition            = nil
         super.init()
     }
     
@@ -50,6 +51,7 @@ import CoreGraphics
         
         self.currentTransformationParams =  Transformation()
         self.transformations             = [Transformation]()
+        self.currentCondition            = nil
         
         super.init()
         
@@ -2121,14 +2123,18 @@ extension CLDTransformation
     
     @discardableResult
     public func ifCondition(_ condition: CLDConditionExpression, then transformation: CLDExpression) -> Self {
-        return ifCondition(condition).then().setParam(transformation.currentKey, value: transformation.currentValue)
+        // TODO: OZ
+        return ifCondition(condition).setParam(transformation.currentKey, value: transformation.currentValue)
     }
     
     // MARK: - ifCondition state
     @objc(ifCondition)
     @discardableResult
-    public func ifCondition() -> Self {
-        return self
+    public func ifCondition() -> CLDConditionExpression {
+        
+        let condition = CLDConditionExpression()
+        currentCondition =  condition
+        return  condition
     }
     
     // MARK: - ifElse
@@ -2176,12 +2182,5 @@ extension CLDTransformation
         }
         setParam(TransformationParam.IF_PARAM.rawValue, value: "end")
         return chain()
-    }
-    
-    // MARK: - then
-    @objc(then)
-    @discardableResult
-    public func then() -> Self {
-        return self
     }
 }

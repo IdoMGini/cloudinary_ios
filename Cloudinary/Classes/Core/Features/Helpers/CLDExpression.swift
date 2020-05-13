@@ -26,7 +26,7 @@ import Foundation
 
 open class CLDExpression: NSObject {
 
-    fileprivate enum ExpressionKeys : String, CaseIterable {
+    internal enum ExpressionKeys : String, CaseIterable {
         
         case width
         case height
@@ -299,6 +299,10 @@ open class CLDExpression: NSObject {
     }
     
     internal func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String = String()) {
+        appendOperatorToCurrentValue(cldoperator.asString(), inputValue: inputValue)
+    }
+    
+    internal func appendOperatorToCurrentValue(_ cldoperator: String, inputValue: String = String()) {
         
         var stringValue = String()
         if !currentValue.isEmpty {
@@ -306,7 +310,7 @@ open class CLDExpression: NSObject {
             stringValue.append(CLDVariable.elementsSeparator)
         }
         
-        stringValue.append(cldoperator.rawValue)
+        stringValue.append(cldoperator)
         
         if !inputValue.isEmpty {
          
