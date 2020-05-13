@@ -45,22 +45,8 @@ open class CLDConditionExpression : CLDExpression {
         self.relatedTransformation = CLDTransformation()
         super.init(value: value)
     }
-    // MARK: -
-    public override func asString() -> String {
-        // TODO: OZ
-        return super.asString()
-        // guard !currentKey.isEmpty && !currentValue.isEmpty else {
-        //
-        //     return String()
-        // }
-        //
-        // let key   = replaceAllExpressionKeys(in: currentKey)
-        // let value = replaceAllUnencodeChars(in: currentValue).removeExtraDashes()
-        //
-        // return "\(key)_\(value)"
-    }
     
-    // MARK: - Public Methods
+    // MARK: - Public methods
     @discardableResult
     public func and() -> Self {
         appendOperatorToCurrentValue(.and)
@@ -74,6 +60,11 @@ open class CLDConditionExpression : CLDExpression {
     @discardableResult
     public func and(expresion value: CLDConditionExpression) -> Self {
         return and(value)
+    }
+    @discardableResult
+    public func and(string value: String) -> Self {
+        appendingStringToCurrentValue(cldoperator: .and, inputValue: value)
+        return self
     }
     
     @discardableResult
@@ -89,6 +80,11 @@ open class CLDConditionExpression : CLDExpression {
     @discardableResult
     public func or(expresion value: CLDConditionExpression) -> Self {
         return or(value)
+    }
+    @discardableResult
+    public func or(string value: String) -> Self {
+        appendingStringToCurrentValue(cldoperator: .or, inputValue: value)
+        return self
     }
     
     @discardableResult
@@ -251,8 +247,8 @@ open class CLDConditionExpression : CLDExpression {
         return notInside(expression.asInternalString())
     }
     @discardableResult
-    public func notInside(_  expression: CLDConditionExpression) -> Self {
-        return notInside(expression)
+    public func notInside(_ expression: CLDConditionExpression) -> Self {
+        return notInside(expression.asInternalString())
     }
     
     @discardableResult
@@ -294,24 +290,7 @@ open class CLDConditionExpression : CLDExpression {
         return value(expression.asInternalString())
     }
     
-    // MARK: - Private Methods
-    private func appendingStringToCurrentValue(cldoperator: CLDOperators, inputValue: String) {
-        
-        let expression = CLDExpression.init(value: inputValue)
-        
-        let value: String
-        if  expression.currentValue.isEmpty {
-            
-            value = inputValue
-        }else {
-         
-            value = expression.asString()
-        }
-        
-        appendOperatorToCurrentValue(cldoperator, inputValue: value)
-    }
-    
-    // MARK: - then
+    // MARK: - Then
     @objc(then)
     public func then() -> CLDTransformation {
         
@@ -372,19 +351,341 @@ open class CLDConditionExpression : CLDExpression {
     }
     
     
-    // MARK: - instance func
+    // MARK: - helper methods
+    @discardableResult
     public func width(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .width, operatorString: operatorString, inputValue: String(object))
     }
+    @discardableResult
+    public func width(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .width, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func width(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .width, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func width(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .width, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func width(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .width, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func height(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .height, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func height(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .height, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func height(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .height, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func height(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .height, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func height(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .height, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func aspectRatio(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func aspectRatio(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func aspectRatio(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func aspectRatio(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func aspectRatio(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func initialWidth(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialWidth(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialWidth(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func initialWidth(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func initialWidth(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func initialHeight(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialHeight(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialHeight(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func initialHeight(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func initialHeight(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func initialAspectRatio(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialAspectRatio(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialAspectRatio(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func initialAspectRatio(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func initialAspectRatio(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func pageCount(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func pageCount(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func pageCount(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func pageCount(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func pageCount(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func faceCount(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func faceCount(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func faceCount(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func faceCount(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func faceCount(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func tags(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func tags(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func tags(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func tags(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func tags(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func pageXOffset(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func pageXOffset(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func pageXOffset(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func pageXOffset(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func tagpageXOffsets(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func pageYOffset(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func pageYOffset(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func pageYOffset(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func pageYOffset(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func pageYOffset(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func illustrationScore(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func illustrationScore(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func illustrationScore(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func illustrationScore(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func illustrationScore(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func currentPageIndex(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func currentPageIndex(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func currentPageIndex(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func currentPageIndex(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func currentPageIndex(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func duration(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func duration(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func duration(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func duration(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func duration(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    @discardableResult
+    public func initialDuration(_ operatorString: String, _ object: Int) -> Self {
+        return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialDuration(_ operatorString: String, _ object: Float) -> Self {
+        return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: String(object))
+    }
+    @discardableResult
+    public func initialDuration(_ operatorString: String, _ object: String) -> Self {
+        return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: object)
+    }
+    @discardableResult
+    public func initialDuration(_ operatorString: String, _ object: CLDExpression) -> Self {
+        return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: object.asInternalString())
+    }
+    @discardableResult
+    public func initialDuration(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+        return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: object.asString())
+    }
+    
+    // MARK: - Private Methods
+    private func appendingStringToCurrentValue(cldoperator: CLDOperators, inputValue: String) {
+        
+        let expression = CLDExpression.init(value: inputValue)
+        
+        let value: String
+        if  expression.currentValue.isEmpty {
+
+            value = inputValue
+        } else {
+         
+            value = expression.asString()
+        }
+        
+        appendOperatorToCurrentValue(cldoperator, inputValue: value)
+    }
     
     fileprivate func predicate(expressionKey: ExpressionKeys, operatorString: String, inputValue: String) -> Self {
-        
-        
-        if CLDOperators.allCases.compactMap({ $0.asString() }).contains(operatorString) {
-            // TODO: OZ
-            currentKey = expressionKey.asString
-            appendOperatorToCurrentValue(operatorString, inputValue: inputValue)
-        }
-        return self
+        let stringPredicate = "\(expressionKey.asString) \(operatorString) \(inputValue)"
+        return value(stringPredicate)
     }
 }

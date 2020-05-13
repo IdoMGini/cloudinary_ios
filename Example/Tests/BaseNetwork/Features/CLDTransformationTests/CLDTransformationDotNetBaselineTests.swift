@@ -176,7 +176,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     func test_EndIf2()
     {
         var transformation : CLDTransformation
-        // TODO: OZ
+        
         transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").endIf()
         // var transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").EndIf();
         XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString()!, "should serialize to 'if_end'");
@@ -192,10 +192,10 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     
     func test_TestExpressionOperators()
     {
-        var transformationStr = "$foo_10,$foostr_!my:str:ing!/if_fc_gt_2_and" +
+        let transformationStr = "$foo_10,$foostr_!my:str:ing!/if_fc_gt_2_and" +
             "_pc_lt_300_or" +
-            // "_!myTag1!_in_tags_and" +
-            // "_!myTag2!_nin_tags_and" +
+            "_!myTag1!_in_tags_and" +
+            "_!myTag2!_nin_tags_and" +
             "_w_gte_200_and" +
             "_h_eq_$foo_and" +
             "_w_ne_$foo_mul_2_and" +
@@ -226,15 +226,15 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             // ",w_$foo_mul_200_div_fc" +
         "/if_end";
         
-        var transformation = CLDTransformation()
+        let transformation = CLDTransformation()
             .setVariable(CLDVariable(name: "$foo", value: 10))
             .setVariable(CLDVariable(name: "$foostr", values: ["my", "str", "ing"]))
             .chain()
             .ifCondition(
                 CLDConditionExpression.faceCount().greater(then: 2)
                     .and().value(CLDConditionExpression.pageCount().less(then: 300))
-                    //.Or("!myTag1!").In(Expression.Tags())
-                    //.And("!myTag2!").Nin(Expression.Tags())
+                    .or(string: "!myTag1!").inside(.tags())
+                    .and(string: "!myTag2!").notInside(.tags())
                     .and().value(CLDConditionExpression.width().greaterOrEqual(to: 200))
                     .and().value(CLDConditionExpression.height().equal(to: "$foo"))
                     .and().value(CLDConditionExpression.width().notEqual(to: "$foo").multiple(by: 2))
@@ -272,10 +272,10 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     
     func test_TestExpressionOperatorsWithValues()
     {
-        var transformationStr = "$foo_10,$foostr_!my:str:ing!/if_fc_gt_2_and" +
+        let transformationStr = "$foo_10,$foostr_!my:str:ing!/if_fc_gt_2_and" +
             "_pc_lt_300_or" +
-            // "_!myTag1!_in_tags_and" +
-            // "_!myTag2!_nin_tags_and" +
+            "_!myTag1!_in_tags_and" +
+            "_!myTag2!_nin_tags_and" +
             "_w_gte_200_and" +
             "_h_eq_$foo_and" +
             "_w_ne_$foo_mul_2_and" +
@@ -295,16 +295,16 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             // "w_$foo_mul_200_div_fc" +
         "/if_end";
         
-        var transformation = CLDTransformation()
+        let transformation = CLDTransformation()
             .setVariable(CLDVariable(name: "$foo", value: 10))
             .setVariable(CLDVariable(name: "$foostr", values: ["my", "str", "ing"]))
             .chain()
             .ifCondition(
                 CLDConditionExpression.faceCount().greater(then: 2)
                     .and(CLDConditionExpression.pageCount().less(then: 300))
-                    //.Or("!myTag1!").In(Expression.Tags())
-                    //.And("!myTag2!").Nin(Expression.Tags())
-                    .or(CLDConditionExpression.width().greaterOrEqual(to: 200))
+                    .or(string: "!myTag1!").inside(.tags())
+                    .and(string: "!myTag2!").notInside(.tags())
+                    .and(CLDConditionExpression.width().greaterOrEqual(to: 200))
                     .and(CLDConditionExpression.height().equal(to: "$foo"))
                     .and(CLDConditionExpression.width().notEqual(to: "$foo").multiple(by: 2))
                     .and(CLDConditionExpression.height().less(then: "$foo"))
@@ -325,7 +325,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         
         XCTAssertEqual(transformationStr, transformation.asString()!)
     }
-    
+
     func test_TestExpressionsClone()
     {
         let transformationStr = "if_pc_lt_300/c_scale/if_end";
