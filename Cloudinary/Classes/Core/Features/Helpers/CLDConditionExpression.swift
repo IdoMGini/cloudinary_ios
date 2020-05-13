@@ -45,6 +45,20 @@ open class CLDConditionExpression : CLDExpression {
         self.relatedTransformation = CLDTransformation()
         super.init(value: value)
     }
+    // MARK: -
+    public override func asString() -> String {
+        // TODO: OZ
+        return super.asString()
+        // guard !currentKey.isEmpty && !currentValue.isEmpty else {
+        //
+        //     return String()
+        // }
+        //
+        // let key   = replaceAllExpressionKeys(in: currentKey)
+        // let value = replaceAllUnencodeChars(in: currentValue).removeExtraDashes()
+        //
+        // return "\(key)_\(value)"
+    }
     
     // MARK: - Public Methods
     @discardableResult
