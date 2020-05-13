@@ -30,9 +30,7 @@ open class CLDConditionExpression : CLDExpression {
     
     // MARK: - Init
     private init(_ expression: CLDExpression) {
-        
         self.relatedTransformation = CLDTransformation()
-        
         super.init(value: expression.asInternalString())
     }
     
@@ -290,7 +288,7 @@ open class CLDConditionExpression : CLDExpression {
         return value(expression.asInternalString())
     }
     
-    // MARK: - Then
+    // MARK: - then
     @objc(then)
     public func then() -> CLDTransformation {
         

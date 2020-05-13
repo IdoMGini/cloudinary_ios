@@ -2132,9 +2132,10 @@ extension CLDTransformation
     @discardableResult
     public func ifCondition() -> CLDConditionExpression {
         
-        let condition = CLDConditionExpression()
-        currentCondition =  condition
-        return  condition
+        currentCondition = CLDConditionExpression()
+        currentCondition?.relatedTransformation = self
+        
+        return currentCondition!
     }
     
     // MARK: - ifElse
