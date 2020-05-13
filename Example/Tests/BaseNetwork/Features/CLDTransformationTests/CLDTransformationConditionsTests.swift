@@ -275,6 +275,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         let valueHeight     = "height > 200"
         let valueWidth      = "width < 300"
         let expectedResult  = "if_w_gt_200_and_h_gt_200_or_w_lt_300"
+        
         let conditionObject = CLDConditionExpression.init(value: initialValue).and().value(valueHeight).or().value(valueWidth)
         
         // When

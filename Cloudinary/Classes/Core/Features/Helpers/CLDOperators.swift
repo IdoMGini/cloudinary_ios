@@ -26,15 +26,6 @@ import Foundation
 
 public enum CLDOperators: String , CaseIterable {
     
-    case equal          = "="
-    case notEqual       = "!="
-    case lessThen       = "<"
-    case greaterThen    = ">"
-    case lessOrEqual    = "<="
-    case greaterOrEqual = ">="
-    case inside         = "inside"
-    case notInside      = "notInside"
-    
     case and = "&&"
     case or  = "||"
     
@@ -44,6 +35,16 @@ public enum CLDOperators: String , CaseIterable {
     case subtract = "-"
 
     case power    = "^"
+    
+    case notInside      = "notInside"
+    case inside         = "inside"
+    
+    case lessOrEqual    = "<="
+    case greaterOrEqual = ">="
+    case lessThen       = "<"
+    case greaterThen    = ">"
+    case notEqual       = "!="
+    case equal          = "="
     
     func asString() -> String {
         

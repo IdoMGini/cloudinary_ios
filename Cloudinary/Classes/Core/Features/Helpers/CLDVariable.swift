@@ -45,12 +45,11 @@ internal func CLDThrowFatalError(with message: String) {
     static private let collectionSuffix   : String = "!"
     static private let collectionSeparator: String = ":"
     
-    static internal let exportSeparator: String = "_"
+    static internal let elementsSeparator: String = "_"
     
     static private let separator: String = ","
     
     static private let nameRegex: String = "^\\$[a-zA-Z][a-zA-Z0-9]*$"
-
 
     // MARK: - Init
     public override init() {
@@ -62,8 +61,14 @@ internal func CLDThrowFatalError(with message: String) {
     
     @objc(initWithName:stringValue:)
     public init(name variableName: String, value variableValue: String) {
+        
         self.name  = variableName
-        self.value = variableValue
+        
+        if variableValue.hasPrefix(CLDVariable.variableNamePrefix) {
+            self.value = CLDExpression(value: variableValue).asString()
+        } else {
+            self.value = variableValue
+        }
         super.init()
         self.addNamePrefixIfNeeded()
     }
@@ -85,6 +90,7 @@ internal func CLDThrowFatalError(with message: String) {
     }
     
     public init(name variableName: String, values: [String]) {
+        
         self.name = variableName
         
         if values.isEmpty {
@@ -100,7 +106,7 @@ internal func CLDThrowFatalError(with message: String) {
     // MARK: - Public methods
     public func asString() -> String {
         guard checkValidName(name) else { return String() }
-        return name + CLDVariable.exportSeparator + value
+        return name + CLDVariable.elementsSeparator + value
     }
     
     public func asParams() -> [String : String] {

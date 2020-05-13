@@ -2129,9 +2129,9 @@ extension CLDTransformation
     @discardableResult
     public func endIf() -> Self {
         
-        guard !transformations.isEmpty else { return self }
-        
         chain()
+        
+        guard !transformations.isEmpty else { return self }
         
         let transformSize = transformations.count
         let loopSize = transformSize - 1

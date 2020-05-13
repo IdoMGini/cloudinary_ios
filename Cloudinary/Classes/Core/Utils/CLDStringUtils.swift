@@ -143,6 +143,12 @@ extension String {
     
     internal func removePrefix(_ prefix: String) -> String {
         guard self.hasPrefix(prefix) else { return self }
-        return String(self.dropFirst(prefix.count))
+        return String(self.dropFirst(prefix.count))    
+    }
+    
+    internal func firstIndex(of value: String) -> Int {
+        
+        guard let range: Range<String.Index> = range(of: value) else { return NSNotFound }
+        return distance(from: startIndex, to: range.lowerBound)
     }
 }

@@ -57,6 +57,10 @@ open class CLDExpression: NSObject {
         
         case pageX
         case pageY
+        case duration
+        
+        case initial_duration
+        case initialDuration
         
         var asString: String {
             
@@ -90,15 +94,17 @@ open class CLDExpression: NSObject {
             
             case .pageX: return "px"
             case .pageY: return "py"
+                
+            case .duration: return "du"
+            case .initial_duration: return "idu"
+            case .initialDuration : return "idu"
             }
         }
     }
     
     internal var currentValue      : String
     internal var currentKey        : String
-    
-    static private  let separator          : String = ","
-    static internal let elementsSeparator  : String = "_"
+    static private  let separator  : String = ","
     
     // MARK: - Init
     public override init() {
@@ -110,7 +116,7 @@ open class CLDExpression: NSObject {
     public init(value: String) {
         var components = value.components(separatedBy: .whitespacesAndNewlines)
         self.currentKey   = components.removeFirst()
-        self.currentValue = components.joined(separator: CLDExpression.elementsSeparator)
+        self.currentValue = components.joined(separator: CLDVariable.elementsSeparator)
         super.init()
     }
     
@@ -126,10 +132,14 @@ open class CLDExpression: NSObject {
         appendOperatorToCurrentValue(.add, inputValue: "\(number)")
         return self
     }
-    
     @discardableResult
     public func add(by number: Float) -> Self {
         appendOperatorToCurrentValue(.add, inputValue: number.cldFloatFormat())
+        return self
+    }
+    @discardableResult
+    public func add(by number: String) -> Self {
+        appendOperatorToCurrentValue(.add, inputValue: number)
         return self
     }
     
@@ -138,22 +148,30 @@ open class CLDExpression: NSObject {
         appendOperatorToCurrentValue(.subtract, inputValue: "\(number)")
         return self
     }
-    
     @discardableResult
     public func subtract(by number: Float) -> Self {
         appendOperatorToCurrentValue(.subtract, inputValue: number.cldFloatFormat())
         return self
     }
-
+    @discardableResult
+    public func subtract(by number: String) -> Self {
+        appendOperatorToCurrentValue(.subtract, inputValue: number)
+        return self
+    }
+    
     @discardableResult
     public func multiple(by number: Int) -> Self {
         appendOperatorToCurrentValue(.multiple, inputValue: "\(number)")
         return self
     }
-    
     @discardableResult
     public func multiple(by number: Float) -> Self {
         appendOperatorToCurrentValue(.multiple, inputValue: number.cldFloatFormat())
+        return self
+    }
+    @discardableResult
+    public func multiple(by number: String) -> Self {
+        appendOperatorToCurrentValue(.multiple, inputValue: number)
         return self
     }
     
@@ -162,10 +180,14 @@ open class CLDExpression: NSObject {
         appendOperatorToCurrentValue(.divide, inputValue: "\(number)")
         return self
     }
-    
     @discardableResult
     public func divide(by number: Float) -> Self {
         appendOperatorToCurrentValue(.divide, inputValue: number.cldFloatFormat())
+        return self
+    }
+    @discardableResult
+    public func divide(by number: String) -> Self {
+        appendOperatorToCurrentValue(.divide, inputValue: number)
         return self
     }
     
@@ -174,10 +196,14 @@ open class CLDExpression: NSObject {
         appendOperatorToCurrentValue(.power, inputValue: "\(number)")
         return self
     }
-    
     @discardableResult
     public func power(by number: Float) -> Self {
         appendOperatorToCurrentValue(.power, inputValue: number.cldFloatFormat())
+        return self
+    }
+    @discardableResult
+    public func power(by number: String) -> Self {
+        appendOperatorToCurrentValue(.power, inputValue: number)
         return self
     }
     
@@ -256,7 +282,7 @@ open class CLDExpression: NSObject {
         
         if string.contains(CLDVariable.variableNamePrefix) {
         
-            return string.components(separatedBy: CLDVariable.exportSeparator).map {
+            return string.components(separatedBy: CLDVariable.elementsSeparator).map {
                 
                 if $0.hasPrefix(CLDVariable.variableNamePrefix) {
                     return $0
@@ -264,7 +290,7 @@ open class CLDExpression: NSObject {
                     return $0.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
                 }
                 
-            }.joined(separator: CLDVariable.exportSeparator)
+            }.joined(separator: CLDVariable.elementsSeparator)
             
         } else {
             
@@ -277,14 +303,14 @@ open class CLDExpression: NSObject {
         var stringValue = String()
         if !currentValue.isEmpty {
            
-            stringValue.append(CLDExpression.elementsSeparator)
+            stringValue.append(CLDVariable.elementsSeparator)
         }
         
         stringValue.append(cldoperator.rawValue)
         
         if !inputValue.isEmpty {
          
-            stringValue.append(CLDExpression.elementsSeparator + inputValue)
+            stringValue.append(CLDVariable.elementsSeparator + inputValue)
         }
         
         currentValue.append(stringValue)
@@ -341,5 +367,12 @@ open class CLDExpression: NSObject {
     
     public class func currentPageIndex() -> CLDExpression {
         return CLDExpression(expressionKey: .currentPage) 
+    }
+    
+    public class func duration() -> CLDExpression {
+        return CLDExpression(expressionKey: .duration)
+    }
+    public class func initialDuration() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialDuration)
     }
 }
