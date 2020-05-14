@@ -250,9 +250,52 @@ import CoreGraphics
      - returns:              The same instance of CLDTransformation.
      */
     @discardableResult
-    public func setVariable(name: String, value: String) -> Self {
+    public func setVariable(_ name: String, intValue value: Int) -> Self {
+        
+        let variable = CLDVariable(name: name, value: String(value))
+        return setVariable(variable)
+    }
+    /**
+     Set a variable.
+     
+     - parameter name:       The variable's name.
+     - parameter value:      The variable's value.
+     
+     - returns:              The same instance of CLDTransformation.
+     */
+    @discardableResult
+    public func setVariable(_ name: String, floatValue value: Float) -> Self {
+        
+        let variable = CLDVariable(name: name, value: value.cldFloatFormat())
+        return setVariable(variable)
+    }
+    /**
+     Set a variable.
+     
+     - parameter name:       The variable's name.
+     - parameter value:      The variable's value.
+     
+     - returns:              The same instance of CLDTransformation.
+     */
+    @discardableResult
+    public func setVariable(_ name: String, stringValue value: String) -> Self {
         
         let variable = CLDVariable(name: name, value: value)
+        return setVariable(variable)
+    }
+    /**
+     Set a variable.
+     
+     - parameter name:       The variable's name.
+     - parameter values:      The variable's value.
+     
+     - returns:              The same instance of CLDTransformation.
+     */
+    // @objc(setVariableWithNameAndVariablesArray:)
+    @discardableResult
+    public func setVariable(_ name: String, values: [String]) -> Self {
+        
+        let variable = CLDVariable(name: name, values: values)
         return setVariable(variable)
     }
     
@@ -2133,6 +2176,7 @@ extension CLDTransformation
     public func ifCondition() -> CLDConditionExpression {
         
         let condition = CLDConditionExpression()
+        condition.relatedTransformation = self
         currentCondition =  condition
         return  condition
     }
@@ -2162,16 +2206,16 @@ extension CLDTransformation
             
             var segment = transformations[index]; // [..., {if: "w_gt_1000",c: "fill", w: 500}, ...]
             
-            if  let value = segment["if"] { // if: "w_gt_1000"
+            if  let value = segment[TransformationParam.IF_PARAM.rawValue] { // if: "w_gt_1000"
                 
                 if value == "end" {
                     break
                 }
                 
                 if segment.keys.count > 1 {
-                    segment.removeValue(forKey: "if") // {c: fill, w: 500}
+                    segment.removeValue(forKey: TransformationParam.IF_PARAM.rawValue) // {c: fill, w: 500}
                     transformations[index] = segment  // [..., {c: fill, w: 500}, ...]
-                    transformations.insert(["if":value], at: index) // [..., "if_w_gt_1000", {c: fill, w: 500}, ...]
+                    transformations.insert([TransformationParam.IF_PARAM.rawValue:value], at: index) // [..., "if_w_gt_1000", {c: fill, w: 500}, ...]
                 }
                 
                 // otherwise keep looking for if_condition
