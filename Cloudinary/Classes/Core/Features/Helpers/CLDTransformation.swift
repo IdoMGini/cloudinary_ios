@@ -771,12 +771,11 @@ import CoreGraphics
         
         let expression = CLDExpression(value: y)
         
-        guard !expression.currentValue.isEmpty else {
-            
+        if !expression.currentValue.isEmpty {
+            return setY(expression)
+        } else {
             return setParam(TransformationParam.Y, value: y)
         }
-        
-        return setY(expression)
     }
     
     // MARK: - Set Values - Radius
@@ -806,12 +805,11 @@ import CoreGraphics
         
         let expression = CLDExpression(value: radius)
         
-        guard !expression.currentValue.isEmpty else {
-            
+        if !expression.currentValue.isEmpty {
+            return setRadius(expression)
+        } else {
             return setParam(TransformationParam.RADIUS, value: radius)
         }
-        
-        return setRadius(expression)
     }
     
     // MARK: - Set Values - Quality
@@ -1557,9 +1555,7 @@ import CoreGraphics
      */
     @discardableResult
     open func setStartOffsetAndEndOffset(startSeconds: Float, endSeconds: Float) -> Self {
-        setStartOffset(seconds: startSeconds)
-        setEndOffset(seconds: endSeconds)
-        return self
+        return setStartOffset(seconds: startSeconds).setEndOffset(seconds: endSeconds)
     }
     
     /**
@@ -1572,9 +1568,7 @@ import CoreGraphics
      */
     @discardableResult
     open func setStartOffsetAndEndOffset(startPercent: Int, endPercent: Int) -> Self {
-        setStartOffset(percent: startPercent)
-        setEndOffset(percent: endPercent)
-        return self
+        return setStartOffset(percent: startPercent).setEndOffset(percent: endPercent)
     }
     
     /**
@@ -1658,8 +1652,7 @@ import CoreGraphics
      */
     @discardableResult
     open func setTopLeftPoint(_ point: CGPoint) -> Self {
-        setX(Float(point.x))
-        return setY(Float(point.y))
+        return setX(Float(point.x)).setY(Float(point.y))
     }
     
     @discardableResult
