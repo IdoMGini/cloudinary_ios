@@ -39,4 +39,36 @@ class CLDTransformationTests: BaseTestCase {
         sut = nil
         super.tearDown()
     }
+    
+    func test_setHeight_stringValue_shouldReturnValidString() {
+        
+        // Given
+        let input = "w + 200"
+        
+        let expectedResult = "h_w_add_200"
+        
+        // When
+        sut.setHeight(input)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    func test_setx_stringValue_shouldReturnValidString() {
+        
+        // Given
+        let input = "w + 200"
+        
+        let expectedResult = "x_w_add_200"
+        
+        // When
+        sut.setX(input)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
 }

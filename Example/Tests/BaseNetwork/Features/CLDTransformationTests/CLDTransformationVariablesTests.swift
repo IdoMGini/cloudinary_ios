@@ -75,6 +75,21 @@ class CLDTransformationVariablesTests: BaseTestCase {
         
         // Given
         let variableName   = "$foo"
+        let variableValue  = Float(30.3)
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setVariable(variableName, float: variableValue)
+        
+        let actualResult = sut.getParam(variableName)
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a valid CLDVariable name as param, should return its value")
+    }
+    func test_setVariable_stringParamaters_shouldStoreNewVariable() {
+        
+        // Given
+        let variableName   = "$foo"
         let variableValue  = "bar"
         let expectedResult = "bar"
         
@@ -136,10 +151,10 @@ class CLDTransformationVariablesTests: BaseTestCase {
         // When
         sut.setVariables([variable])
         
-        let actualResult = sut.getParam(CLDTransformation.TransformationParam.VARIABLES.rawValue)
+        let actualResult = sut.variables
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a TransformationParam.VARIABLES.rawValue as param, should return its value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling sut.variables should return its value")
     }
     func test_setVariables_twoValidVariablesArray_shouldStoreNewVariable() {
         
@@ -155,10 +170,10 @@ class CLDTransformationVariablesTests: BaseTestCase {
         // When
         sut.setVariables([variable, variable2])
         
-        let actualResult  = sut.getParam(CLDTransformation.TransformationParam.VARIABLES.rawValue)
+        let actualResult  = sut.variables
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling getParam on an CLDTransformation with a TransformationParam.VARIABLES.rawValue as param, should return its value")
+        XCTAssertEqual(actualResult, expectedResult, "Calling sut.variables should return its value")
     }
     
     // MARK: - test asString() on empty variable

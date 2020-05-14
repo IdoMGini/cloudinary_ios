@@ -695,6 +695,26 @@ class CLDConditionExpressionTests: BaseTestCase {
     }
     
     // MARK: - equal
+    func test_equalFloat_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = Float(30.3)
+        
+        let equalValue = Float(10.1)
+        let expectedValueResult = "width_div_30.3_eq_10.1"
+        
+        // When
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
     func test_equalString_shouldAppendValidValue() {
         
         // Given
@@ -756,6 +776,26 @@ class CLDConditionExpressionTests: BaseTestCase {
     }
     
     // MARK: - notEqual
+    func test_notEqual_floatValue_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = Float(30.3)
+        let unequalValue = Float(10.1)
+        
+        let expectedValueResult = "width_div_30.3_ne_10.1"
+        
+        // When
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: unequalValue)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
     func test_notEqual_stringValue_shouldAppendValidValue() {
         
         // Given
