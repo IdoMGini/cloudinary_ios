@@ -56,12 +56,8 @@ open class CLDConditionExpression : CLDExpression {
         return self
     }
     @discardableResult
-    public func and(expresion value: CLDExpression) -> Self {
+    public func and(_ value: CLDExpression) -> Self {
         return and(value.asInternalString())
-    }
-    @discardableResult
-    public func and(_ value: CLDConditionExpression) -> Self {
-        return and(expresion: value)
     }
     
     @discardableResult
@@ -75,12 +71,8 @@ open class CLDConditionExpression : CLDExpression {
         return self
     }
     @discardableResult
-    public func or(expresion value: CLDExpression) -> Self {
+    public func or(_ value: CLDExpression) -> Self {
         return or(value.asInternalString())
-    }
-    @discardableResult
-    public func or(_ value: CLDConditionExpression) -> Self {
-        return or(expresion: value)
     }
     
     @discardableResult
@@ -100,10 +92,6 @@ open class CLDConditionExpression : CLDExpression {
     public func equal(to value: CLDExpression) -> Self {
         return equal(to: value.asInternalString())
     }
-    @discardableResult
-    public func equal(_  value: CLDConditionExpression) -> Self {
-        return equal(to: value)
-    }
     
     @discardableResult
     public func notEqual(to value: Int) -> Self {
@@ -121,10 +109,6 @@ open class CLDConditionExpression : CLDExpression {
     @discardableResult
     public func notEqual(to value: CLDExpression) -> Self {
         return notEqual(to: value.asInternalString())
-    }
-    @discardableResult
-    public func notEqual(_  value: CLDConditionExpression) -> Self {
-        return notEqual(to: value)
     }
     
     @discardableResult
@@ -144,10 +128,6 @@ open class CLDConditionExpression : CLDExpression {
     public func less(then value: CLDExpression) -> Self {
         return less(then: value.asInternalString())
     }
-    @discardableResult
-    public func less(_    value: CLDConditionExpression) -> Self {
-        return less(then: value)
-    }
     
     @discardableResult
     public func greater(then value: Int) -> Self {
@@ -165,10 +145,6 @@ open class CLDConditionExpression : CLDExpression {
     @discardableResult
     public func greater(then value: CLDExpression) -> Self {
         return greater(then: value.asInternalString())
-    }
-    @discardableResult
-    public func greater(_    value: CLDConditionExpression) -> Self {
-        return greater(then: value)
     }
     
     @discardableResult
@@ -188,10 +164,6 @@ open class CLDConditionExpression : CLDExpression {
     public func lessOrEqual(to value: CLDExpression) -> Self {
         return lessOrEqual(to: value.asInternalString())
     }
-    @discardableResult
-    public func lessOrEqual(_  value: CLDConditionExpression) -> Self {
-        return lessOrEqual(to: value)
-    }
     
     @discardableResult
     public func greaterOrEqual(to value: Int) -> Self {
@@ -210,10 +182,6 @@ open class CLDConditionExpression : CLDExpression {
     public func greaterOrEqual(to value: CLDExpression) -> Self {
         return greaterOrEqual(to: value.asInternalString())
     }
-    @discardableResult
-    public func greaterOrEqual(_  value: CLDConditionExpression) -> Self {
-        return lessOrEqual(to: value)
-    }
     
     @discardableResult
     public func inside(_ expression: String) -> Self {
@@ -226,10 +194,6 @@ open class CLDConditionExpression : CLDExpression {
     public func inside(_ expression: CLDExpression) -> Self {
         return inside(expression.asInternalString())
     }
-    @discardableResult
-    public func inside(_  expression: CLDConditionExpression) -> Self {
-        return inside(expression.asInternalString())
-    }
     
     @discardableResult
     public func notInside(_ expression: String) -> Self {
@@ -240,10 +204,6 @@ open class CLDConditionExpression : CLDExpression {
     }
     @discardableResult
     public func notInside(_ expression: CLDExpression) -> Self {
-        return notInside(expression.asInternalString())
-    }
-    @discardableResult
-    public func notInside(_ expression: CLDConditionExpression) -> Self {
         return notInside(expression.asInternalString())
     }
     
@@ -279,10 +239,6 @@ open class CLDConditionExpression : CLDExpression {
     }
     @discardableResult
     public func value(_  expression: CLDExpression) -> Self {
-        return value(expression.asInternalString())
-    }
-    @discardableResult
-    public func value(of expression: CLDConditionExpression) -> Self {
         return value(expression.asInternalString())
     }
     

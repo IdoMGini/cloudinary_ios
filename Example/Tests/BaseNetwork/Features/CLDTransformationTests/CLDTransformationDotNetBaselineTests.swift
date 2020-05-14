@@ -238,8 +238,8 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
                     .and().value(CLDConditionExpression.pageYOffset().notEqual(to: 400))
                     .and().value(CLDConditionExpression.aspectRatio().greater(then: "3:4"))
                     .and().value(CLDConditionExpression.initialAspectRatio().greater(then: "3:4"))
-                    .and().value(CLDConditionExpression.height().less(CLDConditionExpression.initialWidth().divide(by: 2).add(by: 1)))
-                    .and().value(CLDConditionExpression.width().less(CLDConditionExpression.initialHeight().subtract(by: "$foo")))
+                    .and().value(CLDConditionExpression.height().less(then: CLDConditionExpression.initialWidth().divide(by: 2).add(by: 1)))
+                    .and().value(CLDConditionExpression.width().less(then: CLDConditionExpression.initialHeight().subtract(by: "$foo")))
                     .and().value(CLDConditionExpression.duration().equal(to: "$foo"))
                     .and().value(CLDConditionExpression.duration().notEqual(to: "$foo"))
                     .and().value(CLDConditionExpression.duration().less(then: 30))
@@ -258,7 +258,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             .endIf()
         
         XCTAssertEqual(transformationStr, transformation.asString()!)
-    }*/
+    }
     
     func test_TestExpressionOperatorsWithValues()
     {
@@ -303,14 +303,14 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
                     .and(CLDConditionExpression.pageYOffset().notEqual(to: 400))
                     .and(CLDConditionExpression.aspectRatio().greater(then: "3:4"))
                     .and(CLDConditionExpression.initialAspectRatio().greater(then: "3:4"))
-                    .and(CLDConditionExpression.height().less(CLDConditionExpression.initialWidth().divide(by: 2).add(by: 1)))
-                    .and(CLDConditionExpression.width().less(CLDConditionExpression.initialHeight().subtract(by: "$foo")))
+                    .and(CLDConditionExpression.height().less(then: CLDConditionExpression.initialWidth().divide(by: 2).add(by: 1)))
+                    .and(CLDConditionExpression.width().less(then: CLDConditionExpression.initialHeight().subtract(by: "$foo")))
         )
             .setCrop("scale")
-            // .setWidth(CLDConditionExpression(value: "$foo * 200 / faceCount"))
+            .setWidth(CLDConditionExpression(value: "$foo * 200 / faceCount"))
             .setOverlay("$foostr")
             .endIf()
-
+        
         XCTAssertEqual(transformationStr, transformation.asString()!)
     }
     
