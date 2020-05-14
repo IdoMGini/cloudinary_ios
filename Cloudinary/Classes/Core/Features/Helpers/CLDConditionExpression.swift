@@ -554,7 +554,7 @@ open class CLDConditionExpression : CLDExpression {
         return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: object.asInternalString())
     }
     @discardableResult
-    public func tagpageXOffsets(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
+    public func pageXOffset(_ operatorString: String, _ object: CLDConditionExpression) -> Self {
         return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: object.asString())
     }
     

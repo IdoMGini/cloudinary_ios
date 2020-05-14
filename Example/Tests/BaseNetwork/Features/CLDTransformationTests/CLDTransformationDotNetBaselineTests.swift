@@ -182,7 +182,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").ifElse().setWidth(100).setCrop("crop").endIf()
         XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_else/c_crop,w_100/if_end", transformation.asString()!, "force the if_else clause to be chained")
     }
-    
+    /*
     func test_TestExpressionOperators()
     {
         let transformationStr = "$foo_10,$foostr_!my:str:ing!/if_fc_gt_2_and" +
@@ -312,7 +312,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         
         XCTAssertEqual(transformationStr, transformation.asString()!)
     }
-    
+    */
     func test_TestExpressionsClone()
     {
         let transformationStr = "if_pc_lt_300/c_scale/if_end"
@@ -332,7 +332,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     func test_TestShouldNotChangeVariableNamesWhenTheyNamedAfterKeyword()
     {
         let transformation = CLDTransformation()
-            .setVariable("$width", 10)
+            .setVariable("$width", intValue: 10)
             .chain()
             .setWidth("$width + 10 + width")
         let sTransform = transformation.asString()!
@@ -351,3 +351,4 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         XCTAssertEqual("$small_150,$big_$small_pow_1.5", sTransform)
     }
 }
+
