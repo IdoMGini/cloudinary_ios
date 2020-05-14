@@ -120,6 +120,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     
     func test_ChainedConditions()
     {
+        
         //        var transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").Then().Width(100).Crop("scale");
         //        Assert.AreEqual("if_ar_gt_3:4,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
         //
