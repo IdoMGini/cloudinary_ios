@@ -303,7 +303,6 @@ class CLDExpressionTests: BaseTestCase {
     }
     
     // MARK: - test instance method
-    
     func test_addInt_shouldStoreValidFirstValue() {
         
         // Given
@@ -361,6 +360,25 @@ class CLDExpressionTests: BaseTestCase {
         let name = "height"
         let initialValue = "width"
         let value = Float(30.3)
+        
+        let expectedValueResult = "width_add_30.3"
+        
+        // When
+        sut = CLDExpression.init(value: "\(name) \(initialValue)").add(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_addString_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = "30.3"
         
         let expectedValueResult = "width_add_30.3"
         
@@ -444,6 +462,25 @@ class CLDExpressionTests: BaseTestCase {
         XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
     }
     
+    func test_subtractString_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = "30.3"
+        
+        let expectedValueResult = "width_sub_30.3"
+        
+        // When
+        sut = CLDExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
     func test_multipleInt_shouldStoreValidFirstValue() {
         
         // Given
@@ -501,6 +538,25 @@ class CLDExpressionTests: BaseTestCase {
         let name = "height"
         let initialValue = "width"
         let value = Float(30.3)
+        
+        let expectedValueResult = "width_mul_30.3"
+        
+        // When
+        sut = CLDExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_multipleString_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = "30.3"
         
         let expectedValueResult = "width_mul_30.3"
         
@@ -577,6 +633,131 @@ class CLDExpressionTests: BaseTestCase {
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").divide(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_divideString_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = "30.3"
+        
+        let expectedValueResult = "width_div_30.3"
+        
+        // When
+        sut = CLDExpression.init(value: "\(name) \(initialValue)").divide(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    // MARK: - power
+    func test_powerInt_shouldStoreValidFirstValue() {
+        
+        // Given
+        let value = 20
+        let expectedValueResult = "pow_20"
+        
+        // When
+        sut = CLDExpression.width().power(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_powerInt_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = 20
+        
+        let expectedValueResult = "width_pow_20"
+        
+        // When
+        sut = CLDExpression(value: "\(name) \(initialValue)").power(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_powerFloat_shouldStoreValidFirstValue() {
+        
+        // Given
+        let value = Float(30.3)
+        let expectedValueResult = "pow_30.3"
+        
+        // When
+        sut = CLDExpression.width().power(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_powerFloat_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = Float(30.3)
+        
+        let expectedValueResult = "width_pow_30.3"
+        
+        // When
+        sut = CLDExpression(value: "\(name) \(initialValue)").power(by: value)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.currentValue, expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_powerFloat_shouldAppendValidValueToVariable() {
+
+        // Given
+        let initialValue = "$big $small ^  1.5"
+        let expectedValueResult = "$big_$small_pow_1.5"
+        
+        // When
+        sut = CLDExpression(value: initialValue)
+        
+        // Then
+        XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
+        XCTAssertNotNil(sut.currentValue, "Initilized object should contain a none nil value property")
+        
+        XCTAssertEqual(sut.asString(), expectedValueResult, "currentValue should be equal to expectedValueResult")
+    }
+    
+    func test_powerString_shouldAppendValidValue() {
+        
+        // Given
+        let name = "height"
+        let initialValue = "width"
+        let value = "30.3"
+        
+        let expectedValueResult = "width_pow_30.3"
+        
+        // When
+        sut = CLDExpression(value: "\(name) \(initialValue)").power(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")

@@ -332,29 +332,29 @@ open class CLDExpression: NSObject {
         var wipString = string
         ExpressionKeys.allCases.forEach {
                 
-            wipString = replace(expressionKeys: $0, in: wipString)
+            wipString = replace(expressionKey: $0, in: wipString)
         }
         
         return wipString
     }
     
-    private func replace(expressionKeys: ExpressionKeys, in string: String) -> String {
+    private func replace(expressionKey: ExpressionKeys, in string: String) -> String {
         
         if string.contains(CLDVariable.variableNamePrefix) {
-        
+            
             return string.components(separatedBy: CLDVariable.elementsSeparator).map {
                 
                 if $0.hasPrefix(CLDVariable.variableNamePrefix) {
                     return $0
                 } else {
-                    return $0.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
+                    return $0.replacingOccurrences(of: expressionKey.rawValue, with: expressionKey.asString)
                 }
                 
             }.joined(separator: CLDVariable.elementsSeparator)
             
         } else {
             
-            return string.replacingOccurrences(of: expressionKeys.rawValue, with: expressionKeys.asString)
+            return string.replacingOccurrences(of: expressionKey.rawValue, with: expressionKey.asString)
         }
     }
     
