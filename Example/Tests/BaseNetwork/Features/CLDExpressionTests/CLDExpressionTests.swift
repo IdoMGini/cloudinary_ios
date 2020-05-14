@@ -308,7 +308,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "+_20"
+        let expectedValueResult = "add_20"
         // When
         
         sut = CLDExpression.width().add(by: value)
@@ -327,7 +327,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_+_20"
+        let expectedValueResult = "width_add_20"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").add(by: value)
@@ -343,7 +343,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "+_30.3"
+        let expectedValueResult = "add_30.3"
         // When
         
         sut = CLDExpression.width().add(by: value)
@@ -362,7 +362,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_+_30.3"
+        let expectedValueResult = "width_add_30.3"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").add(by: value)
@@ -378,7 +378,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "-_20"
+        let expectedValueResult = "sub_20"
         // When
         
         sut = CLDExpression.width().subtract(by: value)
@@ -397,7 +397,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_-_20"
+        let expectedValueResult = "width_sub_20"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
@@ -413,7 +413,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "-_30.3"
+        let expectedValueResult = "sub_30.3"
         // When
         
         sut = CLDExpression.width().subtract(by: value)
@@ -432,7 +432,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_-_30.3"
+        let expectedValueResult = "width_sub_30.3"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
@@ -448,7 +448,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "*_20"
+        let expectedValueResult = "mul_20"
         // When
         
         sut = CLDExpression.width().multiple(by: value)
@@ -467,7 +467,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_*_20"
+        let expectedValueResult = "width_mul_20"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
@@ -483,7 +483,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "*_30.3"
+        let expectedValueResult = "mul_30.3"
         // When
         
         sut = CLDExpression.width().multiple(by: value)
@@ -502,7 +502,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_*_30.3"
+        let expectedValueResult = "width_mul_30.3"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
@@ -518,7 +518,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "/_20"
+        let expectedValueResult = "div_20"
         
         // When
         
@@ -538,7 +538,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_/_20"
+        let expectedValueResult = "width_div_20"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").divide(by: value)
@@ -554,7 +554,7 @@ class CLDExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "/_30.3"
+        let expectedValueResult = "div_30.3"
         // When
         
         sut = CLDExpression.width().divide(by: value)
@@ -573,7 +573,7 @@ class CLDExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_/_30.3"
+        let expectedValueResult = "width_div_30.3"
         
         // When
         sut = CLDExpression.init(value: "\(name) \(initialValue)").divide(by: value)

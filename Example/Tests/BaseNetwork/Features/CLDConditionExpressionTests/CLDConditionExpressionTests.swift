@@ -309,7 +309,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "+_20"
+        let expectedValueResult = "add_20"
         // When
         
         sut = CLDConditionExpression.width().add(by: value)
@@ -328,7 +328,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_+_20"
+        let expectedValueResult = "width_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").add(by: value)
@@ -344,7 +344,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "+_30.3"
+        let expectedValueResult = "add_30.3"
         // When
         
         sut = CLDConditionExpression.width().add(by: value)
@@ -363,7 +363,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_+_30.3"
+        let expectedValueResult = "width_add_30.3"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").add(by: value)
@@ -380,7 +380,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "-_20"
+        let expectedValueResult = "sub_20"
         // When
         
         sut = CLDConditionExpression.width().subtract(by: value)
@@ -399,7 +399,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_-_20"
+        let expectedValueResult = "width_sub_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").subtract(by: value)
@@ -415,7 +415,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "-_30.3"
+        let expectedValueResult = "sub_30.3"
         // When
         
         sut = CLDConditionExpression.width().subtract(by: value)
@@ -434,7 +434,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_-_30.3"
+        let expectedValueResult = "width_sub_30.3"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").subtract(by: value)
@@ -451,7 +451,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "*_20"
+        let expectedValueResult = "mul_20"
         // When
         
         sut = CLDConditionExpression.width().multiple(by: value)
@@ -470,7 +470,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_*_20"
+        let expectedValueResult = "width_mul_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").multiple(by: value)
@@ -486,7 +486,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "*_30.3"
+        let expectedValueResult = "mul_30.3"
         // When
         
         sut = CLDConditionExpression.width().multiple(by: value)
@@ -505,7 +505,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_*_30.3"
+        let expectedValueResult = "width_mul_30.3"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").multiple(by: value)
@@ -522,7 +522,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "/_20"
+        let expectedValueResult = "div_20"
         // When
         
         sut = CLDConditionExpression.width().divide(by: value)
@@ -541,7 +541,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_/_20"
+        let expectedValueResult = "width_div_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value)
@@ -557,7 +557,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "/_30.3"
+        let expectedValueResult = "div_30.3"
         // When
         
         sut = CLDConditionExpression.width().divide(by: value)
@@ -576,7 +576,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_/_30.3"
+        let expectedValueResult = "width_div_30.3"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value)
@@ -593,7 +593,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = 20
-        let expectedValueResult = "^_20"
+        let expectedValueResult = "pow_20"
         
         // When
         sut = CLDConditionExpression.width().power(by: value)
@@ -612,7 +612,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = 20
         
-        let expectedValueResult = "width_^_20"
+        let expectedValueResult = "width_pow_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").power(by: value)
@@ -628,7 +628,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = Float(30.3)
-        let expectedValueResult = "^_30.3"
+        let expectedValueResult = "pow_30.3"
         
         // When
         sut = CLDConditionExpression.width().power(by: value)
@@ -647,7 +647,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let initialValue = "width"
         let value = Float(30.3)
         
-        let expectedValueResult = "width_^_30.3"
+        let expectedValueResult = "width_pow_30.3"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").power(by: value)
@@ -684,7 +684,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let equalValue = "initialHeight"
-        let expectedValueResult = "width_/_30.3_=_initialHeight"
+        let expectedValueResult = "width_div_30.3_eq_initialHeight"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
@@ -704,7 +704,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let equalValue = CLDExpression.initialHeight()
-        let expectedValueResult = "width_/_30.3_=_ih"
+        let expectedValueResult = "width_div_30.3_eq_ih"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
@@ -724,7 +724,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "width_/_30.3_=_ih_add_20"
+        let expectedValueResult = "width_div_30.3_eq_ih_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(to: expressionValue)
@@ -745,7 +745,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let unequalValue = "initialHeight"
-        let expectedValueResult = "width_/_30.3_!=_initialHeight"
+        let expectedValueResult = "width_div_30.3_ne_initialHeight"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: unequalValue)
@@ -765,7 +765,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let unequalValue = CLDExpression.initialHeight()
-        let expectedValueResult = "width_/_30.3_!=_ih"
+        let expectedValueResult = "width_div_30.3_ne_ih"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: unequalValue)
@@ -785,7 +785,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "width_/_30.3_!=_ih_add_20"
+        let expectedValueResult = "width_div_30.3_ne_ih_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: expressionValue)
@@ -806,7 +806,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessValue = "initialHeight"
-        let expectedValueResult = "width_/_30.3_<_initialHeight"
+        let expectedValueResult = "width_div_30.3_lt_initialHeight"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
@@ -826,7 +826,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessValue = 100
-        let expectedValueResult = "width_/_30.3_<_100"
+        let expectedValueResult = "width_div_30.3_lt_100"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
@@ -846,7 +846,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessValue: Float = 100.1
-        let expectedValueResult = "width_/_30.3_<_100.1"
+        let expectedValueResult = "width_div_30.3_lt_100.1"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
@@ -866,7 +866,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessValue = CLDExpression.initialHeight()
-        let expectedValueResult = "width_/_30.3_<_ih"
+        let expectedValueResult = "width_div_30.3_lt_ih"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
@@ -886,7 +886,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "width_/_30.3_<_ih_add_20"
+        let expectedValueResult = "width_div_30.3_lt_ih_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: expressionValue)
@@ -907,7 +907,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterValue = "initialHeight"
-        let expectedValueResult = "width_/_30.3_>_initialHeight"
+        let expectedValueResult = "width_div_30.3_gt_initialHeight"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
@@ -927,7 +927,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterValue = 100
-        let expectedValueResult = "width_/_30.3_>_100"
+        let expectedValueResult = "width_div_30.3_gt_100"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
@@ -947,7 +947,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterValue: Float = 100.1
-        let expectedValueResult = "width_/_30.3_>_100.1"
+        let expectedValueResult = "width_div_30.3_gt_100.1"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
@@ -967,7 +967,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterValue = CLDExpression.initialHeight()
-        let expectedValueResult = "width_/_30.3_>_ih"
+        let expectedValueResult = "width_div_30.3_gt_ih"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
@@ -987,7 +987,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "width_/_30.3_>_ih_add_20"
+        let expectedValueResult = "width_div_30.3_gt_ih_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: expressionValue)
@@ -1008,7 +1008,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessOrEqualValue = "initialHeight"
-        let expectedValueResult = "width_/_30.3_<=_initialHeight"
+        let expectedValueResult = "width_div_30.3_lte_initialHeight"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
@@ -1028,7 +1028,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessOrEqualValue = 100
-        let expectedValueResult = "width_/_30.3_<=_100"
+        let expectedValueResult = "width_div_30.3_lte_100"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
@@ -1048,7 +1048,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessOrEqualValue: Float = 100.1
-        let expectedValueResult = "width_/_30.3_<=_100.1"
+        let expectedValueResult = "width_div_30.3_lte_100.1"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
@@ -1068,7 +1068,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let lessOrEqualValue = CLDExpression.initialHeight()
-        let expectedValueResult = "width_/_30.3_<=_ih"
+        let expectedValueResult = "width_div_30.3_lte_ih"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
@@ -1088,7 +1088,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "width_/_30.3_<=_ih_add_20"
+        let expectedValueResult = "width_div_30.3_lte_ih_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: expressionValue)
@@ -1109,7 +1109,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterOrEqualValue = "initialHeight"
-        let expectedValueResult = "width_/_30.3_>=_initialHeight"
+        let expectedValueResult = "width_div_30.3_gte_initialHeight"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
@@ -1129,7 +1129,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterOrEqualValue = 100
-        let expectedValueResult = "width_/_30.3_>=_100"
+        let expectedValueResult = "width_div_30.3_gte_100"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
@@ -1149,7 +1149,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterOrEqualValue: Float = 100.1
-        let expectedValueResult = "width_/_30.3_>=_100.1"
+        let expectedValueResult = "width_div_30.3_gte_100.1"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
@@ -1169,7 +1169,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let greaterOrEqualValue = CLDExpression.initialHeight()
-        let expectedValueResult = "width_/_30.3_>=_ih"
+        let expectedValueResult = "width_div_30.3_gte_ih"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
@@ -1189,7 +1189,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = Float(30.3)
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "width_/_30.3_>=_ih_add_20"
+        let expectedValueResult = "width_div_30.3_gte_ih_add_20"
         
         // When
         sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: expressionValue)
@@ -1206,7 +1206,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = "width > 200"
-        let expectedValueResult = ">_200_||"
+        let expectedValueResult = ">_200_or"
         
         // When
         sut = CLDConditionExpression(value: value).or()
@@ -1223,7 +1223,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let value = "width > 200"
-        let expectedValueResult = ">_200_&&"
+        let expectedValueResult = ">_200_and"
         
         // When
         sut = CLDConditionExpression(value: value).and()
@@ -1308,7 +1308,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         // Given
         let initialValue = "width > 200"
         let value = "height > 200"
-        let expectedValueResult = ">_200_&&_h_gt_200"
+        let expectedValueResult = ">_200_and_h_gt_200"
         
         // When
         sut = CLDConditionExpression(value: initialValue).and().value(value)
@@ -1341,7 +1341,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let tag = "!myTag2!"
-        let expectedValueResult = "inside_tags"
+        let expectedValueResult = "in_tags"
         
         // When
         sut = CLDConditionExpression().value(tag).inside("tags")
@@ -1359,7 +1359,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let tag = "!myTag2!"
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "inside_ih_add_20"
+        let expectedValueResult = "in_ih_add_20"
         
         // When
         sut = CLDConditionExpression().value(tag).inside(expressionValue)
@@ -1392,7 +1392,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         
         // Given
         let tag = "!myTag2!"
-        let expectedValueResult = "notInside_tags"
+        let expectedValueResult = "nin_tags"
         
         // When
         sut = CLDConditionExpression().value(tag).notInside("tags")
@@ -1410,7 +1410,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let tag = "!myTag2!"
         
         let expressionValue = CLDExpression.initialHeight().add(by: 20)
-        let expectedValueResult = "notInside_ih_add_20"
+        let expectedValueResult = "nin_ih_add_20"
         
         // When
         sut = CLDConditionExpression().value(tag).notInside(expressionValue)
