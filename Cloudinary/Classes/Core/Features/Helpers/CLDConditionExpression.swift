@@ -79,7 +79,7 @@ open class CLDConditionExpression : CLDExpression {
         return or(value.asInternalString())
     }
     @discardableResult
-    public func or( value: CLDConditionExpression) -> Self {
+    public func or(_ value: CLDConditionExpression) -> Self {
         return or(expresion: value)
     }
     

@@ -258,7 +258,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             .endIf()
         
         XCTAssertEqual(transformationStr, transformation.asString()!)
-    }
+    }*/
     
     func test_TestExpressionOperatorsWithValues()
     {
@@ -312,7 +312,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         
         XCTAssertEqual(transformationStr, transformation.asString()!)
     }
-    */
+    
     func test_TestExpressionsClone()
     {
         let transformationStr = "if_pc_lt_300/c_scale/if_end"
