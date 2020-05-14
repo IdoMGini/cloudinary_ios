@@ -56,6 +56,7 @@ import CoreGraphics
         super.init()
         
         input.forEach {
+            $0.chain()
             transformations.append(contentsOf: $0.transformations)
         }
     }
@@ -250,7 +251,7 @@ import CoreGraphics
      - returns:              The same instance of CLDTransformation.
      */
     @discardableResult
-    public func setVariable(_ name: String, intValue value: Int) -> Self {
+    public func setVariable(_ name: String, int value: Int) -> Self {
         
         let variable = CLDVariable(name: name, value: String(value))
         return setVariable(variable)
@@ -264,7 +265,7 @@ import CoreGraphics
      - returns:              The same instance of CLDTransformation.
      */
     @discardableResult
-    public func setVariable(_ name: String, floatValue value: Float) -> Self {
+    public func setVariable(_ name: String, float value: Float) -> Self {
         
         let variable = CLDVariable(name: name, value: value.cldFloatFormat())
         return setVariable(variable)
@@ -278,7 +279,7 @@ import CoreGraphics
      - returns:              The same instance of CLDTransformation.
      */
     @discardableResult
-    public func setVariable(_ name: String, stringValue value: String) -> Self {
+    public func setVariable(_ name: String, string value: String) -> Self {
         
         let variable = CLDVariable(name: name, value: value)
         return setVariable(variable)

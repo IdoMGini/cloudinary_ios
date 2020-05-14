@@ -46,7 +46,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let name = String()
         
         // When
-        sut = CLDConditionExpression.init()
+        sut = CLDConditionExpression()
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil currentKey  property")
@@ -63,7 +63,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = "alue"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil currentKey  property")
@@ -78,7 +78,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let value = "alue"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil name  property")
@@ -96,7 +96,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let valueResult = "*_2"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil name  property")
@@ -331,7 +331,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_+_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").add(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").add(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -366,7 +366,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_+_30.3"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").add(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").add(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -402,7 +402,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_-_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").subtract(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -437,7 +437,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_-_30.3"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").subtract(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").subtract(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -473,7 +473,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_*_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").multiple(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -508,7 +508,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_*_30.3"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").multiple(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").multiple(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -544,7 +544,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -579,7 +579,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -615,7 +615,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_^_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").power(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").power(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -650,7 +650,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_^_30.3"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").power(by: value)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").power(by: value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -666,7 +666,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "$big_$small_pow_1.5"
         
         // When
-        sut = CLDConditionExpression.init(value: initialValue)
+        sut = CLDConditionExpression(value: initialValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -687,7 +687,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_=_initialHeight"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -707,7 +707,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_=_ih"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).equal(to: equalValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(equalValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -727,7 +727,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_=_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).equal(to: expressionValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).equal(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -748,7 +748,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_!=_initialHeight"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: unequalValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: unequalValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -768,7 +768,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_!=_ih"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: unequalValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(unequalValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -788,7 +788,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_!=_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).notEqual(to: expressionValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).notEqual(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -809,7 +809,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<_initialHeight"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -829,7 +829,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<_100"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -849,7 +849,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<_100.1"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -869,7 +869,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<_ih"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).less(then: lessValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(lessValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -889,7 +889,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).less(then: expressionValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).less(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -910,7 +910,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>_initialHeight"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -930,7 +930,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>_100"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -950,7 +950,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>_100.1"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -970,7 +970,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>_ih"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greater(then: greaterValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(greaterValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -990,7 +990,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greater(then: expressionValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greater(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1011,7 +1011,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<=_initialHeight"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1031,7 +1031,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<=_100"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1051,7 +1051,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<=_100.1"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1071,7 +1071,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<=_ih"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: lessOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(lessOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1091,7 +1091,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_<=_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(to: expressionValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).lessOrEqual(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1112,7 +1112,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>=_initialHeight"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1132,7 +1132,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>=_100"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1152,7 +1152,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>=_100.1"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1172,7 +1172,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>=_ih"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: greaterOrEqualValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(greaterOrEqualValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1192,7 +1192,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "width_/_30.3_>=_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(to: expressionValue)
+        sut = CLDConditionExpression(value: "\(name) \(initialValue)").divide(by: value).greaterOrEqual(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1209,7 +1209,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ">_200_||"
         
         // When
-        sut = CLDConditionExpression.init(value: value).or()
+        sut = CLDConditionExpression(value: value).or()
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1226,7 +1226,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ">_200_&&"
         
         // When
-        sut = CLDConditionExpression.init(value: value).and()
+        sut = CLDConditionExpression(value: value).and()
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1243,7 +1243,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ""
         
         // When
-        sut = CLDConditionExpression.init().value(value)
+        sut = CLDConditionExpression().value(value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1259,7 +1259,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ">_200"
         
         // When
-        sut = CLDConditionExpression.init().value(value)
+        sut = CLDConditionExpression().value(value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1276,7 +1276,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ">_200"
         
         // When
-        sut = CLDConditionExpression.init(value: initialValue).value(value)
+        sut = CLDConditionExpression(value: initialValue).value(value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1294,7 +1294,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init(value: initialValue).value(expressionValue)
+        sut = CLDConditionExpression(value: initialValue).value(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1311,7 +1311,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ">_200_&&_h_gt_200"
         
         // When
-        sut = CLDConditionExpression.init(value: initialValue).and().value(value)
+        sut = CLDConditionExpression(value: initialValue).and().value(value)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1328,7 +1328,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ""
         
         // When
-        sut = CLDConditionExpression.init().value(tag).inside("")
+        sut = CLDConditionExpression().value(tag).inside("")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1344,7 +1344,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "inside_tags"
         
         // When
-        sut = CLDConditionExpression.init().value(tag).inside("tags")
+        sut = CLDConditionExpression().value(tag).inside("tags")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1362,7 +1362,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "inside_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init().value(tag).inside(expressionValue)
+        sut = CLDConditionExpression().value(tag).inside(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1379,7 +1379,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = ""
         
         // When
-        sut = CLDConditionExpression.init().value(tag).notInside("")
+        sut = CLDConditionExpression().value(tag).notInside("")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1395,7 +1395,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "notInside_tags"
         
         // When
-        sut = CLDConditionExpression.init().value(tag).notInside("tags")
+        sut = CLDConditionExpression().value(tag).notInside("tags")
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1413,7 +1413,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedValueResult = "notInside_ih_add_20"
         
         // When
-        sut = CLDConditionExpression.init().value(tag).notInside(expressionValue)
+        sut = CLDConditionExpression().value(tag).notInside(expressionValue)
         
         // Then
         XCTAssertNotNil(sut.currentKey, "Initilized object should contain a none nil key property")
@@ -1430,7 +1430,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult = String()
         
         // When
-        sut = CLDConditionExpression.init(value: value)
+        sut = CLDConditionExpression(value: value)
         
         let actualResult = sut.asString()
         
@@ -1446,7 +1446,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult  = "iw_mul_200_div_fc"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         let actualResult = sut.asString()
         
@@ -1463,7 +1463,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult  = ""
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         sut.currentKey = ""
         
         let actualResult = sut.asString()
@@ -1482,7 +1482,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult  = "iw_mul_200"
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         let actualResult = sut.asString()
         
@@ -1498,7 +1498,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult = [String:String]()
         
         // When
-        sut = CLDConditionExpression.init(value: value)
+        sut = CLDConditionExpression(value: value)
         
         let actualResult = sut.asParams()
         
@@ -1514,7 +1514,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult  = ["iw":"mul_200_div_fc"]
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         let actualResult = sut.asParams()
         
@@ -1531,7 +1531,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult  = [String:String]()
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         sut.currentKey = ""
         
         let actualResult = sut.asParams()
@@ -1550,7 +1550,7 @@ class CLDConditionExpressionTests: BaseTestCase {
         let expectedResult  = ["iw":"mul_200"]
         
         // When
-        sut = CLDConditionExpression.init(value: "\(name) \(value)")
+        sut = CLDConditionExpression(value: "\(name) \(value)")
         
         let actualResult = sut.asParams()
         

@@ -519,6 +519,7 @@ class CLDExpressionTests: BaseTestCase {
         // Given
         let value = 20
         let expectedValueResult = "/_20"
+        
         // When
         
         sut = CLDExpression.width().divide(by: value)

@@ -182,7 +182,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").ifElse().setWidth(100).setCrop("crop").endIf()
         XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_else/c_crop,w_100/if_end", transformation.asString()!, "force the if_else clause to be chained")
     }
-    /*
+    
     func test_TestExpressionOperators()
     {
         let transformationStr = "$foo_10,$foostr_!my:str:ing!/if_fc_gt_2_and" +
@@ -218,14 +218,14 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         "/c_scale,l_$foostr,w_$foo_mul_200_div_fc/if_end"
         
         let transformation = CLDTransformation()
-            .setVariable("$foo", intValue: 10)
+            .setVariable("$foo", int: 10)
             .setVariable("$foostr", values: ["my", "str", "ing"])
             .chain()
             .ifCondition(
                 CLDConditionExpression.faceCount().greater(then: 2)
-                    .and().value(.pageCount().less(then: 300))
-                    .or("!myTag1!").inside(.tags())
-                    .and("!myTag2!").notInside(.tags())
+                    .and().value(CLDConditionExpression.pageCount().less(then: 300))
+                    .or("!myTag1!").inside(CLDConditionExpression.tags())
+                    .and("!myTag2!").notInside(CLDConditionExpression.tags())
                     .and().value(CLDConditionExpression.width().greaterOrEqual(to: 200))
                     .and().value(CLDConditionExpression.height().equal(to: "$foo"))
                     .and().value(CLDConditionExpression.width().notEqual(to: "$foo").multiple(by: 2))
@@ -281,16 +281,16 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             "_h_lt_iw_div_2_add_1_and" +
             "_w_lt_ih_sub_$foo" +
         "/c_scale,l_$foostr,w_$foo_mul_200_div_fc/if_end"
-        
+
         let transformation = CLDTransformation()
-            .setVariable("$foo", intValue: 10)
+            .setVariable("$foo", int: 10)
             .setVariable("$foostr", values: ["my", "str", "ing"])
             .chain()
             .ifCondition(
                 CLDConditionExpression.faceCount().greater(then: 2)
                     .and(CLDConditionExpression.pageCount().less(then: 300))
-                    .or("!myTag1!").inside(.tags())
-                    .and("!myTag2!").notInside(.tags())
+                    .or("!myTag1!").inside(CLDConditionExpression.tags())
+                    .and("!myTag2!").notInside(CLDConditionExpression.tags())
                     .and(CLDConditionExpression.width().greaterOrEqual(to: 200))
                     .and(CLDConditionExpression.height().equal(to: "$foo"))
                     .and(CLDConditionExpression.width().notEqual(to: "$foo").multiple(by: 2))
@@ -304,12 +304,13 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
                     .and(CLDConditionExpression.aspectRatio().greater(then: "3:4"))
                     .and(CLDConditionExpression.initialAspectRatio().greater(then: "3:4"))
                     .and(CLDConditionExpression.height().less(CLDConditionExpression.initialWidth().divide(by: 2).add(by: 1)))
-                    .and(CLDConditionExpression.width().less(CLDConditionExpression.initialHeight().subtract(by: "$foo"))))
+                    .and(CLDConditionExpression.width().less(CLDConditionExpression.initialHeight().subtract(by: "$foo")))
+        )
             .setCrop("scale")
-            .setWidth(CLDConditionExpression(value: "$foo * 200 / faceCount"))
+            // .setWidth(CLDConditionExpression(value: "$foo * 200 / faceCount"))
             .setOverlay("$foostr")
             .endIf()
-        
+
         XCTAssertEqual(transformationStr, transformation.asString()!)
     }
     
@@ -332,7 +333,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     func test_TestShouldNotChangeVariableNamesWhenTheyNamedAfterKeyword()
     {
         let transformation = CLDTransformation()
-            .setVariable("$width", intValue: 10)
+            .setVariable("$width", int: 10)
             .chain()
             .setWidth("$width + 10 + width")
         let sTransform = transformation.asString()!
@@ -351,4 +352,3 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         XCTAssertEqual("$small_150,$big_$small_pow_1.5", sTransform)
     }
 }
-
