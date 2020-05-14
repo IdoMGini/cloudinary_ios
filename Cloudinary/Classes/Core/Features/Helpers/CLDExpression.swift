@@ -126,6 +126,66 @@ open class CLDExpression: NSObject {
         super.init()
     }
     
+    // MARK: - class func
+    public class func width() -> CLDExpression {
+        return CLDExpression(expressionKey: .width)
+    }
+    
+    public class func height() -> CLDExpression {
+        return CLDExpression(expressionKey: .height)
+    }
+    
+    public class func initialWidth() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialWidth)
+    }
+    
+    public class func initialHeight() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialHeight)
+    }
+    
+    public class func aspectRatio() -> CLDExpression {
+        return CLDExpression(expressionKey: .aspectRatio)
+    }
+    
+    public class func initialAspectRatio() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialAspectRatio)
+    }
+    
+    public class func pageCount() -> CLDExpression {
+        return CLDExpression(expressionKey: .pageCount)
+    }
+    
+    public class func faceCount() -> CLDExpression {
+        return CLDExpression(expressionKey: .faceCount)
+    }
+    
+    public class func tags() -> CLDExpression {
+        return CLDExpression(expressionKey: .tags)
+    }
+    
+    public class func pageXOffset() -> CLDExpression {
+        return CLDExpression(expressionKey: .pageX)
+    }
+    
+    public class func pageYOffset() -> CLDExpression {
+        return CLDExpression(expressionKey: .pageY)
+    }
+    
+    public class func illustrationScore() -> CLDExpression {
+        return CLDExpression(expressionKey: .illustrationScore)
+    }
+    
+    public class func currentPageIndex() -> CLDExpression {
+        return CLDExpression(expressionKey: .currentPage)
+    }
+    
+    public class func duration() -> CLDExpression {
+        return CLDExpression(expressionKey: .duration)
+    }
+    public class func initialDuration() -> CLDExpression {
+        return CLDExpression(expressionKey: .initialDuration)
+    }
+    
     // MARK: - Public methods
     @discardableResult
     public func add(by number: Int) -> Self {
@@ -207,7 +267,7 @@ open class CLDExpression: NSObject {
         return self
     }
     
-    // MARK: -
+    // MARK: - provide content
     public func asString() -> String {
         
         guard !currentKey.isEmpty && !currentValue.isEmpty else {
@@ -318,65 +378,5 @@ open class CLDExpression: NSObject {
         }
         
         currentValue.append(stringValue)
-    }
-    
-    // MARK: - class func
-    public class func width() -> CLDExpression {
-        return CLDExpression(expressionKey: .width)
-    }
-    
-    public class func height() -> CLDExpression {
-        return CLDExpression(expressionKey: .height)
-    }
-    
-    public class func initialWidth() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialWidth)
-    }
-    
-    public class func initialHeight() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialHeight)
-    }
-    
-    public class func aspectRatio() -> CLDExpression {
-        return CLDExpression(expressionKey: .aspectRatio)
-    }
-    
-    public class func initialAspectRatio() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialAspectRatio)
-    }
-    
-    public class func pageCount() -> CLDExpression {
-        return CLDExpression(expressionKey: .pageCount)
-    }
-    
-    public class func faceCount() -> CLDExpression {
-        return CLDExpression(expressionKey: .faceCount)
-    }
-    
-    public class func tags() -> CLDExpression {
-        return CLDExpression(expressionKey: .tags)
-    }
-    
-    public class func pageXOffset() -> CLDExpression {
-        return CLDExpression(expressionKey: .pageX)
-    }
-    
-    public class func pageYOffset() -> CLDExpression {
-        return CLDExpression(expressionKey: .pageY)
-    }
-    
-    public class func illustrationScore() -> CLDExpression {
-        return CLDExpression(expressionKey: .illustrationScore)
-    }
-    
-    public class func currentPageIndex() -> CLDExpression {
-        return CLDExpression(expressionKey: .currentPage) 
-    }
-    
-    public class func duration() -> CLDExpression {
-        return CLDExpression(expressionKey: .duration)
-    }
-    public class func initialDuration() -> CLDExpression {
-        return CLDExpression(expressionKey: .initialDuration)
     }
 }
