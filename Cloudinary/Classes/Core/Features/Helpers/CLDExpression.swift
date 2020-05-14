@@ -340,22 +340,26 @@ open class CLDExpression: NSObject {
     
     private func replace(expressionKey: ExpressionKeys, in string: String) -> String {
         
+        var result : String
+        
         if string.contains(CLDVariable.variableNamePrefix) {
             
-            return string.components(separatedBy: CLDVariable.elementsSeparator).map {
+            result = string.components(separatedBy: CLDVariable.elementsSeparator).map({
                 
-                if $0.hasPrefix(CLDVariable.variableNamePrefix) {
-                    return $0
-                } else {
-                    return $0.replacingOccurrences(of: expressionKey.rawValue, with: expressionKey.asString)
+                let temp : String
+                switch $0.hasPrefix(CLDVariable.variableNamePrefix) {
+                case true : temp = $0
+                case false: temp = $0.replacingOccurrences(of: expressionKey.rawValue, with: expressionKey.asString)
                 }
+                return temp
                 
-            }.joined(separator: CLDVariable.elementsSeparator)
+            }).joined(separator: CLDVariable.elementsSeparator)
             
         } else {
             
-            return string.replacingOccurrences(of: expressionKey.rawValue, with: expressionKey.asString)
+            result = string.replacingOccurrences(of: expressionKey.rawValue, with: expressionKey.asString)
         }
+        return result
     }
     
     internal func appendOperatorToCurrentValue(_ cldoperator: CLDOperators, inputValue: String = String()) {
