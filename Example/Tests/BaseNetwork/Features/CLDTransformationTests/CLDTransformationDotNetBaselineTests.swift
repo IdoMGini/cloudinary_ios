@@ -63,9 +63,9 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
         XCTAssertEqual(sTransform.firstIndex(of: "if"), 0, "should include the if parameter as the first component in the transformation string")
         XCTAssertEqual("if_w_lt_200,c_fill,h_120,w_80", sTransform, "should be proper transformation string")
         
-        transformation = CLDTransformation().setCrop("fill").setHeight(120).ifCondition("w_lt_200").setWidth(80);
+        transformation = CLDTransformation().setCrop("fill").setHeight(120).ifCondition("w_lt_200").setWidth(80)
         sTransform = transformation.asString()!
-        XCTAssertEqual(sTransform.firstIndex(of: "if"), 0, "should include the if parameter as the first component in the transformation string");
+        XCTAssertEqual(sTransform.firstIndex(of: "if"), 0, "should include the if parameter as the first component in the transformation string")
         XCTAssertEqual("if_w_lt_200,c_fill,h_120,w_80", sTransform, "components should be in proper order")
         
         transformation = CLDTransformation().ifCondition("w_lt_200").setCrop("fill").setHeight(120).setWidth(80)
@@ -96,61 +96,59 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     
     func test_IfElse()
     {
-        // var transformations = new List<Transformation>()
-        // {
-        //     new Transformation().IfCondition("w_lt_200").Crop("fill").Height(120).Width(80),
-        //     new Transformation().IfElse().Crop("fill").Height(90).Width(100)
-        // };
-        // var transformation = new Transformation(transformations);
-        // var sTransform = transformation.ToString();
-        // Assert.AreEqual("if_w_lt_200,c_fill,h_120,w_80/if_else,c_fill,h_90,w_100", sTransform, "should support if_else with transformation parameters");
+        var transformation = CLDTransformation.init(input: [
+            CLDTransformation.init().ifCondition("w_lt_200").setCrop("fill").setHeight(120).setWidth(80),
+            CLDTransformation.init().ifElse().setCrop("fill").setHeight(90).setWidth(100)
+        ])
         
-        // transformations = new List<Transformation>()
-        // {
-        //         new Transformation().IfCondition("w_lt_200"),
-        //         new Transformation().Crop("fill").Height(120).Width(80),
-        //         new Transformation().IfElse(),
-        //         new Transformation().Crop("fill").Height(90).Width(100)
-        // };
-        // transformation = new Transformation(transformations);
-        // sTransform = transformation.ToString();
-        // Assert.IsTrue(sTransform.Contains("/if_else/"), "if_else should be without any transformation parameters");
-        // Assert.AreEqual("if_w_lt_200/c_fill,h_120,w_80/if_else/c_fill,h_90,w_100", sTransform, "should be proper transformation string");
+        var sTransform = transformation.asString()!
+        XCTAssertEqual("if_w_lt_200,c_fill,h_120,w_80/if_else,c_fill,h_90,w_100", sTransform, "should support if_else with transformation parameters")
+        
+        transformation = CLDTransformation.init(input: [
+            CLDTransformation.init().ifCondition("w_lt_200"),
+            CLDTransformation.init().setCrop("fill").setHeight(120).setWidth(80),
+            CLDTransformation.init().ifElse(),
+            CLDTransformation.init().setCrop("fill").setHeight(90).setWidth(100)
+        ])
+        sTransform = transformation.asString()!
+        
+        XCTAssertTrue(sTransform.contains("/if_else/"), "if_else should be without any transformation parameters")
+        XCTAssertEqual("if_w_lt_200/c_fill,h_120,w_80/if_else/c_fill,h_90,w_100", sTransform, "should be proper transformation string")
     }
     
     func test_ChainedConditions()
     {
-        //        var transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").Then().Width(100).Crop("scale");
-        //        Assert.AreEqual("if_ar_gt_3:4,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
-        //
-        //        transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").And().Width("gt", 100).Then().Width(50).Crop("scale");
-        //        Assert.AreEqual("if_ar_gt_3:4_and_w_gt_100,c_scale,w_50", transformation.ToString(), "should chaining condition with `and`");
-        //
-        //        transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").And().Width("gt", 100).Or().Width("gt", 200).Then().Width(50).Crop("scale");
-        //        Assert.AreEqual("if_ar_gt_3:4_and_w_gt_100_or_w_gt_200,c_scale,w_50", transformation.ToString(), "should chain conditions with `or`");
-        //
-        //        transformation = new Transformation().IfCondition().AspectRatio(">", "3:4").And().Width("<=", 100).Or().Width("gt", 200).Then().Width(50).Crop("scale");
-        //        Assert.AreEqual("if_ar_gt_3:4_and_w_lte_100_or_w_gt_200,c_scale,w_50", transformation.ToString(), "should translate operators");
-        //
-        //        transformation = new Transformation().IfCondition().AspectRatio(">", "3:4").And().Width("<=", 100).Or().Width(">", 200).Then().Width(50).Crop("scale");
-        //        Assert.AreEqual("if_ar_gt_3:4_and_w_lte_100_or_w_gt_200,c_scale,w_50", transformation.ToString(), "should translate operators");
-        //
-        //        transformation = new Transformation().IfCondition().AspectRatio(">=", "3:4").And().PageCount(">=", 100).Or().PageCount("!=", 0).Then().Width(50).Crop("scale");
-        //        Assert.AreEqual("if_ar_gte_3:4_and_pc_gte_100_or_pc_ne_0,c_scale,w_50", transformation.ToString(), "should translate operators");
-        //
-        //        transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").And().InitialHeight(">", 100).And().InitialWidth("<", 500).Then().Width(100).Crop("scale");
-        //        Assert.AreEqual("if_ar_gt_3:4_and_ih_gt_100_and_iw_lt_500,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
-        //
-        //        transformation = new Transformation().IfCondition().InitialDuration(">", 30).And().InitialHeight(">", 100).And().InitialWidth("<", 500).Then().Width(100).Crop("scale");
-        //        Assert.AreEqual("if_idu_gt_30_and_ih_gt_100_and_iw_lt_500,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
-        //
-        //        transformation = new Transformation().IfCondition().Duration("<", 30).And().InitialHeight(">", 100).And().InitialWidth("<", 500).Then().Width(100).Crop("scale");
-        //        Assert.AreEqual("if_du_lt_30_and_ih_gt_100_and_iw_lt_500,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
+        var transformation = CLDTransformation().ifCondition().aspectRatio("gt", "3:4").then().setWidth(100).setCrop("scale")
+        XCTAssertEqual("if_ar_gt_3:4,c_scale,w_100", transformation.asString()!, "passing an operator and a value adds a condition")
+        
+        transformation = CLDTransformation().ifCondition().aspectRatio("gt", "3:4").and().width("gt", 100).then().setWidth(50).setCrop("scale")
+        XCTAssertEqual("if_ar_gt_3:4_and_w_gt_100,c_scale,w_50", transformation.asString()!, "should chaining condition with `and`")
+        
+        transformation = CLDTransformation().ifCondition().aspectRatio("gt", "3:4").and().width("gt", 100).or().width("gt", 200).then().setWidth(50).setCrop("scale")
+        XCTAssertEqual("if_ar_gt_3:4_and_w_gt_100_or_w_gt_200,c_scale,w_50", transformation.asString()!, "should chain conditions with `or`")
+        
+        transformation = CLDTransformation().ifCondition().aspectRatio(">", "3:4").and().width("<=", 100).or().width("gt", 200).then().setWidth(50).setCrop("scale")
+        XCTAssertEqual("if_ar_gt_3:4_and_w_lte_100_or_w_gt_200,c_scale,w_50", transformation.asString()!, "should translate operators")
+        
+        transformation = CLDTransformation().ifCondition().aspectRatio(">", "3:4").and().width("<=", 100).or().width(">", 200).then().setWidth(50).setCrop("scale")
+        XCTAssertEqual("if_ar_gt_3:4_and_w_lte_100_or_w_gt_200,c_scale,w_50", transformation.asString()!, "should translate operators")
+        
+        transformation = CLDTransformation().ifCondition().aspectRatio(">=", "3:4").and().pageCount(">=", 100).or().pageCount("!=", 0).then().setWidth(50).setCrop("scale")
+        XCTAssertEqual("if_ar_gte_3:4_and_pc_gte_100_or_pc_ne_0,c_scale,w_50", transformation.asString()!, "should translate operators")
+        
+        transformation = CLDTransformation().ifCondition().aspectRatio("gt", "3:4").and().initialHeight(">", 100).and().initialWidth("<", 500).then().setWidth(100).setCrop("scale")
+        XCTAssertEqual("if_ar_gt_3:4_and_ih_gt_100_and_iw_lt_500,c_scale,w_100", transformation.asString()!, "passing an operator and a value adds a condition")
+        
+        transformation = CLDTransformation().ifCondition().initialDuration(">", 30).and().initialHeight(">", 100).and().initialWidth("<", 500).then().setWidth(100).setCrop("scale")
+        XCTAssertEqual("if_idu_gt_30_and_ih_gt_100_and_iw_lt_500,c_scale,w_100", transformation.asString()!, "passing an operator and a value adds a condition")
+        
+        transformation = CLDTransformation().ifCondition().duration("<", 30).and().initialHeight(">", 100).and().initialWidth("<", 500).then().setWidth(100).setCrop("scale")
+        XCTAssertEqual("if_du_lt_30_and_ih_gt_100_and_iw_lt_500,c_scale,w_100", transformation.asString()!, "passing an operator and a value adds a condition")
     }
     
     func test_ShouldSupportAndTranslateOperators()
     {
-        var allOperators = "if_" +
+        let allOperators = "if_" +
             "w_eq_0_and" +
             "_h_ne_0_or" +
             "_ar_lt_0_and" +
@@ -159,35 +157,30 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             "_w_gte_0" +
         ",e_grayscale"
         
-        //        Assert.AreEqual(allOperators, new Transformation().IfCondition()
-        //                        .Width("=", 0).And()
-        //                        .Height("!=", 0).Or()
-        //                        .AspectRatio("<", "0").And()
-        //                        .PageCount(">", 0).And()
-        //                        .FaceCount("<=", 0).And()
-        //                        .Width(">=", 0)
-        //                        .Then().Effect("grayscale").ToString(), "should support and translate operators:  '=', '!=', '<', '>', '<=', '>=', '&&', '||'");
-        //
-        //        Assert.AreEqual(allOperators, new Transformation().IfCondition("w = 0 && height != 0 || aspectRatio < 0 and pageCount > 0 and faceCount <= 0 and width >= 0")
-        //                    .Effect("grayscale")
-        //                    .ToString());
+        XCTAssertEqual(allOperators, CLDTransformation().ifCondition()
+            .width("=", 0).and()
+            .height("!=", 0).or()
+            .aspectRatio("<", "0").and()
+            .pageCount(">", 0).and()
+            .faceCount("<=", 0).and()
+            .width(">=", 0)
+            .then().setEffect("grayscale").asString()!, "should support and translate operators:  '=', '!=', '<', '>', '<=', '>=', '&&', '||'")
+        
+        XCTAssertEqual(allOperators, CLDTransformation().ifCondition("w = 0 && height != 0 || aspectRatio < 0 and pageCount > 0 and faceCount <= 0 and width >= 0")
+            .setEffect("grayscale")
+            .asString()!)
     }
     
     func test_EndIf2()
     {
-        var transformation : CLDTransformation
+        var transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").endIf()
+        XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString()!, "should serialize to 'if_end'")
         
         transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").endIf()
-        // var transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").EndIf();
-        XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString()!, "should serialize to 'if_end'");
-        transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").endIf()
-
-        // transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").EndIf();
-        XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString(), "force the if clause to be chained");
+        XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_end", transformation.asString()!, "force the if clause to be chained")
         
         transformation = CLDTransformation().ifCondition().width("gt", 100).and().width("lt", 200).then().setWidth(50).setCrop("scale").ifElse().setWidth(100).setCrop("crop").endIf()
-        // transformation = new Transformation().IfCondition().Width("gt", 100).And().Width("lt", 200).Then().Width(50).Crop("scale").IfElse().Width(100).Crop("crop").EndIf();
-        XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_else/c_crop,w_100/if_end", transformation.asString()!, "force the if_else clause to be chained");
+        XCTAssertEqual("if_w_gt_100_and_w_lt_200/c_scale,w_50/if_else/c_crop,w_100/if_end", transformation.asString()!, "force the if_else clause to be chained")
     }
     
     func test_TestExpressionOperators()
@@ -222,19 +215,17 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             "_idu_lte_$foo_and" +
             "_idu_gt_30_and" +
             "_idu_gte_$foo" +
-            "/c_scale,l_$foostr" +
-            // ",w_$foo_mul_200_div_fc" +
-        "/if_end";
+        "/c_scale,l_$foostr,w_$foo_mul_200_div_fc/if_end"
         
         let transformation = CLDTransformation()
-            .setVariable(CLDVariable(name: "$foo", value: 10))
-            .setVariable(CLDVariable(name: "$foostr", values: ["my", "str", "ing"]))
+            .setVariable("$foo", intValue: 10)
+            .setVariable("$foostr", values: ["my", "str", "ing"])
             .chain()
             .ifCondition(
                 CLDConditionExpression.faceCount().greater(then: 2)
-                    .and().value(CLDConditionExpression.pageCount().less(then: 300))
-                    .or(string: "!myTag1!").inside(.tags())
-                    .and(string: "!myTag2!").notInside(.tags())
+                    .and().value(.pageCount().less(then: 300))
+                    .or("!myTag1!").inside(.tags())
+                    .and("!myTag2!").notInside(.tags())
                     .and().value(CLDConditionExpression.width().greaterOrEqual(to: 200))
                     .and().value(CLDConditionExpression.height().equal(to: "$foo"))
                     .and().value(CLDConditionExpression.width().notEqual(to: "$foo").multiple(by: 2))
@@ -260,10 +251,9 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
                     .and().value(CLDConditionExpression.initialDuration().less(then: 30))
                     .and().value(CLDConditionExpression.initialDuration().lessOrEqual(to: "$foo"))
                     .and().value(CLDConditionExpression.initialDuration().greater(then: 30))
-                    .and().value(CLDConditionExpression.initialDuration().greaterOrEqual(to: "$foo"))
-        )
+                    .and().value(CLDConditionExpression.initialDuration().greaterOrEqual(to: "$foo")))
             .setCrop("scale")
-            // .Width(new Condition("$foo * 200 / faceCount"))
+            .setWidth(CLDConditionExpression(value: "$foo * 200 / faceCount"))
             .setOverlay("$foostr")
             .endIf()
         
@@ -290,20 +280,17 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
             "_iar_gt_3:4_and" +
             "_h_lt_iw_div_2_add_1_and" +
             "_w_lt_ih_sub_$foo" +
-            "/c_scale," +
-            "l_$foostr" + // "," +
-            // "w_$foo_mul_200_div_fc" +
-        "/if_end";
+        "/c_scale,l_$foostr,w_$foo_mul_200_div_fc/if_end"
         
         let transformation = CLDTransformation()
-            .setVariable(CLDVariable(name: "$foo", value: 10))
-            .setVariable(CLDVariable(name: "$foostr", values: ["my", "str", "ing"]))
+            .setVariable("$foo", intValue: 10)
+            .setVariable("$foostr", values: ["my", "str", "ing"])
             .chain()
             .ifCondition(
                 CLDConditionExpression.faceCount().greater(then: 2)
                     .and(CLDConditionExpression.pageCount().less(then: 300))
-                    .or(string: "!myTag1!").inside(.tags())
-                    .and(string: "!myTag2!").notInside(.tags())
+                    .or("!myTag1!").inside(.tags())
+                    .and("!myTag2!").notInside(.tags())
                     .and(CLDConditionExpression.width().greaterOrEqual(to: 200))
                     .and(CLDConditionExpression.height().equal(to: "$foo"))
                     .and(CLDConditionExpression.width().notEqual(to: "$foo").multiple(by: 2))
@@ -319,16 +306,16 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
                     .and(CLDConditionExpression.height().less(CLDConditionExpression.initialWidth().divide(by: 2).add(by: 1)))
                     .and(CLDConditionExpression.width().less(CLDConditionExpression.initialHeight().subtract(by: "$foo"))))
             .setCrop("scale")
-            /* .Width(new Condition("$foo * 200 / faceCount")) */
+            .setWidth(CLDConditionExpression(value: "$foo * 200 / faceCount"))
             .setOverlay("$foostr")
             .endIf()
         
         XCTAssertEqual(transformationStr, transformation.asString()!)
     }
-
+    
     func test_TestExpressionsClone()
     {
-        let transformationStr = "if_pc_lt_300/c_scale/if_end";
+        let transformationStr = "if_pc_lt_300/c_scale/if_end"
         let expression = CLDConditionExpression.pageCount().less(then: 300)
         
         let transformation = CLDTransformation()
@@ -345,7 +332,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     func test_TestShouldNotChangeVariableNamesWhenTheyNamedAfterKeyword()
     {
         let transformation = CLDTransformation()
-            .setVariable(CLDVariable(name: "$width", value: 10))
+            .setVariable("$width", 10)
             .chain()
             .setWidth("$width + 10 + width")
         let sTransform = transformation.asString()!

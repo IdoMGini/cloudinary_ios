@@ -51,18 +51,17 @@ open class CLDConditionExpression : CLDExpression {
         return self
     }
     @discardableResult
-    public func and(_ value: CLDExpression) -> Self {
-        appendingStringToCurrentValue(cldoperator: .and, inputValue: value.asInternalString())
-        return self
-    }
-    @discardableResult
-    public func and(expresion value: CLDConditionExpression) -> Self {
-        return and(value)
-    }
-    @discardableResult
-    public func and(string value: String) -> Self {
+    public func and(_ value: String) -> Self {
         appendingStringToCurrentValue(cldoperator: .and, inputValue: value)
         return self
+    }
+    @discardableResult
+    public func and(expresion value: CLDExpression) -> Self {
+        return and(value.asInternalString())
+    }
+    @discardableResult
+    public func and(_ value: CLDConditionExpression) -> Self {
+        return and(expresion: value)
     }
     
     @discardableResult
@@ -71,18 +70,17 @@ open class CLDConditionExpression : CLDExpression {
         return self
     }
     @discardableResult
-    public func or(_ value: CLDExpression) -> Self {
-        appendingStringToCurrentValue(cldoperator: .or, inputValue: value.asInternalString())
-        return self
-    }
-    @discardableResult
-    public func or(expresion value: CLDConditionExpression) -> Self {
-        return or(value)
-    }
-    @discardableResult
-    public func or(string value: String) -> Self {
+    public func or(_ value: String) -> Self {
         appendingStringToCurrentValue(cldoperator: .or, inputValue: value)
         return self
+    }
+    @discardableResult
+    public func or(expresion value: CLDExpression) -> Self {
+        return or(value.asInternalString())
+    }
+    @discardableResult
+    public func or( value: CLDConditionExpression) -> Self {
+        return or(expresion: value)
     }
     
     @discardableResult
