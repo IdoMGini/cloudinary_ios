@@ -371,4 +371,25 @@ class CLDTransformationConditionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.hasSuffix("if_end"), "asString() return value should have an 'if_end' suffix")
         XCTAssertEqual(actualResult, expectedResult, "endIf() should separate the first ifCondition to a new transformation")
     }
+    
+    func test_endIf_callEndIfTwice_shouldReturnValidString() {
+        
+        // Given
+        let conditionStringInput = "w_lt_200"
+        
+        let expectedResult = "if_w_lt_200/c_fill,h_120,w_80/if_else/c_fit,h_150/if_end/w_150/e_sepia/if_end"
+        
+        // When
+        sut.ifCondition(conditionStringInput).setCrop(.fill).setHeight(120).setWidth(80)
+            .ifElse().setCrop(.fit).setHeight(150).endIf().setWidth(150)
+            .chain().setEffect(.sepia).endIf()
+        
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertFalse(actualResult.isEmpty, "asString should stored valid value")
+        XCTAssertTrue(actualResult.hasSuffix("if_end"), "asString() return value should have an 'if_end' suffix")
+        XCTAssertEqual(actualResult, expectedResult, "calling endIf() twice should return a valid string (although this probebly shouldn't happen)")
+    }
 }

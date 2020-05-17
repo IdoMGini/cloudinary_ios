@@ -723,12 +723,11 @@ import CoreGraphics
         
         let expression = CLDExpression(value: x)
         
-        guard !expression.currentValue.isEmpty else {
-            
+        if !expression.currentValue.isEmpty {
+            return setX(expression)
+        } else {
             return setParam(TransformationParam.X, value: x)
         }
-        
-        return setX(expression)
     }
     
     // MARK: - Set Values - Y
@@ -2160,7 +2159,6 @@ extension CLDTransformation
     
     @discardableResult
     public func ifCondition(_ condition: CLDConditionExpression, then transformation: CLDExpression) -> Self {
-        // TODO: OZ
         return ifCondition(condition).setParam(transformation.currentKey, value: transformation.currentValue)
     }
     

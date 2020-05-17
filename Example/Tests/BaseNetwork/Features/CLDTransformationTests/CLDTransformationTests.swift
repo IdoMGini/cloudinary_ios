@@ -40,6 +40,7 @@ class CLDTransformationTests: BaseTestCase {
         super.tearDown()
     }
     
+    // MARK: - setHeight
     func test_setHeight_stringValue_shouldReturnValidString() {
         
         // Given
@@ -56,7 +57,8 @@ class CLDTransformationTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
     }
     
-    func test_setx_stringValue_shouldReturnValidString() {
+    // MARK: - setX
+    func test_setX_stringValue_shouldReturnValidString() {
         
         // Given
         let input = "w + 200"
@@ -65,6 +67,129 @@ class CLDTransformationTests: BaseTestCase {
         
         // When
         sut.setX(input)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - setY
+    func test_setY_stringValue_shouldReturnValidString() {
+        
+        // Given
+        let input = "w + 200"
+        
+        let expectedResult = "y_w_add_200"
+        
+        // When
+        sut.setY(input)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - setRadius
+    func test_setRadius_stringValue_shouldReturnValidString() {
+        
+        // Given
+        let input = "w + 200"
+        
+        let expectedResult = "r_w_add_200"
+        
+        // When
+        sut.setRadius(input)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - setRawTransformation
+    func test_setRawTransformation_shouldReturnValidString() {
+        
+        // Given
+        let input = "r_w_add_200"
+        
+        let expectedResult = "r_w_add_200"
+        
+        // When
+        sut.setRawTransformation(input)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    func test_setRawTransformation_multiProperties_shouldOrderTransformation() {
+        
+        // Given
+        let input = "r_w_add_200"
+        
+        let expectedResult = "c_fit,w_100,r_w_add_200"
+        
+        // When
+        sut.setCrop(.fit).setRawTransformation(input).setWidth(100)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    func test_setRawTransformation_ifEnd_shouldOrderTransformation() {
+        
+        // Given
+        let input = "r_w_add_200"
+        
+        let expectedResult = "if_w_gt_100/c_fit,w_100,r_w_add_200/if_end"
+        
+        // When
+        sut.ifCondition().width(">", 100).then().setCrop(.fit).setRawTransformation(input).setWidth(100).endIf()
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    
+    // MARK: - set helper methods
+    func test_setStartOffsetAndEndOffset_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult = "eo_20.2,so_30.3"
+        
+        // When
+        sut.setStartOffsetAndEndOffset(startSeconds: 30.3, endSeconds: 20.2)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    func test_setStartOffsetAndEndOffset_percent_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult = "eo_30p,so_20p"
+        
+        // When
+        sut.setStartOffsetAndEndOffset(startPercent: 20, endPercent: 30)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+    }
+    func test_setTopLeftPoint_shouldReturnValidString() {
+        
+        // Given
+        let point = CGPoint.init(x: 20.2, y: 30.3)
+        let expectedResult = "x_20.2,y_30.3"
+        
+        // When
+        sut.setTopLeftPoint(point)
         
         let actualResult = sut.asString()!
         

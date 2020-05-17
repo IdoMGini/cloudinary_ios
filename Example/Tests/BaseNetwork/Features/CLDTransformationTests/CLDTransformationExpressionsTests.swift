@@ -464,13 +464,48 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "chained conditions should create the expected result")
     }
+    func test_chainedConditions_ifElse_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult = "if_w_gt_200,c_fit,w_200/if_else,c_scale,w_100"
+        
+        // When
+        sut.ifCondition().width(">", 200).then().setCrop(.fit).setWidth(200).ifElse().setCrop(.scale).setWidth(100)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "chained conditions should create the expected result")
+    }
+    func test_chainedConditions_endIf_shouldReturnValidString() {
+        
+        // Given
+        let expectedResult = "if_w_gt_200/c_scale,w_100/if_end"
+        
+        // When
+        sut.ifCondition().width(">", 200).then().setCrop(.scale).setWidth(100).endIf()
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "chained conditions should create the expected result")
+    }
+    func test_chainedConditions_thenInFunc_shouldReturnValidString() {
+        
+        // Given
+        let condition  = CLDConditionExpression.width().greater(then: 100)
+        let expression = CLDExpression.height().multiple(by: 10)
+        
+        let expectedResult = "if_w_gt_100,h_mul_10"
+        
+        // When
+        sut.ifCondition(condition, then: expression)
+        
+        let actualResult = sut.asString()!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "chained conditions should create the expected result")
+    }
 
 }
 
-/*
- .NET code
- 
- var transformation = new Transformation().IfCondition().AspectRatio("gt", "3:4").Then().Width(100).Crop("scale");
- Assert.AreEqual("if_ar_gt_3:4,c_scale,w_100", transformation.ToString(), "passing an operator and a value adds a condition");
-
- */
