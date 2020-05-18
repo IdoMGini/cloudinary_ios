@@ -232,6 +232,18 @@ import CoreGraphics
         return getParam(.VIDEO_CODEC)
     }
     
+    open var fps: String? {
+        return getParam(.FPS)
+    }
+    
+    open var keyframeInterval: String? {
+        return getParam(.KEYFRAME_INTERVAL)
+    }
+    
+    open var streamingProfile: String? {
+        return getParam(.STREAMING_PROFILE)
+    }
+    
     fileprivate func getParam(_ param: TransformationParam) -> String? {
         return getParam(param.rawValue)
     }
@@ -1500,6 +1512,7 @@ import CoreGraphics
      
      - returns:                     The same instance of CLDTransformation.
      */
+    @discardableResult
     func setOffset(seconds: [Float]) -> Self {
         guard let
             start = seconds.first,
@@ -1516,6 +1529,7 @@ import CoreGraphics
      
      - returns:                     The same instance of CLDTransformation.
      */
+    @discardableResult
     func setOffset(percents: [Int]) -> Self {
         guard let
             start = percents.first,
@@ -1533,6 +1547,7 @@ import CoreGraphics
      
      - returns:                     The same instance of CLDTransformation.
      */
+    @discardableResult
     func setOffset(_ durations: [String]) -> Self {
         guard let
             start = durations.first,
