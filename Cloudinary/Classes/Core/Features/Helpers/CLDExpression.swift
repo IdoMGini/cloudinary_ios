@@ -104,7 +104,8 @@ open class CLDExpression: NSObject {
     
     internal var currentValue      : String
     internal var currentKey        : String
-    static private  let separator  : String = ","
+    
+    private let consecutiveDashesRegex: String = "[ _]+"
     
     // MARK: - Init
     public override init() {
@@ -276,7 +277,7 @@ open class CLDExpression: NSObject {
         }
         
         let key   = replaceAllExpressionKeys(in: currentKey)
-        let value = replaceAllUnencodeChars(in: currentValue).removeExtraDashes()
+        let value = removeExtraDashes(from: replaceAllUnencodeChars(in: currentValue))
         
         return "\(key)_\(value)"
     }
@@ -289,7 +290,7 @@ open class CLDExpression: NSObject {
         }
         
         let key   = replaceAllExpressionKeys(in: currentKey)
-        let value = replaceAllUnencodeChars(in: currentValue).removeExtraDashes()
+        let value = removeExtraDashes(from: replaceAllUnencodeChars(in: currentValue))
         
         return [key:value]
     }
@@ -382,5 +383,9 @@ open class CLDExpression: NSObject {
         }
         
         currentValue.append(stringValue)
+    }
+    
+    private func removeExtraDashes(from string: String) -> String {
+        return string.replacingOccurrences(of: consecutiveDashesRegex, with: CLDVariable.elementsSeparator, options: .regularExpression, range: nil)
     }
 }

@@ -1723,7 +1723,7 @@ import CoreGraphics
     
     // MARK: - Private
     
-    func getStringRepresentationFromParams(_ params: [String : String]) -> String? {
+    internal func getStringRepresentationFromParams(_ params: [String : String]) -> String? {
         
         let emptyParams = params.filter { $0.0.isEmpty || $0.1.isEmpty }
         if !emptyParams.isEmpty {
