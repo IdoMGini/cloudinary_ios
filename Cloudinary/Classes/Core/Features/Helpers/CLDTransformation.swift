@@ -340,7 +340,6 @@ import CoreGraphics
         
         let joined = variables.filter {
             $0.isValid
-            
         }.map {
             $0.asString()
         }.joined(separator: CLDTransformation.transformationContentSeparator)
