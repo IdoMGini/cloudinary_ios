@@ -32,7 +32,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
     // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
-        sut = CLDTransformation.init()
+        sut = CLDTransformation()
     }
     
     override func tearDown() {
@@ -42,11 +42,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
     
     
     // MARK: - test set expression using get property
-    func test_setWidthExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+    func test_setWidth_emptyInputParamaters_shouldNotStoreNewVariable() {
         
         // Given
         let input       = String()
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         // When
         sut.setWidth(expression)
@@ -57,11 +57,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
     }
     
-    func test_setWidthExpression_inputExpression_shouldStoreNewValue() {
+    func test_setWidth_inputExpression_shouldStoreNewValue() {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "ih_mul_2"
         
@@ -75,11 +75,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling get width should return its value")
     }
     
-    func test_setHeightExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+    func test_setHeight_emptyInputParamaters_shouldNotStoreNewVariable() {
         
         // Given
         let input       = String()
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         // When
         sut.setHeight(expression)
@@ -90,11 +90,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
     }
     
-    func test_setHeightExpression_inputExpression_shouldStoreNewValue() {
+    func test_setHeight_inputExpression_shouldStoreNewValue() {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "ih_mul_2"
         
@@ -109,11 +109,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
     }
     
     
-    func test_setXExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+    func test_setX_emptyInputParamaters_shouldNotStoreNewVariable() {
         
         // Given
         let input       = String()
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         // When
         sut.setX(expression)
@@ -124,11 +124,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
     }
     
-    func test_setXExpression_inputExpression_shouldStoreNewValue() {
+    func test_setX_inputExpression_shouldStoreNewValue() {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "ih_mul_2"
         
@@ -142,11 +142,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling get x should return its value")
     }
     
-    func test_setYExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+    func test_setY_emptyInputParamaters_shouldNotStoreNewVariable() {
         
         // Given
         let input       = String()
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         // When
         sut.setY(expression)
@@ -157,11 +157,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
     }
     
-    func test_setYExpression_inputExpression_shouldStoreNewValue() {
+    func test_setY_inputExpression_shouldStoreNewValue() {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "ih_mul_2"
         
@@ -175,11 +175,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling get y should return its value")
     }
     
-    func test_setRadiusExpression_emptyInputParamaters_shouldNotStoreNewVariable() {
+    func test_setRadius_emptyInputParamaters_shouldNotStoreNewVariable() {
         
         // Given
         let input       = String()
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         // When
         sut.setRadius(expression)
@@ -190,11 +190,11 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         XCTAssertTrue(actualResult.isEmpty, "Empty expression should not be stored in params")
     }
     
-    func test_setRadiusExpression_inputExpression_shouldStoreNewValue() {
+    func test_setRadius_inputExpression_shouldStoreNewValue() {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "ih_mul_2"
         
@@ -214,7 +214,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let value       = String()
-        let expression  = CLDExpression.init(value: value)
+        let expression  = CLDExpression(value: value)
         
         // When
         sut.setWidth(expression)
@@ -229,7 +229,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let value       = String()
-        let expression  = CLDExpression.init(value: value)
+        let expression  = CLDExpression(value: value)
         
         // When
         sut.setHeight(expression)
@@ -244,7 +244,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let value       = String()
-        let expression  = CLDExpression.init(value: value)
+        let expression  = CLDExpression(value: value)
         
         // When
         sut.setX(expression)
@@ -259,7 +259,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let value       = String()
-        let expression  = CLDExpression.init(value: value)
+        let expression  = CLDExpression(value: value)
         
         // When
         sut.setY(expression)
@@ -274,7 +274,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let value       = String()
-        let expression  = CLDExpression.init(value: value)
+        let expression  = CLDExpression(value: value)
         
         // When
         sut.setRadius(expression)
@@ -290,7 +290,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "w_ih_mul_2"
         
@@ -308,7 +308,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "h_ih_mul_2"
         
@@ -326,7 +326,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "x_ih_mul_2"
         
@@ -344,7 +344,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "y_ih_mul_2"
         
@@ -362,7 +362,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let input       = "initialHeight * 2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "r_ih_mul_2"
         
@@ -380,7 +380,7 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let input       = "initialHeight *      2"
-        let expression  = CLDExpression.init(value: input)
+        let expression  = CLDExpression(value: input)
         
         let expectedResult = "r_ih_mul_2"
         
@@ -398,9 +398,9 @@ class CLDTransformationExpressionsTests: BaseTestCase {
         
         // Given
         let widthInput          = "initialHeight * 2"
-        let widthExpression     = CLDExpression.init(value: widthInput)
+        let widthExpression     = CLDExpression(value: widthInput)
         let radiusInput         = "initialWidth * 2"
-        let radiusExpression    = CLDExpression.init(value: radiusInput)
+        let radiusExpression    = CLDExpression(value: radiusInput)
         
         let expectedResult = "r_iw_mul_2,w_ih_mul_2"
         

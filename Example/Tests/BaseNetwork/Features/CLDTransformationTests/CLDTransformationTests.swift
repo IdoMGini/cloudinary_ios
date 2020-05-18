@@ -32,7 +32,7 @@ class CLDTransformationTests: BaseTestCase {
     // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
-        sut = CLDTransformation.init()
+        sut = CLDTransformation()
     }
     
     override func tearDown() {
@@ -1737,7 +1737,7 @@ class CLDTransformationTests: BaseTestCase {
     func test_setTopLeftPoint_shouldReturnValidString() {
         
         // Given
-        let input = CGPoint.init(x: 20.2, y: 30.3)
+        let input = CGPoint(x: 20.2, y: 30.3)
         
         let expectedResult = "x_20.2,y_30.3"
         

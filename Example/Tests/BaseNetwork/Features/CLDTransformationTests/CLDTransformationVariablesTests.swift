@@ -32,7 +32,7 @@ class CLDTransformationVariablesTests: BaseTestCase {
     // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
-        sut = CLDTransformation.init()
+        sut = CLDTransformation()
     }
     
     override func tearDown() {
@@ -195,7 +195,7 @@ class CLDTransformationVariablesTests: BaseTestCase {
     func test_asString_variablesArrayWithEmptyInputParamaters_shouldReturnEmptyString() {
         
         // Given
-        let variable = CLDVariable.init()
+        let variable = CLDVariable()
         let expectedResult: String? = nil
         
         // When

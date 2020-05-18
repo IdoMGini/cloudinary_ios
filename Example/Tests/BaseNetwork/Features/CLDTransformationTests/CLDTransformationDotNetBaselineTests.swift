@@ -33,7 +33,7 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
-        sut = CLDTransformation.init()
+        sut = CLDTransformation()
     }
     
     override func tearDown() {
@@ -96,19 +96,19 @@ class CLDTransformationDotNetBaselineTests: BaseTestCase {
     
     func test_IfElse()
     {
-        var transformation = CLDTransformation.init(input: [
-            CLDTransformation.init().ifCondition("w_lt_200").setCrop("fill").setHeight(120).setWidth(80),
-            CLDTransformation.init().ifElse().setCrop("fill").setHeight(90).setWidth(100)
+        var transformation = CLDTransformation(input: [
+            CLDTransformation().ifCondition("w_lt_200").setCrop("fill").setHeight(120).setWidth(80),
+            CLDTransformation().ifElse().setCrop("fill").setHeight(90).setWidth(100)
         ])
         
         var sTransform = transformation.asString()!
         XCTAssertEqual("if_w_lt_200,c_fill,h_120,w_80/if_else,c_fill,h_90,w_100", sTransform, "should support if_else with transformation parameters")
         
-        transformation = CLDTransformation.init(input: [
-            CLDTransformation.init().ifCondition("w_lt_200"),
-            CLDTransformation.init().setCrop("fill").setHeight(120).setWidth(80),
-            CLDTransformation.init().ifElse(),
-            CLDTransformation.init().setCrop("fill").setHeight(90).setWidth(100)
+        transformation = CLDTransformation(input: [
+            CLDTransformation().ifCondition("w_lt_200"),
+            CLDTransformation().setCrop("fill").setHeight(120).setWidth(80),
+            CLDTransformation().ifElse(),
+            CLDTransformation().setCrop("fill").setHeight(90).setWidth(100)
         ])
         sTransform = transformation.asString()!
         

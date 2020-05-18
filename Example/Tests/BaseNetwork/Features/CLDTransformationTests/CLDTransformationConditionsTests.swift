@@ -33,7 +33,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
     // MARK: - setup and teardown
     override func setUp() {
         super.setUp()
-        sut = CLDTransformation.init()
+        sut = CLDTransformation()
     }
     
     override func tearDown() {
@@ -77,7 +77,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
     func test_ifCondition_emptyConditionProperty_shouldNotStoreNewParam() {
         
         // Given
-        let conditionObject = CLDConditionExpression.init()
+        let conditionObject = CLDConditionExpression()
         
         // When
         sut.ifCondition(conditionObject)
@@ -92,7 +92,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         
         // Given
         let initialValue = "width < 200"
-        let conditionObject = CLDConditionExpression.init(value: initialValue)
+        let conditionObject = CLDConditionExpression(value: initialValue)
         
         let expectedResult = "w_lt_200"
         
@@ -110,7 +110,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
     func test_ifConditionAsString_emptyConditionProperty_shouldStoreNil() {
         
         // Given
-        let conditionObject = CLDConditionExpression.init()
+        let conditionObject = CLDConditionExpression()
         
         // When
         sut.ifCondition(conditionObject)
@@ -276,7 +276,7 @@ class CLDTransformationConditionsTests: BaseTestCase {
         let valueWidth      = "width < 300"
         let expectedResult  = "if_w_gt_200_and_h_gt_200_or_w_lt_300"
         
-        let conditionObject = CLDConditionExpression.init(value: initialValue).and().value(valueHeight).or().value(valueWidth)
+        let conditionObject = CLDConditionExpression(value: initialValue).and().value(valueHeight).or().value(valueWidth)
         
         // When
         sut.ifCondition(conditionObject)

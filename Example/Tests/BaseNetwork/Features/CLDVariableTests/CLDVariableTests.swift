@@ -46,7 +46,7 @@ class CLDVariableTests: BaseTestCase {
         let name = String()
         
         // When
-        sut = CLDVariable.init()
+        sut = CLDVariable()
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -64,7 +64,7 @@ class CLDVariableTests: BaseTestCase {
         let value = "alue"
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -80,7 +80,7 @@ class CLDVariableTests: BaseTestCase {
         let value = "alue"
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -96,7 +96,7 @@ class CLDVariableTests: BaseTestCase {
         let value = "alue"
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -112,7 +112,7 @@ class CLDVariableTests: BaseTestCase {
         let value = 4
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -128,7 +128,7 @@ class CLDVariableTests: BaseTestCase {
         let value = 4
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -144,7 +144,7 @@ class CLDVariableTests: BaseTestCase {
         let value = 3.14
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -160,7 +160,7 @@ class CLDVariableTests: BaseTestCase {
         let value = 3.14
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -178,7 +178,7 @@ class CLDVariableTests: BaseTestCase {
         let values = [String]()
         
         // When
-        sut = CLDVariable.init(name: name, values: values)
+        sut = CLDVariable(name: name, values: values)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -194,7 +194,7 @@ class CLDVariableTests: BaseTestCase {
         let values = [String]()
         
         // When
-        sut = CLDVariable.init(name: name, values: values)
+        sut = CLDVariable(name: name, values: values)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -211,7 +211,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = "!my!"
         
         // When
-        sut = CLDVariable.init(name: name, values: values)
+        sut = CLDVariable(name: name, values: values)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -228,7 +228,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = "!my:str!"
         
         // When
-        sut = CLDVariable.init(name: name, values: values)
+        sut = CLDVariable(name: name, values: values)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -245,7 +245,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = "!my:str:ing!"
         
         // When
-        sut = CLDVariable.init(name: name, values: values)
+        sut = CLDVariable(name: name, values: values)
         
         // Then
         XCTAssertNotNil(sut.name , "Initilized object should contain a none nil name  property")
@@ -264,7 +264,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = String()
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         let actualResult = sut.asString()
         
@@ -279,7 +279,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = "$foo_bar"
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         let actualResult = sut.asString()
         
@@ -296,7 +296,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = [String:String]()
         
         // When
-        sut = CLDVariable.init(name: name, value: value)
+        sut = CLDVariable(name: name, value: value)
         
         let actualResult = sut.asParams()
         
@@ -311,7 +311,7 @@ class CLDVariableTests: BaseTestCase {
         let expectedResult = ["$foo":"!my:str:ing!"]
         
         // When
-        sut = CLDVariable.init(name: name, values: values)
+        sut = CLDVariable(name: name, values: values)
         
         let actualResult = sut.asParams()
         
