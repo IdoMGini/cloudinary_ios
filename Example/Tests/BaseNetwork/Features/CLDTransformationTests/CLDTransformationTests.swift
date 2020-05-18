@@ -44,187 +44,188 @@ class CLDTransformationTests: BaseTestCase {
     func test_setWidth_int_shouldReturnValidString() {
         
         // Given
-        let int = 200
+        let input = 200
         
         let expectedResult = "200"
         
         // When
-        sut.setWidth(int)
+        sut.setWidth(input)
         
         let actualResult = sut.width!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setWidth_float_shouldReturnValidString() {
         
         // Given
-        let float = Float(30.3)
+        let input = Float(30.3)
         
         let expectedResult = "30.3"
         
         // When
-        sut.setWidth(float)
+        sut.setWidth(input)
         
         let actualResult = sut.width!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setWidth_string_shouldReturnValidString() {
         
         // Given
-        let string = "200"
+        let input = "200"
         
         let expectedResult = "200"
         
         // When
-        sut.setWidth(string)
+        sut.setWidth(input)
         
         let actualResult = sut.width!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setWidth_expression_shouldReturnValidString() {
         
         // Given
-        let expression = CLDExpression.width().add(by: 200)
+        let input = CLDExpression.width().add(by: 200)
+        
         let expectedResult = "w_add_200"
         
         // When
-        sut.setWidth(expression)
+        sut.setWidth(input)
         
         let actualResult = sut.width!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - height
     func test_setHeight_int_shouldReturnValidString() {
         
         // Given
-        let int = 200
+        let input = 200
         
         let expectedResult = "200"
         
         // When
-        sut.setHeight(int)
+        sut.setHeight(input)
         
         let actualResult = sut.height!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setHeight_float_shouldReturnValidString() {
         
         // Given
-        let float = Float(30.3)
+        let input = Float(30.3)
         
         let expectedResult = "30.3"
         
         // When
-        sut.setHeight(float)
+        sut.setHeight(input)
         
         let actualResult = sut.height!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setHeight_string_shouldReturnValidString() {
         
         // Given
-        let string = "200"
+        let input = "height 200"
         
-        let expectedResult = "200"
+        let expectedResult = "h_200"
         
         // When
-        sut.setHeight(string)
+        sut.setHeight(input)
         
         let actualResult = sut.height!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setHeight_expression_shouldReturnValidString() {
         
         // Given
-        let expression = CLDExpression.height().add(by: 200)
+        let input = CLDExpression.height().add(by: 200)
         let expectedResult = "h_add_200"
         
         // When
-        sut.setHeight(expression)
+        sut.setHeight(input)
         
         let actualResult = sut.height!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - named
     func test_setNamed_string_shouldReturnValidString() {
         
         // Given
-        let name1 = "name1"
+        let input = "name1"
         
         let expectedResult = "name1"
         
         // When
-        sut.setNamed(name1)
+        sut.setNamed(input)
         
         let actualResult = sut.named!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setNamed_array_shouldReturnValidString() {
         
         // Given
-        let name1 = "name1"
-        let name2 = "name2"
+        let input1 = "name1"
+        let input2 = "name2"
         
         let expectedResult = "name1.name2"
         
         // When
-        sut.setNamed([name1, name2])
+        sut.setNamed([input1, input2])
         
         let actualResult = sut.named!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - crop
     func test_setCrop_string_shouldReturnValidString() {
         
         // Given
-        let string = "fill"
+        let input = "fill"
         
         let expectedResult = "fill"
         
         // When
-        sut.setCrop(string)
+        sut.setCrop(input)
         
         let actualResult = sut.crop!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setCrop_CLDCrop_shouldReturnValidString() {
         
         // Given
-        let cropEnum = CLDTransformation.CLDCrop.fill
+        let input = CLDTransformation.CLDCrop.fill
         
         let expectedResult = "fill"
         
         // When
-        sut.setCrop(cropEnum)
+        sut.setCrop(input)
         
         let actualResult = sut.crop!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - background
@@ -241,7 +242,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.background!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - color
@@ -258,24 +259,24 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.color!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
-    // MARK: - setEffect
+    // MARK: - effect
     func test_setEffect_string_shouldReturnValidString() {
         
         // Given
-        let string = "gamma"
+        let input = "gamma"
         
         let expectedResult = "gamma"
         
         // When
-        sut.setEffect(string)
+        sut.setEffect(input)
         
         let actualResult = sut.effect!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setEffect_CLDEffect_shouldReturnValidString() {
         
@@ -290,7 +291,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.effect!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setEffect_CLDArt_shouldReturnValidString() {
         
@@ -305,272 +306,274 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.effect!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setEffect_CLDEffectWithParam_shouldReturnValidString() {
         
         // Given
-        let effect = CLDTransformation.CLDEffect.gamma
+        let input = CLDTransformation.CLDEffect.gamma
         let param  = "200"
         
         let expectedResult = "gamma:200"
         
         // When
-        sut.setEffect(effect, param: param)
+        sut.setEffect(input, param: param)
         
         let actualResult = sut.effect!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setEffect_stringEffectWithParam_shouldReturnValidString() {
         
         // Given
-        let stringEffect = "gamma"
-        let param        = "200"
+        let input = "gamma"
+        let param = "200"
         
         let expectedResult = "gamma:200"
         
         // When
-        sut.setEffect(stringEffect, param: param)
+        sut.setEffect(input, param: param)
         
         let actualResult = sut.effect!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - angle
     func test_setAngle_int_shouldReturnValidString() {
         
         // Given
-        let int = 200
+        let input = 200
         
         let expectedResult = "200"
         
         // When
-        sut.setAngle(int)
+        sut.setAngle(input)
         
         let actualResult = sut.angle!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setAngle_string_shouldReturnValidString() {
         
         // Given
-        let string = "200"
+        let input = "200"
         
         let expectedResult = "200"
         
         // When
-        sut.setAngle(string)
+        sut.setAngle(input)
         
         let actualResult = sut.angle!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setAngle_array_shouldReturnValidString() {
         
         // Given
-        let array = ["200", "300"]
+        let input = ["200", "300"]
         
         let expectedResult = "200.300"
         
         // When
-        sut.setAngle(array)
+        sut.setAngle(input)
         
         let actualResult = sut.angle!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - opacity
     func test_setOpacity_int_shouldReturnValidString() {
         
         // Given
-        let int = 200
+        let input = 200
         
         let expectedResult = "200"
         
         // When
-        sut.setOpacity(int)
+        sut.setOpacity(input)
         
         let actualResult = sut.opacity!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setOpacity_string_shouldReturnValidString() {
         
         // Given
-        let string = "200"
+        let input = "200"
         
         let expectedResult = "200"
         
         // When
-        sut.setOpacity(string)
+        sut.setOpacity(input)
         
         let actualResult = sut.opacity!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - border
     func test_setBorder_widthAndColor_shouldReturnValidString() {
         
         // Given
-        let int = 200
-        let string = "rgb:222.111.333"
+        let input          = 200
+        let color          = "rgb:222.111.333"
         let expectedResult = "200px_solid_rgb:222.111.333"
         
         // When
-        sut.setBorder(int, color: string)
+        sut.setBorder(input, color: color)
         
         let actualResult = sut.border!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setBorder_string_shouldReturnValidString() {
         
         // Given
-        let string = "5px_solid_#111111"
+        let input = "5px_solid_#111111"
         
         let expectedResult = "5px_solid_rgb:111111"
         
         // When
-        sut.setBorder(string)
+        sut.setBorder(input)
         
         let actualResult = sut.border!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - x
     func test_setX_int_shouldReturnValidString() {
         
         // Given
-        let int = 200
+        let input = 200
         
         let expectedResult = "200"
         
         // When
-        sut.setX(int)
+        sut.setX(input)
         
         let actualResult = sut.x!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setX_float_shouldReturnValidString() {
         
         // Given
-        let float = Float(30.3)
+        let input = Float(30.3)
         
         let expectedResult = "30.3"
         
         // When
-        sut.setX(float)
+        sut.setX(input)
         
         let actualResult = sut.x!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setX_string_shouldReturnValidString() {
         
         // Given
-        let string = "200"
+        let input = "+ 200"
         
-        let expectedResult = "200"
+        let expectedResult = "+_200"
         
         // When
-        sut.setX(string)
+        sut.setX(input)
         
         let actualResult = sut.x!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setX_expression_shouldReturnValidString() {
         
         // Given
-        let expression = CLDExpression.pageXOffset().add(by: 200)
+        let input = CLDExpression.pageXOffset().add(by: 200)
+        
         let expectedResult = "px_add_200"
         
         // When
-        sut.setX(expression)
+        sut.setX(input)
         
         let actualResult = sut.x!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - y
     func test_setY_int_shouldReturnValidString() {
         
         // Given
-        let int = 200
+        let input = 200
         
         let expectedResult = "200"
         
         // When
-        sut.setY(int)
+        sut.setY(input)
         
         let actualResult = sut.y!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setY_float_shouldReturnValidString() {
         
         // Given
-        let float = Float(30.3)
+        let input = Float(30.3)
         
         let expectedResult = "30.3"
         
         // When
-        sut.setY(float)
+        sut.setY(input)
         
         let actualResult = sut.y!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setY_string_shouldReturnValidString() {
         
         // Given
-        let string = "200"
+        let input = "+ 200"
         
-        let expectedResult = "200"
+        let expectedResult = "+_200"
         
         // When
-        sut.setY(string)
+        sut.setY(input)
         
         let actualResult = sut.y!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setY_expression_shouldReturnValidString() {
         
         // Given
-        let expression = CLDExpression.pageYOffset().add(by: 200)
+        let input = CLDExpression.pageYOffset().add(by: 200)
+        
         let expectedResult = "py_add_200"
         
         // When
-        sut.setY(expression)
+        sut.setY(input)
         
         let actualResult = sut.y!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - radius
@@ -587,14 +590,14 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.radius!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setRadius_string_shouldReturnValidString() {
         
         // Given
-        let input = "200"
+        let input = "+ 200"
         
-        let expectedResult = "200"
+        let expectedResult = "+_200"
         
         // When
         sut.setRadius(input)
@@ -602,10 +605,25 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.radius!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - quality
+    func test_setQuality_int_shouldReturnValidString() {
+        
+        // Given
+        let input = 200
+        
+        let expectedResult = "200"
+        
+        // When
+        sut.setQuality(input)
+        
+        let actualResult = sut.quality!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
     func test_setQuality_string_shouldReturnValidString() {
         
         // Given
@@ -619,7 +637,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.quality!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setQuality_CLDQuality_shouldReturnValidString() { 
         
@@ -634,7 +652,67 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.quality!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setQuality_CLDQualityBest_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDTransformation.CLDQuality.auto(.best)
+        
+        let expectedResult = "auto:best"
+        
+        // When
+        sut.setQuality(input)
+        
+        let actualResult = sut.quality!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setQuality_CLDQualityGood_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDTransformation.CLDQuality.auto(.good)
+        
+        let expectedResult = "auto:good"
+        
+        // When
+        sut.setQuality(input)
+        
+        let actualResult = sut.quality!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setQuality_CLDQualityEco_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDTransformation.CLDQuality.auto(.eco)
+        
+        let expectedResult = "auto:eco"
+        
+        // When
+        sut.setQuality(input)
+        
+        let actualResult = sut.quality!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setQuality_CLDQualityLow_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDTransformation.CLDQuality.auto(.low)
+        
+        let expectedResult = "auto:low"
+        
+        // When
+        sut.setQuality(input)
+        
+        let actualResult = sut.quality!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
 
     // MARK: - defaultImage
@@ -651,7 +729,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.defaultImage!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - gravity
@@ -668,7 +746,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.gravity!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setGravity_CLDGravity_shouldReturnValidString() {
         
@@ -683,7 +761,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.gravity!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - colorSpace
@@ -700,7 +778,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.colorSpace!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - prefix
@@ -717,7 +795,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.prefix!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - overlay
@@ -734,7 +812,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.overlay!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - underlay
@@ -751,7 +829,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.underlay!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - fetschFormat
@@ -768,10 +846,10 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.fetchFormat!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
-    // MARK: - Page
+    // MARK: - density
     func test_setDensity_int_shouldReturnValidString() {
         
         // Given
@@ -785,7 +863,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.density!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setDensity_string_shouldReturnValidString() {
         
@@ -800,7 +878,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.density!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - page
@@ -817,7 +895,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.page!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setPage_string_shouldReturnValidString() {
         
@@ -832,7 +910,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.page!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - delay
@@ -849,7 +927,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.delay!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setDelay_string_shouldReturnValidString() {
         
@@ -864,7 +942,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.delay!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - rawTransformation
@@ -878,10 +956,10 @@ class CLDTransformationTests: BaseTestCase {
         // When
         sut.setRawTransformation(input)
         
-        let actualResult = sut.asString()!
+        let actualResult = sut.rawTransformation!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setRawTransformation_multiProperties_shouldOrderTransformation() {
         
@@ -896,7 +974,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.asString()!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setRawTransformation_ifEnd_shouldOrderTransformation() {
         
@@ -911,7 +989,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.asString()!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - flags
@@ -928,7 +1006,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.flags!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setFlags_array_shouldReturnValidString() {
         
@@ -943,7 +1021,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.flags!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - dpr
@@ -960,7 +1038,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.dpr!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setDpr_string_shouldReturnValidString() {
         
@@ -975,7 +1053,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.dpr!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - zoom
@@ -992,7 +1070,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.zoom!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setZoom_string_shouldReturnValidString() {
         
@@ -1007,7 +1085,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.zoom!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - aspectRatio
@@ -1024,7 +1102,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.aspectRatio!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setAspectRatio_string_shouldReturnValidString() {
         
@@ -1039,7 +1117,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.aspectRatio!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setAspectRatio_int_shouldReturnValidString() {
         
@@ -1055,7 +1133,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.aspectRatio!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - customFunction
@@ -1072,7 +1150,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.customFunction!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setCustomFunction_remote_shouldReturnValidString() {
         
@@ -1087,7 +1165,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.customFunction!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - audioCodec
@@ -1104,7 +1182,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.audioCodec!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - audioFrequency
@@ -1121,7 +1199,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.audioFrequency!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setAudioFrequency_string_shouldReturnValidString() {
         
@@ -1136,7 +1214,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.audioFrequency!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - bitRate
@@ -1153,7 +1231,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.bitRate!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setBitRate_intK_shouldReturnValidString() {
         
@@ -1168,7 +1246,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.bitRate!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setBitRate_string_shouldReturnValidString() {
         
@@ -1183,7 +1261,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.bitRate!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
     // MARK: - videoSampling
@@ -1200,7 +1278,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.videoSampling!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setVideoSampling_float_shouldReturnValidString() {
         
@@ -1215,7 +1293,7 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.videoSampling!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setVideoSampling_string_shouldReturnValidString() {
         
@@ -1230,48 +1308,494 @@ class CLDTransformationTests: BaseTestCase {
         let actualResult = sut.videoSampling!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
-    // MARK: - set helper methods
+    // MARK: - duration
+    func test_setDuration_int_shouldReturnValidString() {
+        
+        // Given
+        let input = 30
+        
+        let expectedResult = "30p"
+        
+        // When
+        sut.setDuration(percent: input)
+        
+        let actualResult = sut.duration!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setDuration_float_shouldReturnValidString() {
+        
+        // Given
+        let input = Float(30.3)
+        
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setDuration(seconds: input)
+        
+        let actualResult = sut.duration!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setDuration_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setDuration(input)
+        
+        let actualResult = sut.duration!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - startOffset
+    func test_setStartOffset_int_shouldReturnValidString() {
+        
+        // Given
+        let input = 30
+        
+        let expectedResult = "30p"
+        
+        // When
+        sut.setStartOffset(percent: input)
+        
+        let actualResult = sut.startOffset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setStartOffset_float_shouldReturnValidString() {
+        
+        // Given
+        let input = Float(30.3)
+        
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setStartOffset(seconds: input)
+        
+        let actualResult = sut.startOffset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setStartOffset_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setStartOffset(input)
+        
+        let actualResult = sut.startOffset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - endOffset
+    func test_setEndOffset_int_shouldReturnValidString() {
+        
+        // Given
+        let input = 30
+        
+        let expectedResult = "30p"
+        
+        // When
+        sut.setEndOffset(percent: input)
+        
+        let actualResult = sut.endOffset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setEndOffset_float_shouldReturnValidString() {
+        
+        // Given
+        let input = Float(30.3)
+        
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setEndOffset(seconds: input)
+        
+        let actualResult = sut.endOffset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setEndOffset_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setEndOffset(input)
+        
+        let actualResult = sut.endOffset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - startOffsetAndEndOffset
     func test_setStartOffsetAndEndOffset_shouldReturnValidString() {
         
         // Given
+        let inputStart = Float(30.3)
+        let inputEnd   = Float(20.2)
+        
         let expectedResult = "eo_20.2,so_30.3"
         
         // When
-        sut.setStartOffsetAndEndOffset(startSeconds: 30.3, endSeconds: 20.2)
+        sut.setStartOffsetAndEndOffset(startSeconds: inputStart, endSeconds: inputEnd)
         
         let actualResult = sut.asString()!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     func test_setStartOffsetAndEndOffset_percent_shouldReturnValidString() {
         
         // Given
+        let inputStart = 20
+        let inputEnd   = 30
+        
         let expectedResult = "eo_30p,so_20p"
         
         // When
-        sut.setStartOffsetAndEndOffset(startPercent: 20, endPercent: 30)
+        sut.setStartOffsetAndEndOffset(startPercent: inputStart, endPercent: inputEnd)
         
         let actualResult = sut.asString()!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
+    
+    // MARK: - videoCodec
+    func test_setVideoCodec_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setVideoCodec(input)
+        
+        let actualResult = sut.videoCodec!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - param
+    func test_setParam_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        let key   = CLDTransformation.TransformationParam.ANGLE.rawValue
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setParam(key, value: input)
+        
+        let actualResult = sut.angle!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - offset
+    func test_setOffset_intArray_shouldReturnValidString() {
+        
+        // Given
+        let input = [30,20]
+        
+        let expectedResult = ["30p","20p"]
+        
+        // When
+        sut.setOffset(percents: input)
+        
+        let actualResult = sut.offset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setOffset_oneValueIntArray_shouldReturnValidString() {
+        
+        // Given
+        let input = [30]
+        
+        let expectedResult = ["30p","30p"]
+        
+        // When
+        sut.setOffset(percents: input)
+        
+        let actualResult = sut.offset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setOffset_emptyIntArray_shouldNotStoreParam() {
+        
+        // Given
+        let input = [Int]()
+        
+        // When
+        sut.setOffset(percents: input)
+        
+        let actualResult = sut.offset
+        
+        // Then
+        XCTAssertNil(actualResult, "offset should not be stored without a valid array")
+    }
+    func test_setOffset_floatArray_shouldReturnValidString() {
+        
+        // Given
+        let input = [Float(30.3),Float(20.2)]
+        
+        let expectedResult = ["30.3","20.2"]
+        
+        // When
+        sut.setOffset(seconds: input)
+        
+        let actualResult = sut.offset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setOffset_oneValueFloatArray_shouldReturnValidString() {
+        
+        // Given
+        let input = [Float(30.3)]
+        
+        let expectedResult = ["30.3","30.3"]
+        
+        // When
+        sut.setOffset(seconds: input)
+        
+        let actualResult = sut.offset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setOffset_emptyFloatArray_shouldNotStoreParam() {
+        
+        // Given
+        let input = [Float]()
+        
+        // When
+        sut.setOffset(seconds: input)
+        
+        let actualResult = sut.offset
+        
+        // Then
+        XCTAssertNil(actualResult, "offset should not be stored without a valid array")
+    }
+    func test_setOffset_stringArray_shouldReturnValidString() {
+        
+        // Given
+        let input = ["30","20"]
+        
+        let expectedResult = ["30","20"]
+        
+        // When
+        sut.setOffset(input)
+        
+        let actualResult = sut.offset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setOffset_oneValueStringArray_shouldReturnValidString() {
+        
+        // Given
+        let input = ["30"]
+        
+        let expectedResult = ["30","30"]
+        
+        // When
+        sut.setOffset(input)
+        
+        let actualResult = sut.offset!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setOffset_emptyStringArray_shouldNotStoreParam() {
+        
+        // Given
+        let input = [String]()
+        
+        // When
+        sut.setOffset(input)
+        
+        let actualResult = sut.offset
+        
+        // Then
+        XCTAssertNil(actualResult, "offset should not be stored without a valid array")
+    }
+    
+    // MARK: - fps
+    func test_setFps_float_shouldReturnValidString() {
+        
+        // Given
+        let input = Float(30.3)
+        
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setFps(input)
+        
+        let actualResult = sut.fps!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setFps_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setFps(input)
+        
+        let actualResult = sut.fps!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setFps_CLDFps_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDTransformation.CLDFps.fromFloat(30.3)
+        
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setFps(input)
+        
+        let actualResult = sut.fps!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - overlayWithLayer
+    func test_setOverlayWithLayer_float_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDLayer().setPublicId(publicId: "logo")
+        
+        let expectedResult = "logo"
+        
+        // When
+        sut.setOverlayWithLayer(input)
+        
+        let actualResult = sut.overlay!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - underlayWithLayer
+    func test_setUnderlayWithLayer_float_shouldReturnValidString() {
+        
+        // Given
+        let input = CLDLayer().setPublicId(publicId: "logo")
+        
+        let expectedResult = "logo"
+        
+        // When
+        sut.setUnderlayWithLayer(input)
+        
+        let actualResult = sut.underlay!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - topLeftPoint
     func test_setTopLeftPoint_shouldReturnValidString() {
         
         // Given
-        let point = CGPoint.init(x: 20.2, y: 30.3)
+        let input = CGPoint.init(x: 20.2, y: 30.3)
+        
         let expectedResult = "x_20.2,y_30.3"
         
         // When
-        sut.setTopLeftPoint(point)
+        sut.setTopLeftPoint(input)
         
         let actualResult = sut.asString()!
         
         // Then
-        XCTAssertEqual(actualResult, expectedResult, "Calling asString should return the expected result")
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - keyframeInterval
+    func test_setKeyframeInterval_float_shouldReturnValidString() {
+        
+        // Given
+        let input = Float(30.3)
+        
+        let expectedResult = "30.3"
+        
+        // When
+        sut.setKeyframeInterval(interval: input)
+        
+        let actualResult = sut.keyframeInterval!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setKeyframeInterval_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setKeyframeInterval(input)
+        
+        let actualResult = sut.keyframeInterval!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
+    // MARK: - keyframeInterval
+    func test_setStreamingProfile_string_shouldReturnValidString() {
+        
+        // Given
+        let input = "30"
+        
+        let expectedResult = "30"
+        
+        // When
+        sut.setStreamingProfile(input)
+        
+        let actualResult = sut.streamingProfile!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
 }
