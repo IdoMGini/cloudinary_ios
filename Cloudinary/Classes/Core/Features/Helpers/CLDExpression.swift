@@ -24,7 +24,7 @@
 
 import Foundation
 
-open class CLDExpression: NSObject {
+@objcMembers open class CLDExpression: NSObject {
 
     internal enum ExpressionKeys : String, CaseIterable {
         
@@ -188,80 +188,95 @@ open class CLDExpression: NSObject {
     }
     
     // MARK: - Public methods
+    @objc(addByInt:)
     @discardableResult
     public func add(by number: Int) -> Self {
         appendOperatorToCurrentValue(.add, inputValue: "\(number)")
         return self
     }
+    @objc(addByFloat:)
     @discardableResult
     public func add(by number: Float) -> Self {
         appendOperatorToCurrentValue(.add, inputValue: number.cldFloatFormat())
         return self
     }
+    @objc(addByString:)
     @discardableResult
     public func add(by number: String) -> Self {
         appendOperatorToCurrentValue(.add, inputValue: number)
         return self
     }
     
+    @objc(subtractByInt:)
     @discardableResult
     public func subtract(by number: Int) -> Self {
         appendOperatorToCurrentValue(.subtract, inputValue: "\(number)")
         return self
     }
+    @objc(subtractByFloat:)
     @discardableResult
     public func subtract(by number: Float) -> Self {
         appendOperatorToCurrentValue(.subtract, inputValue: number.cldFloatFormat())
         return self
     }
+    @objc(subtractByString:)
     @discardableResult
     public func subtract(by number: String) -> Self {
         appendOperatorToCurrentValue(.subtract, inputValue: number)
         return self
     }
     
+    @objc(multipleByInt:)
     @discardableResult
     public func multiple(by number: Int) -> Self {
         appendOperatorToCurrentValue(.multiple, inputValue: "\(number)")
         return self
     }
+    @objc(multipleByFloat:)
     @discardableResult
     public func multiple(by number: Float) -> Self {
         appendOperatorToCurrentValue(.multiple, inputValue: number.cldFloatFormat())
         return self
     }
+    @objc(multipleByString:)
     @discardableResult
     public func multiple(by number: String) -> Self {
         appendOperatorToCurrentValue(.multiple, inputValue: number)
         return self
     }
     
+    @objc(divideByInt:)
     @discardableResult
     public func divide(by number: Int) -> Self {
         appendOperatorToCurrentValue(.divide, inputValue: "\(number)")
         return self
     }
+    @objc(divideByFloat:)
     @discardableResult
     public func divide(by number: Float) -> Self {
         appendOperatorToCurrentValue(.divide, inputValue: number.cldFloatFormat())
         return self
     }
+    @objc(divideByString:)
     @discardableResult
     public func divide(by number: String) -> Self {
         appendOperatorToCurrentValue(.divide, inputValue: number)
         return self
     }
     
+    @objc(powerByInt:)
     @discardableResult
     public func power(by number: Int) -> Self {
         appendOperatorToCurrentValue(.power, inputValue: "\(number)")
         return self
     }
+    @objc(powerByFloat:)
     @discardableResult
     public func power(by number: Float) -> Self {
         appendOperatorToCurrentValue(.power, inputValue: number.cldFloatFormat())
         return self
     }
+    @objc(powerByString:)
     @discardableResult
     public func power(by number: String) -> Self {
         appendOperatorToCurrentValue(.power, inputValue: number)
