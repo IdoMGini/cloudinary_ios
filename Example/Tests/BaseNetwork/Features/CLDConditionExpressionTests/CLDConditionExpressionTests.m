@@ -1,5 +1,5 @@
 //
-//  CLDConditionExpressionTests.m
+//  ObjcCLDConditionExpressionTests.m
 //
 //  Copyright (c) 2018 Cloudinary (http://cloudinary.com)
 //
@@ -25,11 +25,11 @@
 #import <XCTest/XCTest.h>
 #import <Cloudinary/Cloudinary-Swift.h>
 
-@interface CLDConditionExpressionTests : XCTestCase
+@interface ObjcCLDConditionExpressionTests : XCTestCase
 
 @end
 
-@implementation CLDConditionExpressionTests
+@implementation ObjcCLDConditionExpressionTests
 
 CLDConditionExpression *conSut;
 
