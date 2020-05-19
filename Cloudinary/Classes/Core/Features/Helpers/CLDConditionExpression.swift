@@ -338,12 +338,12 @@ import Foundation
     
     
     // MARK: - helper methods
-    @objc(width:int:)
+    @objc(width:intValue:)
     @discardableResult
     public func width(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .width, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(width:float:)
+    @objc(width:floatValue:)
     @discardableResult
     public func width(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .width, operatorString: operatorString, inputValue: String(object))
@@ -364,12 +364,12 @@ import Foundation
         return predicate(expressionKey: .width, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(height:int:)
+    @objc(height:intValue:)
     @discardableResult
     public func height(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .height, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(height:float:)
+    @objc(height:floatValue:)
     @discardableResult
     public func height(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .height, operatorString: operatorString, inputValue: String(object))
@@ -390,12 +390,12 @@ import Foundation
         return predicate(expressionKey: .height, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(aspectRatio:int:)
+    @objc(aspectRatio:intValue:)
     @discardableResult
     public func aspectRatio(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(aspectRatio:float:)
+    @objc(aspectRatio:floatValue:)
     @discardableResult
     public func aspectRatio(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: String(object))
@@ -416,12 +416,12 @@ import Foundation
         return predicate(expressionKey: .aspectRatio, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(initialWidth:int:)
+    @objc(initialWidth:intValue:)
     @discardableResult
     public func initialWidth(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(initialWidth:float:)
+    @objc(initialWidth:floatValue:)
     @discardableResult
     public func initialWidth(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: String(object))
@@ -442,12 +442,12 @@ import Foundation
         return predicate(expressionKey: .initialWidth, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(initialHeight:int:)
+    @objc(initialHeight:intValue:)
     @discardableResult
     public func initialHeight(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(initialHeight:float:)
+    @objc(initialHeight:floatValue:)
     @discardableResult
     public func initialHeight(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: String(object))
@@ -468,12 +468,12 @@ import Foundation
         return predicate(expressionKey: .initialHeight, operatorString: operatorString, inputValue: object.asString())
     }
 
-    @objc(initialAspectRatio:int:)
+    @objc(initialAspectRatio:intValue:)
     @discardableResult
     public func initialAspectRatio(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(initialAspectRatio:float:)
+    @objc(initialAspectRatio:floatValue:)
     @discardableResult
     public func initialAspectRatio(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: String(object))
@@ -494,12 +494,12 @@ import Foundation
         return predicate(expressionKey: .initialAspectRatio, operatorString: operatorString, inputValue: object.asString())
     }
 
-    @objc(pageCount:int:)
+    @objc(pageCount:intValue:)
     @discardableResult
     public func pageCount(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(pageCount:float:)
+    @objc(pageCount:floatValue:)
     @discardableResult
     public func pageCount(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: String(object))
@@ -520,12 +520,12 @@ import Foundation
         return predicate(expressionKey: .pageCount, operatorString: operatorString, inputValue: object.asString())
     }
 
-    @objc(faceCount:int:)
+    @objc(faceCount:intValue:)
     @discardableResult
     public func faceCount(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(faceCount:float:)
+    @objc(faceCount:floatValue:)
     @discardableResult
     public func faceCount(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: String(object))
@@ -546,12 +546,12 @@ import Foundation
         return predicate(expressionKey: .faceCount, operatorString: operatorString, inputValue: object.asString())
     }
 
-    @objc(tags:int:)
+    @objc(tags:intValue:)
     @discardableResult
     public func tags(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(tags:float:)
+    @objc(tags:floatValue:)
     @discardableResult
     public func tags(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: String(object))
@@ -572,12 +572,12 @@ import Foundation
         return predicate(expressionKey: .tags, operatorString: operatorString, inputValue: object.asString())
     }
 
-    @objc(pageXOffset:int:)
+    @objc(pageXOffset:intValue:)
     @discardableResult
     public func pageXOffset(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(pageXOffset:float:)
+    @objc(pageXOffset:floatValue:)
     @discardableResult
     public func pageXOffset(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: String(object))
@@ -598,12 +598,12 @@ import Foundation
         return predicate(expressionKey: .pageX, operatorString: operatorString, inputValue: object.asString())
     }
 
-    @objc(pageYOffset:int:)
+    @objc(pageYOffset:intValue:)
     @discardableResult
     public func pageYOffset(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(pageYOffset:float:)
+    @objc(pageYOffset:floatValue:)
     @discardableResult
     public func pageYOffset(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: String(object))
@@ -624,12 +624,12 @@ import Foundation
         return predicate(expressionKey: .pageY, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(illustrationScore:int:)
+    @objc(illustrationScore:intValue:)
     @discardableResult
     public func illustrationScore(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(illustrationScore:float:)
+    @objc(illustrationScore:floatValue:)
     @discardableResult
     public func illustrationScore(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: String(object))
@@ -650,12 +650,12 @@ import Foundation
         return predicate(expressionKey: .illustrationScore, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(currentPageIndex:int:)
+    @objc(currentPageIndex:intValue:)
     @discardableResult
     public func currentPageIndex(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(currentPageIndex:float:)
+    @objc(currentPageIndex:floatValue:)
     @discardableResult
     public func currentPageIndex(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: String(object))
@@ -676,12 +676,12 @@ import Foundation
         return predicate(expressionKey: .currentPage, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(duration:int:)
+    @objc(duration:intValue:)
     @discardableResult
     public func duration(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(duration:float:)
+    @objc(duration:floatValue:)
     @discardableResult
     public func duration(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: String(object))
@@ -702,12 +702,12 @@ import Foundation
         return predicate(expressionKey: .duration, operatorString: operatorString, inputValue: object.asString())
     }
     
-    @objc(initialDuration:int:)
+    @objc(initialDuration:intValue:)
     @discardableResult
     public func initialDuration(_ operatorString: String, _ object: Int) -> Self {
         return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: String(object))
     }
-    @objc(initialDuration:float:)
+    @objc(initialDuration:floatValue:)
     @discardableResult
     public func initialDuration(_ operatorString: String, _ object: Float) -> Self {
         return predicate(expressionKey: .initialDuration, operatorString: operatorString, inputValue: String(object))
