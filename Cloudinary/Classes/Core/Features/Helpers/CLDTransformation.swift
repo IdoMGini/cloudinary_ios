@@ -262,6 +262,7 @@ import CoreGraphics
      
      - returns:              The same instance of CLDTransformation.
      */
+    @objc(setVariable:intValue:)
     @discardableResult
     public func setVariable(_ name: String, int value: Int) -> Self {
         
@@ -276,6 +277,7 @@ import CoreGraphics
      
      - returns:              The same instance of CLDTransformation.
      */
+    @objc(setVariable:floatValue:)
     @discardableResult
     public func setVariable(_ name: String, float value: Float) -> Self {
         
@@ -290,6 +292,7 @@ import CoreGraphics
      
      - returns:              The same instance of CLDTransformation.
      */
+    @objc(setVariable:string:)
     @discardableResult
     public func setVariable(_ name: String, string value: String) -> Self {
         
@@ -304,7 +307,7 @@ import CoreGraphics
      
      - returns:              The same instance of CLDTransformation.
      */
-    // @objc(setVariableWithNameAndVariablesArray:)
+    @objc(setVariable:valuesArray:)
     @discardableResult
     public func setVariable(_ name: String, values: [String]) -> Self {
         
@@ -319,6 +322,7 @@ import CoreGraphics
      
      - returns:              The same instance of CLDTransformation.
      */
+    @objc(setVariableWithVariable:)
     @discardableResult
     public func setVariable(_ variable: CLDVariable) -> Self {
         
@@ -1706,7 +1710,7 @@ import CoreGraphics
         return self
     }
     
-    internal func asString() -> String? {
+    public func asString() -> String? {
         chain()
         var components: [String] = []
         for params in self.transformations {
