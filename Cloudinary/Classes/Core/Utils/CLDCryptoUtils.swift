@@ -51,6 +51,11 @@ public func cloudinarySignParamsUsingSecret(_ paramsToSign: [String : Any],cloud
     return toSign.sha1_base8(cloudinaryApiSecret)
 }
 
+public func cloudinaryHashUsingSHA256(_ string: String) -> String {
+    return string.sha256()
+}
+
+
 internal extension String {
 
     func sha1_base8(_ secret: String?) -> String {
@@ -108,6 +113,35 @@ internal extension String {
         }
         
         return digestHex
+    }
+}
+
+extension String {
+
+    func sha256() -> String {
+        if let stringData = self.data(using: String.Encoding.utf8) {
+            return hexStringFromData(input: digest(input: stringData as NSData))
+        }
+        return ""
+    }
+
+    private func digest(input : NSData) -> NSData {
+        let digestLength = Int(CC_SHA256_DIGEST_LENGTH)
+        var hash = [UInt8](repeating: 0, count: digestLength)
+        CC_SHA256(input.bytes, UInt32(input.length), &hash)
+        return NSData(bytes: hash, length: digestLength)
+    }
+
+    private func hexStringFromData(input: NSData) -> String {
+        var bytes = [UInt8](repeating: 0, count: input.length)
+        input.getBytes(&bytes, length: input.length)
+
+        var hexString = ""
+        for byte in bytes {
+            hexString += String(format:"%02x", UInt8(byte))
+        }
+
+        return hexString
     }
 }
 

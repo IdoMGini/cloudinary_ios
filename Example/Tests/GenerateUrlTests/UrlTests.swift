@@ -557,6 +557,21 @@ class UrlTests: XCTestCase {
         XCTAssertEqual(sig, "ef1f04e0c1af08208a3dd28483107bc7f4a61209")
     }
 
+    func test_sha256_string_shouldReturnHashedString() {
+        
+        // Given
+        let initialString  = "cryptoString"
+        
+        let expectedResult = "35cb27b64bf8cb00906dfe17cf7a5362bc609559b4db2e3f5fd9e6091f2e36dd"
+        
+        // When
+        let actualResult = cloudinaryHashUsingSHA256(initialString)
+        
+        // Then
+        XCTAssertNotNil(actualResult, "Hashed string should not be nil")
+        XCTAssertEqual(actualResult, expectedResult, "Hashed string should be equal to expected result")
+    }
+    
     func testFolders() {
 
         XCTAssertEqual(cloudinary?.createUrl().generate("folder/test"), "\(prefix)/image/upload/v1/folder/test")
