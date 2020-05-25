@@ -42,5 +42,48 @@ class CryptoUtilsTests: XCTestCase {
         
         XCTAssertEqual("ifMNlf1eg86TJHZ35KMB4nmkjKI", sha1)
     }
+    
+    // MARK: - SHA256
+    func test_SHA256Base64_emptyString_shouldReturnHashedString() {
+        
+        // Given
+        let initialString  = ""
+        
+        let expectedResult = "47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU"
+        
+        // When
+        let actualResult = initialString.sha256_base64()
+        
+        // Then
+        XCTAssertNotNil(actualResult, "Hashed string should not be nil")
+        XCTAssertEqual(actualResult, expectedResult, "Hashed string should be equal to expected result")
+    }
+    func test_SHA256Base64_specialString_shouldReturnHashedString() {
+        
+        // Given
+        let initialString  = "🧼:|}!@#$%^&*()±§`~+_=-"
+        
+        let expectedResult = "jXJPEpRxcbKlIzNzH1RzAsaDeDR87Ir0cENeW8b5t-g"
+        
+        // When
+        let actualResult = initialString.sha256_base64()
+        
+        // Then
+        XCTAssertNotNil(actualResult, "Hashed string should not be nil")
+        XCTAssertEqual(actualResult, expectedResult, "Hashed string should be equal to expected result")
+    }
+    func test_SHA256Base64_string_shouldReturnHashedString() {
+        
+        // Given
+        let initialString  = "cryptoString"
+        
+        let expectedResult = "Ncsntkv4ywCQbf4Xz3pTYrxglVm02y4_X9nmCR8uNt0"
+        
+        // When
+        let actualResult = initialString.sha256_base64()
+        
+        // Then
+        XCTAssertNotNil(actualResult, "Hashed string should not be nil")
+        XCTAssertEqual(actualResult, expectedResult, "Hashed string should be equal to expected result")
+    }
 }
-
