@@ -562,10 +562,10 @@ class UrlTests: XCTestCase {
         // Given
         let initialString  = "cryptoString"
         
-        let expectedResult = "35cb27b64bf8cb00906dfe17cf7a5362bc609559b4db2e3f5fd9e6091f2e36dd"
+        let expectedResult = "Ncsntkv4ywCQbf4Xz3pTYrxglVm02y4_X9nmCR8uNt0"
         
         // When
-        let actualResult = cloudinaryHashUsingSHA256(initialString)
+        let actualResult = cloudinarySignStringUsingSHA256(initialString)
         
         // Then
         XCTAssertNotNil(actualResult, "Hashed string should not be nil")

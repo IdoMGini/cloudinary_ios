@@ -51,8 +51,8 @@ public func cloudinarySignParamsUsingSecret(_ paramsToSign: [String : Any],cloud
     return toSign.sha1_base8(cloudinaryApiSecret)
 }
 
-public func cloudinaryHashUsingSHA256(_ string: String) -> String {
-    return string.sha256()
+public func cloudinarySignStringUsingSHA256(_ string: String) -> String {
+    return string.sha256_base64()
 }
 
 
@@ -94,6 +94,20 @@ internal extension String {
 
         return encoded
     }
+    
+    func sha256_base64() -> String {
+        var digest = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
+        let cStr = NSString(string: self).utf8String
+        CC_SHA256(cStr, CC_LONG(strlen(cStr!)), &digest)
+
+        let data = Data(bytes: digest, count: MemoryLayout<UInt8>.size * digest.count)
+        let base64 = data.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+        let encoded = base64.replacingOccurrences(of: "/", with: "_")
+                .replacingOccurrences(of: "+", with: "-")
+                .replacingOccurrences(of: "=", with: "")
+        
+        return encoded
+    }
 
     func toCRC32() -> UInt32 {
         return crc32(self)
@@ -113,35 +127,6 @@ internal extension String {
         }
         
         return digestHex
-    }
-}
-
-extension String {
-
-    func sha256() -> String {
-        if let stringData = self.data(using: String.Encoding.utf8) {
-            return hexStringFromData(input: digest(input: stringData as NSData))
-        }
-        return ""
-    }
-
-    private func digest(input : NSData) -> NSData {
-        let digestLength = Int(CC_SHA256_DIGEST_LENGTH)
-        var hash = [UInt8](repeating: 0, count: digestLength)
-        CC_SHA256(input.bytes, UInt32(input.length), &hash)
-        return NSData(bytes: hash, length: digestLength)
-    }
-
-    private func hexStringFromData(input: NSData) -> String {
-        var bytes = [UInt8](repeating: 0, count: input.length)
-        input.getBytes(&bytes, length: input.length)
-
-        var hexString = ""
-        for byte in bytes {
-            hexString += String(format:"%02x", UInt8(byte))
-        }
-
-        return hexString
     }
 }
 
