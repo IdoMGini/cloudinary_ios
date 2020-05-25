@@ -51,11 +51,6 @@ public func cloudinarySignParamsUsingSecret(_ paramsToSign: [String : Any],cloud
     return toSign.sha1_base8(cloudinaryApiSecret)
 }
 
-public func cloudinarySignStringUsingSHA256(_ string: String) -> String {
-    return string.sha256_base64()
-}
-
-
 internal extension String {
 
     func sha1_base8(_ secret: String?) -> String {

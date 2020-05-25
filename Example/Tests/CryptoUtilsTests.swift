@@ -19,11 +19,13 @@ class CryptoUtilsTests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: - MD5
     func testMd5() {
         let md5 = "sadnkjqndlk3j43qdaoni834j032df8j0a9sdfu03124".cld_md5()
         XCTAssertEqual("e75465c18b05f1a7e665bbafa9266ef4", md5)
     }
     
+    // MARK - SHA1
     func testSha1Base8(){
         let value = "sadnkjqndlk3j43qdaoni834j032df8j0a9sdfu03124"
         let secret = "rnkjd123af43214na"
