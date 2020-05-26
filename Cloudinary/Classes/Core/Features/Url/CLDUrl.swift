@@ -369,7 +369,7 @@ import Foundation
                 toSign.append(apiSecret)
             }
             
-            if config.longEncryption {
+            if config.longUrlSignature {
                 let encoded = toSign.sha256_base64()
                 signature = "s--\(encoded[0...31])--"
             }

@@ -39,66 +39,66 @@ class CLDConfigurationTests: BaseTestCase {
         super.tearDown()
     }
     
-    // MARK: - LongEncryption
-    func test_initLongEncryption_true_shouldStoreValue() {
+    // MARK: - LongUrlSignature
+    func test_initLongUrlSignature_true_shouldStoreValue() {
         
         // Given
         let input = true
         
         // When
-        sut = CLDConfiguration(cloudName: "", longEncryption: input)
+        sut = CLDConfiguration(cloudName: "", longUrlSignature: input)
         
         // Then
-        XCTAssertTrue(sut.longEncryption, "Init with longEncryption = true, should be stored in property")
+        XCTAssertTrue(sut.longUrlSignature, "Init with longUrlSignature = true, should be stored in property")
     }
-    func test_initLongEncryption_default_shouldStoreFalseValue() {
+    func test_initLongUrlSignature_default_shouldStoreFalseValue() {
        
         // When
         sut = CLDConfiguration(cloudName: "")
         
         // Then
-        XCTAssertFalse(sut.longEncryption, "Init without longEncryption should store the default false value")
+        XCTAssertFalse(sut.longUrlSignature, "Init without longUrlSignature should store the default false value")
     }
-    func test_initLongEncryption_optionsString_shouldStoreValue() {
+    func test_initLongUrlSignature_optionsString_shouldStoreValue() {
         
         // Given
-        let keyCloudName        = CLDConfiguration.ConfigParam.CloudName.rawValue
-        let inputCloudName      = "foo" as AnyObject
-        let keyLongEncryption   = CLDConfiguration.ConfigParam.longEncryption.rawValue
-        let inputLongEncryption = "true" as AnyObject
+        let keyCloudName          = CLDConfiguration.ConfigParam.CloudName.rawValue
+        let inputCloudName        = "foo" as AnyObject
+        let keyLongUrlSignature   = CLDConfiguration.ConfigParam.longUrlSignature.rawValue
+        let inputLongUrlSignature = "true" as AnyObject
         
         // When
-        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keyLongEncryption: inputLongEncryption])
+        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keyLongUrlSignature: inputLongUrlSignature])
         
         // Then
-        XCTAssertTrue(sut.longEncryption, "Init with options with longEncryption = true, should be stored in property")
+        XCTAssertTrue(sut.longUrlSignature, "Init with options with longUrlSignature = true, should be stored in property")
     }
-    func test_initLongEncryption_optionsBool_shouldStoreValue() {
+    func test_initLongUrlSignature_optionsBool_shouldStoreValue() {
         
         // Given
-        let keyCloudName        = CLDConfiguration.ConfigParam.CloudName.rawValue
-        let inputCloudName      = "foo" as AnyObject
-        let keyLongEncryption   = CLDConfiguration.ConfigParam.longEncryption.rawValue
-        let inputLongEncryption = true as AnyObject
+        let keyCloudName          = CLDConfiguration.ConfigParam.CloudName.rawValue
+        let inputCloudName        = "foo" as AnyObject
+        let keyLongUrlSignature   = CLDConfiguration.ConfigParam.longUrlSignature.rawValue
+        let inputLongUrlSignature = true as AnyObject
         
         // When
-        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keyLongEncryption: inputLongEncryption])
+        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keyLongUrlSignature: inputLongUrlSignature])
         
         // Then
-        XCTAssertTrue(sut.longEncryption, "Init with options with longEncryption = true, should be stored in property")
+        XCTAssertTrue(sut.longUrlSignature, "Init with options with longUrlSignature = true, should be stored in property")
     }
-    func test_initLongEncryption_cloudinaryUrl_shouldStoreValue() {
+    func test_initLongUrlSignature_cloudinaryUrl_shouldStoreValue() {
         
         // Given
-        let longEncryptionQuery = ("?\(CLDConfiguration.ConfigParam.longEncryption.description)=true")
-        let testedUrl           = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3"
-        let fullUrl             = testedUrl + longEncryptionQuery
+        let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.longUrlSignature.description)=true")
+        let testedUrl             = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3"
+        let fullUrl               = testedUrl + longUrlSignatureQuery
         
         // When
         sut = CLDConfiguration(cloudinaryUrl: fullUrl)
 
         
         // Then
-        XCTAssertTrue(sut.longEncryption, "Init with cloudinaryUrl with valid longEncryption = true, should be stored in property")
+        XCTAssertTrue(sut.longUrlSignature, "Init with cloudinaryUrl with valid longUrlSignature = true, should be stored in property")
     }
 }
