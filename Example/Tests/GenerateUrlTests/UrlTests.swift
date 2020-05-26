@@ -342,7 +342,7 @@ class UrlTests: XCTestCase {
     }
     
     // MARK: - SHA256
-    func test_urlSuffixSignSHA256_emptyString_shouldReturnExpectedValue() {
+    func test_longUrlSign_emptyApiSecret_shouldCreateExpectedSigning() {
         
         // Given
         let config = CLDConfiguration(cloudName: "test123", apiKey: "apiKey", apiSecret: "", privateCdn: true, longUrlSignature: true)
@@ -359,7 +359,7 @@ class UrlTests: XCTestCase {
         XCTAssertTrue(actualResult.count <= 32, "encrypted component should not be longer than 32 charecters")
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature and call for signUrl = true, should encrypt the ApiSecret with SHA256_base64")
     }
-    func test_urlSuffixSignSHA256_string_shouldReturnExpectedValue() {
+    func test_longUrlSign_normalApiSecret_shouldCreateExpectedSigning() {
         
         // Given
         let config = CLDConfiguration(cloudName: "test123", apiKey: "apiKey", apiSecret: "apiSecret", privateCdn: true, longUrlSignature: true)
@@ -376,7 +376,7 @@ class UrlTests: XCTestCase {
         XCTAssertTrue(actualResult.count <= 32, "encrypted component should not be longer than 32 charecters")
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature and call for signUrl = true, should encrypt the ApiSecret with SHA256_base64")
     }
-    func test_urlSuffixSignSHA256_longString_shouldReturnExpectedValue() {
+    func test_longUrlSign_longApiSecret_shouldCreateExpectedSigning() {
         
         // Given
         let longString = "abcdefghijklmnopqrstuvwxyz1abcdefghijklmnopqrstuvwxyz2abcdefghijklmnopqrstuvwxyz3abcdefghijklmnopqrstuvwxyz4abcdefghijklmnopqrstuvwxyz5abcdefghijklmnopqrstuvwxyz6"
@@ -394,7 +394,7 @@ class UrlTests: XCTestCase {
         XCTAssertTrue(actualResult.count <= 32, "encrypted component should not be longer than 32 charecters")
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature and call for signUrl = true, should encrypt the ApiSecret with SHA256_base64")
     }
-    func test_urlSuffixSignSHA256_specialString_shouldReturnExpectedValue() {
+    func test_longUrlSign_specialApiSecret_shouldCreateExpectedSigning() {
         
         // Given
         let longString = "🔭!@#$%^&*()_+±§?><`~"
@@ -412,7 +412,7 @@ class UrlTests: XCTestCase {
         XCTAssertTrue(actualResult.count <= 32, "encrypted component should not be longer than 32 charecters")
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature and call for signUrl = true, should encrypt the ApiSecret with SHA256_base64")
     }
-    func test_urlSuffixSignSHA256_defaultLongUrlSignature_shouldReturnExpectedValue() {
+    func test_longUrlSign_unset_shouldCreateExpectedSigning() {
         
         // Given
         let config = CLDConfiguration(cloudName: "test123", apiKey: "apiKey", apiSecret: "apiSecret", privateCdn: true)
@@ -429,7 +429,7 @@ class UrlTests: XCTestCase {
         XCTAssertTrue(actualResult.count <= 8, "short encrypted component should not be longer than 8 charecters")
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature = false and call for signUrl = true, should encrypt the ApiSecret with SHA1_base64")
     }
-    func test_urlSuffixSignSHA256_falseSignUrl_shouldReturnExpectedValue() {
+    func test_longUrlSign_signUrlFalse_shouldCreateExpectedSigning() {
         
         // Given
         let config = CLDConfiguration(cloudName: "test123", apiKey: "apiKey", apiSecret: "apiSecret", privateCdn: true, longUrlSignature: true)
@@ -444,7 +444,7 @@ class UrlTests: XCTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature = true and call for signUrl = false, should not encrypt and add the ApiSecret to the url")
     }
-    func test_fullUrl_defaultLongUrlSignature_shouldReturnExpectedValue() {
+    func test_longUrlSign_unset_shouldCreateExpectedUrl() {
         
         // Given
         let url = cloudinary?.createUrl().generate("sample.jpg", signUrl: true)
@@ -457,7 +457,7 @@ class UrlTests: XCTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature = false and signUrl = true, should create a url with SHA1 encrypted apiSecret")
     }
-    func test_fullUrl_trueLongUrlSignature_shouldReturnExpectedValue() {
+    func test_longUrlSign_true_shouldCreateExpectedUrl() {
         
         // Given
         let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.longUrlSignature.description)=true")
