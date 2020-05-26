@@ -444,6 +444,38 @@ class UrlTests: XCTestCase {
         // Then
         XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature = true and call for signUrl = false, should not encrypt and add the ApiSecret to the url")
     }
+    func test_fullUrl_defaultLongUrlSignature_shouldReturnExpectedValue() {
+        
+        // Given
+        let url = cloudinary?.createUrl().generate("sample.jpg", signUrl: true)
+         
+        let expectedResult = "https://res.cloudinary.com/test123/image/upload/s--v2fTPYTu--/sample.jpg"
+        
+        // When
+        let actualResult = url!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature = false and signUrl = true, should create a url with SHA1 encrypted apiSecret")
+    }
+    func test_fullUrl_trueLongUrlSignature_shouldReturnExpectedValue() {
+        
+        // Given
+        let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.longUrlSignature.description)=true")
+        let urlCredentials        = "cloudinary://a:b@test123"
+        let fullUrl               = urlCredentials + longUrlSignatureQuery
+        
+        let config = CLDConfiguration(cloudinaryUrl: fullUrl)
+        cloudinary = CLDCloudinary(configuration: config!)
+        let url = cloudinary?.createUrl().generate("sample.jpg", signUrl: true)
+         
+        let expectedResult = "https://res.cloudinary.com/test123/image/upload/s--2hbrSMPOjj5BJ4xV7SgFbRDevFaQNUFf--/sample.jpg"
+        
+        // When
+        let actualResult = url!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Setting the configuration for longUrlSignature = true and signUrl = true, should create a url with SHA256 encrypted apiSecret")
+    }
 
     func testUseRootPathShared() {
         XCTAssertEqual(cloudinary?.createUrl().setUseRootPath(true).generate("test"), "\(prefix)/test")
