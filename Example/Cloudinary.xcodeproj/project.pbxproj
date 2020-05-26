@@ -81,6 +81,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		D7119CE3246C7C8100F6B3ED /* CLDConditionExpressionHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7119CE2246C7C8100F6B3ED /* CLDConditionExpressionHelpersTests.swift */; };
 		D71ADD99247D72DE00235AD4 /* CLDConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D71ADD98247D72DE00235AD4 /* CLDConfigurationTests.m */; };
+		D71ADD9C247D976500235AD4 /* CryptoUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D71ADD9B247D976500235AD4 /* CryptoUtilsTests.m */; };
 		D71B78FE24680743004AA28E /* CLDTransformationVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B78FD24680743004AA28E /* CLDTransformationVariablesTests.swift */; };
 		D71B790024680773004AA28E /* CLDTransformationExpressionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B78FF24680773004AA28E /* CLDTransformationExpressionsTests.swift */; };
 		D71B7902246808EE004AA28E /* CLDTransformationConditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B7901246808EE004AA28E /* CLDTransformationConditionsTests.swift */; };
@@ -187,6 +188,7 @@
 		AA2F53C389142220209152BA /* Cloudinary.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Cloudinary.podspec; path = ../Cloudinary.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D7119CE2246C7C8100F6B3ED /* CLDConditionExpressionHelpersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDConditionExpressionHelpersTests.swift; sourceTree = "<group>"; };
 		D71ADD98247D72DE00235AD4 /* CLDConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDConfigurationTests.m; sourceTree = "<group>"; };
+		D71ADD9B247D976500235AD4 /* CryptoUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CryptoUtilsTests.m; sourceTree = "<group>"; };
 		D71B78FD24680743004AA28E /* CLDTransformationVariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDTransformationVariablesTests.swift; sourceTree = "<group>"; };
 		D71B78FF24680773004AA28E /* CLDTransformationExpressionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDTransformationExpressionsTests.swift; sourceTree = "<group>"; };
 		D71B7901246808EE004AA28E /* CLDTransformationConditionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDTransformationConditionsTests.swift; sourceTree = "<group>"; };
@@ -514,7 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				272C513B242B6B6E0093AB1B /* BaseNetwork */,
-				274C6D1323FBAF5E0090BC40 /* CryptoUtilsTests.swift */,
+				D71ADD9A247D973E00235AD4 /* CryptoUtilsTests */,
 				274C6D1523FBAF5E0090BC40 /* FileUtilsTests.swift */,
 				274C6D1623FBAF5E0090BC40 /* GenerateUrlTests */,
 				274C6D1D23FBAF5E0090BC40 /* NetworkTests */,
@@ -552,6 +554,15 @@
 				5013B87CB1E3335DB0AC3828 /* Pods_Cloudinary_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D71ADD9A247D973E00235AD4 /* CryptoUtilsTests */ = {
+			isa = PBXGroup;
+			children = (
+				274C6D1323FBAF5E0090BC40 /* CryptoUtilsTests.swift */,
+				D71ADD9B247D976500235AD4 /* CryptoUtilsTests.m */,
+			);
+			path = CryptoUtilsTests;
 			sourceTree = "<group>";
 		};
 		D71E558E247C2FAB003D052E /* CLDConfigurationTests */ = {
@@ -804,6 +815,7 @@
 				D71E558D247C2F81003D052E /* CLDConfigurationTests.swift in Sources */,
 				272C5186242B6C360093AB1B /* MultipartFormDataTests.swift in Sources */,
 				272C5180242B6C360093AB1B /* FileManager+CloudinaryTests.swift in Sources */,
+				D71ADD9C247D976500235AD4 /* CryptoUtilsTests.m in Sources */,
 				272C5187242B6C360093AB1B /* URLProtocolTests.swift in Sources */,
 				272C517F242B6C360093AB1B /* SessionManagerTests.swift in Sources */,
 				274C6D3823FBAF5E0090BC40 /* DownloaderTests.swift in Sources */,

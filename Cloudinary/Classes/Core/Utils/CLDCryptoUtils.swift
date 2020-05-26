@@ -177,4 +177,9 @@ private func crc32(_ string: String) -> UInt32 {
     return crc ^ 0xffffffff
 }
 
+@objcMembers public class CryptoObjcHelper: NSObject {
+    public class func sha256_base64(string: String) -> String {
+        return string.sha256_base64()
+    }
+}
 
