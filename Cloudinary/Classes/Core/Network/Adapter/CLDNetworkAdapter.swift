@@ -55,7 +55,7 @@ to use a custom network adapter you must implement the `CLDNetworkAdapter` proto
      - parameter url:            The URL to make the request to.
      - parameter headers:        A dictionary of the headers to set to the request.
      - parameter parameters:     A dictionary of the parameters to set to the request.
-     - parameter data:           Can receive eithe the data to upload or an NSURL to either a local or a remote file to upload.
+     - parameter data:           Can receive either the data to upload or an NSURL to either a local or a remote file to upload.
 
      - returns:                 An instance implementing the protocol `CLDNetworkDataRequest`,
                                 allowing the options to add a progress closure that is called periodically during the upload
