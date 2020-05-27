@@ -100,7 +100,7 @@ import Foundation
         return params[key]
     }
     
-    internal func merge(_ other: CLDRequestParams?){
+    internal func merge(_ other: CLDRequestParams?) {
         if let other = other {
             self.signature = other.signature
             self.resourceType = other.resourceType
@@ -108,10 +108,9 @@ import Foundation
         }
     }
     
-    internal func addTimeout(from config: CLDConfiguration){
+    internal func addTimeout(from config: CLDConfiguration) {
         guard let timeout = config.timeout else { return }
 
         setParam(CLDConfiguration.ConfigParam.Timeout.description, value: timeout)
     }
-    
 }
