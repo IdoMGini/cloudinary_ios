@@ -29,16 +29,23 @@ import Foundation
 */
 @objcMembers open class CLDManagementApi: CLDBaseNetworkObject {
     
+    fileprivate var configuration: CLDConfiguration!
+    
     // MARK: - Init
     
     fileprivate override init() {
         super.init()
     }
     
-    override internal init(networkCoordinator:CLDNetworkCoordinator) {
+    fileprivate override init(networkCoordinator:CLDNetworkCoordinator) {
         super.init(networkCoordinator: networkCoordinator)
     }
     
+    internal init(networkCoordinator:CLDNetworkCoordinator, configuration config: CLDConfiguration) {
+        self.configuration = config
+        super.init(networkCoordinator: networkCoordinator)
+    }
+     
     
     // MARK: - Features
     
@@ -59,6 +66,7 @@ import Foundation
     @discardableResult
     open func rename(_ publicId: String, to: String, overwrite: Bool? = nil, invalidate: Bool? = nil, params: CLDRenameRequestParams? = nil, completionHandler: ((_ result: CLDRenameResult?, _ error: Error?) -> ())? = nil) -> CLDRenameRequest {
         let renameParams = CLDRenameRequestParams(fromPublicId: publicId, toPublicId: to, overwrite: overwrite, invalidate: invalidate)
+        params?.setParam("", value: "")// TODO: OZ
         renameParams.merge(params)
         let request = networkCoordinator.callAction(.Rename, params:renameParams)
         let renameRequest = CLDRenameRequest(networkRequest: request)
