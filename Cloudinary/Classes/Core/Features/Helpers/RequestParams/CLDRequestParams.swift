@@ -57,7 +57,7 @@ import Foundation
     - parameter key:                The key of parameter to set.
     - parameter value:              The parameter value.
     
-    - returns:                     The same instance of CLDUploadRequestParams.
+    - returns:                     The same instance of CLDRequestParams.
     
     */
     @discardableResult
@@ -93,7 +93,7 @@ import Foundation
      
      - parameter key:               The key of the parameter to retrieve.
      
-     - returns:                     The same instance of CLDUploadRequestParams.
+     - returns:                     The same instance of CLDRequestParams.
      
      */
     open func getParam(_ key: String) -> Any? {
@@ -107,4 +107,11 @@ import Foundation
             self.params.cldMerge(other.params)
         }
     }
+    
+    internal func addTimeout(from config: CLDConfiguration){
+        guard let timeout = config.timeout else { return }
+
+        setParam(CLDConfiguration.ConfigParam.Timeout.description, value: timeout)
+    }
+    
 }
