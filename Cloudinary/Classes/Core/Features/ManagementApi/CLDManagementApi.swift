@@ -55,7 +55,7 @@ import Foundation
     - parameter publicId:               The current identifier of the uploaded asset.
     - parameter to:                     The new identifier to assign to the uploaded asset.
     - parameter overwrite:              A boolean parameter indicating whether or not to overwrite an existing image with the target Public ID. Default: false.
-    - parameter invalidate:             A boolean parameter whether to invalidate CDN cached copies of the image (and all its transformed versions). Default: false.
+    - parameter invalidate:             A boolean parameter indicating whether to invalidate CDN cached copies of the image (and all its transformed versions). Default: false.
     - parameter params:                 An object holding the available parameters for the request.
     - parameter completionHandler:      The closure to be called once the request has finished, holding either the response object or the error.
     
@@ -66,7 +66,7 @@ import Foundation
     @discardableResult
     open func rename(_ publicId: String, to: String, overwrite: Bool? = nil, invalidate: Bool? = nil, params: CLDRenameRequestParams? = nil, completionHandler: ((_ result: CLDRenameResult?, _ error: Error?) -> ())? = nil) -> CLDRenameRequest {
         let renameParams = CLDRenameRequestParams(fromPublicId: publicId, toPublicId: to, overwrite: overwrite, invalidate: invalidate)
-        renameParams.addTimeout(from: configuration)
+        renameParams.setTimeout(from: configuration)
         renameParams.merge(params)
         let request = networkCoordinator.callAction(.Rename, params:renameParams)
         let renameRequest = CLDRenameRequest(networkRequest: request)
@@ -88,7 +88,7 @@ import Foundation
     @discardableResult
     open func destroy(_ publicId: String, params: CLDDestroyRequestParams? = nil, completionHandler: ((_ result: CLDDeleteResult?, _ error: Error?) -> ())? = nil) -> CLDDeleteRequest {
         let destroyParams = CLDDestroyRequestParams(publicId: publicId)
-        destroyParams.addTimeout(from: configuration)
+        destroyParams.setTimeout(from: configuration)
         destroyParams.merge(params)
         let request = networkCoordinator.callAction(.Destroy, params: destroyParams)
         let destroyRequest = CLDDeleteRequest(networkRequest: request)
@@ -114,7 +114,7 @@ import Foundation
     @discardableResult
     open func addTag(_ tag: String, publicIds: [String], params: CLDTagsRequestParams? = nil, completionHandler: ((_ result: CLDTagResult?, _ error: Error?) -> ())? = nil) -> CLDTagRequest {
         let addTagParams = CLDTagsRequestParams(tag: tag, publicIds: publicIds)
-        addTagParams.addTimeout(from: configuration)
+        addTagParams.setTimeout(from: configuration)
         addTagParams.merge(params)
         
         let request = networkCoordinator.callAction(.Tags, params: addTagParams.setCommand(.add))
@@ -141,7 +141,7 @@ import Foundation
     @discardableResult
     open func removeTag(_ tag: String, publicIds: [String], params: CLDTagsRequestParams? = nil, completionHandler: ((_ result: CLDTagResult?, _ error: Error?) -> ())? = nil) -> CLDTagRequest {
         let removeTagParams = CLDTagsRequestParams(tag: tag, publicIds: publicIds)
-        removeTagParams.addTimeout(from: configuration)
+        removeTagParams.setTimeout(from: configuration)
         removeTagParams.merge(params)
         let request = networkCoordinator.callAction(.Tags, params: removeTagParams.setCommand(.remove))
         let tagRequest = CLDTagRequest(networkRequest: request)
@@ -167,7 +167,7 @@ import Foundation
     @discardableResult
     open func replaceTag(_ tag: String, publicIds: [String], params: CLDTagsRequestParams? = nil, completionHandler: ((_ result: CLDTagResult?, _ error: Error?) -> ())? = nil) -> CLDTagRequest {
         let replaceTagParams = CLDTagsRequestParams(tag: tag, publicIds: publicIds)
-        replaceTagParams.addTimeout(from: configuration)
+        replaceTagParams.setTimeout(from: configuration)
         replaceTagParams.merge(params)
         let request = networkCoordinator.callAction(.Tags, params: replaceTagParams.setCommand(.replace))
         let tagRequest = CLDTagRequest(networkRequest: request)
@@ -194,7 +194,7 @@ import Foundation
     @objc(explicitPublicId:stringType:params:completionHandler:)
     open func explicit(_ publicId: String, type: String, params: CLDExplicitRequestParams? = nil, completionHandler: ((_ result: CLDExplicitResult?, _ error: Error?) -> ())? = nil) -> CLDExplicitRequest {
         let explicitParams = CLDExplicitRequestParams(publicId: publicId, type: type)
-        explicitParams.addTimeout(from: configuration)
+        explicitParams.setTimeout(from: configuration)
         explicitParams.merge(params)
         let request = networkCoordinator.callAction(.Explicit, params: explicitParams)
         let explicitRequest = CLDExplicitRequest(networkRequest: request)
@@ -241,7 +241,7 @@ import Foundation
     @discardableResult
     open func explode(_ publicId: String, transformation: CLDTransformation, params: CLDExplodeRequestParams? = nil, completionHandler: ((_ result: CLDExplodeResult?, _ error: Error?) -> ())? = nil) -> CLDExplodeRequest {
         let explodeParams = CLDExplodeRequestParams(publicId: publicId, transformation: transformation)
-        explodeParams.addTimeout(from: configuration)
+        explodeParams.setTimeout(from: configuration)
         explodeParams.merge(params)
         let request = networkCoordinator.callAction(.Explode, params: explodeParams)
         let explodeRequest = CLDExplodeRequest(networkRequest: request)
@@ -264,7 +264,7 @@ import Foundation
     @discardableResult
     open func generateSprite(_ tag: String, params: CLDSpriteRequestParams? = nil, completionHandler: ((_ result: CLDSpriteResult?, _ error: Error?) -> ())? = nil) -> CLDSpriteRequest {
         let generateSpriteParams = CLDSpriteRequestParams(tag: tag)
-        generateSpriteParams.addTimeout(from: configuration)
+        generateSpriteParams.setTimeout(from: configuration)
         generateSpriteParams.merge(params)
         let request = networkCoordinator.callAction(.GenerateSprite, params: generateSpriteParams)
         let spriteRequest = CLDSpriteRequest(networkRequest: request)
@@ -288,7 +288,7 @@ import Foundation
     @discardableResult
     open func multi(_ tag: String, params: CLDMultiRequestParams? = nil, completionHandler: ((_ result: CLDMultiResult?, _ error: Error?) -> ())? = nil) -> CLDMultiRequest {
         let multiParams = CLDMultiRequestParams(tag: tag)
-        multiParams.addTimeout(from: configuration)
+        multiParams.setTimeout(from: configuration)
         multiParams.merge(params)
         let request = networkCoordinator.callAction(.Multi, params: multiParams)
         let multiRequest = CLDMultiRequest(networkRequest: request)
@@ -313,7 +313,7 @@ import Foundation
     @discardableResult
     open func text(_ text: String, params: CLDTextRequestParams? = nil, completionHandler: ((_ result: CLDTextResult?, _ error: Error?) -> ())? = nil) -> CLDTextRequest {
         let textParams = CLDTextRequestParams(text: text)
-        textParams.addTimeout(from: configuration)
+        textParams.setTimeout(from: configuration)
         textParams.merge(params)
         let request = networkCoordinator.callAction(.GenerateText, params: textParams)
         let textRequest = CLDTextRequest(networkRequest: request)
@@ -337,7 +337,7 @@ import Foundation
     @discardableResult
     open func deleteByToken(_ token: String, params: CLDDeleteByTokenRequestParams? = nil, completionHandler: ((_ result: CLDDeleteResult?, _ error: Error?) -> ())? = nil) -> CLDDeleteRequest {
         let deleteByTokenParams = CLDDeleteByTokenRequestParams(token: token)
-        deleteByTokenParams.addTimeout(from: configuration)
+        deleteByTokenParams.setTimeout(from: configuration)
         deleteByTokenParams.merge(params)
         let request = networkCoordinator.callAction(.DeleteByToken, params: deleteByTokenParams)
         let deleteByTokenRequest = CLDDeleteRequest(networkRequest: request)

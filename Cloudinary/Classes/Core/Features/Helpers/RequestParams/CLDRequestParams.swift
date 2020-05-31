@@ -108,7 +108,7 @@ import Foundation
         }
     }
     
-    internal func addTimeout(from config: CLDConfiguration) {
+    internal func setTimeout(from config: CLDConfiguration) {
         guard let timeout = config.timeout else { return }
 
         setParam(CLDConfiguration.ConfigParam.Timeout.description, value: timeout)

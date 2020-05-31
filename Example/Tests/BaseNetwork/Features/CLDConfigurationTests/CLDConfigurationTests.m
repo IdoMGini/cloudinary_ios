@@ -43,7 +43,7 @@ CLDConfiguration *configurationSut;
     configurationSut = nil;
 }
 
-// MARK: - LongUrlSignature
+// MARK: - longUrlSignature
 - (void)test_initLongUrlSignature_true_shouldStoreValue {
         
     // Given
