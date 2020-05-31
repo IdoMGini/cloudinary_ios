@@ -498,4 +498,34 @@ class ManagementApiTests: NetworkBaseTest {
         XCTAssertEqual(result?.status ?? "", "processing")
     }
     
+    
+    // MARK: - timeout
+    func test_renameWithTimeout_callShouldRespectTimeout() {
+        
+        let expectation = self.expectation(description: "Rename should succeed")
+        
+        var result: CLDRenameResult?
+        var error: Error?
+        
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                let toRename = publicId + "__APPENDED STRING"
+                self.cloudinaryRequestTimeout!.createManagementApi().rename(publicId, to: toRename).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        XCTAssertNil(error, "error should be nil")
+        XCTAssertNotNil(result, "response should not be nil")
+    }
 }
