@@ -153,11 +153,11 @@ import Foundation
                         secureCdnSubdomain = value.cldAsBool()
                     }
                     break
-                case .longUrlSignature:
-                    if let value = options[ConfigParam.longUrlSignature.rawValue] as? Bool {
+                case .LongUrlSignature:
+                    if let value = options[ConfigParam.LongUrlSignature.rawValue] as? Bool {
                         longUrlSignature = value
                     }
-                    else if let value = options[ConfigParam.longUrlSignature.rawValue] as? String {
+                    else if let value = options[ConfigParam.LongUrlSignature.rawValue] as? String {
                         longUrlSignature = value.cldAsBool()
                     }
                     break
@@ -282,7 +282,7 @@ import Foundation
                         case .Secure: secure = keyValue[1].cldAsBool()
                         case .CdnSubdomain: cdnSubdomain = keyValue[1].cldAsBool()
                         case .SecureCdnSubdomain: secureCdnSubdomain = keyValue[1].cldAsBool()
-                        case .longUrlSignature: longUrlSignature = keyValue[1].cldAsBool()
+                        case .LongUrlSignature: longUrlSignature = keyValue[1].cldAsBool()
                         case .CName: cname = keyValue[1]
                         case .UploadPrefix: uploadPrefix = keyValue[1]
                             
@@ -301,7 +301,7 @@ import Foundation
         case Secure =               "secure"
         case CdnSubdomain =         "cdn_subdomain"
         case SecureCdnSubdomain =   "secure_cdn_subdomain"
-        case longUrlSignature =     "long_url_signature"
+        case LongUrlSignature =     "long_url_signature"
         case CName =                "cname"
         case UploadPrefix =         "upload_prefix"
         
@@ -317,7 +317,7 @@ import Foundation
                 case .Secure:               return "secure"
                 case .CdnSubdomain:         return "cdn_subdomain"
                 case .SecureCdnSubdomain:   return "secure_cdn_subdomain"
-                case .longUrlSignature:     return "long_url_signature"
+                case .LongUrlSignature:     return "long_url_signature"
                 case .CName:                return "cname"
                 case .UploadPrefix:         return "upload_prefix"
                 case .APIKey:               return "api_key"
