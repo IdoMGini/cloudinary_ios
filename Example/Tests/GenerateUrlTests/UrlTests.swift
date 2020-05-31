@@ -460,7 +460,7 @@ class UrlTests: XCTestCase {
     func test_longUrlSign_true_shouldCreateExpectedUrl() {
         
         // Given
-        let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.LongUrlSignature.description)=true")
+        let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.longUrlSignature.description)=true")
         let urlCredentials        = "cloudinary://a:b@test123"
         let fullUrl               = urlCredentials + longUrlSignatureQuery
         
