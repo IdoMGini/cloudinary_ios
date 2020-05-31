@@ -64,7 +64,7 @@ class CLDConfigurationTests: BaseTestCase {
         // Given
         let keyCloudName          = CLDConfiguration.ConfigParam.CloudName.rawValue
         let inputCloudName        = "foo" as AnyObject
-        let keyLongUrlSignature   = CLDConfiguration.ConfigParam.longUrlSignature.rawValue
+        let keyLongUrlSignature   = CLDConfiguration.ConfigParam.LongUrlSignature.rawValue
         let inputLongUrlSignature = "true" as AnyObject
         
         // When
@@ -78,7 +78,7 @@ class CLDConfigurationTests: BaseTestCase {
         // Given
         let keyCloudName          = CLDConfiguration.ConfigParam.CloudName.rawValue
         let inputCloudName        = "foo" as AnyObject
-        let keyLongUrlSignature   = CLDConfiguration.ConfigParam.longUrlSignature.rawValue
+        let keyLongUrlSignature   = CLDConfiguration.ConfigParam.LongUrlSignature.rawValue
         let inputLongUrlSignature = true as AnyObject
         
         // When
@@ -90,7 +90,7 @@ class CLDConfigurationTests: BaseTestCase {
     func test_initLongUrlSignature_cloudinaryUrl_shouldStoreValue() {
         
         // Given
-        let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.longUrlSignature.description)=true")
+        let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.LongUrlSignature.description)=true")
         let testedUrl             = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3"
         let fullUrl               = testedUrl + longUrlSignatureQuery
         
