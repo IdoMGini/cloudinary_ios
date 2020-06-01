@@ -229,12 +229,10 @@ internal class CLDNSessionManager {
         var originalRequest: URLRequest?
 
         do {
-            originalRequest = try URLRequest(url: url, method: method, headers: headers)
-            
             var parameters = parameters
-            
             let timeoutParamater = parameters?.removeValue(forKey: CLDConfiguration.ConfigParam.Timeout.description)
             
+            originalRequest = try URLRequest(url: url, method: method, headers: headers)
             var encodedURLRequest = try encoding.CLDN_Encode(originalRequest!, with: parameters)
             
             if let timeout = timeoutParamater as? NSNumber {
