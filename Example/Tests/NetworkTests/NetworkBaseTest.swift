@@ -28,8 +28,9 @@ import Cloudinary
 
 class NetworkBaseTest: XCTestCase {
     let timeout: TimeInterval = 30.0
+    
     var cloudinary: CLDCloudinary?
-    var cloudinaryRequestTimeout: CLDCloudinary?
+    var cloudinaryTimeout: CLDCloudinary?
     var cloudinaryNoSecret: CLDCloudinary!
     var cloudinarySecured:CLDCloudinary!
     
@@ -45,7 +46,7 @@ class NetworkBaseTest: XCTestCase {
             config = CLDConfiguration.initWithEnvParams() ?? CLDConfiguration(cloudinaryUrl: "cloudinary://a:b@test123")!
         }
         
-        let configTimeout = CLDConfiguration (cloudName: config.cloudName, apiKey: config.apiKey, apiSecret: config.apiSecret, privateCdn: config.privateCdn, secure: config.secure, cdnSubdomain: config.cdnSubdomain, secureCdnSubdomain: config.secureCdnSubdomain, secureDistribution: config.secureDistribution, cname: config.cname, uploadPrefix: config.uploadPrefix, timeout: 10000)
+        let configTimeout = CLDConfiguration (cloudName: config.cloudName, apiKey: config.apiKey, apiSecret: config.apiSecret, privateCdn: config.privateCdn, secure: config.secure, cdnSubdomain: config.cdnSubdomain, secureCdnSubdomain: config.secureCdnSubdomain, secureDistribution: config.secureDistribution, cname: config.cname, uploadPrefix: config.uploadPrefix, timeout: 0.01)
         
         let configNoSecret = CLDConfiguration (cloudName: config.cloudName, apiKey: config.apiKey, apiSecret: nil, privateCdn: config.privateCdn, secure: config.secure, cdnSubdomain: config.cdnSubdomain, secureCdnSubdomain: config.secureCdnSubdomain, secureDistribution: config.secureDistribution, cname: config.cname, uploadPrefix: config.uploadPrefix)
 
@@ -53,7 +54,7 @@ class NetworkBaseTest: XCTestCase {
         
         cloudinary = CLDCloudinary(configuration: config, sessionConfiguration: .default)
         
-        cloudinaryRequestTimeout = CLDCloudinary(configuration: configTimeout, sessionConfiguration: .default)
+        cloudinaryTimeout = CLDCloudinary(configuration: configTimeout, sessionConfiguration: .default)
 
         cloudinaryNoSecret = CLDCloudinary(configuration: configNoSecret, sessionConfiguration: .default)
         cloudinarySecured = CLDCloudinary(configuration: configSecured)
@@ -62,6 +63,9 @@ class NetworkBaseTest: XCTestCase {
     override func tearDown() {
         super.tearDown()
         cloudinary = nil
+        cloudinaryTimeout = nil
+        cloudinaryNoSecret = nil
+        cloudinarySecured = nil
     }
     
     // MARK: - Resources

@@ -501,19 +501,21 @@ class ManagementApiTests: NetworkBaseTest {
         XCTAssertEqual(result?.status ?? "", "processing")
     }
     
-    
     // MARK: - timeout
-    func test_renameWithTimeout_callShouldRespectTimeout() {
+    func test_renameWithTimeout_insufficientTimeOut_requestShouldRespectTimeout() {
         
-        let expectation = self.expectation(description: "Rename should succeed")
-        
+        // Given
         var result: CLDRenameResult?
         var error: Error?
         
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "rename should fail")
+        
+        // When
         uploadFile().response({ (uploadResult, uploadError) in
             if let publicId = uploadResult?.publicId {
                 let toRename = publicId + "__APPENDED STRING"
-                self.cloudinaryRequestTimeout!.createManagementApi().rename(publicId, to: toRename).response({ (resultRes, errorRes) in
+                self.cloudinaryTimeout!.createManagementApi().rename(publicId, to: toRename).response({ (resultRes, errorRes) in
                     result = resultRes
                     error = errorRes
                     
@@ -528,7 +530,395 @@ class ManagementApiTests: NetworkBaseTest {
         
         waitForExpectations(timeout: timeout, handler: nil)
 
-        XCTAssertNil(error, "error should be nil")
-        XCTAssertNotNil(result, "response should not be nil")
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_explicitWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDExplicitResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "explicit should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                self.cloudinaryTimeout!.createManagementApi().explicit(publicId, type: .facebook).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_destroyWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDDeleteResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "destroy should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                self.cloudinaryTimeout!.createManagementApi().destroy(publicId).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_addTagWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDTagResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "addTag should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                self.cloudinaryTimeout!.createManagementApi().addTag("tag1", publicIds: [publicId]).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_replaceTagWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDTagResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "replaceTag should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                self.cloudinaryTimeout!.createManagementApi().replaceTag("tag1", publicIds: [publicId]).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_removeTagWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDTagResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "removeTag should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                self.cloudinaryTimeout!.createManagementApi().removeTag("tag1", publicIds: [publicId]).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_textWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDTextResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "text should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if (uploadResult?.publicId) != nil {
+                self.cloudinaryTimeout!.createManagementApi().text("tag1").response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_spriteWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDSpriteResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "sprite should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if (uploadResult?.publicId) != nil {
+                self.cloudinaryTimeout!.createManagementApi().generateSprite("tag1").response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_multiWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDMultiResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "multi should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if (uploadResult?.publicId) != nil {
+                self.cloudinaryTimeout!.createManagementApi().multi("tag1").response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_deleteByTokenWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDDeleteResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "delete by token should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if (uploadResult?.publicId) != nil {
+                self.cloudinaryTimeout!.createManagementApi().deleteByToken("tag1").response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
+    }
+    func test_explodeWithTimeout_insufficientTimeOut_callShouldRespectTimeout() {
+        
+        // Given
+        var result: CLDExplodeResult?
+        var error: Error?
+        
+        let expectedResult = "-1001"
+        let expectation = self.expectation(description: "explode should fail")
+        
+        // When
+        uploadFile().response({ (uploadResult, uploadError) in
+            if let publicId = uploadResult?.publicId {
+                self.cloudinaryTimeout!.createManagementApi().explode(publicId, transformation: CLDTransformation.init()).response({ (resultRes, errorRes) in
+                    result = resultRes
+                    error = errorRes
+                    
+                    expectation.fulfill()
+                })
+            }
+            else {
+                error = uploadError
+                expectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        // Then
+        var actualResult = String()
+            
+        if let error = error {
+            actualResult = String((error as NSError).code)
+        }
+        
+        XCTAssertNotNil(error, "error should not be nil")
+        XCTAssertNil(result, "response should be nil")
+        XCTAssertEqual(actualResult, expectedResult, "error should occur due to timeout")
     }
 }
