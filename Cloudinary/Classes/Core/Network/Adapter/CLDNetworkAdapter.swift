@@ -148,7 +148,7 @@ as well as performing actions on the request, such as cancelling, suspending or 
     
     - parameter progress:          The closure that is called periodically during the data transfer.
     
-    - returns:                          The same instance of CLDNetworkDataRequest.
+    - returns:                     The same instance of CLDNetworkDataRequest.
     */
     @discardableResult
     func progress(_ progress: ((Progress) -> Void)?) -> CLDNetworkDataRequest
