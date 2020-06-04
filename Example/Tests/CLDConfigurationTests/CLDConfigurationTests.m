@@ -174,5 +174,4 @@ CLDConfiguration *configurationSut;
     // Then
     XCTAssertEqualObjects(configurationSut.timeout, expectedResult, "Init with cloudinaryUrl with valid timeout, should be stored in property");
 }
-
 @end
