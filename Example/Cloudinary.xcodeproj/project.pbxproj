@@ -586,7 +586,6 @@
 			path = CLDConfigurationTests;
 			sourceTree = "<group>";
 		};
-
 		D79AE39924585499004F2439 /* CLDVariableTests */ = {
 			isa = PBXGroup;
 			children = (
