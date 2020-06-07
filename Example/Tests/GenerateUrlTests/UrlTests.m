@@ -193,4 +193,64 @@ CLDCloudinary *cloudinary;
     XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = true and call generate with signUrl = true, should create a url with SHA256 encrypted apiSecret");
 }
 
+// MARK: - custom pre functions
+- (void)test_customPreFunction_wasm_shouldReturnExpectedValue {
+   
+    // Given
+    NSString* input = @"blur_wasm";
+    
+    NSString* expectedResult = @"fn_pre:wasm:blur_wasm";
+    
+    // When
+    CLDTransformation* sut = [[[CLDTransformation alloc] init] setCustomPreFunction:[CLDCustomFunction wasm:input]];
+    NSString* actualResult = [sut asString];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult ,expectedResult, "actualResult should be equal to expectedResult");
+}
+- (void)test_customPreFunction_remote_shouldReturnExpectedValue {
+    
+    // Given
+    NSString* input = @"https://df34ra4a.execute-api.us-west-2.amazonaws.com/default/cloudinaryFunction";
+    
+    NSString* expectedResult = @"fn_pre:remote:aHR0cHM6Ly9kZjM0cmE0YS5leGVjdXRlLWFwaS51cy13ZXN0LTIuYW1hem9uYXdzLmNvbS9kZWZhdWx0L2Nsb3VkaW5hcnlGdW5jdGlvbg==";
+    
+    // When
+    CLDTransformation* sut = [[[CLDTransformation alloc] init] setCustomPreFunction:[CLDCustomFunction remote:input]];
+    NSString* actualResult = [sut asString];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult ,expectedResult, "actualResult should be equal to expectedResult");
+}
+
+// MARK: - custom functions
+- (void)test_customFunction_wasm_shouldReturnExpectedValue {
+   
+    // Given
+    NSString* input = @"blur_wasm";
+    
+    NSString* expectedResult = @"fn_wasm:blur_wasm";
+    
+    // When
+    CLDTransformation* sut = [[[CLDTransformation alloc] init] setCustomFunction:[CLDCustomFunction wasm:input]];
+    NSString* actualResult = [sut asString];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult ,expectedResult, "actualResult should be equal to expectedResult");
+}
+- (void)test_customFunction_remote_shouldReturnExpectedValue {
+    
+    // Given
+    NSString* input = @"https://df34ra4a.execute-api.us-west-2.amazonaws.com/default/cloudinaryFunction";
+    
+    NSString* expectedResult = @"fn_remote:aHR0cHM6Ly9kZjM0cmE0YS5leGVjdXRlLWFwaS51cy13ZXN0LTIuYW1hem9uYXdzLmNvbS9kZWZhdWx0L2Nsb3VkaW5hcnlGdW5jdGlvbg==";
+    
+    // When
+    CLDTransformation* sut = [[[CLDTransformation alloc] init] setCustomFunction:[CLDCustomFunction remote:input]];
+    NSString* actualResult = [sut asString];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult ,expectedResult, "actualResult should be equal to expectedResult");
+}
+
 @end

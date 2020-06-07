@@ -149,4 +149,71 @@ CLDTransformation *trasformSut;
     return [NSString stringWithString: expectedResult];
 }
 
+// MARK: - customPreFunction
+- (void)test_setCustomPreFunction_emptyWasm_shouldReturnValidString {
+    
+    // Given
+    NSString* input = @"";
+    
+    NSString* expectedResult = @"wasm:";
+    
+    // When
+    trasformSut = [[CLDTransformation alloc] init];
+    CLDCustomFunction* customFunc = [CLDCustomFunction wasm:input];
+    [trasformSut setCustomPreFunction:customFunc];
+    
+    NSString* actualResult = [trasformSut customPreFunction];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
+}
+- (void)test_setCustomPreFunction_wasm_shouldReturnValidString {
+    
+    // Given
+    NSString* input = @"func";
+    
+    NSString* expectedResult = @"wasm:func";
+    
+    // When
+    trasformSut = [[CLDTransformation alloc] init];
+    [trasformSut setCustomPreFunction:[CLDCustomFunction wasm:input]];
+    
+    NSString* actualResult = [trasformSut customPreFunction];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
+}
+- (void)test_setCustomPreFunction_emptyRemote_shouldReturnValidString {
+    
+    // Given
+    NSString* input = @"";
+    
+    NSString* expectedResult = @"remote:";
+    
+    // When
+    trasformSut = [[CLDTransformation alloc] init];
+    [trasformSut setCustomPreFunction:[CLDCustomFunction remote:input]];
+    
+    NSString* actualResult = [trasformSut customPreFunction];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
+}
+- (void)test_setCustomPreFunction_remote_shouldReturnValidString {
+    
+    // Given
+    NSString* input = @"func";
+    
+    NSString* expectedResult = @"remote:ZnVuYw==";
+    
+    // When
+    trasformSut = [[CLDTransformation alloc] init];
+    [trasformSut setCustomPreFunction:[CLDCustomFunction remote:input]];
+    
+    NSString* actualResult = [trasformSut customPreFunction];
+    
+    // Then
+    XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
+}
+
 @end

@@ -1914,7 +1914,7 @@ import CoreGraphics
          
          - parameter publicId: Public id of the web assembly file.
          */
-        public static func wasm(_ publicId: String) -> CLDCustomFunction {
+        @objc public static func wasm(_ publicId: String) -> CLDCustomFunction {
             return CLDCustomFunction("wasm", publicId)
         }
         
@@ -1923,7 +1923,7 @@ import CoreGraphics
          
          - parameter url: public url of the aws lambda function
          */
-        public static func remote(_ url: String) -> CLDCustomFunction {
+        @objc public static func remote(_ url: String) -> CLDCustomFunction {
             return CLDCustomFunction("remote", url.cldBase64UrlEncode())
         }
     }

@@ -1137,6 +1137,21 @@ class CLDTransformationTests: BaseTestCase {
     }
     
     // MARK: - customPreFunction
+    func test_setCustomPreFunction_emptyWasm_shouldReturnValidString() {
+        
+        // Given
+        let input = ""
+        
+        let expectedResult = "wasm:"
+        
+        // When
+        sut.setCustomPreFunction(.wasm(input))
+        
+        let actualResult = sut.customPreFunction!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
     func test_setCustomPreFunction_wasm_shouldReturnValidString() {
         
         // Given
@@ -1146,6 +1161,21 @@ class CLDTransformationTests: BaseTestCase {
         
         // When
         sut.setCustomPreFunction(.wasm(input))
+        
+        let actualResult = sut.customPreFunction!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setCustomPreFunction_emptyRemote_shouldReturnValidString() {
+        
+        // Given
+        let input = ""
+        
+        let expectedResult = "remote:"
+        
+        // When
+        sut.setCustomPreFunction(.remote(input))
         
         let actualResult = sut.customPreFunction!
         
