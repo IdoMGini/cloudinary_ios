@@ -26,43 +26,41 @@
 #import <Cloudinary/Cloudinary-Swift.h>
 
 @interface ObjcCLDTransformationTests : XCTestCase
-
+@property (nonatomic, strong, nullable) CLDTransformation *sut;
 @end
 
 @implementation ObjcCLDTransformationTests
 
-CLDTransformation *trasformSut;
-
 // MARK: - setup and teardown
 - (void)setUp {
     [super setUp];
+    self.sut = [[CLDTransformation alloc] init];
 }
 
 - (void)tearDown {
     [super tearDown];
-    trasformSut = nil;
+    self.sut = nil;
 }
 
 // MARK: - complexConditionExpression
 - (void)test_complexTransformations_shouldCreateValidString {
         
     // Given
-    NSString* expectedResult = [self getExpectedResultToComplexConditionTest];
+    NSString * expectedResult = [self getExpectedResultToComplexConditionTest];
     
     // When
-    trasformSut = [[CLDTransformation alloc] init];
-    trasformSut = [trasformSut setVariable:@"$foo" intValue: 10];
-    trasformSut = [trasformSut setVariable:@"$foostr" valuesArray: @[@"my", @"str", @"ing"]];
-    trasformSut = [trasformSut chain];
-    trasformSut = [trasformSut ifCondition: [self getIfConditionForComplexConditionTest]];
-    trasformSut = [trasformSut setCrop: @"scale"];
+    self.sut = [self.sut setVariable:@"$foo" intValue: 10];
+    self.sut = [self.sut setVariable:@"$foostr" valuesArray: @[@"my", @"str", @"ing"]];
+    self.sut = [self.sut chain];
+    self.sut = [self.sut ifCondition: [self getIfConditionForComplexConditionTest]];
+    self.sut = [self.sut setCrop: @"scale"];
     
     CLDConditionExpression *conditionForWidth = [[CLDConditionExpression alloc] initWithValue: @"$foo * 200 / faceCount"];
-    trasformSut = [trasformSut setWidthWithExpression: conditionForWidth];
-    trasformSut = [trasformSut setOverlay: @"$foostr"];
-    trasformSut = [trasformSut endIf];
+    self.sut = [self.sut setWidthWithExpression: conditionForWidth];
+    self.sut = [self.sut setOverlay: @"$foostr"];
+    self.sut = [self.sut endIf];
     
-    NSString* actualResult = [trasformSut asString];
+    NSString * actualResult = [self.sut asString];
     
     // Then
     XCTAssertTrue([actualResult isEqualToString: expectedResult], "Calling get asString should return the expect string");
@@ -158,11 +156,10 @@ CLDTransformation *trasformSut;
     NSString* expectedResult = @"wasm:";
     
     // When
-    trasformSut = [[CLDTransformation alloc] init];
     CLDCustomFunction* customFunc = [CLDCustomFunction wasm:input];
-    [trasformSut setCustomPreFunction:customFunc];
+    [self.sut setCustomPreFunction:customFunc];
     
-    NSString* actualResult = [trasformSut customPreFunction];
+    NSString* actualResult = [self.sut customPreFunction];
     
     // Then
     XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
@@ -175,10 +172,9 @@ CLDTransformation *trasformSut;
     NSString* expectedResult = @"wasm:func";
     
     // When
-    trasformSut = [[CLDTransformation alloc] init];
-    [trasformSut setCustomPreFunction:[CLDCustomFunction wasm:input]];
+    [self.sut setCustomPreFunction:[CLDCustomFunction wasm:input]];
     
-    NSString* actualResult = [trasformSut customPreFunction];
+    NSString* actualResult = [self.sut customPreFunction];
     
     // Then
     XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
@@ -191,10 +187,9 @@ CLDTransformation *trasformSut;
     NSString* expectedResult = @"remote:";
     
     // When
-    trasformSut = [[CLDTransformation alloc] init];
-    [trasformSut setCustomPreFunction:[CLDCustomFunction remote:input]];
+    [self.sut setCustomPreFunction:[CLDCustomFunction remote:input]];
     
-    NSString* actualResult = [trasformSut customPreFunction];
+    NSString* actualResult = [self.sut customPreFunction];
     
     // Then
     XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
@@ -207,10 +202,9 @@ CLDTransformation *trasformSut;
     NSString* expectedResult = @"remote:ZnVuYw==";
     
     // When
-    trasformSut = [[CLDTransformation alloc] init];
-    [trasformSut setCustomPreFunction:[CLDCustomFunction remote:input]];
+    [self.sut setCustomPreFunction:[CLDCustomFunction remote:input]];
     
-    NSString* actualResult = [trasformSut customPreFunction];
+    NSString* actualResult = [self.sut customPreFunction];
     
     // Then
     XCTAssertEqualObjects(actualResult, expectedResult, "Calling for inserted param should return its value");
