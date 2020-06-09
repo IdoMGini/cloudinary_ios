@@ -879,6 +879,37 @@ class UploaderTests: NetworkBaseTest {
             XCTFail("Error should hold a message in its user info.")
         }
     }
+    
+    func test_upload_ocr_uploadShouldSucceed() {
+
+        XCTAssertNotNil(cloudinary!.config.apiSecret, "Must set api secret for this test")
+
+        let expectation = self.expectation(description: "Upload should succeed")
+        let resource: TestResourceType = .textImage
+        let file = resource.url
+        var result: CLDUploadResult?
+        var error: NSError?
+
+        let params = CLDUploadRequestParams()
+        params.setOcr(true)
+        cloudinary!.createUploader().signedUpload(url: file, params: params).response({ (resultRes, errorRes) in
+            result = resultRes
+            error = errorRes
+            
+            expectation.fulfill()
+        })
+
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        XCTAssertNil(result, "result should be nil")
+        XCTAssertNotNil(error, "error should not be nil")
+
+        if let errMessage = error?.userInfo["message"] as? String {
+            XCTAssertNotNil(errMessage.range(of: "Categorization item illegal is not valid"))
+        } else {
+            XCTFail("Error should hold a message in its user info.")
+        }
+    }
 
     func testDetection() {
 
