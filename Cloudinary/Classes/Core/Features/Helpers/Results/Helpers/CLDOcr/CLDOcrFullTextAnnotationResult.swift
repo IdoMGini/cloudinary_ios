@@ -26,10 +26,10 @@ import Foundation
 
 @objcMembers open class CLDOcrFullTextAnnotationResult: CLDBaseResult {
     
-    open var pages: CLDDetection? {
-        guard let pages = getParam(.pages) as? [String : AnyObject] else { return nil }
+    open var pages: [CLDOcrPageResult]? {
+        guard let pages = getParam(.pages) as? [[String : AnyObject]] else { return nil }
         
-        return CLDDetection(json: pages)
+        return pages.compactMap({ CLDOcrPageResult(json: $0) })
     }
     open var text: String? {
         guard let text = getParam(.text) as? String else { return nil }

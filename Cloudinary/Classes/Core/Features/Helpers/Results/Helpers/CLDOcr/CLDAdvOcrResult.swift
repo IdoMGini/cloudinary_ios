@@ -28,6 +28,7 @@ import Foundation
     
     open var status: String? {
         guard let status = getParam(.status) as? String else { return nil }
+        
         return status
     }
     open var data: [CLDOcrDataResult]? {

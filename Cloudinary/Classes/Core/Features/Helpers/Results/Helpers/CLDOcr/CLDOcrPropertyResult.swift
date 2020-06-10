@@ -27,7 +27,7 @@ import Foundation
 @objcMembers open class CLDOcrPropertyResult: CLDBaseResult {
     
     open var detectedLanguages: [CLDOcrDetectedLanguagesResult]? {
-        guard let detectedLanguages = getParam(.languageCode) as? [[String : AnyObject]] else { return nil }
+        guard let detectedLanguages = getParam(.detectedLanguages) as? [[String : AnyObject]] else { return nil }
         
         return detectedLanguages.compactMap({ CLDOcrDetectedLanguagesResult(json: $0) })
     }
@@ -39,12 +39,11 @@ import Foundation
     }
     
     fileprivate enum CLDOcrPropertyResultKey: CustomStringConvertible {
-        case languageCode, confidence
+        case detectedLanguages
         
         var description: String {
             switch self {
-            case .languageCode: return "languageCode"
-            case .confidence  : return "confidence"
+            case .detectedLanguages: return "detectedLanguages"
             }
         }
     }

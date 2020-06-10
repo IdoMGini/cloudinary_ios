@@ -32,9 +32,9 @@ import Foundation
         return blocks.compactMap({ CLDOcrBlockResult(json: $0) })
     }
     open var property: CLDOcrPropertyResult? {
-        guard let text = getParam(.property) as? [String : AnyObject] else { return nil }
+        guard let property = getParam(.property) as? [String : AnyObject] else { return nil }
         
-        return CLDOcrPropertyResult(json: text)
+        return CLDOcrPropertyResult(json: property)
     }
     open var width: Int? {
         guard let width = getParam(.pageWidth) as? Int else { return nil }

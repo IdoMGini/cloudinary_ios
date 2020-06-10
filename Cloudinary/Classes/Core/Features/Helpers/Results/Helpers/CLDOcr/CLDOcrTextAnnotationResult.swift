@@ -28,7 +28,7 @@ import Foundation
     
     open var locale: String? {
         guard let locale = getParam(.locale) as? String else { return nil }
-        
+
         return locale
     }
     open var textDescription: String? {

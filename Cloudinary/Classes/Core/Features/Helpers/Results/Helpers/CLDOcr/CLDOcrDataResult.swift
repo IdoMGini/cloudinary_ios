@@ -31,6 +31,11 @@ import Foundation
         
         return textAnnotations.compactMap{ CLDOcrTextAnnotationResult(json: $0) }
     }
+    open var fullTextAnnotation: CLDOcrFullTextAnnotationResult? {
+        guard let fullTextAnnotation = getParam(.fullTextAnnotation) as? [String : AnyObject] else { return nil }
+        
+        return CLDOcrFullTextAnnotationResult(json: fullTextAnnotation)
+    }
     
     // MARK: - Private Helpers
     fileprivate func getParam(_ param: CLDOcrDataResultKey) -> AnyObject? {

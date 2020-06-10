@@ -30,7 +30,7 @@ import Foundation
         guard let vertices = getParam(.vertices) as? [[String : AnyObject]] else { return nil}
         
         return vertices.compactMap{
-            if let x = $0["x"], let y = $0["y"] {
+            if let x = $0["x"] as? NSNumber, let y = $0["y"] as? NSNumber {
                return CGPoint(x: x.intValue, y: y.intValue)
             }
             else {
