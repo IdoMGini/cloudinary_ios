@@ -26,23 +26,22 @@
 #import <Cloudinary/Cloudinary-Swift.h>
 
 @interface ObjCUrlTests : XCTestCase
-
+@property (nonatomic, strong, nullable) CLDCloudinary *sut;
 @end
 
 @implementation ObjCUrlTests
 
-NSString *prefix = @"https://res.cloudinary.com/test123";
-CLDCloudinary *cloudinary;
+NSString* prefix = @"https://res.cloudinary.com/test123";
 
 - (void)setUp {
     [super setUp];
     CLDConfiguration *config = [[CLDConfiguration alloc] initWithCloudinaryUrl:@"cloudinary://a:b@test123"];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
 }
 
 - (void)tearDown {
     [super tearDown];
-    cloudinary = nil;
+    self.sut = nil;
 }
 
 - (void)testCrop {
@@ -51,7 +50,7 @@ CLDCloudinary *cloudinary;
     [trans setHeight:@"101"];
     [trans setCrop:@"crop"];
 
-    CLDUrl *url = [cloudinary createUrl];
+    CLDUrl *url = [self.sut createUrl];
     [url setTransformation:trans];
     NSString *generatedUrl = [url generate:@"test" signUrl:false];
     XCTAssertEqualObjects(generatedUrl, [prefix stringByAppendingString: @"/image/upload/c_crop,h_101,w_100/test"]);
@@ -62,8 +61,8 @@ CLDCloudinary *cloudinary;
     
     // Given
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil timeout:nil];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[[self.sut createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
      
     NSString* expectedResult = @"DUB-5kBqEhbyNmZ0oan_cTYdW-9HAh-O";
     
@@ -79,8 +78,8 @@ CLDCloudinary *cloudinary;
     
     // Given
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"apiSecret" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil timeout:nil];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[[self.sut createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
      
     NSString* expectedResult = @"UHH8qJ2eIEoPHdVQP08BMEN9f4YUDavr";
     
@@ -97,8 +96,8 @@ CLDCloudinary *cloudinary;
     // Given
     NSString* longString = @"abcdefghijklmnopqrstuvwxyz1abcdefghijklmnopqrstuvwxyz2abcdefghijklmnopqrstuvwxyz3abcdefghijklmnopqrstuvwxyz4abcdefghijklmnopqrstuvwxyz5abcdefghijklmnopqrstuvwxyz6";
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:longString privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil timeout:nil];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[[self.sut createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
      
     NSString* expectedResult = @"7k8KYHY20iQ6sNTJIWb05ti7bYo1HG3R";
     
@@ -115,8 +114,8 @@ CLDCloudinary *cloudinary;
     // Given
     NSString* specialString = @"🔭!@#$%^&*()_+±§?><`~";
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:specialString privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil timeout:nil];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[[self.sut createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
      
     NSString* expectedResult = @"g12ptQdGPID3Un4aOxZSuiEithIdT2Wm";
     
@@ -132,8 +131,8 @@ CLDCloudinary *cloudinary;
     
     // Given
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"apiSecret" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:false secureDistribution:nil cname:nil uploadPrefix:nil timeout:nil];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[[self.sut createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
      
     NSString* expectedResult = @"FhXe8ZZ3";
     
@@ -149,8 +148,8 @@ CLDCloudinary *cloudinary;
     
     // Given
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"apiSecret" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil timeout:nil];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:false];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[[self.sut createUrl] setFormat:@"jpg"] generate:@"test" signUrl:false];
      
     NSString* expectedResult = @"http://test123-res.cloudinary.com/image/upload/test.jpg";
     
@@ -163,7 +162,7 @@ CLDCloudinary *cloudinary;
 - (void)test_longUrlSign_unset_shouldCreateExpectedUrl {
     
     // Given
-    NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:true];
+    NSString* url = [[self.sut createUrl] generate:@"sample.jpg" signUrl:true];
      
     NSString* expectedResult = @"https://res.cloudinary.com/test123/image/upload/s--v2fTPYTu--/sample.jpg";
     
@@ -181,8 +180,8 @@ CLDCloudinary *cloudinary;
     NSString* fullUrl               = [NSString stringWithFormat:@"%@%@",urlCredentials,longUrlSignatureQuery];
     
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudinaryUrl:fullUrl];
-    cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:true];
+    self.sut = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
+    NSString* url = [[self.sut createUrl] generate:@"sample.jpg" signUrl:true];
      
     NSString* expectedResult = @"https://res.cloudinary.com/test123/image/upload/s--2hbrSMPOjj5BJ4xV7SgFbRDevFaQNUFf--/sample.jpg";
     
@@ -294,7 +293,7 @@ CLDCloudinary *cloudinary;
     
     // When
     CLDTransformation* transformation = [[[[CLDTransformation alloc] init] setWidth:inputWidth] setGravityWithGravity:gravity];
-    NSString* actualResult = [[[cloudinary createUrl] setTransformation:transformation] generate:inputPublicId signUrl:inputSignUrl];
+    NSString* actualResult = [[[self.sut createUrl] setTransformation:transformation] generate:inputPublicId signUrl:inputSignUrl];
     
     // Then
     XCTAssertEqualObjects(actualResult ,expectedResult, @"Creating url with gravity enum should return expected result");
