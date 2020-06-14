@@ -27,11 +27,12 @@ import XCTest
 
 class UploaderOcrTests: NetworkBaseTest {
 
-    var allowOCRCalls = false // prevents redundant call to Cloudinary PAID OCR service. to allow OCR service testing - set to true.
+    var allowOCRCalls = true // prevents redundant call to Cloudinary PAID OCR service. to allow OCR service testing - set to true.
     
     // MARK: - upload
     func test_upload_ocr_uploadShouldSucceed() {
 
+        XCTAssertTrue(allowOCRCalls, "prevents redundant call to Cloudinary PAID OCR service. to allow OCR service testing - set to true")
         guard allowOCRCalls else { return }
         
         XCTAssertNotNil(cloudinary!.config.apiSecret, "Must set api secret for this test")
@@ -53,6 +54,60 @@ class UploaderOcrTests: NetworkBaseTest {
 
         waitForExpectations(timeout: timeout, handler: nil)
 
+        XCTAssertNil(error, "error should be nil")
+        XCTAssertNotNil(result, "result should not be nil")
+        XCTAssertNotNil(result?.info?.ocr, "ocr param should not be nil")
+    }
+    
+    // MARK: - explicit
+    func test_explicit_ocr_callShouldSucceed() {
+
+        XCTAssertTrue(allowOCRCalls, "prevents redundant call to Cloudinary PAID OCR service. to allow OCR service testing - set to true")
+        guard allowOCRCalls else { return }
+        
+        XCTAssertNotNil(cloudinary!.config.apiSecret, "Must set api secret for this test")
+
+        let expectation = self.expectation(description: "Upload should succeed")
+        let resource: TestResourceType = .textImage
+        let file = resource.url
+        var result: CLDUploadResult?
+        var error: NSError?
+
+        let params = CLDUploadRequestParams()
+        cloudinary!.createUploader().signedUpload(url: file, params: params).response({ (resultRes, errorRes) in
+            result = resultRes
+            error = errorRes
+            
+            expectation.fulfill()
+        })
+
+        waitForExpectations(timeout: timeout, handler: nil)
+
+        self.callForExplicit(publicId: result?.publicId)
+        
+        XCTAssertNil(error, "error should be nil")
+        XCTAssertNotNil(result, "result should not be nil")
+    }
+    func callForExplicit(publicId: String?) {
+
+        guard let publicId = publicId else { return }
+        
+        let expectation = self.expectation(description: "Explicit call with ocr should succeed")
+        
+        var result: CLDExplicitResult?
+        var error: NSError?
+        
+        let params = CLDExplicitRequestParams()
+        params.setOcr(true)
+        cloudinary!.createManagementApi().explicit(publicId, type: "upload", params: params).response({ (resultRes, errorRes) in
+            result = resultRes
+            error = errorRes
+            
+            expectation.fulfill()
+        })
+        
+        waitForExpectations(timeout: timeout, handler: nil)
+        
         XCTAssertNil(error, "error should be nil")
         XCTAssertNotNil(result, "result should not be nil")
         XCTAssertNotNil(result?.info?.ocr, "ocr param should not be nil")
