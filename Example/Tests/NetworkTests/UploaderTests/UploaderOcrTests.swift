@@ -27,7 +27,7 @@ import XCTest
 
 class UploaderOcrTests: NetworkBaseTest {
 
-    var allowOCRCalls = true // prevents redundant call to Cloudinary PAID OCR service. to allow OCR service testing - set to true.
+    var allowOCRCalls = false // prevents redundant call to Cloudinary PAID OCR service. to allow OCR service testing - set to true.
     
     // MARK: - upload
     func test_upload_ocr_uploadShouldSucceed() {
