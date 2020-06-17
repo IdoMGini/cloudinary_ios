@@ -52,8 +52,11 @@ internal class CLDNetworkCoordinator {
     // MARK: - Actions
     
     internal func callAction(_ action: CLDAPIAction, params: CLDRequestParams) -> CLDNetworkDataRequest {
+        
         let url = getUrl(action, resourceType: params.resourceType)
         let headers = getHeaders()
+        
+        params.setTimeout(from: config)
         let requestParams = getSignedRequestParams(params)
         
         return networkAdapter.cloudinaryRequest(url, headers: headers, parameters: requestParams)
