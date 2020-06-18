@@ -284,26 +284,22 @@ import Foundation
             secureDistribution = String(uri.path[index1...])
         }        
         
-        if let params = uri.query?.components(separatedBy: "&") {
-            for param in params {
-                let keyValue = param.components(separatedBy: "=")
-                if keyValue.count < 2 {
+        if let queryItems = URLComponents(url: uri, resolvingAgainstBaseURL: false)?.queryItems {
+            for item in queryItems
+            {
+                guard let value = item.value else { continue }
+                
+                switch ConfigParam(rawValue: item.name) {
+                case .Secure: secure = value.cldAsBool()
+                case .CdnSubdomain: cdnSubdomain = value.cldAsBool()
+                case .SecureCdnSubdomain: secureCdnSubdomain = value.cldAsBool()
+                case .LongUrlSignature: longUrlSignature = value.cldAsBool()
+                case .SignatureAlgorithm: continue //TODO: Arkadi - This is string based...
+                case .CName: cname = value
+                case .UploadPrefix: uploadPrefix = value
+                    
+                default:
                     continue
-                }
-                else {
-                    if let key = ConfigParam(rawValue: keyValue[0]) {
-                        switch (key) {
-                        case .Secure: secure = keyValue[1].cldAsBool()
-                        case .CdnSubdomain: cdnSubdomain = keyValue[1].cldAsBool()
-                        case .SecureCdnSubdomain: secureCdnSubdomain = keyValue[1].cldAsBool()
-                        case .LongUrlSignature: longUrlSignature = keyValue[1].cldAsBool()
-                        case .CName: cname = keyValue[1]
-                        case .UploadPrefix: uploadPrefix = keyValue[1]
-                            
-                        default:
-                            break
-                        }
-                    }
                 }
             }
         }
