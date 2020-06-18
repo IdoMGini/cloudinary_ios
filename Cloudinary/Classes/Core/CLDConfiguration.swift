@@ -74,6 +74,11 @@ import Foundation
     open fileprivate(set) var longUrlSignature: Bool = false
     
     /**
+     An enum value specifying the desired hash algorithm. sha1 by default.
+     */
+    open fileprivate(set) var signatureAlgorithm: SignatureAlgorithm = .sha1
+    
+    /**
      Your secure distribution domain to be set when using a secure distribution (advanced plan only). nil by default.
      */
     open fileprivate(set) var secureDistribution: String?
@@ -161,6 +166,14 @@ import Foundation
                         longUrlSignature = value.cldAsBool()
                     }
                     break
+                case .SignatureAlgorithm:
+                    if let value = options[ConfigParam.SignatureAlgorithm.rawValue] as? SignatureAlgorithm {
+                        signatureAlgorithm = value
+                    }
+                    else if let value = options[ConfigParam.SignatureAlgorithm.rawValue] as? Int {
+                        signatureAlgorithm = SignatureAlgorithm(rawValue: value) ?? .sha1 // TODO: Arkadi - should we worry about what happens if String is used?
+                    }
+                break
                 case .CName:
                     if let value = options[ConfigParam.CName.rawValue] as? String {
                         cname = value
@@ -171,7 +184,6 @@ import Foundation
                         uploadPrefix = value
                     }
                     break
-                    
                 case .APISecret:
                     if let value = options[ConfigParam.APISecret.rawValue] as? String {
                         apiSecret = value
@@ -214,6 +226,7 @@ import Foundation
      - parameter cdnSubdomain:              A boolean value specifying whether or not to use a CDN subdomain. false by default.
      - parameter secureCdnSubdomain:        A boolean value specifying whether or not to use a secure connection with a CDN subdomain. false by default.
      - parameter longUrlSignature:          A boolean value specifying whether or not to use long encryption. false by default.
+     - parameter signatureAlgorithm:        An enum value specifying the desired hash algorithm. sha1 by default.
      - parameter secureDistribution:        Set your secure distribution domain to be set when using a secure distribution (advanced plan only). nil by default.
      - parameter cname:                     Set your custom domain. nil by default.
      - parameter uploadPrefix:              Set a custom upload prefix to be used instead of Cloudinary's default API prefix. nil by default.
@@ -221,7 +234,7 @@ import Foundation
      - returns:                             A new `CLDConfiguration` instance.
      
      */
-    public init(cloudName: String, apiKey: String? = nil, apiSecret: String? = nil, privateCdn: Bool = false, secure: Bool = false, cdnSubdomain: Bool = false, secureCdnSubdomain: Bool = false, longUrlSignature: Bool = false, secureDistribution: String? = nil, cname: String? = nil, uploadPrefix: String? = nil) {
+    public init(cloudName: String, apiKey: String? = nil, apiSecret: String? = nil, privateCdn: Bool = false, secure: Bool = false, cdnSubdomain: Bool = false, secureCdnSubdomain: Bool = false, longUrlSignature: Bool = false, signatureAlgorithm: SignatureAlgorithm = .sha1, secureDistribution: String? = nil, cname: String? = nil, uploadPrefix: String? = nil) {
         self.cloudName = cloudName
         self.apiKey = apiKey
         self.apiSecret = apiSecret
@@ -230,6 +243,7 @@ import Foundation
         self.cdnSubdomain = cdnSubdomain
         self.secureCdnSubdomain = secureCdnSubdomain
         self.longUrlSignature = longUrlSignature
+        self.signatureAlgorithm = signatureAlgorithm
         self.secureDistribution = secureDistribution
         self.cname = cname
         self.uploadPrefix = uploadPrefix
@@ -302,6 +316,7 @@ import Foundation
         case CdnSubdomain =         "cdn_subdomain"
         case SecureCdnSubdomain =   "secure_cdn_subdomain"
         case LongUrlSignature =     "long_url_signature"
+        case SignatureAlgorithm =   "signature_algorithm"
         case CName =                "cname"
         case UploadPrefix =         "upload_prefix"
         
@@ -318,6 +333,7 @@ import Foundation
                 case .CdnSubdomain:         return "cdn_subdomain"
                 case .SecureCdnSubdomain:   return "secure_cdn_subdomain"
                 case .LongUrlSignature:     return "long_url_signature"
+                case .SignatureAlgorithm:   return "signature_algorithm"
                 case .CName:                return "cname"
                 case .UploadPrefix:         return "upload_prefix"
                 case .APIKey:               return "api_key"
@@ -328,7 +344,13 @@ import Foundation
                 }
             }
         }
-        
+    }
+    
+    // MARK: signatureAlgorithm
+    
+    @objc public enum SignatureAlgorithm: Int {
+        case sha1   = 0
+        case sha256 = 1
     }
     
     // MARK: User Platform

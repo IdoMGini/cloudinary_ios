@@ -53,17 +53,30 @@ CLDCloudinary *cloudinary;
 
     CLDUrl *url = [cloudinary createUrl];
     [url setTransformation:trans];
-    NSString *generatedUrl = [url generate:@"test" signUrl:false];
+    NSString *generatedUrl = [url generate:@"test" signUrl:NO];
     XCTAssertEqualObjects(generatedUrl, [prefix stringByAppendingString: @"/image/upload/c_crop,h_101,w_100/test"]);
 }
 
 // MARK: - SHA256
+
 - (void)test_longUrlSign_emptyApiSecret_shouldCreateExpectedSigning {
     
     // Given
-    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil];
+    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123"
+                                                                    apiKey:@"apiKey"
+                                                                 apiSecret:@""
+                                                                privateCdn:YES
+                                                                    secure:NO
+                                                              cdnSubdomain:NO
+                                                        secureCdnSubdomain:NO
+                                                          longUrlSignature:YES
+                                                        signatureAlgorithm:SignatureAlgorithmSha1
+                                                        secureDistribution:nil
+                                                                     cname:nil
+                                                              uploadPrefix:nil];
+    
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:YES];
      
     NSString* expectedResult = @"DUB-5kBqEhbyNmZ0oan_cTYdW-9HAh-O";
     
@@ -73,14 +86,26 @@ CLDCloudinary *cloudinary;
     // Then
     XCTAssertNotNil(actualResult, "encrypted component should not be nil");
     XCTAssertTrue(actualResult.length <= 32, "encrypted component should not be longer than 32 charecters");
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = true and call generate with signUrl = true, should encrypt the ApiSecret with SHA256_base64");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = YES and call generate with signUrl = YES, should encrypt the ApiSecret with SHA256_base64");
 }
 - (void)test_longUrlSign_normalApiSecret_shouldCreateExpectedSigning {
     
     // Given
-    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"apiSecret" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil];
+    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123"
+                                                                    apiKey:@"apiKey"
+                                                                 apiSecret:@"apiSecret"
+                                                                privateCdn:YES
+                                                                    secure:NO
+                                                              cdnSubdomain:NO
+                                                        secureCdnSubdomain:NO
+                                                          longUrlSignature:YES
+                                                        signatureAlgorithm:SignatureAlgorithmSha1
+                                                        secureDistribution:nil
+                                                                     cname:nil
+                                                              uploadPrefix:nil];
+    
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:YES];
      
     NSString* expectedResult = @"UHH8qJ2eIEoPHdVQP08BMEN9f4YUDavr";
     
@@ -90,15 +115,29 @@ CLDCloudinary *cloudinary;
     // Then
     XCTAssertNotNil(actualResult, "encrypted component should not be nil");
     XCTAssertTrue(actualResult.length <= 32, "encrypted component should not be longer than 32 charecters");
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = true and call generate with signUrl = true, should encrypt the ApiSecret with SHA256_base64");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = YES and call generate with signUrl = YES, should encrypt the ApiSecret with SHA256_base64");
 }
 - (void)test_longUrlSign_longApiSecret_shouldCreateExpectedSigning {
     
     // Given
     NSString* longString = @"abcdefghijklmnopqrstuvwxyz1abcdefghijklmnopqrstuvwxyz2abcdefghijklmnopqrstuvwxyz3abcdefghijklmnopqrstuvwxyz4abcdefghijklmnopqrstuvwxyz5abcdefghijklmnopqrstuvwxyz6";
-    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:longString privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil];
+    
+    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123"
+                                                                    apiKey:@"apiKey"
+                                                                 apiSecret:longString
+                                                                privateCdn:YES
+                                                                    secure:NO
+                                                              cdnSubdomain:NO
+                                                        secureCdnSubdomain:NO
+                                                          longUrlSignature:YES
+                                                        signatureAlgorithm:SignatureAlgorithmSha1
+                                                        secureDistribution:nil
+                                                                     cname:nil
+                                                              uploadPrefix:nil];
+                                                       
+    
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:YES];
      
     NSString* expectedResult = @"7k8KYHY20iQ6sNTJIWb05ti7bYo1HG3R";
     
@@ -108,15 +147,27 @@ CLDCloudinary *cloudinary;
     // Then
     XCTAssertNotNil(actualResult, "encrypted component should not be nil");
     XCTAssertTrue(actualResult.length <= 32, "encrypted component should not be longer than 32 charecters");
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature and call generate with signUrl = true, should encrypt the ApiSecret with SHA256_base64");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature and call generate with signUrl = YES, should encrypt the ApiSecret with SHA256_base64");
 }
 - (void)test_longUrlSign_specialApiSecret_shouldCreateExpectedSigning {
     
     // Given
     NSString* specialString = @"🔭!@#$%^&*()_+±§?><`~";
-    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:specialString privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil];
+    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123"
+                                                                    apiKey:@"apiKey"
+                                                                 apiSecret:specialString
+                                                                privateCdn:YES
+                                                                    secure:NO
+                                                              cdnSubdomain:NO
+                                                        secureCdnSubdomain:NO
+                                                          longUrlSignature:YES
+                                                        signatureAlgorithm:SignatureAlgorithmSha1
+                                                        secureDistribution:nil
+                                                                     cname:nil
+                                                              uploadPrefix:nil];
+    
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:YES];
      
     NSString* expectedResult = @"g12ptQdGPID3Un4aOxZSuiEithIdT2Wm";
     
@@ -126,14 +177,26 @@ CLDCloudinary *cloudinary;
     // Then
     XCTAssertNotNil(actualResult, "encrypted component should not be nil");
     XCTAssertTrue(actualResult.length <= 32, "encrypted component should not be longer than 32 charecters");
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature and call generate with signUrl = true, should encrypt the ApiSecret with SHA256_base64");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature and call generate with signUrl = YES, should encrypt the ApiSecret with SHA256_base64");
 }
 - (void)test_longUrlSign_unset_shouldCreateExpectedSigning {
     
     // Given
-    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"apiSecret" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:false secureDistribution:nil cname:nil uploadPrefix:nil];
+    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123"
+                                                                    apiKey:@"apiKey"
+                                                                 apiSecret:@"apiSecret"
+                                                                privateCdn:YES
+                                                                    secure:NO
+                                                              cdnSubdomain:NO
+                                                        secureCdnSubdomain:NO
+                                                          longUrlSignature:NO
+                                                        signatureAlgorithm:SignatureAlgorithmSha1
+                                                        secureDistribution:nil
+                                                                     cname:nil
+                                                              uploadPrefix:nil];
+    
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:true];
+    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:YES];
      
     NSString* expectedResult = @"FhXe8ZZ3";
     
@@ -143,14 +206,26 @@ CLDCloudinary *cloudinary;
     // Then
     XCTAssertNotNil(actualResult, "encrypted component should not be nil");
     XCTAssertTrue(actualResult.length <= 8, "encrypted component should not be longer than 8 charecters");
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = false and call generate with signUrl = true, should encrypt the ApiSecret with SHA1_base64");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = NO and call generate with signUrl = YES, should encrypt the ApiSecret with SHA1_base64");
 }
 - (void)test_longUrlSign_signUrlFalse_shouldCreateExpectedSigning {
     
     // Given
-    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123" apiKey:@"apiKey" apiSecret:@"apiSecret" privateCdn:true secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:true secureDistribution:nil cname:nil uploadPrefix:nil];
+    CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudName:@"test123"
+                                                                    apiKey:@"apiKey"
+                                                                 apiSecret:@"apiSecret"
+                                                                privateCdn:YES
+                                                                    secure:NO
+                                                              cdnSubdomain:NO
+                                                        secureCdnSubdomain:NO
+                                                          longUrlSignature:YES
+                                                        signatureAlgorithm:SignatureAlgorithmSha1
+                                                        secureDistribution:nil
+                                                                     cname:nil
+                                                              uploadPrefix:nil];
+    
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:false];
+    NSString* url = [[[cloudinary createUrl] setFormat:@"jpg"] generate:@"test" signUrl:NO];
      
     NSString* expectedResult = @"http://test123-res.cloudinary.com/image/upload/test.jpg";
     
@@ -158,12 +233,12 @@ CLDCloudinary *cloudinary;
     NSString* actualResult = url;
     
     // Then
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = true and call generate with signUrl = false, should not encrypt and add the ApiSecret to the url");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = YES and call generate with signUrl = NO, should not encrypt and add the ApiSecret to the url");
 }
 - (void)test_longUrlSign_unset_shouldCreateExpectedUrl {
     
     // Given
-    NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:true];
+    NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:YES];
      
     NSString* expectedResult = @"https://res.cloudinary.com/test123/image/upload/s--v2fTPYTu--/sample.jpg";
     
@@ -171,7 +246,7 @@ CLDCloudinary *cloudinary;
     NSString* actualResult = url;
     
     // Then
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = false and call generate with signUrl = true, should create a url with SHA1 encrypted apiSecret");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = NO and call generate with signUrl = YES, should create a url with SHA1 encrypted apiSecret");
 }
 - (void)test_longUrlSign_true_shouldCreateExpectedUrl {
     
@@ -182,7 +257,7 @@ CLDCloudinary *cloudinary;
     
     CLDConfiguration* config = [[CLDConfiguration alloc] initWithCloudinaryUrl:fullUrl];
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
-    NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:true];
+    NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:YES];
      
     NSString* expectedResult = @"https://res.cloudinary.com/test123/image/upload/s--2hbrSMPOjj5BJ4xV7SgFbRDevFaQNUFf--/sample.jpg";
     
@@ -190,7 +265,7 @@ CLDCloudinary *cloudinary;
     NSString* actualResult = url;
     
     // Then
-    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = true and call generate with signUrl = true, should create a url with SHA256 encrypted apiSecret");
+    XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration with longUrlSignature = YES and call generate with signUrl = YES, should create a url with SHA256 encrypted apiSecret");
 }
 
 @end

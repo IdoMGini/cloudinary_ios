@@ -91,7 +91,7 @@ class CLDConfigurationTests: BaseTestCase {
         
         // Given
         let longUrlSignatureQuery = ("?\(CLDConfiguration.ConfigParam.LongUrlSignature.description)=true")
-        let testedUrl             = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3"
+        let testedUrl             = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3@test"
         let fullUrl               = testedUrl + longUrlSignatureQuery
         
         // When

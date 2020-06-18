@@ -44,13 +44,25 @@ CLDConfiguration *configurationSut;
 }
 
 // MARK: - LongUrlSignature
+
 - (void)test_initLongUrlSignature_true_shouldStoreValue {
         
     // Given
     BOOL input = true;
     
     // When
-    configurationSut = [[CLDConfiguration alloc] initWithCloudName:@"" apiKey:nil apiSecret:nil privateCdn:false secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:input secureDistribution:nil cname:nil uploadPrefix:nil];
+    configurationSut = [[CLDConfiguration alloc] initWithCloudName:@""
+                                                            apiKey:nil
+                                                         apiSecret:nil
+                                                        privateCdn:NO
+                                                            secure:NO
+                                                      cdnSubdomain:NO
+                                                secureCdnSubdomain:NO
+                                                  longUrlSignature:input
+                                                signatureAlgorithm:SignatureAlgorithmSha1
+                                                secureDistribution:nil
+                                                             cname:nil
+                                                      uploadPrefix:nil];
     
     // Then
     XCTAssertTrue(configurationSut.longUrlSignature, "Init with longUrlSignature = true, should be stored in property");
@@ -58,7 +70,18 @@ CLDConfiguration *configurationSut;
 - (void)test_initLongUrlSignature_default_shouldStoreFalseValue {
 
     // When
-    configurationSut = [[CLDConfiguration alloc] initWithCloudName:@"" apiKey:nil apiSecret:nil privateCdn:false secure:false cdnSubdomain:false secureCdnSubdomain:false longUrlSignature:false secureDistribution:nil cname:nil uploadPrefix:nil];
+    configurationSut = [[CLDConfiguration alloc] initWithCloudName:@""
+                                                            apiKey:nil
+                                                         apiSecret:nil
+                                                        privateCdn:NO
+                                                            secure:NO
+                                                      cdnSubdomain:NO
+                                                secureCdnSubdomain:NO
+                                                  longUrlSignature:NO
+                                                signatureAlgorithm:SignatureAlgorithmSha1
+                                                secureDistribution:nil
+                                                             cname:nil
+                                                      uploadPrefix:nil];
     
     // Then
     XCTAssertFalse(configurationSut.longUrlSignature, "Init without longUrlSignature should store the default false value");
@@ -95,7 +118,7 @@ CLDConfiguration *configurationSut;
         
     // Given
     NSString* longUrlSignatureQuery = @"?long_url_signature=true";
-    NSString* testedUrl             = @"cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3";
+    NSString* testedUrl             = @"cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3@test";
     NSString* fullUrl               = [NSString stringWithFormat:@"%@%@",testedUrl,longUrlSignatureQuery];
     
     // When
