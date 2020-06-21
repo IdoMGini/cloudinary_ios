@@ -112,9 +112,9 @@ class CLDConfigurationTests: BaseTestCase {
         sut = CLDConfiguration(cloudName: "", signatureAlgorithm: input)
         
         // Then
-        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with signatureAlgorithm should store that value in property")
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with signatureAlgorithm should store that value")
     }
-    func test_initSignatureAlgorithm_default_shouldStoreFalseValue() {
+    func test_initSignatureAlgorithm_default_shouldStoreDefaultValue() {
        
         // When
         sut = CLDConfiguration(cloudName: "")
@@ -134,7 +134,7 @@ class CLDConfigurationTests: BaseTestCase {
         sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
         
         // Then
-        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value in property")
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value")
     }
     func test_initSignatureAlgorithm_optionsEnum_shouldStoreValue() {
         
@@ -148,7 +148,7 @@ class CLDConfigurationTests: BaseTestCase {
         sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
         
         // Then
-        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value in property")
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value")
     }
     func test_initSignatureAlgorithm_optionsInvalidEnum_shouldStoreValue() {
         
@@ -162,7 +162,7 @@ class CLDConfigurationTests: BaseTestCase {
         sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
         
         // Then
-        XCTAssertEqual(sut.signatureAlgorithm, .sha1, "Init with options with signatureAlgorithm should store that value in property")
+        XCTAssertEqual(sut.signatureAlgorithm, .sha1, "Init with options with invalid signatureAlgorithm should store the default .sha1 value")
     }
     func test_initSignatureAlgorithm_cloudinaryUrl_shouldStoreValue() {
         
@@ -175,6 +175,6 @@ class CLDConfigurationTests: BaseTestCase {
         sut = CLDConfiguration(cloudinaryUrl: fullUrl)
 
         // Then
-        XCTAssertEqual(sut.signatureAlgorithm, .sha256,"Init with cloudinaryUrl with valid signatureAlgorithm should store that value in property")
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256,"Init with cloudinaryUrl with valid signatureAlgorithm should store that value")
     }
 }
