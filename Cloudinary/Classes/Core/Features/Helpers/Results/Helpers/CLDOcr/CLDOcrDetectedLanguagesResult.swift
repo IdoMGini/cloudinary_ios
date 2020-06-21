@@ -31,8 +31,8 @@ import Foundation
         
         return languageCode
     }
-    open var confidence: Int? {
-        guard let confidence = getParam(.confidence) as? Int else { return nil }
+    open var confidence: NSNumber? {
+        guard let confidence = getParam(.confidence) as? NSNumber else { return nil }
         
         return confidence
     }

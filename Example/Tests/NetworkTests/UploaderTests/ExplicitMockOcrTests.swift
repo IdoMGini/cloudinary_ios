@@ -47,23 +47,23 @@ class ExplicitMockOcrTests: NetworkBaseTest {
         let expectedStatus                       = "complete"
         let expectedLocale                       = "en"
         let expectedTextDescription              = "OCR test image\nSOME FONT\nAnother font\nOne more\nlast one\n"
-        let expectedVerticeX                     = CGFloat(89)
-        let expectedVerticeY                     = CGFloat(87)
+        let expectedVerticeX                     = NSNumber(89)
+        let expectedVerticeY                     = NSNumber(87)
         let expectedFullTextAnnotationText       = "OCR test image\nSOME FONT\nAnother font\nOne more\nlast one\n"
-        let expectedPagesWidth                   = 1144
-        let expectedPagesHeight                  = 1048
+        let expectedPagesWidth                   = NSNumber(1144)
+        let expectedPagesHeight                  = NSNumber(1048)
         let expectedLanguageCode                 = "en"
-        let expectedConfidence                   = 1
+        let expectedConfidence                   = NSNumber(1)
         let expectedBlockType                    = "TEXT"
-        let expectedBoundingBoxVerticeX          = CGFloat(241)
-        let expectedBoundingBoxVerticeY          = CGFloat(84)
-        let expectedParagraphBoundingBoxVerticeX = CGFloat(241)
-        let expectedParagraphBoundingBoxVerticeY = CGFloat(84)
-        let expectedWordsBoundingBoxVerticeX     = CGFloat(241)
-        let expectedWordsBoundingBoxVerticeY     = CGFloat(87)
+        let expectedBoundingBoxVerticeX          = NSNumber(241)
+        let expectedBoundingBoxVerticeY          = NSNumber(84)
+        let expectedParagraphBoundingBoxVerticeX = NSNumber(241)
+        let expectedParagraphBoundingBoxVerticeY = NSNumber(84)
+        let expectedWordsBoundingBoxVerticeX     = NSNumber(241)
+        let expectedWordsBoundingBoxVerticeY     = NSNumber(87)
         let expectedSymbolText                   = "O"
-        let expectedSymbolsBoundingBoxVerticeX   = CGFloat(241)
-        let expectedSymbolsBoundingBoxVerticeY   = CGFloat(88)
+        let expectedSymbolsBoundingBoxVerticeX   = NSNumber(241)
+        let expectedSymbolsBoundingBoxVerticeY   = NSNumber(88)
         
         // Then
         XCTAssertNotNil(sut.info?.ocr, "mock properties should not be nil")

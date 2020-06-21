@@ -36,13 +36,13 @@ import Foundation
         
         return CLDOcrPropertyResult(json: property)
     }
-    open var width: Int? {
-        guard let width = getParam(.pageWidth) as? Int else { return nil }
+    open var width: NSNumber? {
+        guard let width = getParam(.pageWidth) as? NSNumber else { return nil }
         
         return width
     }
-    open var height: Int? {
-        guard let height = getParam(.pageHeight) as? Int else { return nil }
+    open var height: NSNumber? {
+        guard let height = getParam(.pageHeight) as? NSNumber else { return nil }
         
         return height
     }

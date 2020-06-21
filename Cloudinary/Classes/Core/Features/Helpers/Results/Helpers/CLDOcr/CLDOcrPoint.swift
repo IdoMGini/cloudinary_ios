@@ -1,5 +1,5 @@
 //
-//  CLDOcrBoundindBlockResult.swift
+//  CLDOcrPoint.swift
 //
 //  Copyright (c) 2016 Cloudinary (http://cloudinary.com)
 //
@@ -23,25 +23,31 @@
 //
 
 import Foundation
+import CoreGraphics
 
-@objcMembers open class CLDOcrBoundindBlockResult: CLDBaseResult {
-    
-    open var vertices: [CLDOcrPoint]? {
-        guard let vertices = getParam(.vertices) as? [[String : AnyObject]] else { return nil}
-        return vertices.compactMap({ CLDOcrPoint(json: $0) })
+@objcMembers open class CLDOcrPoint: CLDBaseResult {
+
+    open var x: NSNumber? {
+        guard let x = getParam(.xPoint) as? NSNumber else { return nil}
+        return x
+    }
+    open var y: NSNumber? {
+        guard let y = getParam(.yPoint) as? NSNumber else { return nil}
+        return y
     }
   
     // MARK: - Private Helpers
-    fileprivate func getParam(_ param: CLDOcrBoundindBlockResultKey) -> AnyObject? {
+    fileprivate func getParam(_ param: CLDOcrPointKey) -> AnyObject? {
         return resultJson[String(describing: param)]
     }
     
-    fileprivate enum CLDOcrBoundindBlockResultKey: CustomStringConvertible {
-        case vertices
+    fileprivate enum CLDOcrPointKey: CustomStringConvertible {
+        case xPoint,yPoint
         
         var description: String {
             switch self {
-            case .vertices : return "vertices"
+            case .xPoint : return "x"
+            case .yPoint : return "y"
             }
         }
     }

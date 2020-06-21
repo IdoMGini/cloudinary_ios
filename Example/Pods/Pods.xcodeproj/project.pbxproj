@@ -117,6 +117,7 @@
 		D786614B248FFBAA0099DE8C /* CLDOcrParagraphResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786614A248FFBAA0099DE8C /* CLDOcrParagraphResult.swift */; };
 		D786614D248FFCEE0099DE8C /* CLDOcrWordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786614C248FFCEE0099DE8C /* CLDOcrWordResult.swift */; };
 		D786614F248FFD730099DE8C /* CLDOcrSymbolResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786614E248FFD730099DE8C /* CLDOcrSymbolResult.swift */; };
+		D7C6C6AF249F87B0007E0E96 /* CLDOcrPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6AE249F87B0007E0E96 /* CLDOcrPoint.swift */; };
 		D7D61CCF248F7AC200F4DE73 /* CLDOcrResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D61CCE248F7AC200F4DE73 /* CLDOcrResult.swift */; };
 		D7D61CD1248F7BAB00F4DE73 /* CLDAdvOcrResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D61CD0248F7BAB00F4DE73 /* CLDAdvOcrResult.swift */; };
 		D7D61CD5248F7EAE00F4DE73 /* CLDOcrDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D61CD4248F7EAE00F4DE73 /* CLDOcrDataResult.swift */; };
@@ -280,6 +281,7 @@
 		D786614A248FFBAA0099DE8C /* CLDOcrParagraphResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrParagraphResult.swift; sourceTree = "<group>"; };
 		D786614C248FFCEE0099DE8C /* CLDOcrWordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrWordResult.swift; sourceTree = "<group>"; };
 		D786614E248FFD730099DE8C /* CLDOcrSymbolResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrSymbolResult.swift; sourceTree = "<group>"; };
+		D7C6C6AE249F87B0007E0E96 /* CLDOcrPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrPoint.swift; sourceTree = "<group>"; };
 		D7D61CCE248F7AC200F4DE73 /* CLDOcrResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrResult.swift; sourceTree = "<group>"; };
 		D7D61CD0248F7BAB00F4DE73 /* CLDAdvOcrResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDAdvOcrResult.swift; sourceTree = "<group>"; };
 		D7D61CD4248F7EAE00F4DE73 /* CLDOcrDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrDataResult.swift; sourceTree = "<group>"; };
@@ -770,6 +772,7 @@
 				D7D61CD4248F7EAE00F4DE73 /* CLDOcrDataResult.swift */,
 				D7866138248F96BF0099DE8C /* CLDOcrTextAnnotationResult.swift */,
 				D786613A248F9ABC0099DE8C /* CLDOcrBoundindBlockResult.swift */,
+				D7C6C6AE249F87B0007E0E96 /* CLDOcrPoint.swift */,
 				D7866136248F96B00099DE8C /* CLDOcrFullTextAnnotationResult.swift */,
 				D7866142248FF33D0099DE8C /* CLDOcrPageResult.swift */,
 				D7866144248FF53B0099DE8C /* CLDOcrPropertyResult.swift */,
@@ -1056,6 +1059,7 @@
 				0254FFE5CD7E4568E1809DA069BE489D /* CLDNParameterEncoding.swift in Sources */,
 				296849B28E9155F2B5DDB04A08BA3D5C /* CLDNRequest.swift in Sources */,
 				D1ED436FDFB18C148B5D1A3452F79C0E /* CLDNResponse.swift in Sources */,
+				D7C6C6AF249F87B0007E0E96 /* CLDOcrPoint.swift in Sources */,
 				D7D61CCF248F7AC200F4DE73 /* CLDOcrResult.swift in Sources */,
 				756FA7E146D89691B9C6DFDD822739CA /* CLDNResponseSerialization.swift in Sources */,
 				6509F0771E9B62400A47D9E842F6A4ED /* CLDNResult.swift in Sources */,
