@@ -39,7 +39,7 @@ class CLDConfigurationTests: BaseTestCase {
         super.tearDown()
     }
     
-    // MARK: - LongUrlSignature
+    // MARK: - long url signature
     func test_initLongUrlSignature_true_shouldStoreValue() {
         
         // Given
@@ -100,5 +100,81 @@ class CLDConfigurationTests: BaseTestCase {
         
         // Then
         XCTAssertTrue(sut.longUrlSignature, "Init with cloudinaryUrl with valid longUrlSignature = true, should be stored in property")
+    }
+    
+    // MARK: - signature algorithm
+    func test_initSignatureAlgorithm_setSha256_shouldStoreValue() {
+        
+        // Given
+        let input = CLDConfiguration.SignatureAlgorithm.sha256
+        
+        // When
+        sut = CLDConfiguration(cloudName: "", signatureAlgorithm: input)
+        
+        // Then
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with signatureAlgorithm should store that value in property")
+    }
+    func test_initSignatureAlgorithm_default_shouldStoreFalseValue() {
+       
+        // When
+        sut = CLDConfiguration(cloudName: "")
+        
+        // Then
+        XCTAssertEqual(sut.signatureAlgorithm, .sha1, "Init without signatureAlgorithm should store the default .sha1 value")
+    }
+    func test_initSignatureAlgorithm_optionsInt_shouldStoreValue() {
+        
+        // Given
+        let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue
+        let inputCloudName          = "foo" as AnyObject
+        let keySignatureAlgorithm   = CLDConfiguration.ConfigParam.SignatureAlgorithm.rawValue
+        let inputSignatureAlgorithm = 1 as AnyObject
+        
+        // When
+        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
+        
+        // Then
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value in property")
+    }
+    func test_initSignatureAlgorithm_optionsEnum_shouldStoreValue() {
+        
+        // Given
+        let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue
+        let inputCloudName          = "foo" as AnyObject
+        let keySignatureAlgorithm   = CLDConfiguration.ConfigParam.SignatureAlgorithm.rawValue
+        let inputSignatureAlgorithm = CLDConfiguration.SignatureAlgorithm.sha256 as AnyObject
+        
+        // When
+        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
+        
+        // Then
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value in property")
+    }
+    func test_initSignatureAlgorithm_optionsInvalidEnum_shouldStoreValue() {
+        
+        // Given
+        let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue
+        let inputCloudName          = "foo" as AnyObject
+        let keySignatureAlgorithm   = CLDConfiguration.ConfigParam.SignatureAlgorithm.rawValue
+        let inputSignatureAlgorithm = 2 as AnyObject
+        
+        // When
+        sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
+        
+        // Then
+        XCTAssertEqual(sut.signatureAlgorithm, .sha1, "Init with options with signatureAlgorithm should store that value in property")
+    }
+    func test_initSignatureAlgorithm_cloudinaryUrl_shouldStoreValue() {
+        
+        // Given
+        let signatureAlgorithmQuery = ("?\(CLDConfiguration.ConfigParam.SignatureAlgorithm.description)=1")
+        let testedUrl               = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3@test"
+        let fullUrl                 = testedUrl + signatureAlgorithmQuery
+        
+        // When
+        sut = CLDConfiguration(cloudinaryUrl: fullUrl)
+
+        // Then
+        XCTAssertEqual(sut.signatureAlgorithm, .sha256,"Init with cloudinaryUrl with valid signatureAlgorithm should store that value in property")
     }
 }
