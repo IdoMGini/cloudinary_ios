@@ -99,6 +99,7 @@
 		D7AC180B249770D600410C43 /* ExplicitMockOcrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */; };
 		D7AC180D2497718E00410C43 /* OcrMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180C2497718E00410C43 /* OcrMockProvider.swift */; };
 		D7C6C6B1249F9A08007E0E96 /* ExplicitMockOcrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */; };
+		D7C6C6B924A207FC007E0E96 /* UploadRequestParamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6B824A207FC007E0E96 /* UploadRequestParamsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,7 @@
 		D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplicitMockOcrTests.swift; sourceTree = "<group>"; };
 		D7AC180C2497718E00410C43 /* OcrMockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrMockProvider.swift; sourceTree = "<group>"; };
 		D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExplicitMockOcrTests.m; sourceTree = "<group>"; };
+		D7C6C6B824A207FC007E0E96 /* UploadRequestParamsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRequestParamsTests.swift; sourceTree = "<group>"; };
 		F2530AD793711AEF6C37A33F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -476,13 +478,13 @@
 			path = CLDConditionExpressionTests;
 			sourceTree = "<group>";
 		};
-		5D53A94E2488CDB7005C14AB /* CLDConfigurationTests */ = {
+		5D53A94E2488CDB7005C14AB /* ConfigurationTests */ = {
 			isa = PBXGroup;
 			children = (
 				5D53A9502488CE23005C14AB /* CLDConfigurationTests.m */,
 				5D53A94F2488CE23005C14AB /* CLDConfigurationTests.swift */,
 			);
-			path = CLDConfigurationTests;
+			path = ConfigurationTests;
 			sourceTree = "<group>";
 		};
 		5DBC4D49247BFE570014B37E /* TransformationTests */ = {
@@ -545,8 +547,9 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5D53A94E2488CDB7005C14AB /* CLDConfigurationTests */,
 				272C513B242B6B6E0093AB1B /* BaseNetwork */,
+				D7C6C6B724A206DF007E0E96 /* ParamTests */,
+				5D53A94E2488CDB7005C14AB /* ConfigurationTests */,
 				D71ADD9A247D973E00235AD4 /* CryptoUtilsTests */,
 				274C6D1523FBAF5E0090BC40 /* FileUtilsTests.swift */,
 				274C6D1623FBAF5E0090BC40 /* GenerateUrlTests */,
@@ -601,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				274C6D1F23FBAF5E0090BC40 /* UploaderTests.swift */,
+				D7C6C6B624A205D9007E0E96 /* AccessibilityUploaderTests */,
 				D7C6C6B524A1FAB9007E0E96 /* OcrUploaderTests */,
 			);
 			path = UploaderTests;
@@ -639,6 +643,21 @@
 				D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */,
 			);
 			path = OcrUploaderTests;
+			sourceTree = "<group>";
+		};
+		D7C6C6B624A205D9007E0E96 /* AccessibilityUploaderTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AccessibilityUploaderTests;
+			sourceTree = "<group>";
+		};
+		D7C6C6B724A206DF007E0E96 /* ParamTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7C6C6B824A207FC007E0E96 /* UploadRequestParamsTests.swift */,
+			);
+			path = ParamTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -873,6 +892,7 @@
 				D7119CE3246C7C8100F6B3ED /* CLDConditionExpressionHelpersTests.swift in Sources */,
 				274C6D3123FBAF5E0090BC40 /* UrlTests.swift in Sources */,
 				D79AE387244DF1E7004F2439 /* CLDVariableTests.swift in Sources */,
+				D7C6C6B924A207FC007E0E96 /* UploadRequestParamsTests.swift in Sources */,
 				272C5181242B6C360093AB1B /* AuthenticationTests.swift in Sources */,
 				D71B78FE24680743004AA28E /* CLDTransformationVariablesTests.swift in Sources */,
 				5D53A9512488CE23005C14AB /* CLDConfigurationTests.swift in Sources */,
