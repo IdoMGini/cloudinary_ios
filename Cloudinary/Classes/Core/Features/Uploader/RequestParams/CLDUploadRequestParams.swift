@@ -207,7 +207,7 @@ import Foundation
         return getParam(.QualityAnalysis) as? Bool
     }
     
-    open var Ocr: Bool {
+    open var ocr: Bool {
         return getParam(.Ocr) as? String != nil
     }
     
@@ -455,7 +455,7 @@ import Foundation
      
      - parameter backup:        The boolean parameter.
      
-     - returns:                 The same instance of CLDExplicitRequestParams.
+     - returns:                 The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setBackup(_ backup: Bool) -> Self {
@@ -469,7 +469,7 @@ import Foundation
      
      - parameter useFilename:   The boolean parameter.
      
-     - returns:                 The same instance of CLDExplicitRequestParams.
+     - returns:                 The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setUseFilename(_ useFilename: Bool) -> Self {
@@ -482,7 +482,7 @@ import Foundation
      
      - parameter uniqueFilename:    The boolean parameter.
      
-     - returns:                     The same instance of CLDExplicitRequestParams.
+     - returns:                     The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setUniqueFilename(_ uniqueFilename: Bool) -> Self {
@@ -497,7 +497,7 @@ import Foundation
      
      - parameter discardOriginalFilename:   The boolean parameter.
      
-     - returns:                             The same instance of CLDExplicitRequestParams.
+     - returns:                             The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setDiscardOriginalFilename(_ discardOriginalFilename: Bool) -> Self {
@@ -523,7 +523,7 @@ import Foundation
      
      - parameter eagerAsync:    The boolean parameter.
      
-     - returns:                 The same instance of CLDExplicitRequestParams.
+     - returns:                 The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setEagerAsync(_ eagerAsync: Bool) -> Self {
@@ -536,7 +536,7 @@ import Foundation
      
      - parameter invalidate:    The boolean parameter.
      
-     - returns:             The same instance of CLDExplicitRequestParams.
+     - returns:             The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setInvalidate(_ invalidate: Bool) -> Self {
@@ -550,7 +550,7 @@ import Foundation
      
      - parameter overwrite:     The boolean parameter.
      
-     - returns:                 The same instance of CLDExplicitRequestParams.
+     - returns:                 The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setOverwrite(_ overwrite: Bool) -> Self {
@@ -563,7 +563,7 @@ import Foundation
      
      - parameter imageMetadata:     The boolean parameter.
      
-     - returns:                     The same instance of CLDExplicitRequestParams.
+     - returns:                     The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setImageMetadata(_ imageMetadata: Bool) -> Self {
@@ -576,7 +576,7 @@ import Foundation
      
      - parameter colors:            The boolean parameter.
      
-     - returns:                     The same instance of CLDExplicitRequestParams.
+     - returns:                     The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setColors(_ colors: Bool) -> Self {
@@ -590,7 +590,7 @@ import Foundation
      
      - parameter phash:             The boolean parameter.
      
-     - returns:                     The same instance of CLDExplicitRequestParams.
+     - returns:                     The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setPhash(_ phash: Bool) -> Self {
@@ -604,7 +604,7 @@ import Foundation
      
      - parameter faces:             The boolean parameter.
      
-     - returns:                     The same instance of CLDExplicitRequestParams.
+     - returns:                     The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setFaces(_ faces: Bool) -> Self {
@@ -619,7 +619,7 @@ import Foundation
      
      - parameter returnDeleteToken:     The boolean parameter.
      
-     - returns:                         The same instance of CLDExplicitRequestParams.
+     - returns:                         The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setReturnDeleteToken(_ returnDeleteToken: Bool) -> Self {
@@ -633,7 +633,7 @@ import Foundation
      
      - parameter qualityAnalysis:     The boolean parameter.
      
-     - returns:                       The same instance of CLDExplicitRequestParams.
+     - returns:                       The same instance of CLDUploadRequestParams.
      */
     @discardableResult
     open func setQualityAnalysis(_ qualityAnalysis: Bool) -> Self {

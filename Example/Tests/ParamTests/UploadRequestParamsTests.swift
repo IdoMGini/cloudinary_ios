@@ -44,7 +44,7 @@ class UploadRequestParamsTests: BaseTestCase {
     func test_getOcr_unset_shouldStoreValue() {
         
         // Then
-        XCTAssertFalse(sut.Ocr, "set proerty should be stored in params")
+        XCTAssertFalse(sut.ocr, "set proerty should be stored in params")
     }
     func test_setOcr_true_shouldStoreValue() {
 
@@ -52,7 +52,7 @@ class UploadRequestParamsTests: BaseTestCase {
         sut.setOcr(true)
         
         // Then
-        XCTAssertTrue(sut.Ocr, "set proerty should be stored in params")
+        XCTAssertTrue(sut.ocr, "set proerty should be stored in params")
     }
     func test_setOcr_trueThenfalse_shouldRemoveValue() {
 
@@ -61,6 +61,7 @@ class UploadRequestParamsTests: BaseTestCase {
         sut.setOcr(false)
 
         // Then
-        XCTAssertFalse(sut.Ocr, "Init without longUrlSignature should store the default false value")
+        XCTAssertFalse(sut.ocr, "Init without longUrlSignature should store the default false value")
+    }
     }
 }
