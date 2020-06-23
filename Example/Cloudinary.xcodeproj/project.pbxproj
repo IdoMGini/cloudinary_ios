@@ -97,7 +97,7 @@
 		D79AE387244DF1E7004F2439 /* CLDVariableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79AE386244DF1E7004F2439 /* CLDVariableTests.swift */; };
 		D79AE39C24585533004F2439 /* CLDVariableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D79AE39B24585533004F2439 /* CLDVariableTests.m */; };
 		D7AC180B249770D600410C43 /* ExplicitMockOcrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */; };
-		D7AC180D2497718E00410C43 /* MockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180C2497718E00410C43 /* MockProvider.swift */; };
+		D7AC180D2497718E00410C43 /* OcrMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180C2497718E00410C43 /* OcrMockProvider.swift */; };
 		D7C6C6B1249F9A08007E0E96 /* ExplicitMockOcrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */; };
 /* End PBXBuildFile section */
 
@@ -211,7 +211,7 @@
 		D79AE386244DF1E7004F2439 /* CLDVariableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDVariableTests.swift; sourceTree = "<group>"; };
 		D79AE39B24585533004F2439 /* CLDVariableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLDVariableTests.m; sourceTree = "<group>"; };
 		D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplicitMockOcrTests.swift; sourceTree = "<group>"; };
-		D7AC180C2497718E00410C43 /* MockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockProvider.swift; sourceTree = "<group>"; };
+		D7AC180C2497718E00410C43 /* OcrMockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrMockProvider.swift; sourceTree = "<group>"; };
 		D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExplicitMockOcrTests.m; sourceTree = "<group>"; };
 		F2530AD793711AEF6C37A33F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -600,13 +600,8 @@
 		D73622B724910FDD0021E1D4 /* UploaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				D7AC180C2497718E00410C43 /* MockProvider.swift */,
 				274C6D1F23FBAF5E0090BC40 /* UploaderTests.swift */,
-				D73622B32490FD630021E1D4 /* UploaderOcrTests.swift */,
-				D73622B524910FD50021E1D4 /* UploaderMockOcrTests.swift */,
-				D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */,
-				D73504E1249F517700DA7C58 /* UploaderMockOcrTests.m */,
-				D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */,
+				D7C6C6B524A1FAB9007E0E96 /* OcrUploaderTests */,
 			);
 			path = UploaderTests;
 			sourceTree = "<group>";
@@ -631,6 +626,19 @@
 				D731175B24741FBE0051AAFC /* CLDTransformationTests.m */,
 			);
 			path = CLDTransformationTests;
+			sourceTree = "<group>";
+		};
+		D7C6C6B524A1FAB9007E0E96 /* OcrUploaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7AC180C2497718E00410C43 /* OcrMockProvider.swift */,
+				D73622B32490FD630021E1D4 /* UploaderOcrTests.swift */,
+				D73622B524910FD50021E1D4 /* UploaderMockOcrTests.swift */,
+				D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */,
+				D73504E1249F517700DA7C58 /* UploaderMockOcrTests.m */,
+				D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */,
+			);
+			path = OcrUploaderTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -847,7 +855,7 @@
 			files = (
 				272C5189242B6C360093AB1B /* ResponseTests.swift in Sources */,
 				274C6D3923FBAF5E0090BC40 /* StringUtilsTest.swift in Sources */,
-				D7AC180D2497718E00410C43 /* MockProvider.swift in Sources */,
+				D7AC180D2497718E00410C43 /* OcrMockProvider.swift in Sources */,
 				D73622B624910FD50021E1D4 /* UploaderMockOcrTests.swift in Sources */,
 				274C6D2D23FBAF5E0090BC40 /* CryptoUtilsTests.swift in Sources */,
 				D79AE39C24585533004F2439 /* CLDVariableTests.m in Sources */,

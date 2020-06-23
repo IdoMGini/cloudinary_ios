@@ -1,5 +1,5 @@
 //
-//  ObjcUploaderMockOcrTests.m
+//  ObjcExplicitMockOcrTests.m
 //
 //  Copyright (c) 2018 Cloudinary (http://cloudinary.com)
 //
@@ -26,16 +26,16 @@
 #import <Cloudinary/Cloudinary-Swift.h>
 #import "Cloudinary_Tests-Swift.h"
 
-@interface ObjcUploaderMockOcrTests : XCTestCase
-@property (nonatomic, strong, nullable) CLDUploadResult* sut;
+@interface ObjcExplicitMockOcrTests : XCTestCase
+@property (nonatomic, strong, nullable) CLDExplicitResult* sut;
 @end
 
-@implementation ObjcUploaderMockOcrTests
+@implementation ObjcExplicitMockOcrTests
 
 // MARK: - setup and teardown
 - (void)setUp {
     [super setUp];
-    self.sut = MockProvider.uploadMockResult;
+    self.sut = OcrMockProvider.explicitMockResult;
 }
 
 - (void)tearDown {
@@ -43,8 +43,8 @@
     self.sut = nil;
 }
 
-// MARK: - upload result
-- (void)test_uploadResult_ocrParsing_ShouldParseAsExpected {
+// MARK: - explicit result
+- (void)test_explicitResult_ocrParsing_ShouldParseAsExpected {
 
     //Given
     NSString* expectedStatus                       = @"complete";

@@ -1,5 +1,5 @@
 //
-//  MockProvider.swift
+//  OcrMockProvider.swift
 //  Cloudinary_Tests
 //
 //  MockProvider.swift
@@ -27,7 +27,7 @@
 
 @testable import Cloudinary
 
-@objcMembers public class MockProvider: NSObject {
+@objcMembers public class OcrMockProvider: NSObject {
     
     // MARK: - upload mock result
     static public var uploadMockResult : CLDUploadResult? {
