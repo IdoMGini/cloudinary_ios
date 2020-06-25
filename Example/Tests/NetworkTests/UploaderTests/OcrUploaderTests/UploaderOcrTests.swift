@@ -89,7 +89,7 @@ class UploaderOcrTests: NetworkBaseTest {
 
         waitForExpectations(timeout: timeout, handler: nil)
 
-        self.callForExplicit(publicId: result?.publicId)
+        callForExplicit(publicId: result?.publicId)
         
         // Then
         XCTAssertNil(error, "upload error should be nil")
