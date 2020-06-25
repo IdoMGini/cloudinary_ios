@@ -604,7 +604,6 @@
 			isa = PBXGroup;
 			children = (
 				274C6D1F23FBAF5E0090BC40 /* UploaderTests.swift */,
-				D7C6C6B624A205D9007E0E96 /* AccessibilityUploaderTests */,
 				D7C6C6B524A1FAB9007E0E96 /* OcrUploaderTests */,
 			);
 			path = UploaderTests;
@@ -643,13 +642,6 @@
 				D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */,
 			);
 			path = OcrUploaderTests;
-			sourceTree = "<group>";
-		};
-		D7C6C6B624A205D9007E0E96 /* AccessibilityUploaderTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AccessibilityUploaderTests;
 			sourceTree = "<group>";
 		};
 		D7C6C6B724A206DF007E0E96 /* ParamTests */ = {

@@ -117,6 +117,8 @@
 		D786614B248FFBAA0099DE8C /* CLDOcrParagraphResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786614A248FFBAA0099DE8C /* CLDOcrParagraphResult.swift */; };
 		D786614D248FFCEE0099DE8C /* CLDOcrWordResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786614C248FFCEE0099DE8C /* CLDOcrWordResult.swift */; };
 		D786614F248FFD730099DE8C /* CLDOcrSymbolResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D786614E248FFD730099DE8C /* CLDOcrSymbolResult.swift */; };
+		D7AF534624A4E12800629E68 /* CLDAccessibilityAnalysisResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF534524A4E12800629E68 /* CLDAccessibilityAnalysisResult.swift */; };
+		D7AF534824A4E24900629E68 /* CLDColorblindAccessibilityAnalysisResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF534724A4E24900629E68 /* CLDColorblindAccessibilityAnalysisResult.swift */; };
 		D7C6C6AF249F87B0007E0E96 /* CLDOcrPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6AE249F87B0007E0E96 /* CLDOcrPoint.swift */; };
 		D7D61CCF248F7AC200F4DE73 /* CLDOcrResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D61CCE248F7AC200F4DE73 /* CLDOcrResult.swift */; };
 		D7D61CD1248F7BAB00F4DE73 /* CLDAdvOcrResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D61CD0248F7BAB00F4DE73 /* CLDAdvOcrResult.swift */; };
@@ -281,6 +283,8 @@
 		D786614A248FFBAA0099DE8C /* CLDOcrParagraphResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrParagraphResult.swift; sourceTree = "<group>"; };
 		D786614C248FFCEE0099DE8C /* CLDOcrWordResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrWordResult.swift; sourceTree = "<group>"; };
 		D786614E248FFD730099DE8C /* CLDOcrSymbolResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrSymbolResult.swift; sourceTree = "<group>"; };
+		D7AF534524A4E12800629E68 /* CLDAccessibilityAnalysisResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDAccessibilityAnalysisResult.swift; sourceTree = "<group>"; };
+		D7AF534724A4E24900629E68 /* CLDColorblindAccessibilityAnalysisResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDColorblindAccessibilityAnalysisResult.swift; sourceTree = "<group>"; };
 		D7C6C6AE249F87B0007E0E96 /* CLDOcrPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrPoint.swift; sourceTree = "<group>"; };
 		D7D61CCE248F7AC200F4DE73 /* CLDOcrResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDOcrResult.swift; sourceTree = "<group>"; };
 		D7D61CD0248F7BAB00F4DE73 /* CLDAdvOcrResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLDAdvOcrResult.swift; sourceTree = "<group>"; };
@@ -559,6 +563,7 @@
 		54126A0C7564DA10739031BB5B36715E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D7AF534424A4E0BB00629E68 /* AccessibilityAnalysis */,
 				D7D61CCD248F79FF00F4DE73 /* CLDOcr */,
 				44A4AF39EA53A5510F6F8242B8F1FE25 /* CLDBoundingBox.swift */,
 				B6E9896F05F41A15091A40C319E591EB /* CLDDetection.swift */,
@@ -762,6 +767,15 @@
 				177A2A1BF9541D77D5B368BE6FAB5C7C /* CLDTextResult.swift */,
 			);
 			path = Results;
+			sourceTree = "<group>";
+		};
+		D7AF534424A4E0BB00629E68 /* AccessibilityAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				D7AF534524A4E12800629E68 /* CLDAccessibilityAnalysisResult.swift */,
+				D7AF534724A4E24900629E68 /* CLDColorblindAccessibilityAnalysisResult.swift */,
+			);
+			path = AccessibilityAnalysis;
 			sourceTree = "<group>";
 		};
 		D7D61CCD248F79FF00F4DE73 /* CLDOcr */ = {
@@ -1094,6 +1108,7 @@
 				BF8A6082AFA9FC285025C811B2EC9194 /* CLDTagsRequestParams.swift in Sources */,
 				DFBD8E3C562523C2F618D8B6B3F736A0 /* CLDTextLayer.swift in Sources */,
 				BBC026C243CCE961873FD57E476DA572 /* CLDTextRequest.swift in Sources */,
+				D7AF534624A4E12800629E68 /* CLDAccessibilityAnalysisResult.swift in Sources */,
 				BE15F78DD7957141C6C97002494DE799 /* CLDTextRequestParams.swift in Sources */,
 				4DCFAA1674D47F17527F0FF75CCD63B6 /* CLDTextResult.swift in Sources */,
 				62F288B2529648F69F4E9D1B3D8D1E5C /* CLDTransformation+Ios.swift in Sources */,
@@ -1115,6 +1130,7 @@
 				0C844F63024BFCE089093807B5AC2B64 /* UIButton+Cloudinary.swift in Sources */,
 				695AE1B25138FA65DD2D8D809853B9FC /* UIImageView+Cloudinary.swift in Sources */,
 				D786614B248FFBAA0099DE8C /* CLDOcrParagraphResult.swift in Sources */,
+				D7AF534824A4E24900629E68 /* CLDColorblindAccessibilityAnalysisResult.swift in Sources */,
 				B67BB49DA3BC1AF03DE7E277E628D979 /* UIView+Cloudinary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
