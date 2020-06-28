@@ -168,13 +168,13 @@
     // Then
     XCTAssertEqual(self.sut.signatureAlgorithm, SignatureAlgorithmSha1, "Init without signatureAlgorithm should store the default .sha1 value");
 }
-- (void)test_initSignatureAlgorithm_optionsInt_shouldStoreValue {
+- (void)test_initSignatureAlgorithm_optionsSha256_shouldStoreValue {
         
     // Given
     NSString* keyCloudName            = @"cloud_name";
     NSString* inputCloudName          = @"foo";
     NSString* keySignatureAlgorithm   = @"signature_algorithm";
-    NSNumber* inputSignatureAlgorithm = @(SignatureAlgorithmSha256);
+    NSString* inputSignatureAlgorithm = @"sha256";
     
     // When
     self.sut = [[CLDConfiguration alloc] initWithOptions:@{keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm}];
@@ -182,19 +182,19 @@
     // Then
     XCTAssertEqual(self.sut.signatureAlgorithm, SignatureAlgorithmSha256, "Init with options with signatureAlgorithm should store that value");
 }
-- (void)test_initSignatureAlgorithm_optionsEnum_shouldStoreValue {
+- (void)test_initSignatureAlgorithm_optionsSha1_shouldStoreValue {
         
     // Given
     NSString* keyCloudName            = @"cloud_name";
     NSString* inputCloudName          = @"foo";
     NSString* keySignatureAlgorithm   = @"signature_algorithm";
-    NSNumber* inputSignatureAlgorithm = @(SignatureAlgorithmSha256);
+    NSString* inputSignatureAlgorithm = @"sha1";
     
     // When
     self.sut = [[CLDConfiguration alloc] initWithOptions:@{keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm}];
     
     // Then
-    XCTAssertEqual(self.sut.signatureAlgorithm, SignatureAlgorithmSha256, "Init with options with signatureAlgorithm should store that value");
+    XCTAssertEqual(self.sut.signatureAlgorithm, SignatureAlgorithmSha1, "Init with options with signatureAlgorithm should store that value");
 }
 - (void)test_initSignatureAlgorithm_optionsInvalidEnum_shouldStoreValue {
         
@@ -202,7 +202,7 @@
     NSString* keyCloudName            = @"cloud_name";
     NSString* inputCloudName          = @"foo";
     NSString* keySignatureAlgorithm   = @"signature_algorithm";
-    NSNumber* inputSignatureAlgorithm = @2;
+    NSString* inputSignatureAlgorithm = @"notSha";
     
     // When
     self.sut = [[CLDConfiguration alloc] initWithOptions:@{keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm}];
@@ -213,7 +213,7 @@
 - (void)test_initSignatureAlgorithm_cloudinaryUrl_shouldStoreValue {
         
     // Given
-    NSString* signatureAlgorithmQuery = @"signature_algorithm=1";
+    NSString* signatureAlgorithmQuery = @"?signature_algorithm=sha256";
     NSString* testedUrl               = @"cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3@test";
     NSString* fullUrl                 = [NSString stringWithFormat:@"%@%@",testedUrl,signatureAlgorithmQuery];
     

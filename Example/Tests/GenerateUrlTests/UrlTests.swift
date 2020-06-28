@@ -596,7 +596,7 @@ class UrlTests: XCTestCase {
     func test_signatureAlgorithm_sha256_shouldCreateExpectedFullUrl() {
         
         // Given
-        let signatureAlgorithmQuery = ("?\(CLDConfiguration.ConfigParam.SignatureAlgorithm.description)=1")
+        let signatureAlgorithmQuery = ("?\(CLDConfiguration.ConfigParam.SignatureAlgorithm.description)=sha256")
         let urlCredentials          = "cloudinary://a:b@test123"
         let fullUrl                 = urlCredentials + signatureAlgorithmQuery
         
@@ -604,7 +604,7 @@ class UrlTests: XCTestCase {
         cloudinary = CLDCloudinary(configuration: config!)
         let url = cloudinary?.createUrl().generate("sample.jpg", signUrl: true)
          
-        let expectedResult = "https://res.cloudinary.com/test123/image/upload/s--2hbrSMPOjj5BJ4xV7SgFbRDevFaQNUFf--/sample.jpg"
+        let expectedResult = "https://res.cloudinary.com/test123/image/upload/s--2hbrSMPO--/sample.jpg"
         
         // When
         let actualResult = url!

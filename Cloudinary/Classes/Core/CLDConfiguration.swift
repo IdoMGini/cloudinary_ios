@@ -104,7 +104,7 @@ import Foundation
     /**
      Initializes a CLDConfiguration instance, using the URL specified in the environment parameters under `CLOUDINARY_URL`.
      The URL should be in this form: `cloudinary://<API_KEY>:<API_SECRET>@<CLOUD_NAME>`.
-     Extra parameters may be added to the url: `secure` (boolean), `cdn_subdomain` (boolean), `secure_cdn_distribution` (boolean), `long_url_signature`(boolean), `cname`, `upload_prefix`
+     Extra parameters may be added to the url: `secure` (boolean), `cdn_subdomain` (boolean), `secure_cdn_distribution` (boolean), `long_url_signature`(boolean), `cname`, `upload_prefix`, `signature_algorithm`
      
      - returns:                             A new `CLDConfiguration` instance if the environment parameter URL exists and is valid, otherwise returns nil.
      
@@ -170,8 +170,8 @@ import Foundation
                     if let value = options[ConfigParam.SignatureAlgorithm.rawValue] as? SignatureAlgorithm {
                         signatureAlgorithm = value
                     }
-                    else if let value = options[ConfigParam.SignatureAlgorithm.rawValue] as? Int {
-                        signatureAlgorithm = SignatureAlgorithm(rawValue: value) ?? .sha1 // TODO: Arkadi - should we worry about what happens if String is used?
+                    else if let value = options[ConfigParam.SignatureAlgorithm.rawValue] as? String {
+                        signatureAlgorithm = SignatureAlgorithm(rawValue: value)
                     }
                 break
                 case .CName:
@@ -253,7 +253,7 @@ import Foundation
     /**
      Initializes a CLDConfiguration instance, using a given URL.
      The URL should be in this form: `cloudinary://<API_KEY>:<API_SECRET>@<CLOUD_NAME>`.
-     Extra parameters may be added to the url: `secure` (boolean), `cdn_subdomain` (boolean), `secure_cdn_distribution` (boolean), `long_url_signature`(boolean), `cname`, `upload_prefix`
+     Extra parameters may be added to the url: `secure` (boolean), `cdn_subdomain` (boolean), `secure_cdn_distribution` (boolean), `long_url_signature`(boolean), `cname`, `upload_prefix`, `signature_algorithm`
      
      - returns:                             A new `CLDConfiguration` instance if the URL is valid, otherwise returns nil.
      
@@ -294,7 +294,7 @@ import Foundation
                 case .CdnSubdomain: cdnSubdomain = value.cldAsBool()
                 case .SecureCdnSubdomain: secureCdnSubdomain = value.cldAsBool()
                 case .LongUrlSignature: longUrlSignature = value.cldAsBool()
-                case .SignatureAlgorithm: continue //TODO: Arkadi - This is string based...
+                case .SignatureAlgorithm: signatureAlgorithm = SignatureAlgorithm(rawValue: value)
                 case .CName: cname = value
                 case .UploadPrefix: uploadPrefix = value
                     
@@ -344,9 +344,31 @@ import Foundation
     
     // MARK: signatureAlgorithm
     
-    @objc public enum SignatureAlgorithm: Int {
-        case sha1   = 0
-        case sha256 = 1
+    @objc public enum SignatureAlgorithm: Int, RawRepresentable {
+        case sha1
+        case sha256
+        
+        public typealias RawValue = String
+        
+        public var rawValue: RawValue {
+            switch self {
+                case .sha1:
+                    return "sha1"
+                case .sha256:
+                    return "sha256"
+            }
+        }
+        
+        public init(rawValue: RawValue) {
+            switch rawValue {
+                case "sha1":
+                    self = .sha1
+                case "sha256":
+                    self = .sha256
+                default:
+                    self = .sha1
+            }
+        }
     }
     
     // MARK: User Platform

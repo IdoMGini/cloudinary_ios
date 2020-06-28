@@ -128,7 +128,7 @@ class CLDConfigurationTests: BaseTestCase {
         let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue
         let inputCloudName          = "foo" as AnyObject
         let keySignatureAlgorithm   = CLDConfiguration.ConfigParam.SignatureAlgorithm.rawValue
-        let inputSignatureAlgorithm = 1 as AnyObject
+        let inputSignatureAlgorithm = "sha256" as AnyObject
         
         // When
         sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
@@ -156,7 +156,7 @@ class CLDConfigurationTests: BaseTestCase {
         let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue
         let inputCloudName          = "foo" as AnyObject
         let keySignatureAlgorithm   = CLDConfiguration.ConfigParam.SignatureAlgorithm.rawValue
-        let inputSignatureAlgorithm = 2 as AnyObject
+        let inputSignatureAlgorithm = "notSha" as AnyObject
         
         // When
         sut = CLDConfiguration(options: [keyCloudName: inputCloudName, keySignatureAlgorithm: inputSignatureAlgorithm])
@@ -167,7 +167,7 @@ class CLDConfigurationTests: BaseTestCase {
     func test_initSignatureAlgorithm_cloudinaryUrl_shouldStoreValue() {
         
         // Given
-        let signatureAlgorithmQuery = ("?\(CLDConfiguration.ConfigParam.SignatureAlgorithm.description)=1")
+        let signatureAlgorithmQuery = ("?\(CLDConfiguration.ConfigParam.SignatureAlgorithm.description)=sha256")
         let testedUrl               = "cloudinary://123456789012345:ALKJdjklLJAjhkKJ45hBK92baj3@test"
         let fullUrl                 = testedUrl + signatureAlgorithmQuery
         

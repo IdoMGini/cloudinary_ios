@@ -294,7 +294,7 @@ CLDCloudinary *cloudinary;
     
     // Then
     XCTAssertNotNil(actualResult, "encrypted component should not be nil");
-    XCTAssertTrue(actualResult.length <= 8, "encrypted component should not be longer than 32 charecters");
+    XCTAssertTrue(actualResult.length <= 8, "encrypted component should not be longer than 8 charecters");
     XCTAssertEqualObjects(actualResult, expectedResult, "Setting the configuration for signatureAlgorithm to sha256 and call for signUrl = YES, should ecrypte with SHA256_base64");
 }
 - (void)test_signatureAlgorithm_normalApiSecret_shouldCreateExpectedSigning {
@@ -460,7 +460,7 @@ CLDCloudinary *cloudinary;
 - (void)test_signatureAlgorithm_sha256_shouldCreateExpectedFullUrl {
     
     // Given
-    NSString* signatureAlgorithQuery = @"?signature_algorithm=1";
+    NSString* signatureAlgorithQuery = @"?signature_algorithm=sha256";
     NSString* urlCredentials        = @"cloudinary://a:b@test123";
     NSString* fullUrl               = [NSString stringWithFormat:@"%@%@",urlCredentials,signatureAlgorithQuery];
     
@@ -468,7 +468,7 @@ CLDCloudinary *cloudinary;
     cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:nil];
     NSString* url = [[cloudinary createUrl] generate:@"sample.jpg" signUrl:YES];
      
-    NSString* expectedResult = @"https://res.cloudinary.com/test123/image/upload/s--2hbrSMPOjj5BJ4xV7SgFbRDevFaQNUFf--/sample.jpg";
+    NSString* expectedResult = @"https://res.cloudinary.com/test123/image/upload/s--2hbrSMPO--/sample.jpg";
     
     // When
     NSString* actualResult = url;
