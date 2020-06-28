@@ -98,6 +98,9 @@
 		D79AE39C24585533004F2439 /* CLDVariableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D79AE39B24585533004F2439 /* CLDVariableTests.m */; };
 		D7AC180B249770D600410C43 /* ExplicitMockOcrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */; };
 		D7AC180D2497718E00410C43 /* OcrMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AC180C2497718E00410C43 /* OcrMockProvider.swift */; };
+		D7AF534B24A893D700629E68 /* UploaderAccessibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF534A24A893D700629E68 /* UploaderAccessibilityTests.swift */; };
+		D7AF534D24A8963700629E68 /* UploaderAccessibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AF534C24A8963700629E68 /* UploaderAccessibilityTests.m */; };
+		D7AF535124A8A7DF00629E68 /* NetworkBaseTestObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = D7AF535024A8A7DF00629E68 /* NetworkBaseTestObjc.m */; };
 		D7C6C6B1249F9A08007E0E96 /* ExplicitMockOcrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */; };
 		D7C6C6B924A207FC007E0E96 /* UploadRequestParamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C6B824A207FC007E0E96 /* UploadRequestParamsTests.swift */; };
 /* End PBXBuildFile section */
@@ -213,6 +216,10 @@
 		D79AE39B24585533004F2439 /* CLDVariableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLDVariableTests.m; sourceTree = "<group>"; };
 		D7AC180A249770D600410C43 /* ExplicitMockOcrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplicitMockOcrTests.swift; sourceTree = "<group>"; };
 		D7AC180C2497718E00410C43 /* OcrMockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcrMockProvider.swift; sourceTree = "<group>"; };
+		D7AF534A24A893D700629E68 /* UploaderAccessibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploaderAccessibilityTests.swift; sourceTree = "<group>"; };
+		D7AF534C24A8963700629E68 /* UploaderAccessibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploaderAccessibilityTests.m; sourceTree = "<group>"; };
+		D7AF535024A8A7DF00629E68 /* NetworkBaseTestObjc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkBaseTestObjc.m; sourceTree = "<group>"; };
+		D7AF535224A8D86B00629E68 /* NetworkBaseTestObjc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkBaseTestObjc.h; sourceTree = "<group>"; };
 		D7C6C6B0249F9A08007E0E96 /* ExplicitMockOcrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExplicitMockOcrTests.m; sourceTree = "<group>"; };
 		D7C6C6B824A207FC007E0E96 /* UploadRequestParamsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRequestParamsTests.swift; sourceTree = "<group>"; };
 		F2530AD793711AEF6C37A33F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -415,6 +422,8 @@
 			children = (
 				D73622B724910FDD0021E1D4 /* UploaderTests */,
 				274C6D1E23FBAF5E0090BC40 /* NetworkBaseTest.swift */,
+				D7AF535224A8D86B00629E68 /* NetworkBaseTestObjc.h */,
+				D7AF535024A8A7DF00629E68 /* NetworkBaseTestObjc.m */,
 				274C6D2023FBAF5E0090BC40 /* ManagementApiTests.swift */,
 				274C6D2123FBAF5E0090BC40 /* DownloaderTests.swift */,
 			);
@@ -604,6 +613,7 @@
 			isa = PBXGroup;
 			children = (
 				274C6D1F23FBAF5E0090BC40 /* UploaderTests.swift */,
+				D7AF534924A8939100629E68 /* AccessibilityUploderTests */,
 				D7C6C6B524A1FAB9007E0E96 /* OcrUploaderTests */,
 			);
 			path = UploaderTests;
@@ -629,6 +639,15 @@
 				D731175B24741FBE0051AAFC /* CLDTransformationTests.m */,
 			);
 			path = CLDTransformationTests;
+			sourceTree = "<group>";
+		};
+		D7AF534924A8939100629E68 /* AccessibilityUploderTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7AF534A24A893D700629E68 /* UploaderAccessibilityTests.swift */,
+				D7AF534C24A8963700629E68 /* UploaderAccessibilityTests.m */,
+			);
+			path = AccessibilityUploderTests;
 			sourceTree = "<group>";
 		};
 		D7C6C6B524A1FAB9007E0E96 /* OcrUploaderTests */ = {
@@ -892,6 +911,7 @@
 				D73117582473D7A30051AAFC /* CLDExpressionTests.m in Sources */,
 				274C6D3323FBAF5E0090BC40 /* UIButtonTests.swift in Sources */,
 				D73504E2249F517700DA7C58 /* UploaderMockOcrTests.m in Sources */,
+				D7AF534B24A893D700629E68 /* UploaderAccessibilityTests.swift in Sources */,
 				274C6D3223FBAF5E0090BC40 /* UIBaseTest.swift in Sources */,
 				274C6D3523FBAF5E0090BC40 /* NetworkBaseTest.swift in Sources */,
 				274C6D2E23FBAF5E0090BC40 /* PreprocessTests.swift in Sources */,
@@ -901,6 +921,7 @@
 				272C51B5242B6C360093AB1B /* ParameterEncodingTests.swift in Sources */,
 				274C6D2F23FBAF5E0090BC40 /* FileUtilsTests.swift in Sources */,
 				5D4D8C2D246098F900AE9C96 /* CLDConditionExpressionTests.swift in Sources */,
+				D7AF534D24A8963700629E68 /* UploaderAccessibilityTests.m in Sources */,
 				D7C6C6B1249F9A08007E0E96 /* ExplicitMockOcrTests.m in Sources */,
 				D79AE385244CC1D7004F2439 /* CLDTransformationTests.swift in Sources */,
 				5DE4EC202469919A00F6C8D6 /* CLDTransformationBaselineTests.swift in Sources */,
@@ -910,6 +931,7 @@
 				272C51B3242B6C360093AB1B /* CLDNError+CloudinaryTests.swift in Sources */,
 				272C5185242B6C360093AB1B /* ResponseSerializationTests.swift in Sources */,
 				272C5183242B6C360093AB1B /* SessionDelegateTests.swift in Sources */,
+				D7AF535124A8A7DF00629E68 /* NetworkBaseTestObjc.m in Sources */,
 				5D53A9522488CE23005C14AB /* CLDConfigurationTests.m in Sources */,
 				D71B7902246808EE004AA28E /* CLDTransformationConditionsTests.swift in Sources */,
 				274C6D3623FBAF5E0090BC40 /* UploaderTests.swift in Sources */,
