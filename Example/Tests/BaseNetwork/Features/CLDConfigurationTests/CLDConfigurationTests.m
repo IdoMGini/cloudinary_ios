@@ -196,7 +196,7 @@
     // Then
     XCTAssertEqual(self.sut.signatureAlgorithm, SignatureAlgorithmSha1, "Init with options with signatureAlgorithm should store that value");
 }
-- (void)test_initSignatureAlgorithm_optionsInvalidEnum_shouldStoreValue {
+- (void)test_initSignatureAlgorithm_optionsInvalidString_shouldStoreValue {
         
     // Given
     NSString* keyCloudName            = @"cloud_name";

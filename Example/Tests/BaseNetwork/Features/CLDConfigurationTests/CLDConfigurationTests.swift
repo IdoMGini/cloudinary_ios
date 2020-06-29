@@ -109,7 +109,7 @@ class CLDConfigurationTests: BaseTestCase {
         let input = CLDConfiguration.SignatureAlgorithm.sha256
         
         // When
-        sut = CLDConfiguration(cloudName: "", signatureAlgorithm: input)
+        sut = CLDConfiguration(cloudName: String(), signatureAlgorithm: input)
         
         // Then
         XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with signatureAlgorithm should store that value")
@@ -117,12 +117,12 @@ class CLDConfigurationTests: BaseTestCase {
     func test_initSignatureAlgorithm_default_shouldStoreDefaultValue() {
        
         // When
-        sut = CLDConfiguration(cloudName: "")
+        sut = CLDConfiguration(cloudName: String())
         
         // Then
         XCTAssertEqual(sut.signatureAlgorithm, .sha1, "Init without signatureAlgorithm should store the default .sha1 value")
     }
-    func test_initSignatureAlgorithm_optionsInt_shouldStoreValue() {
+    func test_initSignatureAlgorithm_optionsString_shouldStoreValue() {
         
         // Given
         let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue
@@ -150,7 +150,7 @@ class CLDConfigurationTests: BaseTestCase {
         // Then
         XCTAssertEqual(sut.signatureAlgorithm, .sha256, "Init with options with signatureAlgorithm should store that value")
     }
-    func test_initSignatureAlgorithm_optionsInvalidEnum_shouldStoreValue() {
+    func test_initSignatureAlgorithm_optionsInvalidString_shouldStoreValue() {
         
         // Given
         let keyCloudName            = CLDConfiguration.ConfigParam.CloudName.rawValue

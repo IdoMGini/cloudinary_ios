@@ -171,7 +171,7 @@ import Foundation
                         signatureAlgorithm = value
                     }
                     else if let value = options[ConfigParam.SignatureAlgorithm.rawValue] as? String {
-                        signatureAlgorithm = SignatureAlgorithm(rawValue: value)
+                        signatureAlgorithm = SignatureAlgorithm(stringValue: value)
                     }
                 break
                 case .CName:
@@ -294,7 +294,7 @@ import Foundation
                 case .CdnSubdomain: cdnSubdomain = value.cldAsBool()
                 case .SecureCdnSubdomain: secureCdnSubdomain = value.cldAsBool()
                 case .LongUrlSignature: longUrlSignature = value.cldAsBool()
-                case .SignatureAlgorithm: signatureAlgorithm = SignatureAlgorithm(rawValue: value)
+                case .SignatureAlgorithm: signatureAlgorithm = SignatureAlgorithm(stringValue: value)
                 case .CName: cname = value
                 case .UploadPrefix: uploadPrefix = value
                     
@@ -344,29 +344,25 @@ import Foundation
     
     // MARK: signatureAlgorithm
     
-    @objc public enum SignatureAlgorithm: Int, RawRepresentable {
-        case sha1
-        case sha256
+    @objc public enum SignatureAlgorithm: Int, CustomStringConvertible {
         
-        public typealias RawValue = String
-        
-        public var rawValue: RawValue {
-            switch self {
-                case .sha1:
-                    return "sha1"
-                case .sha256:
-                    return "sha256"
+        case sha1   = 0
+        case sha256 = 1
+                
+        public init(stringValue: String) {
+            switch stringValue {
+                case "sha1":   self = .sha1
+                case "sha256": self = .sha256
+                default:       self = .sha1
             }
         }
         
-        public init(rawValue: RawValue) {
-            switch rawValue {
-                case "sha1":
-                    self = .sha1
-                case "sha256":
-                    self = .sha256
-                default:
-                    self = .sha1
+        public var description: String {
+            get {
+                switch self {
+                    case .sha1:   return "sha1"
+                    case .sha256: return "sha256"
+                }
             }
         }
     }
