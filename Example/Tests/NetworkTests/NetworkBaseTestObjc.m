@@ -29,8 +29,12 @@
 
 @implementation NetworkBaseTestObjc
 
+// MARK: - setup and teardown
 - (void)setUp {
     [super setUp];
+    
+    self.timeout = 30.0;
+    
     CLDConfiguration* config;
     config = [CLDConfiguration initWithEnvParams];
     if (config == nil) {
@@ -38,80 +42,67 @@
     }
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
+
     self.cloudinary = [[CLDCloudinary alloc] initWithConfiguration:config networkAdapter:nil sessionConfiguration:sessionConfig];
 }
 
 - (void)tearDown {
     [super tearDown];
+    
     self.cloudinary = nil;
 }
 
-typedef enum TestResourceType : NSUInteger {
-    logo,
-    borderCollie,
-    docx,
-    dog,
-    pdf,
-    textImage
-} TestResourceType;
-
-- (NSString*)getResourceExtensionBy: (TestResourceType)testResourceType {
-    switch (testResourceType) {
-        case logo:
-            return @"png";
-        break;
-        case borderCollie:
-        case textImage:
-            return @"jpg";
-        break;
-        case docx:
-            return @"docx";
-        break;
-        case dog:
-            return @"mp4";
-        break;
-        case pdf:
-            return @"pdf";
-        break;
-    }
-}
-- (NSString*)getResourceNameBy: (TestResourceType)testResourceType {
-    switch (testResourceType) {
-        case logo:
-            return @"logo";
-        break;
-        case borderCollie:
-            return @"borderCollie";
-        break;
-        case textImage:
-            return @"textImage";
-        break;
-        case docx:
-            return @"docx";
-        break;
-        case dog:
-            return @"dog";
-        break;
-        case pdf:
-            return @"pdf";
-        break;
-    }
-}
-
-- (NSURL*)getUrlBy: (TestResourceType)testResourceType {
-    NSBundle *bundle = [NSBundle bundleForClass: [self class]];
-    return [bundle URLForResource: [self getResourceNameBy:testResourceType] withExtension: [self getResourceExtensionBy:testResourceType]];
-}
+// MARK: - public methods
+- (NSURL* _Nonnull)getUrlBy:(TestResourceType)testResourceType {
     
-- (NSData*)getDataBy: (TestResourceType)testResourceType {
-    return [NSData dataWithContentsOfURL: [self getUrlBy:testResourceType] options: NSUncachedRead error:nil];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    return [bundle URLForResource:[self getResourceNameBy:testResourceType] withExtension:[self getResourceExtensionBy:testResourceType]];
 }
 
-- (CLDUploadRequest*)uploadFileWithResource: (TestResourceType)testResourceType params: (CLDUploadRequestParams*)params {
+- (NSData* _Nonnull)getDataBy:(TestResourceType)testResourceType {
+    
+    return [NSData dataWithContentsOfURL:[self getUrlBy:testResourceType] options:NSUncachedRead error:nil];
+}
+
+- (CLDUploadRequest*)uploadFileWithResource:(TestResourceType)testResourceType params:(CLDUploadRequestParams*)params {
+    
     XCTAssertNotNil(self.cloudinary.config.apiSecret, "Must set api secret for this test");
-    return [[self.cloudinary createUploader] signedUploadWithData: [self getDataBy:testResourceType] params:params progress:nil completionHandler:nil];
+    return [[self.cloudinary createUploader] signedUploadWithData:[self getDataBy:testResourceType] params:params progress:nil completionHandler:nil];
+}
+
+// Mark: - private methods
+- (NSString*)getResourceExtensionBy:(TestResourceType)testResourceType {
     
+    switch (testResourceType) {
+        case logo: return @"png";
+        break;
+        case borderCollie:
+        case textImage: return @"jpg";
+        break;
+        case docx: return @"docx";
+        break;
+        case dog: return @"mp4";
+        break;
+        case pdf: return @"pdf";
+        break;
+    }
+}
+- (NSString* _Nonnull)getResourceNameBy:(TestResourceType)testResourceType {
+    
+    switch (testResourceType) {
+        case logo: return @"logo";
+        break;
+        case borderCollie: return @"borderCollie";
+        break;
+        case textImage: return @"textImage";
+        break;
+        case docx: return @"docx";
+        break;
+        case dog: return @"dog";
+        break;
+        case pdf: return @"pdf";
+        break;
+    }
 }
 
 @end

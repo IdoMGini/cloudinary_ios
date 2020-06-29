@@ -10,7 +10,22 @@
 #import <Cloudinary/Cloudinary-Swift.h>
 #import "Cloudinary_Tests-Swift.h"
 
-@interface NetworkBaseTestObjc : XCTestCase
+typedef enum TestResourceType: NSUInteger {
+    logo,
+    borderCollie,
+    docx,
+    dog,
+    pdf,
+    textImage
+} TestResourceType;
+
+@interface NetworkBaseTestObjc: XCTestCase
+
 @property (nonatomic, strong, nullable) CLDCloudinary* cloudinary;
-@property (nonatomic, assign) NSTimeInterval timeInterval;
+@property (nonatomic, assign)           NSTimeInterval timeout;
+
+- (NSString* _Nonnull)getResourceNameBy:(TestResourceType)testResourceType;
+- (NSURL* _Nonnull)   getUrlBy         :(TestResourceType)testResourceType;
+- (NSData* _Nonnull)  getDataBy        :(TestResourceType)testResourceType;
+
 @end
