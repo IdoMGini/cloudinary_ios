@@ -1,5 +1,5 @@
 //
-//  CLDInfo.swift
+//  CLDColorblindAccessibilityAnalysisResult.swift
 //
 //  Copyright (c) 2016 Cloudinary (http://cloudinary.com)
 //
@@ -24,35 +24,37 @@
 
 import Foundation
 
-@objcMembers open class CLDInfo: CLDBaseResult {
+@objcMembers open class CLDColorblindAccessibilityAnalysisResult: CLDBaseResult {
     
-    open var detection: CLDDetection? {
-        guard let detection = getParam(.detection) as? [String : AnyObject] else {
-            return nil
-        }
-        return CLDDetection(json: detection)
+    open var distinctColors: Double? {
+        guard let distinctColors = getParam(.distinctColors) as? Double else { return nil }
+        
+        return distinctColors
     }
-    
-    open var ocr: CLDOcrResult? {
-        guard let ocr = getParam(.ocr) as? [String : AnyObject] else {
-            return nil
-        }
-        return CLDOcrResult(json: ocr)
+    open var distinctEdges: Double? {
+        guard let distinctEdges = getParam(.distinctEdges) as? Double else { return nil }
+        
+        return distinctEdges
+    }
+    open var mostIndistinctPair: [String]? {
+        guard let mostIndistinctPair = getParam(.mostIndistinctPair) as? [String] else { return nil }
+        
+        return mostIndistinctPair
     }
     
     // MARK: - Private Helpers
-    
-    fileprivate func getParam(_ param: CLDInfoKey) -> AnyObject? {
+    fileprivate func getParam(_ param: CLDColorblindAccessibilityAnalysisResultKey) -> AnyObject? {
         return resultJson[String(describing: param)]
     }
     
-    fileprivate enum CLDInfoKey: CustomStringConvertible {
-        case detection, ocr
+    fileprivate enum CLDColorblindAccessibilityAnalysisResultKey: CustomStringConvertible {
+        case distinctColors, distinctEdges, mostIndistinctPair
         
         var description: String {
             switch self {
-            case .detection: return "detection"
-            case .ocr      : return "ocr"
+            case .distinctColors    : return "distinct_colors"
+            case .distinctEdges     : return "distinct_edges"
+            case .mostIndistinctPair: return "most_indistinct_pair"
             }
         }
     }

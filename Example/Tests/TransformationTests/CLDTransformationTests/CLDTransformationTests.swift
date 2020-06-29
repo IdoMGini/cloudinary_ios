@@ -1136,6 +1136,68 @@ class CLDTransformationTests: BaseTestCase {
         XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
     }
     
+    // MARK: - customPreFunction
+    func test_setCustomPreFunction_emptyWasm_shouldReturnValidString() {
+        
+        // Given
+        let input = ""
+        
+        let expectedResult = "wasm:"
+        
+        // When
+        sut.setCustomPreFunction(.wasm(input))
+        
+        let actualResult = sut.customPreFunction!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setCustomPreFunction_wasm_shouldReturnValidString() {
+        
+        // Given
+        let input = "func"
+        
+        let expectedResult = "wasm:func"
+        
+        // When
+        sut.setCustomPreFunction(.wasm(input))
+        
+        let actualResult = sut.customPreFunction!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setCustomPreFunction_emptyRemote_shouldReturnValidString() {
+        
+        // Given
+        let input = ""
+        
+        let expectedResult = "remote:"
+        
+        // When
+        sut.setCustomPreFunction(.remote(input))
+        
+        let actualResult = sut.customPreFunction!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    func test_setCustomPreFunction_remote_shouldReturnValidString() {
+        
+        // Given
+        let input = "func"
+        
+        let expectedResult = "remote:ZnVuYw=="
+        
+        // When
+        sut.setCustomPreFunction(.remote(input))
+        
+        let actualResult = sut.customPreFunction!
+        
+        // Then
+        XCTAssertEqual(actualResult, expectedResult, "Calling for inserted param should return its value")
+    }
+    
     // MARK: - customFunction
     func test_setCustomFunction_wasm_shouldReturnValidString() {
         

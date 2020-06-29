@@ -1,5 +1,5 @@
 //
-//  CLDInfo.swift
+//  CLDAccessibilityAnalysisResult.swift
 //
 //  Copyright (c) 2016 Cloudinary (http://cloudinary.com)
 //
@@ -24,35 +24,31 @@
 
 import Foundation
 
-@objcMembers open class CLDInfo: CLDBaseResult {
+@objcMembers open class CLDAccessibilityAnalysisResult: CLDBaseResult {
     
-    open var detection: CLDDetection? {
-        guard let detection = getParam(.detection) as? [String : AnyObject] else {
-            return nil
-        }
-        return CLDDetection(json: detection)
+    open var colorblindAccessibilityScore: Double? {
+        guard let accessibilityScore = getParam(.colorblindAccessibilityScore) as? Double else { return nil }
+        
+        return accessibilityScore
     }
-    
-    open var ocr: CLDOcrResult? {
-        guard let ocr = getParam(.ocr) as? [String : AnyObject] else {
-            return nil
-        }
-        return CLDOcrResult(json: ocr)
+    open var colorblindAccessibilityAnalysis: CLDColorblindAccessibilityAnalysisResult? {
+        guard let accessibilityAnalysis = getParam(.colorblindAccessibilityAnalysis) as? [String: AnyObject] else { return nil }
+        
+        return CLDColorblindAccessibilityAnalysisResult(json: accessibilityAnalysis)
     }
     
     // MARK: - Private Helpers
-    
-    fileprivate func getParam(_ param: CLDInfoKey) -> AnyObject? {
+    fileprivate func getParam(_ param: CLDAccessibilityAnalysisResultKey) -> AnyObject? {
         return resultJson[String(describing: param)]
     }
     
-    fileprivate enum CLDInfoKey: CustomStringConvertible {
-        case detection, ocr
+    fileprivate enum CLDAccessibilityAnalysisResultKey: CustomStringConvertible {
+        case colorblindAccessibilityScore, colorblindAccessibilityAnalysis
         
         var description: String {
             switch self {
-            case .detection: return "detection"
-            case .ocr      : return "ocr"
+            case .colorblindAccessibilityScore   : return "colorblind_accessibility_score"
+            case .colorblindAccessibilityAnalysis: return "colorblind_accessibility_analysis"
             }
         }
     }

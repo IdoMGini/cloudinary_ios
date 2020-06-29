@@ -774,11 +774,14 @@ class UrlTests: XCTestCase {
         testGravityUrl(CLDTransformation.CLDGravity.customFaces, "c_crop,g_custom:faces,w_100")
         testGravityUrl(CLDTransformation.CLDGravity.customAdvFace, "c_crop,g_custom:adv_face,w_100")
         testGravityUrl(CLDTransformation.CLDGravity.customAdvFaces, "c_crop,g_custom:adv_faces,w_100")
+        testGravityUrl(CLDTransformation.CLDGravity.autoOcrText, "c_crop,g_auto:ocr_text,w_100")
+        testGravityUrl(CLDTransformation.CLDGravity.ocrText, "c_crop,g_ocr_text,w_100")
+        testGravityUrl(CLDTransformation.CLDGravity.ocrTextAdvOcr, "c_crop,g_ocr_text:adv_ocr,w_100")
     }
 
     fileprivate func testGravityUrl(_ gravity: CLDTransformation.CLDGravity, _ expected: String) {
         XCTAssertEqual(cloudinary?.createUrl().setTransformation(CLDTransformation().setWidth(100).setCrop(CLDTransformation.CLDCrop.crop).setGravity(gravity)).generate("public_id"),
-                "\(prefix)/image/upload/\(expected)/public_id")
+                "\(prefix)/image/upload/\(expected)/public_id","Creating url with gravity enum should return expected result")
     }
 
     func testVideoCodec() {
@@ -851,12 +854,67 @@ class UrlTests: XCTestCase {
         XCTAssertNil(cloudinary?.createUrl().setTransformation(CLDTransformation().setUnderlayWithLayer(CLDLayer().setResourceType(.video))).generate("test"))
     }
 
-    func testCustomFunction(){
-        XCTAssertEqual(CLDTransformation().setCustomFunction(.wasm("blur_wasm")).asString() ,"fn_wasm:blur_wasm")
-        XCTAssertEqual(CLDTransformation().setCustomFunction(.remote("https://df34ra4a.execute-api.us-west-2.amazonaws.com/default/cloudinaryFunction")).asString()
-                ,"fn_remote:aHR0cHM6Ly9kZjM0cmE0YS5leGVjdXRlLWFwaS51cy13ZXN0LTIuYW1hem9uYXdzLmNvbS9kZWZhdWx0L2Nsb3VkaW5hcnlGdW5jdGlvbg==")
+    // MARK: - custom pre functions
+    func test_customPreFunction_wasm_shouldReturnExpectedValue(){
+       
+        // Given
+        let input = "blur_wasm"
+        
+        let expectedResult = "fn_pre:wasm:blur_wasm"
+        
+        // When
+        let sut = CLDTransformation().setCustomPreFunction(.wasm(input))
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult ,expectedResult, "actualResult should be equal to expectedResult")
+    }
+    func test_customPreFunction_remote_shouldReturnExpectedValue(){
+        
+        // Given
+        let input = "https://df34ra4a.execute-api.us-west-2.amazonaws.com/default/cloudinaryFunction"
+        
+        let expectedResult = "fn_pre:remote:aHR0cHM6Ly9kZjM0cmE0YS5leGVjdXRlLWFwaS51cy13ZXN0LTIuYW1hem9uYXdzLmNvbS9kZWZhdWx0L2Nsb3VkaW5hcnlGdW5jdGlvbg=="
+        
+        // When
+        let sut = CLDTransformation().setCustomPreFunction(.remote(input))
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult ,expectedResult, "actualResult should be equal to expectedResult")
     }
     
+    // MARK: - custom functions
+    func test_customFunction_wasm_shouldReturnExpectedValue(){
+       
+        // Given
+        let input = "blur_wasm"
+        
+        let expectedResult = "fn_wasm:blur_wasm"
+        
+        // When
+        let sut = CLDTransformation().setCustomFunction(.wasm(input))
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult ,expectedResult, "actualResult should be equal to expectedResult")
+    }
+    func test_customFunction_remote_shouldReturnExpectedValue(){
+        
+        // Given
+        let input = "https://df34ra4a.execute-api.us-west-2.amazonaws.com/default/cloudinaryFunction"
+        
+        let expectedResult = "fn_remote:aHR0cHM6Ly9kZjM0cmE0YS5leGVjdXRlLWFwaS51cy13ZXN0LTIuYW1hem9uYXdzLmNvbS9kZWZhdWx0L2Nsb3VkaW5hcnlGdW5jdGlvbg=="
+        
+        // When
+        let sut = CLDTransformation().setCustomFunction(.remote(input))
+        let actualResult = sut.asString()
+        
+        // Then
+        XCTAssertEqual(actualResult ,expectedResult, "actualResult should be equal to expectedResult")
+    }
+    
+    // MARK: - fps
     func testFps(){
         XCTAssertEqual(CLDTransformation().setFps("24-29.97").asString() ,"fps_24-29.97")
         XCTAssertEqual(CLDTransformation().setFps(24).asString() ,"fps_24")

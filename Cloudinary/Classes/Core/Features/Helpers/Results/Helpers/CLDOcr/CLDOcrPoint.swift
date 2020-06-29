@@ -1,5 +1,5 @@
 //
-//  CLDInfo.swift
+//  CLDOcrPoint.swift
 //
 //  Copyright (c) 2016 Cloudinary (http://cloudinary.com)
 //
@@ -23,36 +23,31 @@
 //
 
 import Foundation
+import CoreGraphics
 
-@objcMembers open class CLDInfo: CLDBaseResult {
-    
-    open var detection: CLDDetection? {
-        guard let detection = getParam(.detection) as? [String : AnyObject] else {
-            return nil
-        }
-        return CLDDetection(json: detection)
+@objcMembers open class CLDOcrPoint: CLDBaseResult {
+
+    open var x: NSNumber? {
+        guard let x = getParam(.xPoint) as? NSNumber else { return nil}
+        return x
     }
-    
-    open var ocr: CLDOcrResult? {
-        guard let ocr = getParam(.ocr) as? [String : AnyObject] else {
-            return nil
-        }
-        return CLDOcrResult(json: ocr)
+    open var y: NSNumber? {
+        guard let y = getParam(.yPoint) as? NSNumber else { return nil}
+        return y
     }
-    
+  
     // MARK: - Private Helpers
-    
-    fileprivate func getParam(_ param: CLDInfoKey) -> AnyObject? {
+    fileprivate func getParam(_ param: CLDOcrPointKey) -> AnyObject? {
         return resultJson[String(describing: param)]
     }
     
-    fileprivate enum CLDInfoKey: CustomStringConvertible {
-        case detection, ocr
+    fileprivate enum CLDOcrPointKey: CustomStringConvertible {
+        case xPoint,yPoint
         
         var description: String {
             switch self {
-            case .detection: return "detection"
-            case .ocr      : return "ocr"
+            case .xPoint : return "x"
+            case .yPoint : return "y"
             }
         }
     }
