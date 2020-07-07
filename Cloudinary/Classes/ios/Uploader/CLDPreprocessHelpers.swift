@@ -52,6 +52,30 @@ public class CLDPreprocessHelpers {
             return image
         }
     }
+    
+    /**
+     Get a CLDPreprocessStep closure to send to CLDPreprocessChain. Returns the image cropped to the requested rectangle. This step will validate that the chosen rectangle is within the image's dimensions, otherwise an exception is thrown and the CLDUploadRequest fails.
+
+      - parameter cropRect:          The requested crop rectangle.
+
+      - returns:                     A closure to use in a preprocessing chain.
+    */
+    public static func crop(cropRect: CGRect) -> CLDPreprocessStep<UIImage> {
+        return { image in
+            
+            let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+            guard imageRect.contains(cropRect) else {
+                throw CLDError.error(code: CLDError.CloudinaryErrorCode.preprocessingError, message: "Crop dimensions out of bounds")
+            }
+            
+            if let croppedImage = image.cld_crop(cropRect) {
+                return croppedImage
+            }
+            else {
+                throw CLDError.error(code: CLDError.CloudinaryErrorCode.preprocessingError, message: "Image cropping failed")
+            }
+        }
+    }
 
     /**
      Get a CLDResourceEncoder to use in CLDPreprocessChain. This encoder saves the image with the
@@ -76,17 +100,16 @@ public class CLDPreprocessHelpers {
         }
     }
 
-
     /**
      Get a CLDPreprocessStep to send to CLDPreprocessChain. This step will validate that a given image's
-     dimensions are within the chosen bounds, otherwise an exception is throw and the CLDUploadRequest fails.
+     dimensions are within the chosen bounds, otherwise an exception is thrown and the CLDUploadRequest fails.
 
       - parameter minWidth:         Minimum width allowed.
       - parameter maxWidth:         Maximum width allowed.
       - parameter minHeight:        Minimum height allowed.
       - parameter maxHeight:        Maximum height allowed.
 
-      - returns:                     A closure to use in a preprocessing chain.
+      - returns:                    A closure to use in a preprocessing chain.
     */
     public static func dimensionsValidator(minWidth: Int, maxWidth: Int, minHeight: Int, maxHeight: Int) -> CLDPreprocessStep<UIImage> {
         return { image in
@@ -102,7 +125,6 @@ public class CLDPreprocessHelpers {
     }
 
     internal static func encodeAs(image: UIImage, format: EncodingFormat, quality: CGFloat) -> Data? {
-
         switch format {
         case EncodingFormat.JPEG:
             return image.jpegData(compressionQuality: quality)
@@ -130,6 +152,18 @@ public class CLDPreprocessHelpers {
         UIGraphicsEndImageContext()
 
         return newImage
+    }
+}
+
+internal extension UIImage
+{
+    func cld_crop(_ rect: CGRect) -> UIImage? {
+        
+        UIGraphicsBeginImageContextWithOptions(rect.size, true, self.scale)
+        self.draw(at: CGPoint(x: -rect.origin.x, y: -rect.origin.y))
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return croppedImage;
     }
 }
 

@@ -15,7 +15,7 @@ extension CLDDownloader
        The image is retrieved from the cache if it exists, otherwise its downloaded and cached.
        
        - parameter url:                    The image URL to download.
-       - parameter progress:          The closure that is called periodically during the data transfer.
+       - parameter progress:               The closure that is called periodically during the data transfer.
        - parameter completionHandler:      The closure to be called once the request has finished, holding either the retrieved UIImage or the error.
        
        - returns:              A `CLDFetchImageRequest` instance to be used to get the fetched image from, or to get the download progress or cancel the task.

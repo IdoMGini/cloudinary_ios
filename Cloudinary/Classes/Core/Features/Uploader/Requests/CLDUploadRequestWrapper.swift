@@ -26,7 +26,7 @@ import Foundation
 /**
  A `CLDUploadRequestWrapper` object is a wrapper for instances of `CLDUploadRequest`. This is returned as a promise from
  several `CLDUploader` functions, in case the actual concrete request cannot yet be created. This is also allows for multiple
- concrete requests to be represented as one request. This class is used for preprocessing requests as well as uploda large requests.
+ concrete requests to be represented as one request. This class is used for preprocessing requests as well as upload large requests.
  */
 internal class CLDUploadRequestWrapper: CLDUploadRequest {
     private var state = RequestState.started

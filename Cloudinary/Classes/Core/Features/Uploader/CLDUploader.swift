@@ -199,7 +199,7 @@ The URL can either be of a local file (i.e. from the bundle) or can point to a r
      The URL can either be of a local file (i.e. from the bundle) or can point to a remote file.
      - parameter url:               The URL pointing to the file to upload.
      - parameter params:            An object holding all the available parameters for uploading.
-     - parameter preprocessChain    A CLDPreprocessing chain containing processing steps and/or custom encoder to run on the resource before uploading
+     - parameter preprocessChain         A CLDPreprocessing chain containing processing steps and/or custom encoder to run on the resource before uploading
      - parameter progress:          The closure that is called periodically during the data transfer.
      - parameter completionHandler: The closure to be called once the request has finished, holding either the response object or the error.
      - returns:                     An instance implementing the protocol `CLDNetworkDataRequest`,

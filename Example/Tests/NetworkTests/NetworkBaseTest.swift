@@ -61,7 +61,14 @@ class NetworkBaseTest: XCTestCase {
     // MARK: - Resources
     
     enum TestResourceType {
-        case logo, borderCollie, docx, dog, pdf
+        case logo
+        case borderCollie
+        case borderCollieCroppedPng
+        case borderCollieCroppedJpg
+        case docx
+        case dog
+        case pdf
+        case textImage
         
         var fileName: String {
             return String(describing: self)
@@ -69,9 +76,12 @@ class NetworkBaseTest: XCTestCase {
         
         var resourceExtension: String {
             switch self {
-            case .logo:
+            case .logo, .borderCollieCroppedPng:
                 return "png"
-            case .borderCollie:
+
+            case .textImage     : fallthrough
+            case .borderCollie  : fallthrough
+            case .borderCollieCroppedJpg:
                 return "jpg"
             case .docx:
                 return "docx"
